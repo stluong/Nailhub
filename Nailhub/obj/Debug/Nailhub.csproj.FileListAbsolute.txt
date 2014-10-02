@@ -22,7 +22,6 @@ C:\Users\Steven\Documents\Nailhub\Nailhub\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\Steven\Documents\Nailhub\Nailhub\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Users\Steven\Documents\Nailhub\Nailhub\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Steven\Documents\Nailhub\Nailhub\bin\MsieJavaScriptEngine.dll
-C:\Users\Steven\Documents\Nailhub\Nailhub\bin\Newtonsoft.Json.dll
 C:\Users\Steven\Documents\Nailhub\Nailhub\bin\Owin.dll
 C:\Users\Steven\Documents\Nailhub\Nailhub\bin\System.Net.Http.Formatting.dll
 C:\Users\Steven\Documents\Nailhub\Nailhub\bin\System.Web.Helpers.dll
