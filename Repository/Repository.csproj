@@ -38,6 +38,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\packages\LINQKit.1.1.1\lib\net45\LinqKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -48,8 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="FakeDbContext.cs" />
+    <Compile Include="FakeDbSet.cs" />
+    <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryableRepository\QueryableOperation.cs" />
+    <Compile Include="QueryableRepository\QueryExpression.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="StateConverable\StateHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -59,6 +69,18 @@
     <ProjectReference Include="..\IRepository\IRepository.csproj">
       <Project>{175d2132-d9b9-4bec-99e7-bc7cb13f84f0}</Project>
       <Name>IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IUnitOfWork\IUnitOfWork.csproj">
+      <Project>{302360fd-313e-4e2d-9094-132603abf719}</Project>
+      <Name>IUnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyContext\MyContext.csproj">
+      <Project>{efc18046-7abd-4f20-b798-6a81f1a24b5c}</Project>
+      <Name>MyContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObjectState\MyState.csproj">
+      <Project>{2525fee1-f582-453e-a157-5ef6115cbcce}</Project>
+      <Name>MyState</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

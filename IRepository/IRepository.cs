@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web.Http.OData.Query;
-using Repository.Pattern.Infrastructure;
+using Infrastructure.MyState;
+using Infrastructure.Repository.QueryableRepository;
 
-namespace Repository.Pattern.Repositories
+namespace Infrastructure.Repository
 {
     public interface IRepository<TEntity> where TEntity : IObjectState
     {
@@ -18,10 +18,10 @@ namespace Repository.Pattern.Repositories
         void Update(TEntity entity);
         void Delete(object id);
         void Delete(TEntity entity);
-        IQueryFluent<TEntity> Query(IQueryObject<TEntity> queryObject);
-        IQueryFluent<TEntity> Query(Expression<Func<TEntity, bool>> query);
-        IQueryFluent<TEntity> Query();
-        IQueryable Queryable(ODataQueryOptions<TEntity> oDataQueryOptions);
+        IQueryableOperation<TEntity> Query(IQueryExpression<TEntity> queryObject);
+        IQueryableOperation<TEntity> Query(Expression<Func<TEntity, bool>> query);
+        IQueryableOperation<TEntity> Query();
+        //IQueryable Queryable(ODataQueryOptions<TEntity> oDataQueryOptions);
         IQueryable<TEntity> Queryable();
         IRepository<T> GetRepository<T>() where T : class, IObjectState;
     }

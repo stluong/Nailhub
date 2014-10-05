@@ -1,7 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Repository
+namespace Infrastructure.MyState
 {
     public interface IObjectState
     {

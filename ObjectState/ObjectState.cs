@@ -1,4 +1,4 @@
-﻿namespace Repository
+﻿namespace Infrastructure.MyState
 {
     public enum ObjectState
     {

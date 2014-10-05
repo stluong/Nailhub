@@ -39,7 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IUnitOfWorkAsync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IRepository\IRepository.csproj">
+      <Project>{175d2132-d9b9-4bec-99e7-bc7cb13f84f0}</Project>
+      <Name>IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObjectState\MyState.csproj">
+      <Project>{2525fee1-f582-453e-a157-5ef6115cbcce}</Project>
+      <Name>MyState</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

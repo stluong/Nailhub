@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Repository.Pattern.Infrastructure;
+using Infrastructure.MyState;
 
-namespace Repository.Pattern.Repositories
+namespace Infrastructure.Repository
 {
     public interface IRepositoryAsync<TEntity> : IRepository<TEntity> where TEntity : IObjectState
     {

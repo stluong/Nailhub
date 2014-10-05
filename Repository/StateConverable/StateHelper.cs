@@ -2,10 +2,11 @@
 
 using System;
 using System.Data.Entity;
+using Infrastructure.MyState;
 
 #endregion
 
-namespace Repository
+namespace Infrastructure.Repository.StateConverable
 {
     public class StateHelper
     {

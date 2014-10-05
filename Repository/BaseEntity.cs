@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Infrastructure.MyState;
 
-namespace Repository
+namespace Infrastructure.Repository
 {
     public abstract class BaseEntity : IObjectState
     {

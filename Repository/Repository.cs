@@ -7,28 +7,49 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Core.UnitOfWork;
+using LinqKit;
+using Infrastructure.MyContext;
+using Infrastructure.MyState;
+using Infrastructure.Repository.QueryableRepository;
+using Infrastructure.Repository.StateConverable;
 
 
 #endregion
 
-namespace Repository
+namespace Infrastructure.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IObjectState
     {
-        private readonly IDataContext _context;
-        private readonly DbSet<TEntity> _dbSet;
-        private readonly Guid _instanceId;
+        #region Private Fields
 
-        public Repository(IDataContext context)
+        private readonly IMyContextAsync _context;
+        private readonly DbSet<TEntity> _dbSet;
+        private readonly IUnitOfWorkAsync _unitOfWork;
+
+        #endregion Private Fields
+
+        public Repository(IMyContextAsync context, IUnitOfWorkAsync unitOfWork)
         {
             _context = context;
-            _dbSet = context.Set<TEntity>();
-            _instanceId = Guid.NewGuid();
-        }
+            _unitOfWork = unitOfWork;
 
-        public Guid InstanceId
-        {
-            get { return _instanceId; }
+            // Temporarily for FakeDbContext, Unit Test and Fakes
+            var dbContext = context as DbContext;
+
+            if (dbContext != null)
+            {
+                _dbSet = dbContext.Set<TEntity>();
+            }
+            else
+            {
+                var fakeContext = context as FakeDbContext;
+
+                if (fakeContext != null)
+                {
+                    _dbSet = fakeContext.Set<TEntity>();
+                }
+            }
         }
 
         public virtual TEntity Find(params object[] keyValues)
@@ -36,24 +57,14 @@ namespace Repository
             return _dbSet.Find(keyValues);
         }
 
-        public virtual async Task<TEntity> FindAsync(params object[] keyValues)
-        {
-            return await _dbSet.FindAsync(keyValues);
-        }
-
-        public virtual async Task<TEntity> FindAsync(CancellationToken cancellationToken, params object[] keyValues)
-        {
-            return await _dbSet.FindAsync(cancellationToken, keyValues);
-        }
-
-        public virtual IQueryable<TEntity> SqlQuery(string query, params object[] parameters)
+        public virtual IQueryable<TEntity> SelectQuery(string query, params object[] parameters)
         {
             return _dbSet.SqlQuery(query, parameters).AsQueryable();
         }
 
         public virtual void Insert(TEntity entity)
         {
-            ((IObjectState)entity).ObjectState = ObjectState.Added;
+            entity.ObjectState = ObjectState.Added;
             _dbSet.Attach(entity);
             _context.SyncObjectState(entity);
         }
@@ -61,11 +72,14 @@ namespace Repository
         public virtual void InsertRange(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
+            {
                 Insert(entity);
+            }
         }
 
-        public virtual void InsertGraph(TEntity entity)
+        public virtual void InsertOrUpdateGraph(TEntity entity)
         {
+            SyncObjectGraph(entity);
             _dbSet.Add(entity);
         }
 
@@ -76,7 +90,7 @@ namespace Repository
 
         public virtual void Update(TEntity entity)
         {
-            ((IObjectState)entity).ObjectState = ObjectState.Modified;
+            entity.ObjectState = ObjectState.Modified;
             _dbSet.Attach(entity);
             _context.SyncObjectState(entity);
         }
@@ -89,53 +103,131 @@ namespace Repository
 
         public virtual void Delete(TEntity entity)
         {
-            
-            
-            ((IObjectState)entity).ObjectState = ObjectState.Deleted;
+            entity.ObjectState = ObjectState.Deleted;
             _dbSet.Attach(entity);
             _context.SyncObjectState(entity);
         }
 
-        public virtual IRepositoryQuery<TEntity> Query()
+        public IQueryableOperation<TEntity> Query()
         {
-            var repositoryGetFluentHelper = new RepositoryQuery<TEntity>(this);
-            return repositoryGetFluentHelper;
+            return new QueryableOperation<TEntity>(this);
         }
 
-        internal IQueryable<TEntity> Get(
+        public virtual IQueryableOperation<TEntity> Query(Expression<Func<TEntity, bool>> query)
+        {
+            return new QueryableOperation<TEntity>(this, query);
+        }
+
+        //public IQueryable Queryable(ODataQueryOptions<TEntity> oDataQueryOptions)
+        //{
+        //    return oDataQueryOptions.ApplyTo(_dbSet);
+        //}
+
+        public IQueryable<TEntity> Queryable()
+        {
+            return _dbSet;
+        }
+
+        public IRepository<T> GetRepository<T>() where T : class, IObjectState
+        {
+            return _unitOfWork.Repository<T>();
+        }
+
+        public virtual async Task<TEntity> FindAsync(params object[] keyValues)
+        {
+            return await _dbSet.FindAsync(keyValues);
+        }
+
+        public virtual async Task<TEntity> FindAsync(CancellationToken cancellationToken, params object[] keyValues)
+        {
+            return await _dbSet.FindAsync(cancellationToken, keyValues);
+        }
+
+        public virtual async Task<bool> DeleteAsync(params object[] keyValues)
+        {
+            return await DeleteAsync(CancellationToken.None, keyValues);
+        }
+
+        public virtual async Task<bool> DeleteAsync(CancellationToken cancellationToken, params object[] keyValues)
+        {
+            var entity = await FindAsync(cancellationToken, keyValues);
+
+            if (entity == null)
+            {
+                return false;
+            }
+
+            entity.ObjectState = ObjectState.Deleted;
+            _dbSet.Attach(entity);
+
+            return true;
+        }
+
+        internal IQueryable<TEntity> Select(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            List<Expression<Func<TEntity, object>>> includeProperties = null,
+            List<Expression<Func<TEntity, object>>> includes = null,
             int? page = null,
             int? pageSize = null)
         {
             IQueryable<TEntity> query = _dbSet;
 
-            if (includeProperties != null)
-                includeProperties.ForEach(i => query = query.Include(i));
-
-            if (filter != null)
-                query = query.Where(filter);
-
+            if (includes != null)
+            {
+                query = includes.Aggregate(query, (current, include) => current.Include(include));
+            }
             if (orderBy != null)
+            {
                 query = orderBy(query);
-
+            }
+            if (filter != null)
+            {
+                query = query.AsExpandable().Where(filter);
+            }
             if (page != null && pageSize != null)
-                query = query
-                    .Skip((page.Value - 1) * pageSize.Value)
-                    .Take(pageSize.Value);
-
+            {
+                query = query.Skip((page.Value - 1) * pageSize.Value).Take(pageSize.Value);
+            }
             return query;
         }
 
-        internal async Task<IEnumerable<TEntity>> GetAsync(
-            Expression<Func<TEntity, bool>> filter = null,
+        internal async Task<IEnumerable<TEntity>> SelectAsync(
+            Expression<Func<TEntity, bool>> query = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            List<Expression<Func<TEntity, object>>> includeProperties = null,
+            List<Expression<Func<TEntity, object>>> includes = null,
             int? page = null,
             int? pageSize = null)
         {
-            return Get(filter, orderBy, includeProperties, page, pageSize).AsEnumerable();
+            //See: Best Practices in Asynchronous Programming http://msdn.microsoft.com/en-us/magazine/jj991977.aspx
+            return await Task.Run(() => Select(query, orderBy, includes, page, pageSize).AsEnumerable()).ConfigureAwait(false);
+        }
+
+        private void SyncObjectGraph(object entity)
+        {
+            // Set tracking state for child collections
+            foreach (var prop in entity.GetType().GetProperties())
+            {
+                // Apply changes to 1-1 and M-1 properties
+                var trackableRef = prop.GetValue(entity, null) as IObjectState;
+                if (trackableRef != null && trackableRef.ObjectState == ObjectState.Added)
+                {
+                    _dbSet.Attach((TEntity)entity);
+                    _context.SyncObjectState((IObjectState)entity);
+                }
+
+                // Apply changes to 1-M properties
+                var items = prop.GetValue(entity, null) as IList<IObjectState>;
+                if (items == null) continue;
+
+                foreach (var item in items)
+                    SyncObjectGraph(item);
+            }
+        }
+
+
+        public IQueryableOperation<TEntity> Query(IQueryExpression<TEntity> queryObject)
+        {
+            throw new NotImplementedException();
         }
     }
 }
