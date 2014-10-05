@@ -13,6 +13,7 @@ using Infrastructure.MyContext;
 using Infrastructure.MyState;
 using Infrastructure.Repository.QueryableRepository;
 using Infrastructure.Repository.StateConverable;
+using System.Web.Http.OData.Query;
 
 
 #endregion
@@ -118,10 +119,10 @@ namespace Infrastructure.Repository
             return new QueryableOperation<TEntity>(this, query);
         }
 
-        //public IQueryable Queryable(ODataQueryOptions<TEntity> oDataQueryOptions)
-        //{
-        //    return oDataQueryOptions.ApplyTo(_dbSet);
-        //}
+        public IQueryable Queryable(ODataQueryOptions<TEntity> oDataQueryOptions)
+        {
+            return oDataQueryOptions.ApplyTo(_dbSet);
+        }
 
         public IQueryable<TEntity> Queryable()
         {
