@@ -66,10 +66,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAccountService.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{055f8179-3808-41ac-a2b2-260702d321da}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IRepository\IRepository.csproj">
       <Project>{175d2132-d9b9-4bec-99e7-bc7cb13f84f0}</Project>
       <Name>IRepository</Name>
@@ -77,6 +82,10 @@
     <ProjectReference Include="..\ObjectState\MyState.csproj">
       <Project>{2525fee1-f582-453e-a157-5ef6115cbcce}</Project>
       <Name>MyState</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{444f1e0d-970e-4203-a1ac-0b20fb1d9258}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

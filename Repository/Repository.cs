@@ -20,7 +20,7 @@ using System.Web.Http.OData.Query;
 
 namespace Infrastructure.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IObjectState
+    public class Repository<TEntity> : IRepositoryAsync<TEntity> where TEntity : class, IObjectState
     {
         #region Private Fields
 
@@ -225,10 +225,10 @@ namespace Infrastructure.Repository
             }
         }
 
-
         public IQueryableOperation<TEntity> Query(IQueryExpression<TEntity> queryObject)
         {
-            throw new NotImplementedException();
+            return new QueryableOperation<TEntity>(this, queryObject);
         }
+        
     }
 }

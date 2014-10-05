@@ -9,14 +9,15 @@ using Infrastructure.Repository.StateConverable;
 
 namespace Infrastructure.Repository
 {
-    public class DataContext : DbContext, IMyContextAsync
+    public class MyContext : DbContext, IMyContextAsync
     {
         #region Private Fields
         private readonly Guid _instanceId;
         bool _disposed;
         #endregion Private Fields
 
-        public DataContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        public MyContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
         {
             _instanceId = Guid.NewGuid();
             Configuration.LazyLoadingEnabled = false;

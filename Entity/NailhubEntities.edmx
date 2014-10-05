@@ -1,0 +1,1575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NailhubsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CITY">
+          <Key>
+            <PropertyRef Name="ID_CITY" />
+          </Key>
+          <Property Name="ID_CITY" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="ID_COUNTRY" />
+          </Key>
+          <Property Name="ID_COUNTRY" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="NATIVELANGUAGE" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CURRENT_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_CURRENT_PRODUCT" />
+          </Key>
+          <Property Name="ID_CURRENT_PRODUCT" Type="int" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="int" />
+          <Property Name="ID_SITE" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRICE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ENTERBY" Type="int" />
+          <Property Name="ENTERDATE" Type="datetime" />
+          <Property Name="MODIFYBY" Type="int" />
+          <Property Name="MODIFYDATE" Type="datetime" />
+          <Property Name="DELETEBY" Type="int" />
+          <Property Name="DELETEDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CURRENT_SERVICE">
+          <Key>
+            <PropertyRef Name="ID_CURRENT_SERVICE" />
+          </Key>
+          <Property Name="ID_CURRENT_SERVICE" Type="int" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="int" />
+          <Property Name="ID_SITE" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRICE" Type="money" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ENTERBY" Type="int" />
+          <Property Name="ENTERDATE" Type="datetime" />
+          <Property Name="MODIFYBY" Type="int" />
+          <Property Name="MODIFYDATE" Type="datetime" />
+          <Property Name="DELETEBY" Type="int" />
+          <Property Name="DELETEDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID_EMPLYEE" />
+          </Key>
+          <Property Name="ID_EMPLYEE" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_TITLE" Type="smallint" />
+          <Property Name="NAME" Type="nchar" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="LOCATION">
+          <Key>
+            <PropertyRef Name="ID_LOCATION" />
+          </Key>
+          <Property Name="ID_LOCATION" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nchar" MaxLength="10" />
+          <Property Name="ADDRESS" Type="nchar" MaxLength="10" />
+          <Property Name="ADDRESS2" Type="nchar" MaxLength="10" />
+          <Property Name="ID_STATE" Type="smallint" />
+          <Property Name="ID_CITY" Type="smallint" />
+          <Property Name="ZIP" Type="nchar" MaxLength="10" />
+          <Property Name="ID_COUNTRY" Type="smallint" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="int" Nullable="false" />
+          <Property Name="ID_TYPE" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PRODUCTDETAIL">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTDETAIL" />
+          </Key>
+          <Property Name="ID_PRODUCTDETAIL" Type="int" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="IMAGE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PROVINCE">
+          <Key>
+            <PropertyRef Name="ID_PROVINCE" />
+          </Key>
+          <Property Name="ID_PROVINCE" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ID_ROLE" />
+          </Key>
+          <Property Name="ID_ROLE" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SERVICE">
+          <Key>
+            <PropertyRef Name="ID_SERVICE" />
+          </Key>
+          <Property Name="ID_SERVICE" Type="int" Nullable="false" />
+          <Property Name="ID_TYPE" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SERVICEDETAIL">
+          <Key>
+            <PropertyRef Name="ID_SERVICEDETAIL" />
+          </Key>
+          <Property Name="ID_SERVICEDETAIL" Type="int" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SITE">
+          <Key>
+            <PropertyRef Name="ID_SITE" />
+          </Key>
+          <Property Name="ID_SITE" Type="int" Nullable="false" />
+          <Property Name="ID_SITETYPE" Type="smallint" />
+          <Property Name="ID_USER" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SITETYPE">
+          <Key>
+            <PropertyRef Name="ID_SITETYPE" />
+          </Key>
+          <Property Name="ID_SITETYPE" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="STATE">
+          <Key>
+            <PropertyRef Name="ID_STATE" />
+          </Key>
+          <Property Name="ID_STATE" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHORTNAME" Type="nchar" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="THEME">
+          <Key>
+            <PropertyRef Name="ID_THEME" />
+          </Key>
+          <Property Name="ID_THEME" Type="int" Nullable="false" />
+          <Property Name="ID_SITE" Type="int" />
+          <Property Name="BACKGROUND" Type="nvarchar" MaxLength="50" />
+          <Property Name="BACKGROUNDIMAGE" Type="nvarchar" MaxLength="50" />
+          <Property Name="LOGO" Type="nvarchar" MaxLength="50" />
+          <Property Name="SITENAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="THEMEDETAIL">
+          <Key>
+            <PropertyRef Name="ID_THEMEDETAIL" />
+          </Key>
+          <Property Name="ID_THEMEDETAIL" Type="int" Nullable="false" />
+          <Property Name="ID_THEME" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPT" Type="nvarchar" MaxLength="50" />
+          <Property Name="IMAGE" Type="nvarchar" MaxLength="50" />
+          <Property Name="STYLE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="ID_TITLE" />
+          </Key>
+          <Property Name="ID_TITLE" Type="smallint" Nullable="false" />
+          <Property Name="NAME" Type="nchar" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="nchar" MaxLength="10" />
+          <Property Name="NOTE" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TYPE">
+          <Key>
+            <PropertyRef Name="ID_TYPE" />
+          </Key>
+          <Property Name="ID_TYPE" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USERTYPE" Type="smallint" />
+          <Property Name="USERNAME" Type="nchar" MaxLength="30" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="STATUS" Type="nchar" MaxLength="10" />
+          <Property Name="NOTE" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="USER_ROLE">
+          <Key>
+            <PropertyRef Name="ID_USERROLE" />
+          </Key>
+          <Property Name="ID_USERROLE" Type="int" Nullable="false" />
+          <Property Name="ID_USER" Type="int" />
+          <Property Name="ID_ROLE" Type="smallint" />
+          <Property Name="ENTERBY" Type="int" />
+          <Property Name="ENTERDATE" Type="datetime" />
+          <Property Name="MODIFYBY" Type="int" />
+          <Property Name="MODIFYDATE" Type="datetime" />
+          <Property Name="DELETEBY" Type="int" />
+          <Property Name="DELETEDATE" Type="datetime" />
+          <Property Name="EXPIREDDATE" Type="datetime" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USERDETAIL">
+          <Key>
+            <PropertyRef Name="ID_USERDETAIL" />
+          </Key>
+          <Property Name="ID_USERDETAIL" Type="int" Nullable="false" />
+          <Property Name="ID_USER" Type="int" />
+          <Property Name="FIRSTNAME" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERTYPE">
+          <Key>
+            <PropertyRef Name="ID_USERTYPE" />
+          </Key>
+          <Property Name="ID_USERTYPE" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CURRENT_PRODUCT_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+          <End Role="CURRENT_PRODUCT" Type="Self.CURRENT_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="CURRENT_PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CURRENT_PRODUCT_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="0..1" />
+          <End Role="CURRENT_PRODUCT" Type="Self.CURRENT_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="CURRENT_PRODUCT">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CURRENT_SERVICE_SERVICE">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+          <End Role="CURRENT_SERVICE" Type="Self.CURRENT_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="CURRENT_SERVICE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CURRENT_SERVICE_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="0..1" />
+          <End Role="CURRENT_SERVICE" Type="Self.CURRENT_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="CURRENT_SERVICE">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_Title">
+          <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="ID_TITLE" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="ID_TITLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCATION_CITY">
+          <End Role="CITY" Type="Self.CITY" Multiplicity="0..1" />
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITY">
+              <PropertyRef Name="ID_CITY" />
+            </Principal>
+            <Dependent Role="LOCATION">
+              <PropertyRef Name="ID_CITY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCATION_COUNTRY">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="ID_COUNTRY" />
+            </Principal>
+            <Dependent Role="LOCATION">
+              <PropertyRef Name="ID_COUNTRY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCATION_STATE">
+          <End Role="STATE" Type="Self.STATE" Multiplicity="0..1" />
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE">
+              <PropertyRef Name="ID_STATE" />
+            </Principal>
+            <Dependent Role="LOCATION">
+              <PropertyRef Name="ID_STATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_TYPE">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="ID_TYPE" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="ID_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTDETAIL_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+          <End Role="PRODUCTDETAIL" Type="Self.PRODUCTDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="PRODUCTDETAIL">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICE_TYPE">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="0..1" />
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="ID_TYPE" />
+            </Principal>
+            <Dependent Role="SERVICE">
+              <PropertyRef Name="ID_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICEDETAIL_SERVICE">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+          <End Role="SERVICEDETAIL" Type="Self.SERVICEDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="SERVICEDETAIL">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SITE_SITETYPE">
+          <End Role="SITETYPE" Type="Self.SITETYPE" Multiplicity="0..1" />
+          <End Role="SITE" Type="Self.SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITETYPE">
+              <PropertyRef Name="ID_SITETYPE" />
+            </Principal>
+            <Dependent Role="SITE">
+              <PropertyRef Name="ID_SITETYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SITE_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="SITE" Type="Self.SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="SITE">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THEME_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="0..1" />
+          <End Role="THEME" Type="Self.THEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="THEME">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THEMEDETAIL_THEME">
+          <End Role="THEME" Type="Self.THEME" Multiplicity="0..1" />
+          <End Role="THEMEDETAIL" Type="Self.THEMEDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THEME">
+              <PropertyRef Name="ID_THEME" />
+            </Principal>
+            <Dependent Role="THEMEDETAIL">
+              <PropertyRef Name="ID_THEME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ROLE_ROLE">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ID_ROLE" />
+            </Principal>
+            <Dependent Role="USER_ROLE">
+              <PropertyRef Name="ID_ROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ROLE_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USER_ROLE">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_USERTYPE">
+          <End Role="USERTYPE" Type="Self.USERTYPE" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTYPE">
+              <PropertyRef Name="ID_USERTYPE" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="ID_USERTYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERDETAIL_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="USERDETAIL" Type="Self.USERDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USERDETAIL">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NailhubsModelStoreContainer">
+          <EntitySet Name="CITY" EntityType="Self.CITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CURRENT_PRODUCT" EntityType="Self.CURRENT_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CURRENT_SERVICE" EntityType="Self.CURRENT_SERVICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOCATION" EntityType="Self.LOCATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTDETAIL" EntityType="Self.PRODUCTDETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCE" EntityType="Self.PROVINCE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICE" EntityType="Self.SERVICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICEDETAIL" EntityType="Self.SERVICEDETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SITE" EntityType="Self.SITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SITETYPE" EntityType="Self.SITETYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATE" EntityType="Self.STATE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THEME" EntityType="Self.THEME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THEMEDETAIL" EntityType="Self.THEMEDETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TYPE" EntityType="Self.TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ROLE" EntityType="Self.USER_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERDETAIL" EntityType="Self.USERDETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERTYPE" EntityType="Self.USERTYPE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CURRENT_PRODUCT_PRODUCT" Association="Self.FK_CURRENT_PRODUCT_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="CURRENT_PRODUCT" EntitySet="CURRENT_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURRENT_PRODUCT_SITE" Association="Self.FK_CURRENT_PRODUCT_SITE">
+            <End Role="SITE" EntitySet="SITE" />
+            <End Role="CURRENT_PRODUCT" EntitySet="CURRENT_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURRENT_SERVICE_SERVICE" Association="Self.FK_CURRENT_SERVICE_SERVICE">
+            <End Role="SERVICE" EntitySet="SERVICE" />
+            <End Role="CURRENT_SERVICE" EntitySet="CURRENT_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURRENT_SERVICE_SITE" Association="Self.FK_CURRENT_SERVICE_SITE">
+            <End Role="SITE" EntitySet="SITE" />
+            <End Role="CURRENT_SERVICE" EntitySet="CURRENT_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Title" Association="Self.FK_EMPLOYEE_Title">
+            <End Role="Title" EntitySet="Title" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCATION_CITY" Association="Self.FK_LOCATION_CITY">
+            <End Role="CITY" EntitySet="CITY" />
+            <End Role="LOCATION" EntitySet="LOCATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCATION_COUNTRY" Association="Self.FK_LOCATION_COUNTRY">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="LOCATION" EntitySet="LOCATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCATION_STATE" Association="Self.FK_LOCATION_STATE">
+            <End Role="STATE" EntitySet="STATE" />
+            <End Role="LOCATION" EntitySet="LOCATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_TYPE" Association="Self.FK_PRODUCT_TYPE">
+            <End Role="TYPE" EntitySet="TYPE" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTDETAIL_PRODUCT" Association="Self.FK_PRODUCTDETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="PRODUCTDETAIL" EntitySet="PRODUCTDETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICE_TYPE" Association="Self.FK_SERVICE_TYPE">
+            <End Role="TYPE" EntitySet="TYPE" />
+            <End Role="SERVICE" EntitySet="SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICEDETAIL_SERVICE" Association="Self.FK_SERVICEDETAIL_SERVICE">
+            <End Role="SERVICE" EntitySet="SERVICE" />
+            <End Role="SERVICEDETAIL" EntitySet="SERVICEDETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SITE_SITETYPE" Association="Self.FK_SITE_SITETYPE">
+            <End Role="SITETYPE" EntitySet="SITETYPE" />
+            <End Role="SITE" EntitySet="SITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SITE_USER" Association="Self.FK_SITE_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="SITE" EntitySet="SITE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THEME_SITE" Association="Self.FK_THEME_SITE">
+            <End Role="SITE" EntitySet="SITE" />
+            <End Role="THEME" EntitySet="THEME" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THEMEDETAIL_THEME" Association="Self.FK_THEMEDETAIL_THEME">
+            <End Role="THEME" EntitySet="THEME" />
+            <End Role="THEMEDETAIL" EntitySet="THEMEDETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE_ROLE" Association="Self.FK_USER_ROLE_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE_USER" Association="Self.FK_USER_ROLE_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_USERTYPE" Association="Self.FK_USER_USERTYPE">
+            <End Role="USERTYPE" EntitySet="USERTYPE" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERDETAIL_USER" Association="Self.FK_USERDETAIL_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USERDETAIL" EntitySet="USERDETAIL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NailhubsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CITY">
+          <Key>
+            <PropertyRef Name="ID_CITY" />
+          </Key>
+          <Property Name="ID_CITY" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOCATIONs" Relationship="Self.FK_LOCATION_CITY" FromRole="CITY" ToRole="LOCATION" />
+        </EntityType>
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="ID_COUNTRY" />
+          </Key>
+          <Property Name="ID_COUNTRY" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NATIVELANGUAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOCATIONs" Relationship="Self.FK_LOCATION_COUNTRY" FromRole="COUNTRY" ToRole="LOCATION" />
+        </EntityType>
+        <EntityType Name="CURRENT_PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_CURRENT_PRODUCT" />
+          </Key>
+          <Property Name="ID_CURRENT_PRODUCT" Type="Int32" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="Int32" />
+          <Property Name="ID_SITE" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ENTERBY" Type="Int32" />
+          <Property Name="ENTERDATE" Type="DateTime" Precision="3" />
+          <Property Name="MODIFYBY" Type="Int32" />
+          <Property Name="MODIFYDATE" Type="DateTime" Precision="3" />
+          <Property Name="DELETEBY" Type="Int32" />
+          <Property Name="DELETEDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_CURRENT_PRODUCT_PRODUCT" FromRole="CURRENT_PRODUCT" ToRole="PRODUCT" />
+          <NavigationProperty Name="SITE" Relationship="Self.FK_CURRENT_PRODUCT_SITE" FromRole="CURRENT_PRODUCT" ToRole="SITE" />
+        </EntityType>
+        <EntityType Name="CURRENT_SERVICE">
+          <Key>
+            <PropertyRef Name="ID_CURRENT_SERVICE" />
+          </Key>
+          <Property Name="ID_CURRENT_SERVICE" Type="Int32" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <Property Name="ID_SITE" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ENTERBY" Type="Int32" />
+          <Property Name="ENTERDATE" Type="DateTime" Precision="3" />
+          <Property Name="MODIFYBY" Type="Int32" />
+          <Property Name="MODIFYDATE" Type="DateTime" Precision="3" />
+          <Property Name="DELETEBY" Type="Int32" />
+          <Property Name="DELETEDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SERVICE" Relationship="Self.FK_CURRENT_SERVICE_SERVICE" FromRole="CURRENT_SERVICE" ToRole="SERVICE" />
+          <NavigationProperty Name="SITE" Relationship="Self.FK_CURRENT_SERVICE_SITE" FromRole="CURRENT_SERVICE" ToRole="SITE" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID_EMPLYEE" />
+          </Key>
+          <Property Name="ID_EMPLYEE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID_TITLE" Type="Int16" />
+          <Property Name="NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Title" Relationship="Self.FK_EMPLOYEE_Title" FromRole="EMPLOYEE" ToRole="Title" />
+        </EntityType>
+        <EntityType Name="LOCATION">
+          <Key>
+            <PropertyRef Name="ID_LOCATION" />
+          </Key>
+          <Property Name="ID_LOCATION" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ADDRESS2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ID_STATE" Type="Int16" />
+          <Property Name="ID_CITY" Type="Int16" />
+          <Property Name="ZIP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ID_COUNTRY" Type="Int16" />
+          <NavigationProperty Name="CITY" Relationship="Self.FK_LOCATION_CITY" FromRole="LOCATION" ToRole="CITY" />
+          <NavigationProperty Name="COUNTRY" Relationship="Self.FK_LOCATION_COUNTRY" FromRole="LOCATION" ToRole="COUNTRY" />
+          <NavigationProperty Name="STATE" Relationship="Self.FK_LOCATION_STATE" FromRole="LOCATION" ToRole="STATE" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="Int32" Nullable="false" />
+          <Property Name="ID_TYPE" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CURRENT_PRODUCT" Relationship="Self.FK_CURRENT_PRODUCT_PRODUCT" FromRole="PRODUCT" ToRole="CURRENT_PRODUCT" />
+          <NavigationProperty Name="TYPE" Relationship="Self.FK_PRODUCT_TYPE" FromRole="PRODUCT" ToRole="TYPE" />
+          <NavigationProperty Name="PRODUCTDETAILs" Relationship="Self.FK_PRODUCTDETAIL_PRODUCT" FromRole="PRODUCT" ToRole="PRODUCTDETAIL" />
+        </EntityType>
+        <EntityType Name="PRODUCTDETAIL">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTDETAIL" />
+          </Key>
+          <Property Name="ID_PRODUCTDETAIL" Type="Int32" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCTDETAIL_PRODUCT" FromRole="PRODUCTDETAIL" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PROVINCE">
+          <Key>
+            <PropertyRef Name="ID_PROVINCE" />
+          </Key>
+          <Property Name="ID_PROVINCE" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ID_ROLE" />
+          </Key>
+          <Property Name="ID_ROLE" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="USER_ROLE" Relationship="Self.FK_USER_ROLE_ROLE" FromRole="ROLE" ToRole="USER_ROLE" />
+        </EntityType>
+        <EntityType Name="SERVICE">
+          <Key>
+            <PropertyRef Name="ID_SERVICE" />
+          </Key>
+          <Property Name="ID_SERVICE" Type="Int32" Nullable="false" />
+          <Property Name="ID_TYPE" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CURRENT_SERVICE" Relationship="Self.FK_CURRENT_SERVICE_SERVICE" FromRole="SERVICE" ToRole="CURRENT_SERVICE" />
+          <NavigationProperty Name="TYPE" Relationship="Self.FK_SERVICE_TYPE" FromRole="SERVICE" ToRole="TYPE" />
+          <NavigationProperty Name="SERVICEDETAILs" Relationship="Self.FK_SERVICEDETAIL_SERVICE" FromRole="SERVICE" ToRole="SERVICEDETAIL" />
+        </EntityType>
+        <EntityType Name="SERVICEDETAIL">
+          <Key>
+            <PropertyRef Name="ID_SERVICEDETAIL" />
+          </Key>
+          <Property Name="ID_SERVICEDETAIL" Type="Int32" Nullable="false" />
+          <Property Name="ID_SERVICE" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SERVICE" Relationship="Self.FK_SERVICEDETAIL_SERVICE" FromRole="SERVICEDETAIL" ToRole="SERVICE" />
+        </EntityType>
+        <EntityType Name="SITE">
+          <Key>
+            <PropertyRef Name="ID_SITE" />
+          </Key>
+          <Property Name="ID_SITE" Type="Int32" Nullable="false" />
+          <Property Name="ID_SITETYPE" Type="Int16" />
+          <Property Name="ID_USER" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CURRENT_PRODUCT" Relationship="Self.FK_CURRENT_PRODUCT_SITE" FromRole="SITE" ToRole="CURRENT_PRODUCT" />
+          <NavigationProperty Name="CURRENT_SERVICE" Relationship="Self.FK_CURRENT_SERVICE_SITE" FromRole="SITE" ToRole="CURRENT_SERVICE" />
+          <NavigationProperty Name="SITETYPE" Relationship="Self.FK_SITE_SITETYPE" FromRole="SITE" ToRole="SITETYPE" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_SITE_USER" FromRole="SITE" ToRole="USER" />
+          <NavigationProperty Name="THEMEs" Relationship="Self.FK_THEME_SITE" FromRole="SITE" ToRole="THEME" />
+        </EntityType>
+        <EntityType Name="SITETYPE">
+          <Key>
+            <PropertyRef Name="ID_SITETYPE" />
+          </Key>
+          <Property Name="ID_SITETYPE" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SITEs" Relationship="Self.FK_SITE_SITETYPE" FromRole="SITETYPE" ToRole="SITE" />
+        </EntityType>
+        <EntityType Name="STATE">
+          <Key>
+            <PropertyRef Name="ID_STATE" />
+          </Key>
+          <Property Name="ID_STATE" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHORTNAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOCATIONs" Relationship="Self.FK_LOCATION_STATE" FromRole="STATE" ToRole="LOCATION" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="THEME">
+          <Key>
+            <PropertyRef Name="ID_THEME" />
+          </Key>
+          <Property Name="ID_THEME" Type="Int32" Nullable="false" />
+          <Property Name="ID_SITE" Type="Int32" />
+          <Property Name="BACKGROUND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BACKGROUNDIMAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LOGO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SITENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SITE" Relationship="Self.FK_THEME_SITE" FromRole="THEME" ToRole="SITE" />
+          <NavigationProperty Name="THEMEDETAILs" Relationship="Self.FK_THEMEDETAIL_THEME" FromRole="THEME" ToRole="THEMEDETAIL" />
+        </EntityType>
+        <EntityType Name="THEMEDETAIL">
+          <Key>
+            <PropertyRef Name="ID_THEMEDETAIL" />
+          </Key>
+          <Property Name="ID_THEMEDETAIL" Type="Int32" Nullable="false" />
+          <Property Name="ID_THEME" Type="Int32" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IMAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="STYLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="THEME" Relationship="Self.FK_THEMEDETAIL_THEME" FromRole="THEMEDETAIL" ToRole="THEME" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="ID_TITLE" />
+          </Key>
+          <Property Name="ID_TITLE" Type="Int16" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="EMPLOYEEs" Relationship="Self.FK_EMPLOYEE_Title" FromRole="Title" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="TYPE">
+          <Key>
+            <PropertyRef Name="ID_TYPE" />
+          </Key>
+          <Property Name="ID_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRODUCTs" Relationship="Self.FK_PRODUCT_TYPE" FromRole="TYPE" ToRole="PRODUCT" />
+          <NavigationProperty Name="SERVICEs" Relationship="Self.FK_SERVICE_TYPE" FromRole="TYPE" ToRole="SERVICE" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USERTYPE" Type="Int16" />
+          <Property Name="USERNAME" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SITEs" Relationship="Self.FK_SITE_USER" FromRole="USER" ToRole="SITE" />
+          <NavigationProperty Name="USER_ROLE" Relationship="Self.FK_USER_ROLE_USER" FromRole="USER" ToRole="USER_ROLE" />
+          <NavigationProperty Name="USERTYPE" Relationship="Self.FK_USER_USERTYPE" FromRole="USER" ToRole="USERTYPE" />
+          <NavigationProperty Name="USERDETAILs" Relationship="Self.FK_USERDETAIL_USER" FromRole="USER" ToRole="USERDETAIL" />
+        </EntityType>
+        <EntityType Name="USER_ROLE">
+          <Key>
+            <PropertyRef Name="ID_USERROLE" />
+          </Key>
+          <Property Name="ID_USERROLE" Type="Int32" Nullable="false" />
+          <Property Name="ID_USER" Type="Int32" />
+          <Property Name="ID_ROLE" Type="Int16" />
+          <Property Name="ENTERBY" Type="Int32" />
+          <Property Name="ENTERDATE" Type="DateTime" Precision="3" />
+          <Property Name="MODIFYBY" Type="Int32" />
+          <Property Name="MODIFYDATE" Type="DateTime" Precision="3" />
+          <Property Name="DELETEBY" Type="Int32" />
+          <Property Name="DELETEDATE" Type="DateTime" Precision="3" />
+          <Property Name="EXPIREDDATE" Type="DateTime" Precision="3" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ROLE" Relationship="Self.FK_USER_ROLE_ROLE" FromRole="USER_ROLE" ToRole="ROLE" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_USER_ROLE_USER" FromRole="USER_ROLE" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USERDETAIL">
+          <Key>
+            <PropertyRef Name="ID_USERDETAIL" />
+          </Key>
+          <Property Name="ID_USERDETAIL" Type="Int32" Nullable="false" />
+          <Property Name="ID_USER" Type="Int32" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_USERDETAIL_USER" FromRole="USERDETAIL" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USERTYPE">
+          <Key>
+            <PropertyRef Name="ID_USERTYPE" />
+          </Key>
+          <Property Name="ID_USERTYPE" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USERs" Relationship="Self.FK_USER_USERTYPE" FromRole="USERTYPE" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK_LOCATION_CITY">
+          <End Role="CITY" Type="Self.CITY" Multiplicity="0..1" />
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITY">
+              <PropertyRef Name="ID_CITY" />
+            </Principal>
+            <Dependent Role="LOCATION">
+              <PropertyRef Name="ID_CITY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCATION_COUNTRY">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="0..1" />
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="ID_COUNTRY" />
+            </Principal>
+            <Dependent Role="LOCATION">
+              <PropertyRef Name="ID_COUNTRY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CURRENT_PRODUCT_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+          <End Role="CURRENT_PRODUCT" Type="Self.CURRENT_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="CURRENT_PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CURRENT_PRODUCT_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="0..1" />
+          <End Role="CURRENT_PRODUCT" Type="Self.CURRENT_PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="CURRENT_PRODUCT">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CURRENT_SERVICE_SERVICE">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+          <End Role="CURRENT_SERVICE" Type="Self.CURRENT_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="CURRENT_SERVICE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CURRENT_SERVICE_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="0..1" />
+          <End Role="CURRENT_SERVICE" Type="Self.CURRENT_SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="CURRENT_SERVICE">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_Title">
+          <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="ID_TITLE" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="ID_TITLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCATION_STATE">
+          <End Role="STATE" Type="Self.STATE" Multiplicity="0..1" />
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE">
+              <PropertyRef Name="ID_STATE" />
+            </Principal>
+            <Dependent Role="LOCATION">
+              <PropertyRef Name="ID_STATE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_TYPE">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="ID_TYPE" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="ID_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTDETAIL_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+          <End Role="PRODUCTDETAIL" Type="Self.PRODUCTDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="PRODUCTDETAIL">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ROLE_ROLE">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ID_ROLE" />
+            </Principal>
+            <Dependent Role="USER_ROLE">
+              <PropertyRef Name="ID_ROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICE_TYPE">
+          <End Role="TYPE" Type="Self.TYPE" Multiplicity="0..1" />
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPE">
+              <PropertyRef Name="ID_TYPE" />
+            </Principal>
+            <Dependent Role="SERVICE">
+              <PropertyRef Name="ID_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICEDETAIL_SERVICE">
+          <End Role="SERVICE" Type="Self.SERVICE" Multiplicity="0..1" />
+          <End Role="SERVICEDETAIL" Type="Self.SERVICEDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE">
+              <PropertyRef Name="ID_SERVICE" />
+            </Principal>
+            <Dependent Role="SERVICEDETAIL">
+              <PropertyRef Name="ID_SERVICE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SITE_SITETYPE">
+          <End Role="SITETYPE" Type="Self.SITETYPE" Multiplicity="0..1" />
+          <End Role="SITE" Type="Self.SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITETYPE">
+              <PropertyRef Name="ID_SITETYPE" />
+            </Principal>
+            <Dependent Role="SITE">
+              <PropertyRef Name="ID_SITETYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SITE_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="SITE" Type="Self.SITE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="SITE">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THEME_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="0..1" />
+          <End Role="THEME" Type="Self.THEME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="THEME">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_THEMEDETAIL_THEME">
+          <End Role="THEME" Type="Self.THEME" Multiplicity="0..1" />
+          <End Role="THEMEDETAIL" Type="Self.THEMEDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THEME">
+              <PropertyRef Name="ID_THEME" />
+            </Principal>
+            <Dependent Role="THEMEDETAIL">
+              <PropertyRef Name="ID_THEME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ROLE_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USER_ROLE">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_USERTYPE">
+          <End Role="USERTYPE" Type="Self.USERTYPE" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERTYPE">
+              <PropertyRef Name="ID_USERTYPE" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="ID_USERTYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERDETAIL_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="USERDETAIL" Type="Self.USERDETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USERDETAIL">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NailhubsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CITies" EntityType="Self.CITY" />
+          <EntitySet Name="COUNTRies" EntityType="Self.COUNTRY" />
+          <EntitySet Name="CURRENT_PRODUCT" EntityType="Self.CURRENT_PRODUCT" />
+          <EntitySet Name="CURRENT_SERVICE" EntityType="Self.CURRENT_SERVICE" />
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="LOCATIONs" EntityType="Self.LOCATION" />
+          <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+          <EntitySet Name="PRODUCTDETAILs" EntityType="Self.PRODUCTDETAIL" />
+          <EntitySet Name="PROVINCEs" EntityType="Self.PROVINCE" />
+          <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
+          <EntitySet Name="SERVICEs" EntityType="Self.SERVICE" />
+          <EntitySet Name="SERVICEDETAILs" EntityType="Self.SERVICEDETAIL" />
+          <EntitySet Name="SITEs" EntityType="Self.SITE" />
+          <EntitySet Name="SITETYPEs" EntityType="Self.SITETYPE" />
+          <EntitySet Name="STATEs" EntityType="Self.STATE" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="THEMEs" EntityType="Self.THEME" />
+          <EntitySet Name="THEMEDETAILs" EntityType="Self.THEMEDETAIL" />
+          <EntitySet Name="Titles" EntityType="Self.Title" />
+          <EntitySet Name="TYPEs" EntityType="Self.TYPE" />
+          <EntitySet Name="USERs" EntityType="Self.USER" />
+          <EntitySet Name="USER_ROLE" EntityType="Self.USER_ROLE" />
+          <EntitySet Name="USERDETAILs" EntityType="Self.USERDETAIL" />
+          <EntitySet Name="USERTYPEs" EntityType="Self.USERTYPE" />
+          <AssociationSet Name="FK_LOCATION_CITY" Association="Self.FK_LOCATION_CITY">
+            <End Role="CITY" EntitySet="CITies" />
+            <End Role="LOCATION" EntitySet="LOCATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCATION_COUNTRY" Association="Self.FK_LOCATION_COUNTRY">
+            <End Role="COUNTRY" EntitySet="COUNTRies" />
+            <End Role="LOCATION" EntitySet="LOCATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURRENT_PRODUCT_PRODUCT" Association="Self.FK_CURRENT_PRODUCT_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="CURRENT_PRODUCT" EntitySet="CURRENT_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURRENT_PRODUCT_SITE" Association="Self.FK_CURRENT_PRODUCT_SITE">
+            <End Role="SITE" EntitySet="SITEs" />
+            <End Role="CURRENT_PRODUCT" EntitySet="CURRENT_PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURRENT_SERVICE_SERVICE" Association="Self.FK_CURRENT_SERVICE_SERVICE">
+            <End Role="SERVICE" EntitySet="SERVICEs" />
+            <End Role="CURRENT_SERVICE" EntitySet="CURRENT_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CURRENT_SERVICE_SITE" Association="Self.FK_CURRENT_SERVICE_SITE">
+            <End Role="SITE" EntitySet="SITEs" />
+            <End Role="CURRENT_SERVICE" EntitySet="CURRENT_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Title" Association="Self.FK_EMPLOYEE_Title">
+            <End Role="Title" EntitySet="Titles" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCATION_STATE" Association="Self.FK_LOCATION_STATE">
+            <End Role="STATE" EntitySet="STATEs" />
+            <End Role="LOCATION" EntitySet="LOCATIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_TYPE" Association="Self.FK_PRODUCT_TYPE">
+            <End Role="TYPE" EntitySet="TYPEs" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTDETAIL_PRODUCT" Association="Self.FK_PRODUCTDETAIL_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="PRODUCTDETAIL" EntitySet="PRODUCTDETAILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE_ROLE" Association="Self.FK_USER_ROLE_ROLE">
+            <End Role="ROLE" EntitySet="ROLEs" />
+            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICE_TYPE" Association="Self.FK_SERVICE_TYPE">
+            <End Role="TYPE" EntitySet="TYPEs" />
+            <End Role="SERVICE" EntitySet="SERVICEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICEDETAIL_SERVICE" Association="Self.FK_SERVICEDETAIL_SERVICE">
+            <End Role="SERVICE" EntitySet="SERVICEs" />
+            <End Role="SERVICEDETAIL" EntitySet="SERVICEDETAILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SITE_SITETYPE" Association="Self.FK_SITE_SITETYPE">
+            <End Role="SITETYPE" EntitySet="SITETYPEs" />
+            <End Role="SITE" EntitySet="SITEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SITE_USER" Association="Self.FK_SITE_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="SITE" EntitySet="SITEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THEME_SITE" Association="Self.FK_THEME_SITE">
+            <End Role="SITE" EntitySet="SITEs" />
+            <End Role="THEME" EntitySet="THEMEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_THEMEDETAIL_THEME" Association="Self.FK_THEMEDETAIL_THEME">
+            <End Role="THEME" EntitySet="THEMEs" />
+            <End Role="THEMEDETAIL" EntitySet="THEMEDETAILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE_USER" Association="Self.FK_USER_ROLE_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_USERTYPE" Association="Self.FK_USER_USERTYPE">
+            <End Role="USERTYPE" EntitySet="USERTYPEs" />
+            <End Role="USER" EntitySet="USERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERDETAIL_USER" Association="Self.FK_USERDETAIL_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="USERDETAIL" EntitySet="USERDETAILs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NailhubsModelStoreContainer" CdmEntityContainer="NailhubsEntities">
+          <EntitySetMapping Name="CITies">
+            <EntityTypeMapping TypeName="NailhubsModel.CITY">
+              <MappingFragment StoreEntitySet="CITY">
+                <ScalarProperty Name="ID_CITY" ColumnName="ID_CITY" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COUNTRies">
+            <EntityTypeMapping TypeName="NailhubsModel.COUNTRY">
+              <MappingFragment StoreEntitySet="COUNTRY">
+                <ScalarProperty Name="ID_COUNTRY" ColumnName="ID_COUNTRY" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="NATIVELANGUAGE" ColumnName="NATIVELANGUAGE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CURRENT_PRODUCT">
+            <EntityTypeMapping TypeName="NailhubsModel.CURRENT_PRODUCT">
+              <MappingFragment StoreEntitySet="CURRENT_PRODUCT">
+                <ScalarProperty Name="ID_CURRENT_PRODUCT" ColumnName="ID_CURRENT_PRODUCT" />
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="ENTERBY" ColumnName="ENTERBY" />
+                <ScalarProperty Name="ENTERDATE" ColumnName="ENTERDATE" />
+                <ScalarProperty Name="MODIFYBY" ColumnName="MODIFYBY" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="DELETEBY" ColumnName="DELETEBY" />
+                <ScalarProperty Name="DELETEDATE" ColumnName="DELETEDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CURRENT_SERVICE">
+            <EntityTypeMapping TypeName="NailhubsModel.CURRENT_SERVICE">
+              <MappingFragment StoreEntitySet="CURRENT_SERVICE">
+                <ScalarProperty Name="ID_CURRENT_SERVICE" ColumnName="ID_CURRENT_SERVICE" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="ENTERBY" ColumnName="ENTERBY" />
+                <ScalarProperty Name="ENTERDATE" ColumnName="ENTERDATE" />
+                <ScalarProperty Name="MODIFYBY" ColumnName="MODIFYBY" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="DELETEBY" ColumnName="DELETEBY" />
+                <ScalarProperty Name="DELETEDATE" ColumnName="DELETEDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="NailhubsModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="ID_EMPLYEE" ColumnName="ID_EMPLYEE" />
+                <ScalarProperty Name="ID_TITLE" ColumnName="ID_TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCATIONs">
+            <EntityTypeMapping TypeName="NailhubsModel.LOCATION">
+              <MappingFragment StoreEntitySet="LOCATION">
+                <ScalarProperty Name="ID_LOCATION" ColumnName="ID_LOCATION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="ID_STATE" ColumnName="ID_STATE" />
+                <ScalarProperty Name="ID_CITY" ColumnName="ID_CITY" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ID_COUNTRY" ColumnName="ID_COUNTRY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="NailhubsModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="ID_TYPE" ColumnName="ID_TYPE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTDETAILs">
+            <EntityTypeMapping TypeName="NailhubsModel.PRODUCTDETAIL">
+              <MappingFragment StoreEntitySet="PRODUCTDETAIL">
+                <ScalarProperty Name="ID_PRODUCTDETAIL" ColumnName="ID_PRODUCTDETAIL" />
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCEs">
+            <EntityTypeMapping TypeName="NailhubsModel.PROVINCE">
+              <MappingFragment StoreEntitySet="PROVINCE">
+                <ScalarProperty Name="ID_PROVINCE" ColumnName="ID_PROVINCE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLEs">
+            <EntityTypeMapping TypeName="NailhubsModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLE">
+                <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICEs">
+            <EntityTypeMapping TypeName="NailhubsModel.SERVICE">
+              <MappingFragment StoreEntitySet="SERVICE">
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+                <ScalarProperty Name="ID_TYPE" ColumnName="ID_TYPE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICEDETAILs">
+            <EntityTypeMapping TypeName="NailhubsModel.SERVICEDETAIL">
+              <MappingFragment StoreEntitySet="SERVICEDETAIL">
+                <ScalarProperty Name="ID_SERVICEDETAIL" ColumnName="ID_SERVICEDETAIL" />
+                <ScalarProperty Name="ID_SERVICE" ColumnName="ID_SERVICE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SITEs">
+            <EntityTypeMapping TypeName="NailhubsModel.SITE">
+              <MappingFragment StoreEntitySet="SITE">
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+                <ScalarProperty Name="ID_SITETYPE" ColumnName="ID_SITETYPE" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SITETYPEs">
+            <EntityTypeMapping TypeName="NailhubsModel.SITETYPE">
+              <MappingFragment StoreEntitySet="SITETYPE">
+                <ScalarProperty Name="ID_SITETYPE" ColumnName="ID_SITETYPE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATEs">
+            <EntityTypeMapping TypeName="NailhubsModel.STATE">
+              <MappingFragment StoreEntitySet="STATE">
+                <ScalarProperty Name="ID_STATE" ColumnName="ID_STATE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SHORTNAME" ColumnName="SHORTNAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NailhubsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THEMEs">
+            <EntityTypeMapping TypeName="NailhubsModel.THEME">
+              <MappingFragment StoreEntitySet="THEME">
+                <ScalarProperty Name="ID_THEME" ColumnName="ID_THEME" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+                <ScalarProperty Name="BACKGROUND" ColumnName="BACKGROUND" />
+                <ScalarProperty Name="BACKGROUNDIMAGE" ColumnName="BACKGROUNDIMAGE" />
+                <ScalarProperty Name="LOGO" ColumnName="LOGO" />
+                <ScalarProperty Name="SITENAME" ColumnName="SITENAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THEMEDETAILs">
+            <EntityTypeMapping TypeName="NailhubsModel.THEMEDETAIL">
+              <MappingFragment StoreEntitySet="THEMEDETAIL">
+                <ScalarProperty Name="ID_THEMEDETAIL" ColumnName="ID_THEMEDETAIL" />
+                <ScalarProperty Name="ID_THEME" ColumnName="ID_THEME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPT" ColumnName="DESCRIPT" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+                <ScalarProperty Name="STYLE" ColumnName="STYLE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="NailhubsModel.Title">
+              <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="ID_TITLE" ColumnName="ID_TITLE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPEs">
+            <EntityTypeMapping TypeName="NailhubsModel.TYPE">
+              <MappingFragment StoreEntitySet="TYPE">
+                <ScalarProperty Name="ID_TYPE" ColumnName="ID_TYPE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="NailhubsModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID_USERTYPE" ColumnName="ID_USERTYPE" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ROLE">
+            <EntityTypeMapping TypeName="NailhubsModel.USER_ROLE">
+              <MappingFragment StoreEntitySet="USER_ROLE">
+                <ScalarProperty Name="ID_USERROLE" ColumnName="ID_USERROLE" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
+                <ScalarProperty Name="ENTERBY" ColumnName="ENTERBY" />
+                <ScalarProperty Name="ENTERDATE" ColumnName="ENTERDATE" />
+                <ScalarProperty Name="MODIFYBY" ColumnName="MODIFYBY" />
+                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
+                <ScalarProperty Name="DELETEBY" ColumnName="DELETEBY" />
+                <ScalarProperty Name="DELETEDATE" ColumnName="DELETEDATE" />
+                <ScalarProperty Name="EXPIREDDATE" ColumnName="EXPIREDDATE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERDETAILs">
+            <EntityTypeMapping TypeName="NailhubsModel.USERDETAIL">
+              <MappingFragment StoreEntitySet="USERDETAIL">
+                <ScalarProperty Name="ID_USERDETAIL" ColumnName="ID_USERDETAIL" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERTYPEs">
+            <EntityTypeMapping TypeName="NailhubsModel.USERTYPE">
+              <MappingFragment StoreEntitySet="USERTYPE">
+                <ScalarProperty Name="ID_USERTYPE" ColumnName="ID_USERTYPE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
