@@ -19,6 +19,7 @@ namespace Nailhub.Controllers
         }
         public ActionResult Index()
         {
+            
             return View(
                 account.Query().Get().SingleOrDefault()
             );
