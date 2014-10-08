@@ -80,7 +80,6 @@
     <Compile Include="FakeContext\FakeDbContext.cs" />
     <Compile Include="FakeContext\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BaseEntity.cs" />
     <Compile Include="Repositories\MyContext.cs" />
     <Compile Include="Repositories\QueryableOperation.cs" />
     <Compile Include="Repositories\Repository.cs" />

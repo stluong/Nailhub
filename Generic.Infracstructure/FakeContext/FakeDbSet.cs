@@ -5,8 +5,8 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using Generic.Core.Model;
 using Generic.Core.Repository;
-using Generic.Infrastructure.Repositories;
 
 namespace Generic.Infrastructure.FakeContext
 {

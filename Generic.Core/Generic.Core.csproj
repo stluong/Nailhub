@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Context\IMyContext.cs" />
     <Compile Include="Context\IMyContextAsync.cs" />
+    <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IObjectState.cs" />
     <Compile Include="Repository\IQueryableOperation.cs" />

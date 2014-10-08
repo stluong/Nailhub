@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Generic.Core.Repository;
 
-namespace Generic.Infrastructure.Repositories
+namespace Generic.Core.Model
 {
     public abstract class BaseEntity : IObjectState
     {

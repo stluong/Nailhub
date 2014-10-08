@@ -4,8 +4,8 @@ using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
 using Generic.Core.Context;
+using Generic.Core.Model;
 using Generic.Core.Repository;
-using Generic.Infrastructure.Repositories;
 
 namespace Generic.Infrastructure.FakeContext
 {
