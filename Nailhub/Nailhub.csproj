@@ -300,6 +300,14 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="..\Configuration\Developement\AppSetting.config">
+      <Link>Configuration\AppSetting.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Configuration\Developement\ConnectionString.config">
+      <Link>Configuration\ConnectionString.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -356,45 +364,25 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppCore\AppCore.csproj">
+      <Project>{28d82819-c812-4480-9989-f87a8695f694}</Project>
+      <Name>AppCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppService\AppService.csproj">
+      <Project>{1c401b38-f70b-4892-bd5e-8f01ef0e25b2}</Project>
+      <Name>AppService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{055f8179-3808-41ac-a2b2-260702d321da}</Project>
       <Name>Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IRepository\IRepository.csproj">
-      <Project>{175d2132-d9b9-4bec-99e7-bc7cb13f84f0}</Project>
-      <Name>IRepository</Name>
+    <ProjectReference Include="..\Generic.Core\Generic.Core.csproj">
+      <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>
+      <Name>Generic.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IServices\IServices.csproj">
-      <Project>{37221741-da25-4f34-9f17-e9565a238ea7}</Project>
-      <Name>IServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IUnitOfWork\IUnitOfWork.csproj">
-      <Project>{302360fd-313e-4e2d-9094-132603abf719}</Project>
-      <Name>IUnitOfWork</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyContext\MyContext.csproj">
-      <Project>{efc18046-7abd-4f20-b798-6a81f1a24b5c}</Project>
-      <Name>MyContext</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ObjectState\MyState.csproj">
-      <Project>{2525fee1-f582-453e-a157-5ef6115cbcce}</Project>
-      <Name>MyState</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RepositoryFactory\RepositoryFactory.csproj">
-      <Project>{64a80476-4ee0-4014-8e2b-b5db418352e7}</Project>
-      <Name>RepositoryFactory</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{444f1e0d-970e-4203-a1ac-0b20fb1d9258}</Project>
-      <Name>Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{8e81dc56-a4e3-4750-9713-10d0927639b5}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj">
-      <Project>{3226c61c-3a45-4f21-ad16-1a72ee1bdd8b}</Project>
-      <Name>UnitOfWork</Name>
+    <ProjectReference Include="..\Generic.Infracstructure\Generic.Infrastructure.csproj">
+      <Project>{5bed1735-d49e-4c56-bc29-f140cc3a29d9}</Project>
+      <Name>Generic.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

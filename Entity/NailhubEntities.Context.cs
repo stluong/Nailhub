@@ -12,7 +12,7 @@ namespace Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using Infrastructure.Repository;
+    using Generic.Infrastructure.Repositories;
     
     public partial class NailhubsEntities : MyContext
     {

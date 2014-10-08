@@ -1,13 +1,14 @@
 using System;
-using Core.Services;
-using Core.UnitOfWork;
+using AppCore.Service;
+using AppService;
 using Entity;
-using Infrastructure;
-using Infrastructure.MyContext;
-using Infrastructure.Repository;
+using Generic.Core.Context;
+using Generic.Core.Repository;
+using Generic.Core.UnitOfWork;
+using Generic.Infracstructure.UnitOfWorks;
+using Generic.Infrastructure.Repositories;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using Services;
 
 namespace Nailhub.App_Start
 {
@@ -48,11 +49,12 @@ namespace Nailhub.App_Start
                .RegisterType<IMyContextAsync, NailhubsEntities>(new PerRequestLifetimeManager())
                .RegisterType<IRepositoryProvider, RepositoryProvider>(
                    new PerRequestLifetimeManager(),
-                   new InjectionConstructor(new object[] { new RepositoryFactories() })
-                   )
+                   new InjectionConstructor(new object[] { new RepositoryFactory() })
+                )
                .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager())
                .RegisterType<IRepositoryAsync<USER>, Repository<USER>>()
                .RegisterType<IAccountService, AccountService>()
+               
                //.RegisterType<INorthwindStoredProcedures, NorthwindContext>(new PerRequestLifetimeManager())
                //.RegisterType<IStoredProcedureService, StoredProcedureService>()
             ;

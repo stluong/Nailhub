@@ -11,7 +11,7 @@ namespace Entity
 {
     using System;
     using System.Collections.Generic;
-    using Infrastructure.Repository;
+    using Generic.Infrastructure.Repositories;
     
     public partial class USER: BaseEntity
     {

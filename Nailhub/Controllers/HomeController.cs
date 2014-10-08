@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Core.Services;
-using Core.UnitOfWork;
+using AppCore.Service;
+using Generic.Core.UnitOfWork;
 
 namespace Nailhub.Controllers
 {
