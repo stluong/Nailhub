@@ -73,13 +73,19 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MVC5Bo
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Antlr3.Runtime.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Core.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Less.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Entity.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.SqlServer.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\IRepository.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\IServices.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\IUnitOfWork.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Core.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Msie.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.Edm.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.OData.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.Cookies.dll
@@ -89,12 +95,24 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Micros
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MsieJavaScriptEngine.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MyContext.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ObjectState.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Owin.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Repository.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\RepositoryFactory.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Services.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Net.Http.Formatting.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Spatial.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Helpers.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.OData.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.WebHost.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Mvc.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Optimization.dll
@@ -102,10 +120,25 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.Deployment.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.Razor.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\UnitOfWork.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\WebActivatorEx.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\WebGrease.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\LinqKit.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Entity.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\IRepository.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\IServices.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\IUnitOfWork.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MyContext.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ObjectState.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\RepositoryFactory.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Repository.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Services.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\UnitOfWork.pdb
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Antlr3.Runtime.pdb
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.SqlServer.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.Edm.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.OData.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.xml
@@ -115,9 +148,17 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Micros
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Net.Http.Formatting.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Spatial.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Helpers.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.xml
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.OData.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.WebHost.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Mvc.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Optimization.xml
@@ -131,10 +172,38 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Micros
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Core.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Less.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\de\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\es\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\it\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\de\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\es\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\fr\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\it\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ja\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ko\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hant\Microsoft.Data.OData.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\MsieJavaScriptEngine.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\de\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\es\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\fr\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\it\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ja\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ko\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hans\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
-D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\App_Data\Nailhub.xls
 D:\GitHub\Nailhub\Nailhub\bin\Configuration\AppSetting.config
 D:\GitHub\Nailhub\Nailhub\bin\Configuration\ConnectionString.config
 D:\GitHub\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll.config
@@ -262,5 +331,6 @@ D:\GitHub\Nailhub\Nailhub\bin\ko\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\bin\ru\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\bin\zh-Hans\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\bin\zh-Hant\System.Spatial.resources.dll
+D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 D:\GitHub\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
 D:\GitHub\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
