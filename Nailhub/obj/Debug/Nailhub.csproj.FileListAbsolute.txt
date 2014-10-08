@@ -341,3 +341,4 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Han
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\App_Data\Nailhub.xls
