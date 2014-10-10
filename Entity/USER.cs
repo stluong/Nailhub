@@ -11,27 +11,32 @@ namespace Entity
 {
     using System;
     using System.Collections.Generic;
-    using Generic.Core.Model;
     
-    public partial class USER: BaseEntity
+    public partial class USER
     {
         public USER()
         {
-            this.SITEs = new HashSet<SITE>();
             this.USER_ROLE = new HashSet<USER_ROLE>();
-            this.USERDETAILs = new HashSet<USERDETAIL>();
+            this.USER_DETAIL = new HashSet<USER_DETAIL>();
         }
     
         public int ID_USER { get; set; }
         public Nullable<short> ID_USERTYPE { get; set; }
         public string USERNAME { get; set; }
         public string PASSWORD { get; set; }
-        public string STATUS { get; set; }
+        public string SECURITY_STAMP { get; set; }
+        public string EMAIL { get; set; }
+        public Nullable<bool> EMAIL_CONFIRMED { get; set; }
+        public string PHONE_NUMBER { get; set; }
+        public Nullable<bool> PHONE_NUMBER_CONFIRMED { get; set; }
+        public Nullable<bool> TWO_FACTOR_ENABLED { get; set; }
+        public Nullable<bool> LOCKOUT_ENABLED { get; set; }
+        public Nullable<System.DateTime> LOCKOUT_ENDDATE_UTC { get; set; }
+        public Nullable<int> ACCESS_FAILED_COUNT { get; set; }
         public string NOTE { get; set; }
     
-        public virtual ICollection<SITE> SITEs { get; set; }
         public virtual ICollection<USER_ROLE> USER_ROLE { get; set; }
-        public virtual USERTYPE USERTYPE { get; set; }
-        public virtual ICollection<USERDETAIL> USERDETAILs { get; set; }
+        public virtual USER_TYPE USER_TYPE { get; set; }
+        public virtual ICollection<USER_DETAIL> USER_DETAIL { get; set; }
     }
 }

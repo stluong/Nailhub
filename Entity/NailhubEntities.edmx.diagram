@@ -5,50 +5,51 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ee486378c2104b78ae4de4a828bd3f95" Name="Diagram1">
-        <EntityTypeShape EntityType="NailhubsModel.CITY" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.COUNTRY" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.CURRENT_PRODUCT" Width="1.5" PointX="10.5" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.CURRENT_SERVICE" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.EMPLOYEE" Width="1.5" PointX="14" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.LOCATION" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.PRODUCT" Width="1.5" PointX="8.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.PRODUCTDETAIL" Width="1.5" PointX="10.5" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.PROVINCE" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.ROLE" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.SERVICE" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.SERVICEDETAIL" Width="1.5" PointX="7.5" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.SITE" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.SITETYPE" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.STATE" Width="1.5" PointX="9.75" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.sysdiagram" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.THEME" Width="1.5" PointX="7.5" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.THEMEDETAIL" Width="1.5" PointX="9.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.Title" Width="1.5" PointX="11.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.TYPE" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.USER" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.USER_ROLE" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.USERDETAIL" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailhubsModel.USERTYPE" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <AssociationConnector Association="NailhubsModel.FK_LOCATION_CITY" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_LOCATION_COUNTRY" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_CURRENT_PRODUCT_PRODUCT" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_CURRENT_PRODUCT_SITE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_CURRENT_SERVICE_SERVICE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_CURRENT_SERVICE_SITE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_EMPLOYEE_Title" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_LOCATION_STATE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_PRODUCT_TYPE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_PRODUCTDETAIL_PRODUCT" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_ROLE_ROLE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_SERVICE_TYPE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_SERVICEDETAIL_SERVICE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_SITE_SITETYPE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_SITE_USER" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_THEME_SITE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_THEMEDETAIL_THEME" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_ROLE_USER" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_USERTYPE" ManuallyRouted="false" />
-        <AssociationConnector Association="NailhubsModel.FK_USERDETAIL_USER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NailhubsModel.CITY" Width="1.5" PointX="9.75" PointY="13.25" />
+        <EntityTypeShape EntityType="NailhubsModel.COUNTRY" Width="1.5" PointX="9.75" PointY="16.75" />
+        <EntityTypeShape EntityType="NailhubsModel.CURRENT_PRODUCT" Width="1.5" PointX="8.25" PointY="7.25" />
+        <EntityTypeShape EntityType="NailhubsModel.CURRENT_SERVICE" Width="1.5" PointX="5.25" PointY="7.125" />
+        <EntityTypeShape EntityType="NailhubsModel.EMPLOYEE" Width="1.5" PointX="17" PointY="12.625" />
+        <EntityTypeShape EntityType="NailhubsModel.LOCATION" Width="1.5" PointX="12" PointY="12.625" />
+        <EntityTypeShape EntityType="NailhubsModel.PRODUCT" Width="1.5" PointX="6" PointY="3.75" />
+        <EntityTypeShape EntityType="NailhubsModel.PRODUCT_DETAIL" Width="1.5" PointX="8.25" PointY="4" />
+        <EntityTypeShape EntityType="NailhubsModel.PROVINCE" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="NailhubsModel.ROLE" Width="1.5" PointX="13" PointY="0.75" />
+        <EntityTypeShape EntityType="NailhubsModel.SERVICE" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="NailhubsModel.SERVICE_DETAIL" Width="1.5" PointX="5.25" PointY="12" />
+        <EntityTypeShape EntityType="NailhubsModel.SITE" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="NailhubsModel.SITE_TYPE" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="NailhubsModel.STATE" Width="1.5" PointX="9.75" PointY="19.625" />
+        <EntityTypeShape EntityType="NailhubsModel.sysdiagram" Width="1.5" PointX="10.75" PointY="9.5" />
+        <EntityTypeShape EntityType="NailhubsModel.THEME" Width="1.5" PointX="5.25" PointY="16.5" />
+        <EntityTypeShape EntityType="NailhubsModel.THEME_DETAIL" Width="1.5" PointX="7.5" PointY="16.75" />
+        <EntityTypeShape EntityType="NailhubsModel.TITLE" Width="1.5" PointX="14.75" PointY="12.625" />
+        <EntityTypeShape EntityType="NailhubsModel.TYPE" Width="1.5" PointX="3.75" PointY="4" />
+        <EntityTypeShape EntityType="NailhubsModel.USER" Width="1.5" PointX="13" PointY="3.625" />
+        <EntityTypeShape EntityType="NailhubsModel.USER_CLAIM" Width="1.5" PointX="0.75" PointY="15.5" />
+        <EntityTypeShape EntityType="NailhubsModel.USER_LOGIN" Width="1.5" PointX="14.75" PointY="15.5" />
+        <EntityTypeShape EntityType="NailhubsModel.USER_ROLE" Width="1.5" PointX="15.25" PointY="4" />
+        <EntityTypeShape EntityType="NailhubsModel.USER_TYPE" Width="1.5" PointX="10.75" PointY="4.875" />
+        <EntityTypeShape EntityType="NailhubsModel.USER_DETAIL" Width="1.5" PointX="15.25" PointY="9.25" />
+        <AssociationConnector Association="NailhubsModel.FK_LOCATION_CITY" />
+        <AssociationConnector Association="NailhubsModel.FK_LOCATION_COUNTRY" />
+        <AssociationConnector Association="NailhubsModel.FK_CURRENT_PRODUCT_PRODUCT" />
+        <AssociationConnector Association="NailhubsModel.FK_CURRENT_PRODUCT_SITE" />
+        <AssociationConnector Association="NailhubsModel.FK_CURRENT_SERVICE_SERVICE" />
+        <AssociationConnector Association="NailhubsModel.FK_CURRENT_SERVICE_SITE" />
+        <AssociationConnector Association="NailhubsModel.FK_EMPLOYEE_Title" />
+        <AssociationConnector Association="NailhubsModel.FK_LOCATION_STATE" />
+        <AssociationConnector Association="NailhubsModel.FK_PRODUCT_TYPE" />
+        <AssociationConnector Association="NailhubsModel.FK_PRODUCTDETAIL_PRODUCT" />
+        <AssociationConnector Association="NailhubsModel.FK_USER_ROLE_ROLE" />
+        <AssociationConnector Association="NailhubsModel.FK_SERVICE_TYPE" />
+        <AssociationConnector Association="NailhubsModel.FK_SERVICEDETAIL_SERVICE" />
+        <AssociationConnector Association="NailhubsModel.FK_SITE_SITETYPE" />
+        <AssociationConnector Association="NailhubsModel.FK_THEME_SITE" />
+        <AssociationConnector Association="NailhubsModel.FK_THEMEDETAIL_THEME" />
+        <AssociationConnector Association="NailhubsModel.FK_USER_ROLE_USER" />
+        <AssociationConnector Association="NailhubsModel.FK_USER_USERTYPE" />
+        <AssociationConnector Association="NailhubsModel.FK_USERDETAIL_USER" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,9 +12,9 @@ namespace Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Title
+    public partial class TITLE
     {
-        public Title()
+        public TITLE()
         {
             this.EMPLOYEEs = new HashSet<EMPLOYEE>();
         }

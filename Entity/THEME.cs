@@ -16,7 +16,7 @@ namespace Entity
     {
         public THEME()
         {
-            this.THEMEDETAILs = new HashSet<THEMEDETAIL>();
+            this.THEME_DETAIL = new HashSet<THEME_DETAIL>();
         }
     
         public int ID_THEME { get; set; }
@@ -29,6 +29,6 @@ namespace Entity
         public string NOTE { get; set; }
     
         public virtual SITE SITE { get; set; }
-        public virtual ICollection<THEMEDETAIL> THEMEDETAILs { get; set; }
+        public virtual ICollection<THEME_DETAIL> THEME_DETAIL { get; set; }
     }
 }

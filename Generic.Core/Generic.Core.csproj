@@ -69,7 +69,21 @@
   <ItemGroup>
     <Compile Include="Context\IMyContext.cs" />
     <Compile Include="Context\IMyContextAsync.cs" />
+    <Compile Include="Identity\IApplicationRoleManager.cs" />
+    <Compile Include="Identity\IApplicationUserManager.cs" />
+    <Compile Include="Identity\SignInStatus.cs" />
+    <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Model\Identity\ApplicationAuthenticationDescription.cs" />
+    <Compile Include="Model\Identity\ApplicationExternalLoginInfo.cs" />
+    <Compile Include="Model\Identity\ApplicationIdentityResult.cs" />
+    <Compile Include="Model\Identity\ApplicationMessage.cs" />
+    <Compile Include="Model\Identity\ApplicationRole.cs" />
+    <Compile Include="Model\Identity\ApplicationUserClaim.cs" />
+    <Compile Include="Model\Identity\ApplicationUserLogin.cs" />
+    <Compile Include="Model\Identity\ApplicationUserLoginInfo.cs" />
+    <Compile Include="Model\Identity\ApplicationUserRole.cs" />
+    <Compile Include="Model\Identity\AppUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IObjectState.cs" />
     <Compile Include="Repository\IQueryableOperation.cs" />

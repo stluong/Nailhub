@@ -4,17 +4,32 @@ using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
 using Generic.Core.Context;
+using Generic.Core.Logging;
 using Generic.Core.Repository;
+using Generic.Infrastructure.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Generic.Infrastructure.Repositories
 {
-    public class MyContext : DbContext, IMyContextAsync
+    public class MyContext : 
+        //DbContext,
+        IdentityDbContext<ApplicationIdentityUser, ApplicationIdentityRole, int, ApplicationIdentityUserLogin, ApplicationIdentityUserRole, ApplicationIdentityUserClaim>
+        , IMyContextAsync
     {
         #region Private Fields
         private readonly Guid _instanceId;
         bool _disposed;
         #endregion Private Fields
 
+        public MyContext(string nameOrConnectionString, ILogger logger)
+            : base(nameOrConnectionString)
+        {
+
+            _instanceId = Guid.NewGuid();
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+            Database.Log = logger.Log;
+        }
         public MyContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
@@ -156,7 +171,6 @@ namespace Generic.Infrastructure.Repositories
                 }
             }
         }
-
 
         protected override void Dispose(bool disposing)
         {

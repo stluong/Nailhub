@@ -14,9 +14,8 @@ namespace Entity
     
     public partial class USER_ROLE
     {
-        public int ID_USERROLE { get; set; }
-        public Nullable<int> ID_USER { get; set; }
-        public Nullable<short> ID_ROLE { get; set; }
+        public int ID_USER { get; set; }
+        public short ID_ROLE { get; set; }
         public Nullable<int> ENTERBY { get; set; }
         public Nullable<System.DateTime> ENTERDATE { get; set; }
         public Nullable<int> MODIFYBY { get; set; }

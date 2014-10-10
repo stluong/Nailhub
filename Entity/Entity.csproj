@@ -87,7 +87,7 @@
     <Compile Include="PRODUCT.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="PRODUCTDETAIL.cs">
+    <Compile Include="PRODUCT_DETAIL.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,13 +100,13 @@
     <Compile Include="SERVICE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVICEDETAIL.cs">
+    <Compile Include="SERVICE_DETAIL.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SITE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SITETYPE.cs">
+    <Compile Include="SITE_TYPE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="STATE.cs">
@@ -118,10 +118,10 @@
     <Compile Include="THEME.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="THEMEDETAIL.cs">
+    <Compile Include="THEME_DETAIL.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Title.cs">
+    <Compile Include="TITLE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TYPE.cs">
@@ -130,13 +130,19 @@
     <Compile Include="USER.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="USERDETAIL.cs">
+    <Compile Include="USER_CLAIM.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="USERTYPE.cs">
+    <Compile Include="USER_DETAIL.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER_LOGIN.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="USER_ROLE.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USER_TYPE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
