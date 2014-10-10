@@ -14,9 +14,11 @@ namespace TestingMVC4.Controllers
         public ActionResult Index()
         {
             var student = new student();
+
             using (var context = new ManageStudentEntities()) {
                 student = context.students.SingleOrDefault();
             }
+
             return View(student);
         }
 
