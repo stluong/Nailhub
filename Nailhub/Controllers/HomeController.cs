@@ -19,8 +19,9 @@ namespace Nailhub.Controllers
         }
         public ActionResult Index()
         {
+            var temp = account.Query().Get().SingleOrDefault();
             return View(
-                account.Query().Get().SingleOrDefault()
+                temp
             );
         }
 
