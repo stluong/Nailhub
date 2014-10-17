@@ -206,9 +206,9 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\App_Data\Nailhub.xls
 D:\GitHub\Nailhub\Nailhub\bin\Configuration\AppSetting.config
 D:\GitHub\Nailhub\Nailhub\bin\Configuration\ConnectionString.config
-D:\GitHub\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll.config
-D:\GitHub\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll
-D:\GitHub\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.pdb
+D:\GitHub\Nailhub\Nailhub\bin\Nailhub.dll.config
+D:\GitHub\Nailhub\Nailhub\bin\Nailhub.dll
+D:\GitHub\Nailhub\Nailhub\bin\Nailhub.pdb
 D:\GitHub\Nailhub\Nailhub\bin\Antlr3.Runtime.dll
 D:\GitHub\Nailhub\Nailhub\bin\AppCore.dll
 D:\GitHub\Nailhub\Nailhub\bin\AppService.dll
@@ -334,5 +334,5 @@ D:\GitHub\Nailhub\Nailhub\bin\ru\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\bin\zh-Hans\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\bin\zh-Hant\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
-D:\GitHub\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
-D:\GitHub\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
+D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.dll
+D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.pdb

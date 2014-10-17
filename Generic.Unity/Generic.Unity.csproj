@@ -167,9 +167,9 @@
       <Project>{5bed1735-d49e-4c56-bc29-f140cc3a29d9}</Project>
       <Name>Generic.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nailhub\Nailhub.csproj">
-      <Project>{2835fdba-96ba-4d5c-850d-a909bb12f4e3}</Project>
-      <Name>Nailhub</Name>
+    <ProjectReference Include="..\Test.Web\Test.Web.csproj">
+      <Project>{cdd6a4c1-9edd-420f-a3d5-f175d0112c4e}</Project>
+      <Name>Test.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

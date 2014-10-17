@@ -21,6 +21,8 @@ namespace Generic.Infrastructure.Repositories
         bool _disposed;
         #endregion Private Fields
 
+        #region Constructor
+
         public MyContext(string nameOrConnectionString, ILogger logger)
             : base(nameOrConnectionString)
         {
@@ -38,7 +40,22 @@ namespace Generic.Infrastructure.Repositories
             Configuration.ProxyCreationEnabled = false;
         }
 
+        #endregion
+
+
         public Guid InstanceId { get { return _instanceId; } }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            //Rebinding identity object to my own table
+
+            //modelBuilder.Entity<IdentityUser>().ToTable("USER"); //.Property(p => p.Id).HasColumnName("UserId");
+            //modelBuilder.Entity<IdentityUserRole>().ToTable("USER_ROLE");
+            //modelBuilder.Entity<IdentityUserLogin>().ToTable("USER_LOGIN");
+            //modelBuilder.Entity<IdentityUserClaim>().ToTable("USER_CLAIM");
+            //modelBuilder.Entity<IdentityRole>().ToTable("ROLE");
+        }
 
         /// <summary>
         ///     Saves all changes made in this context to the underlying database.
@@ -136,7 +153,14 @@ namespace Generic.Infrastructure.Repositories
         {
             foreach (var dbEntityEntry in ChangeTracker.Entries())
             {
-                dbEntityEntry.State = StateHelper.ConvertState(((IObjectState)dbEntityEntry.Entity).ObjectState);
+                try
+                {
+                    dbEntityEntry.State = StateHelper.ConvertState(((IObjectState)dbEntityEntry.Entity).ObjectState);
+                }
+                catch {
+                    //Nothing important here!! dbEntityEntry is NOT inherited from baseEntity, so we dont need to cast
+                }
+                
             }
         }
 

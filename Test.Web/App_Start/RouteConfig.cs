@@ -10,6 +10,7 @@ namespace Test {
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                , namespaces: new[] { "Test.Web.Controllers"}
             );
         }
     }

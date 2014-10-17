@@ -11,9 +11,8 @@ using Generic.Infracstructure.UnitOfWorks;
 using Generic.Infrastructure.Logging;
 using Generic.Infrastructure.Repositories;
 using Generic.Unity;
-using Nailhub;
-//using Test.Web;
-//using Nailhub;
+using Test.Web;
+
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IocConfig), "RegisterDependencies")]
 
@@ -21,11 +20,16 @@ namespace Generic.Unity
 {
     public class IocConfig
     {
-        public static void RegisterDependencies()
+        /// <summary>
+        /// Return builder, so we can register more
+        /// </summary>
+        /// <returns></returns>
+        public static ContainerBuilder RegisterDependencies()
         {
             var builder = new ContainerBuilder();
             const string nameOrConnectionString = "name=AppContext";
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
             builder.RegisterModule<AutofacWebTypesModule>();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerHttpRequest();
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerHttpRequest();
@@ -41,6 +45,8 @@ namespace Generic.Unity
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            return builder;
         }
+       
     }
 }
