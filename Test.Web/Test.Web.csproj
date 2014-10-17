@@ -194,6 +194,10 @@
       <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>
       <Name>Generic.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Generic.Unity\Generic.Unity.csproj">
+      <Project>{90af6e73-b790-4207-87ca-2680f7fc11f1}</Project>
+      <Name>Generic.Unity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,10 +11,11 @@ using Generic.Infracstructure.UnitOfWorks;
 using Generic.Infrastructure.Logging;
 using Generic.Infrastructure.Repositories;
 using Generic.Unity;
-using Test.Web;
+
+//using Test.Web;
 
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IocConfig), "RegisterDependencies")]
+//[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IocConfig), "RegisterDependencies")]
 
 namespace Generic.Unity
 {
@@ -28,8 +29,24 @@ namespace Generic.Unity
         {
             var builder = new ContainerBuilder();
             const string nameOrConnectionString = "name=AppContext";
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            //builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            Register(builder, nameOrConnectionString);
+            return builder;
+        }
+        /// <summary>
+        /// Register all dependencies
+        /// </summary>
+        /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
+        public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly)
+        {
+            var builder = new ContainerBuilder();
+            const string nameOrConnectionString = "name=AppContext";
+            builder.RegisterControllers(myAppAssembly);
+            Register(builder, nameOrConnectionString);
+        }
 
+        private static void Register(ContainerBuilder builder, string nameOrConnectionString)
+        {
             builder.RegisterModule<AutofacWebTypesModule>();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerHttpRequest();
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerHttpRequest();
@@ -45,8 +62,6 @@ namespace Generic.Unity
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            return builder;
         }
-       
     }
 }
