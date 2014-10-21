@@ -8,7 +8,7 @@ using Generic.Infrastructure.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
-namespace Generic.Unity
+namespace Generic
 {
     public class IdentityModule : Module
     {

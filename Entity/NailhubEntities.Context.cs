@@ -34,7 +34,6 @@ namespace Entity
         public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
         public virtual DbSet<PRODUCT_DETAIL> PRODUCT_DETAIL { get; set; }
         public virtual DbSet<PROVINCE> PROVINCEs { get; set; }
-        public virtual DbSet<ROLE> ROLEs { get; set; }
         public virtual DbSet<SERVICE> SERVICEs { get; set; }
         public virtual DbSet<SERVICE_DETAIL> SERVICE_DETAIL { get; set; }
         public virtual DbSet<SITE> SITEs { get; set; }
@@ -45,11 +44,11 @@ namespace Entity
         public virtual DbSet<THEME_DETAIL> THEME_DETAIL { get; set; }
         public virtual DbSet<TITLE> TITLEs { get; set; }
         public virtual DbSet<TYPE> TYPEs { get; set; }
-        public virtual DbSet<USER> USERs { get; set; }
-        public virtual DbSet<USER_CLAIM> USER_CLAIM { get; set; }
-        public virtual DbSet<USER_LOGIN> USER_LOGIN { get; set; }
-        public virtual DbSet<USER_ROLE> USER_ROLE { get; set; }
         public virtual DbSet<USER_TYPE> USER_TYPE { get; set; }
         public virtual DbSet<USER_DETAIL> USER_DETAIL { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

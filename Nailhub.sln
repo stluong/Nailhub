@@ -38,7 +38,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCore", "AppCore\AppCore.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppService", "AppService\AppService.csproj", "{1C401B38-F70B-4892-BD5E-8F01EF0E25B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generic.Unity", "Generic.Unity\Generic.Unity.csproj", "{90AF6E73-B790-4207-87CA-2680F7FC11F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generic", "Generic.Unity\Generic.csproj", "{90AF6E73-B790-4207-87CA-2680F7FC11F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Web", "Test.Web\Test.Web.csproj", "{CDD6A4C1-9EDD-420F-A3D5-F175D0112C4E}"
 EndProject

@@ -12,13 +12,16 @@ namespace Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class USER_LOGIN
+    public partial class AspNetRole
     {
-        public string LOGIN_PROVIDER { get; set; }
-        public string PROVIDER_KEY { get; set; }
-        public int USER_ID { get; set; }
-        public int ID_USER { get; set; }
+        public AspNetRole()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
     
-        public virtual USER USER { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

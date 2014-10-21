@@ -16,13 +16,13 @@ namespace Entity
     {
         public USER_TYPE()
         {
-            this.USERs = new HashSet<USER>();
+            this.USER_DETAIL = new HashSet<USER_DETAIL>();
         }
     
         public short ID_USERTYPE { get; set; }
         public string NAME { get; set; }
         public string NOTE { get; set; }
     
-        public virtual ICollection<USER> USERs { get; set; }
+        public virtual ICollection<USER_DETAIL> USER_DETAIL { get; set; }
     }
 }

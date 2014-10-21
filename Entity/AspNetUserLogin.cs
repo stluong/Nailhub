@@ -12,18 +12,12 @@ namespace Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class ROLE
+    public partial class AspNetUserLogin
     {
-        public ROLE()
-        {
-            this.USER_ROLE = new HashSet<USER_ROLE>();
-        }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public int UserId { get; set; }
     
-        public short ID_ROLE { get; set; }
-        public string NAME { get; set; }
-        public string DESCRIPTION { get; set; }
-        public string NOTE { get; set; }
-    
-        public virtual ICollection<USER_ROLE> USER_ROLE { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

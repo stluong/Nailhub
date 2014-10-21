@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="NailhubsModel.PRODUCT" Width="1.5" PointX="6" PointY="3.75" />
         <EntityTypeShape EntityType="NailhubsModel.PRODUCT_DETAIL" Width="1.5" PointX="8.25" PointY="4" />
         <EntityTypeShape EntityType="NailhubsModel.PROVINCE" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="NailhubsModel.ROLE" Width="1.5" PointX="13" PointY="0.75" />
         <EntityTypeShape EntityType="NailhubsModel.SERVICE" Width="1.5" PointX="3" PointY="11.75" />
         <EntityTypeShape EntityType="NailhubsModel.SERVICE_DETAIL" Width="1.5" PointX="5.25" PointY="12" />
         <EntityTypeShape EntityType="NailhubsModel.SITE" Width="1.5" PointX="3" PointY="7.625" />
@@ -25,12 +24,8 @@
         <EntityTypeShape EntityType="NailhubsModel.THEME_DETAIL" Width="1.5" PointX="7.5" PointY="16.75" />
         <EntityTypeShape EntityType="NailhubsModel.TITLE" Width="1.5" PointX="14.75" PointY="12.625" />
         <EntityTypeShape EntityType="NailhubsModel.TYPE" Width="1.5" PointX="3.75" PointY="4" />
-        <EntityTypeShape EntityType="NailhubsModel.USER" Width="1.5" PointX="13" PointY="3.625" />
-        <EntityTypeShape EntityType="NailhubsModel.USER_CLAIM" Width="1.5" PointX="0.75" PointY="15.5" />
-        <EntityTypeShape EntityType="NailhubsModel.USER_LOGIN" Width="1.5" PointX="14.75" PointY="15.5" />
-        <EntityTypeShape EntityType="NailhubsModel.USER_ROLE" Width="1.5" PointX="15.25" PointY="4" />
         <EntityTypeShape EntityType="NailhubsModel.USER_TYPE" Width="1.5" PointX="10.75" PointY="4.875" />
-        <EntityTypeShape EntityType="NailhubsModel.USER_DETAIL" Width="1.5" PointX="15.25" PointY="9.25" />
+        <EntityTypeShape EntityType="NailhubsModel.USER_DETAIL" Width="1.5" PointX="15.125" PointY="6.25" />
         <AssociationConnector Association="NailhubsModel.FK_LOCATION_CITY" />
         <AssociationConnector Association="NailhubsModel.FK_LOCATION_COUNTRY" />
         <AssociationConnector Association="NailhubsModel.FK_CURRENT_PRODUCT_PRODUCT" />
@@ -41,17 +36,20 @@
         <AssociationConnector Association="NailhubsModel.FK_LOCATION_STATE" />
         <AssociationConnector Association="NailhubsModel.FK_PRODUCT_TYPE" />
         <AssociationConnector Association="NailhubsModel.FK_PRODUCTDETAIL_PRODUCT" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_ROLE_ROLE" />
         <AssociationConnector Association="NailhubsModel.FK_SERVICE_TYPE" />
         <AssociationConnector Association="NailhubsModel.FK_SERVICEDETAIL_SERVICE" />
         <AssociationConnector Association="NailhubsModel.FK_SITE_SITETYPE" />
         <AssociationConnector Association="NailhubsModel.FK_THEME_SITE" />
         <AssociationConnector Association="NailhubsModel.FK_THEMEDETAIL_THEME" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_ROLE_USER" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_USERTYPE" />
-        <AssociationConnector Association="NailhubsModel.FK_USERDETAIL_USER" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_CLAIM_USER" />
-        <AssociationConnector Association="NailhubsModel.FK_USER_LOGIN_USER" />
+        <EntityTypeShape EntityType="NailhubsModel.AspNetRole" Width="1.5" PointX="17.375" PointY="2.5" />
+        <EntityTypeShape EntityType="NailhubsModel.AspNetUserClaim" Width="1.5" PointX="21.875" PointY="3.625" />
+        <EntityTypeShape EntityType="NailhubsModel.AspNetUserLogin" Width="1.5" PointX="21.875" PointY="1" />
+        <EntityTypeShape EntityType="NailhubsModel.AspNetUser" Width="1.5" PointX="19.625" PointY="1.25" />
+        <AssociationConnector Association="NailhubsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="NailhubsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="NailhubsModel.FK_USER_DETAIL_AspNetUsers" />
+        <AssociationConnector Association="NailhubsModel.FK_USER_DETAIL_USER_TYPE" />
+        <AssociationConnector Association="NailhubsModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

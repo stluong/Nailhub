@@ -1,6 +1,6 @@
 using Owin;
 
-namespace Generic.Unity
+namespace Generic
 {
     public partial class Startup
     {

@@ -51,6 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="CITY.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
@@ -94,9 +106,6 @@
     <Compile Include="PROVINCE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ROLE.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="SERVICE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
@@ -127,19 +136,7 @@
     <Compile Include="TYPE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="USER.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USER_CLAIM.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="USER_DETAIL.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USER_LOGIN.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USER_ROLE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="USER_TYPE.cs">

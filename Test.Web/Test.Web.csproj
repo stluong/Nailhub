@@ -194,9 +194,9 @@
       <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>
       <Name>Generic.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Generic.Unity\Generic.Unity.csproj">
+    <ProjectReference Include="..\Generic.Unity\Generic.csproj">
       <Project>{90af6e73-b790-4207-87ca-2680f7fc11f1}</Project>
-      <Name>Generic.Unity</Name>
+      <Name>Generic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

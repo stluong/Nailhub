@@ -10,36 +10,43 @@ using Generic.Infracstructure.Services;
 using Generic.Infracstructure.UnitOfWorks;
 using Generic.Infrastructure.Logging;
 using Generic.Infrastructure.Repositories;
-using Generic.Unity;
 
 //using Test.Web;
 
 
 //[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DI), "RegisterDependencies")]
 
-namespace Generic.Unity
+namespace Generic
 {
-    public class DI
+    public class App
     {
+        private static ContainerBuilder builder;
         /// <summary>
-        /// Return builder, so we can register more
+        /// Get autofac container builder
         /// </summary>
         /// <returns></returns>
-        public static ContainerBuilder RegisterDependencies(bool initiateAdmin = false)
+        public static ContainerBuilder GetAutofacContainer(){
+            return builder ?? new ContainerBuilder();
+        }
+        /// <summary>
+        ///  Register all dependencies, except builder.RegisterControllers(typeof(MvcApplication).Assembly);
+        /// </summary>
+        /// <param name="initiateAdmin">default is false</param>
+        public static void RegisterDependencies(bool initiateAdmin = false)
         {
-            var builder = new ContainerBuilder();
+            builder = new ContainerBuilder();
             const string nameOrConnectionString = "name=AppContext";
             //builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            Register(builder, nameOrConnectionString);
-            return builder;
+            Register(builder, nameOrConnectionString);            
         }
         /// <summary>
         /// Register all dependencies
         /// </summary>
         /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
+        /// <param name="initiateAdmin">default is false</param>
         public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly, bool initiateAdmin = false)
         {
-            var builder = new ContainerBuilder();
+            builder = new ContainerBuilder();
             const string nameOrConnectionString = "name=AppContext";
             builder.RegisterControllers(myAppAssembly);
             Register(builder, nameOrConnectionString, initiateAdmin);

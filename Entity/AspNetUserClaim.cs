@@ -12,15 +12,13 @@ namespace Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class USER_CLAIM
+    public partial class AspNetUserClaim
     {
-        public int CLAIM_ID { get; set; }
-        public int USER_ID { get; set; }
-        public string CLAIM_TYPE { get; set; }
-        public string CLAIM_VALUE { get; set; }
-        public int ID_CLAIM { get; set; }
-        public int ID_USER { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual USER USER { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

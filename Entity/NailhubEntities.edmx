@@ -5,6 +5,57 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="NailhubsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="CITY">
           <Key>
             <PropertyRef Name="ID_CITY" />
@@ -109,15 +160,6 @@
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
           <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="ROLE">
-          <Key>
-            <PropertyRef Name="ID_ROLE" />
-          </Key>
-          <Property Name="ID_ROLE" Type="smallint" Nullable="false" />
-          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
-          <Property Name="NOTE" Type="nchar" MaxLength="10" />
-        </EntityType>
         <EntityType Name="SERVICE">
           <Key>
             <PropertyRef Name="ID_SERVICE" />
@@ -220,69 +262,14 @@
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
           <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="USER">
-          <Key>
-            <PropertyRef Name="ID_USER" />
-          </Key>
-          <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_USERTYPE" Type="smallint" />
-          <Property Name="USERNAME" Type="nvarchar" MaxLength="50" />
-          <Property Name="PASSWORD" Type="nvarchar(max)" />
-          <Property Name="SECURITY_STAMP" Type="nvarchar(max)" />
-          <Property Name="EMAIL" Type="nvarchar(max)" />
-          <Property Name="EMAIL_CONFIRMED" Type="bit" />
-          <Property Name="PHONE_NUMBER" Type="nvarchar" MaxLength="50" />
-          <Property Name="PHONE_NUMBER_CONFIRMED" Type="bit" />
-          <Property Name="TWO_FACTOR_ENABLED" Type="bit" />
-          <Property Name="LOCKOUT_ENABLED" Type="bit" />
-          <Property Name="LOCKOUT_ENDDATE_UTC" Type="datetime" />
-          <Property Name="ACCESS_FAILED_COUNT" Type="int" />
-          <Property Name="NOTE" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="USER_CLAIM">
-          <Key>
-            <PropertyRef Name="ID_CLAIM" />
-          </Key>
-          <Property Name="ID_CLAIM" Type="int" Nullable="false" />
-          <Property Name="ID_USER" Type="int" Nullable="false" />
-          <Property Name="CLAIM_TYPE" Type="nvarchar(max)" />
-          <Property Name="CLAIM_VALUE" Type="nvarchar(max)" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="USER_DETAIL">
           <Key>
-            <PropertyRef Name="FIRSTNAME" />
+            <PropertyRef Name="ID_USER" />
+            <PropertyRef Name="ID_USERTYPE" />
           </Key>
-          <Property Name="ID_USER" Type="int" />
+          <Property Name="ID_USER" Type="int" Nullable="false" />
+          <Property Name="ID_USERTYPE" Type="smallint" Nullable="false" />
           <Property Name="FIRSTNAME" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="USER_LOGIN">
-          <Key>
-            <PropertyRef Name="LOGIN_PROVIDER" />
-            <PropertyRef Name="PROVIDER_KEY" />
-            <PropertyRef Name="ID_USER" />
-          </Key>
-          <Property Name="LOGIN_PROVIDER" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="PROVIDER_KEY" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ID_USER" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="USER_ROLE">
-          <Key>
-            <PropertyRef Name="ID_USER" />
-            <PropertyRef Name="ID_ROLE" />
-          </Key>
-          <Property Name="ID_USER" Type="int" Nullable="false" />
-          <Property Name="ID_ROLE" Type="smallint" Nullable="false" />
-          <Property Name="ENTERBY" Type="int" />
-          <Property Name="ENTERDATE" Type="datetime" />
-          <Property Name="MODIFYBY" Type="int" />
-          <Property Name="MODIFYDATE" Type="datetime" />
-          <Property Name="DELETEBY" Type="int" />
-          <Property Name="DELETEDATE" Type="datetime" />
-          <Property Name="EXPIREDDATE" Type="datetime" />
-          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
-          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="USER_TYPE">
           <Key>
@@ -337,6 +324,62 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             </Principal>
             <Dependent Role="CURRENT_SERVICE">
               <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -472,79 +515,36 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USER_CLAIM_USER">
-          <End Role="USER" Type="Self.USER" Multiplicity="1" />
-          <End Role="USER_CLAIM" Type="Self.USER_CLAIM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
-            </Principal>
-            <Dependent Role="USER_CLAIM">
-              <PropertyRef Name="ID_USER" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_USER_LOGIN_USER">
-          <End Role="USER" Type="Self.USER" Multiplicity="1" />
-          <End Role="USER_LOGIN" Type="Self.USER_LOGIN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
-            </Principal>
-            <Dependent Role="USER_LOGIN">
-              <PropertyRef Name="ID_USER" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_USER_ROLE_ROLE">
-          <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
-          <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ROLE">
-              <PropertyRef Name="ID_ROLE" />
-            </Principal>
-            <Dependent Role="USER_ROLE">
-              <PropertyRef Name="ID_ROLE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_USER_ROLE_USER">
-          <End Role="USER" Type="Self.USER" Multiplicity="1" />
-          <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
-            </Principal>
-            <Dependent Role="USER_ROLE">
-              <PropertyRef Name="ID_USER" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_USER_USERTYPE">
-          <End Role="USER_TYPE" Type="Self.USER_TYPE" Multiplicity="0..1" />
-          <End Role="USER" Type="Self.USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER_TYPE">
-              <PropertyRef Name="ID_USERTYPE" />
-            </Principal>
-            <Dependent Role="USER">
-              <PropertyRef Name="ID_USERTYPE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_USERDETAIL_USER">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+        <Association Name="FK_USER_DETAIL_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="USER_DETAIL" Type="Self.USER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="USER_DETAIL">
               <PropertyRef Name="ID_USER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_DETAIL_USER_TYPE">
+          <End Role="USER_TYPE" Type="Self.USER_TYPE" Multiplicity="1" />
+          <End Role="USER_DETAIL" Type="Self.USER_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_TYPE">
+              <PropertyRef Name="ID_USERTYPE" />
+            </Principal>
+            <Dependent Role="USER_DETAIL">
+              <PropertyRef Name="ID_USERTYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NailhubsModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CITY" EntityType="Self.CITY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CURRENT_PRODUCT" EntityType="Self.CURRENT_PRODUCT" Schema="dbo" store:Type="Tables" />
@@ -554,7 +554,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT_DETAIL" EntityType="Self.PRODUCT_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROVINCE" EntityType="Self.PROVINCE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SERVICE" EntityType="Self.SERVICE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SERVICE_DETAIL" EntityType="Self.SERVICE_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SITE" EntityType="Self.SITE" Schema="dbo" store:Type="Tables" />
@@ -565,17 +564,8 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <EntitySet Name="THEME_DETAIL" EntityType="Self.THEME_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TITLE" EntityType="Self.TITLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TYPE" EntityType="Self.TYPE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USER_CLAIM" EntityType="Self.USER_CLAIM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USER_LOGIN" EntityType="Self.USER_LOGIN" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USER_ROLE" EntityType="Self.USER_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_DETAIL" EntityType="Self.USER_DETAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER_TYPE" EntityType="Self.USER_TYPE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USER_DETAIL" EntityType="Self.USER_DETAIL" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [USER_DETAIL].[ID_USER] AS [ID_USER], 
-    [USER_DETAIL].[FIRSTNAME] AS [FIRSTNAME]
-    FROM [dbo].[USER_DETAIL] AS [USER_DETAIL]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_CURRENT_PRODUCT_PRODUCT" Association="Self.FK_CURRENT_PRODUCT_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="CURRENT_PRODUCT" EntitySet="CURRENT_PRODUCT" />
@@ -591,6 +581,22 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <AssociationSet Name="FK_CURRENT_SERVICE_SITE" Association="Self.FK_CURRENT_SERVICE_SITE">
             <End Role="SITE" EntitySet="SITE" />
             <End Role="CURRENT_SERVICE" EntitySet="CURRENT_SERVICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_EMPLOYEE_Title" Association="Self.FK_EMPLOYEE_Title">
             <End Role="TITLE" EntitySet="TITLE" />
@@ -636,28 +642,12 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             <End Role="THEME" EntitySet="THEME" />
             <End Role="THEME_DETAIL" EntitySet="THEME_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_USER_CLAIM_USER" Association="Self.FK_USER_CLAIM_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="USER_CLAIM" EntitySet="USER_CLAIM" />
+          <AssociationSet Name="FK_USER_DETAIL_AspNetUsers" Association="Self.FK_USER_DETAIL_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="USER_DETAIL" EntitySet="USER_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_USER_LOGIN_USER" Association="Self.FK_USER_LOGIN_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USER_ROLE_ROLE" Association="Self.FK_USER_ROLE_ROLE">
-            <End Role="ROLE" EntitySet="ROLE" />
-            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USER_ROLE_USER" Association="Self.FK_USER_ROLE_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USER_USERTYPE" Association="Self.FK_USER_USERTYPE">
+          <AssociationSet Name="FK_USER_DETAIL_USER_TYPE" Association="Self.FK_USER_DETAIL_USER_TYPE">
             <End Role="USER_TYPE" EntitySet="USER_TYPE" />
-            <End Role="USER" EntitySet="USER" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USERDETAIL_USER" Association="Self.FK_USERDETAIL_USER">
-            <End Role="USER" EntitySet="USER" />
             <End Role="USER_DETAIL" EntitySet="USER_DETAIL" />
           </AssociationSet>
         </EntityContainer>
@@ -675,7 +665,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <EntitySet Name="PRODUCTs" EntityType="NailhubsModel.PRODUCT" />
           <EntitySet Name="PRODUCT_DETAIL" EntityType="NailhubsModel.PRODUCT_DETAIL" />
           <EntitySet Name="PROVINCEs" EntityType="NailhubsModel.PROVINCE" />
-          <EntitySet Name="ROLEs" EntityType="NailhubsModel.ROLE" />
           <EntitySet Name="SERVICEs" EntityType="NailhubsModel.SERVICE" />
           <EntitySet Name="SERVICE_DETAIL" EntityType="NailhubsModel.SERVICE_DETAIL" />
           <EntitySet Name="SITEs" EntityType="NailhubsModel.SITE" />
@@ -686,10 +675,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <EntitySet Name="THEME_DETAIL" EntityType="NailhubsModel.THEME_DETAIL" />
           <EntitySet Name="TITLEs" EntityType="NailhubsModel.TITLE" />
           <EntitySet Name="TYPEs" EntityType="NailhubsModel.TYPE" />
-          <EntitySet Name="USERs" EntityType="NailhubsModel.USER" />
-          <EntitySet Name="USER_CLAIM" EntityType="NailhubsModel.USER_CLAIM" />
-          <EntitySet Name="USER_LOGIN" EntityType="NailhubsModel.USER_LOGIN" />
-          <EntitySet Name="USER_ROLE" EntityType="NailhubsModel.USER_ROLE" />
           <EntitySet Name="USER_TYPE" EntityType="NailhubsModel.USER_TYPE" />
           <EntitySet Name="USER_DETAIL" EntityType="NailhubsModel.USER_DETAIL" />
           <AssociationSet Name="FK_LOCATION_CITY" Association="NailhubsModel.FK_LOCATION_CITY">
@@ -732,10 +717,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             <End Role="PRODUCT" EntitySet="PRODUCTs" />
             <End Role="PRODUCT_DETAIL" EntitySet="PRODUCT_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_USER_ROLE_ROLE" Association="NailhubsModel.FK_USER_ROLE_ROLE">
-            <End Role="ROLE" EntitySet="ROLEs" />
-            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
-          </AssociationSet>
           <AssociationSet Name="FK_SERVICE_TYPE" Association="NailhubsModel.FK_SERVICE_TYPE">
             <End Role="TYPE" EntitySet="TYPEs" />
             <End Role="SERVICE" EntitySet="SERVICEs" />
@@ -756,25 +737,29 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             <End Role="THEME" EntitySet="THEMEs" />
             <End Role="THEME_DETAIL" EntitySet="THEME_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_USER_ROLE_USER" Association="NailhubsModel.FK_USER_ROLE_USER">
-            <End Role="USER" EntitySet="USERs" />
-            <End Role="USER_ROLE" EntitySet="USER_ROLE" />
+          <EntitySet Name="AspNetRoles" EntityType="NailhubsModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="NailhubsModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="NailhubsModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="NailhubsModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="NailhubsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
           </AssociationSet>
-          <AssociationSet Name="FK_USER_USERTYPE" Association="NailhubsModel.FK_USER_USERTYPE">
-            <End Role="USER_TYPE" EntitySet="USER_TYPE" />
-            <End Role="USER" EntitySet="USERs" />
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="NailhubsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_USERDETAIL_USER" Association="NailhubsModel.FK_USERDETAIL_USER">
-            <End Role="USER" EntitySet="USERs" />
+          <AssociationSet Name="FK_USER_DETAIL_AspNetUsers" Association="NailhubsModel.FK_USER_DETAIL_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="USER_DETAIL" EntitySet="USER_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_USER_CLAIM_USER" Association="NailhubsModel.FK_USER_CLAIM_USER">
-            <End Role="USER" EntitySet="USERs" />
-            <End Role="USER_CLAIM" EntitySet="USER_CLAIM" />
+          <AssociationSet Name="FK_USER_DETAIL_USER_TYPE" Association="NailhubsModel.FK_USER_DETAIL_USER_TYPE">
+            <End Role="USER_TYPE" EntitySet="USER_TYPE" />
+            <End Role="USER_DETAIL" EntitySet="USER_DETAIL" />
           </AssociationSet>
-          <AssociationSet Name="FK_USER_LOGIN_USER" Association="NailhubsModel.FK_USER_LOGIN_USER">
-            <End Role="USER" EntitySet="USERs" />
-            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
+          <AssociationSet Name="AspNetUserRoles" Association="NailhubsModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CITY">
@@ -895,16 +880,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="ROLE">
-          <Key>
-            <PropertyRef Name="ID_ROLE" />
-          </Key>
-          <Property Name="ID_ROLE" Type="Int16" Nullable="false" />
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NOTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="USER_ROLE" Relationship="NailhubsModel.FK_USER_ROLE_ROLE" FromRole="ROLE" ToRole="USER_ROLE" />
-        </EntityType>
         <EntityType Name="SERVICE">
           <Key>
             <PropertyRef Name="ID_SERVICE" />
@@ -1023,75 +998,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <NavigationProperty Name="PRODUCTs" Relationship="NailhubsModel.FK_PRODUCT_TYPE" FromRole="TYPE" ToRole="PRODUCT" />
           <NavigationProperty Name="SERVICEs" Relationship="NailhubsModel.FK_SERVICE_TYPE" FromRole="TYPE" ToRole="SERVICE" />
         </EntityType>
-        <EntityType Name="USER">
-          <Key>
-            <PropertyRef Name="ID_USER" />
-          </Key>
-          <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_USERTYPE" Type="Int16" />
-          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SECURITY_STAMP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EMAIL_CONFIRMED" Type="Boolean" />
-          <Property Name="PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PHONE_NUMBER_CONFIRMED" Type="Boolean" />
-          <Property Name="TWO_FACTOR_ENABLED" Type="Boolean" />
-          <Property Name="LOCKOUT_ENABLED" Type="Boolean" />
-          <Property Name="LOCKOUT_ENDDATE_UTC" Type="DateTime" Precision="3" />
-          <Property Name="ACCESS_FAILED_COUNT" Type="Int32" />
-          <Property Name="NOTE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="USER_ROLE" Relationship="NailhubsModel.FK_USER_ROLE_USER" FromRole="USER" ToRole="USER_ROLE" />
-          <NavigationProperty Name="USER_TYPE" Relationship="NailhubsModel.FK_USER_USERTYPE" FromRole="USER" ToRole="USER_TYPE" />
-          <NavigationProperty Name="USER_DETAIL" Relationship="NailhubsModel.FK_USERDETAIL_USER" FromRole="USER" ToRole="USER_DETAIL" />
-          <NavigationProperty Name="USER_CLAIM" Relationship="NailhubsModel.FK_USER_CLAIM_USER" FromRole="USER" ToRole="USER_CLAIM" />
-          <NavigationProperty Name="USER_LOGIN" Relationship="NailhubsModel.FK_USER_LOGIN_USER" FromRole="USER" ToRole="USER_LOGIN" />
-        </EntityType>
-        <EntityType Name="USER_CLAIM">
-          <Key>
-            <PropertyRef Name="CLAIM_ID" />
-            <PropertyRef Name="ID_CLAIM" />
-          </Key>
-          <Property Name="CLAIM_ID" Type="Int32" Nullable="false" />
-          <Property Name="USER_ID" Type="Int32" Nullable="false" />
-          <Property Name="CLAIM_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CLAIM_VALUE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ID_CLAIM" Type="Int32" Nullable="false" />
-          <Property Name="ID_USER" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="USER" Relationship="NailhubsModel.FK_USER_CLAIM_USER" FromRole="USER_CLAIM" ToRole="USER" />
-        </EntityType>
-        <EntityType Name="USER_LOGIN">
-          <Key>
-            <PropertyRef Name="LOGIN_PROVIDER" />
-            <PropertyRef Name="PROVIDER_KEY" />
-            <PropertyRef Name="USER_ID" />
-            <PropertyRef Name="ID_USER" />
-          </Key>
-          <Property Name="LOGIN_PROVIDER" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PROVIDER_KEY" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="USER_ID" Type="Int32" Nullable="false" />
-          <Property Name="ID_USER" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="USER" Relationship="NailhubsModel.FK_USER_LOGIN_USER" FromRole="USER_LOGIN" ToRole="USER" />
-        </EntityType>
-        <EntityType Name="USER_ROLE">
-          <Key>
-            <PropertyRef Name="ID_USER" />
-            <PropertyRef Name="ID_ROLE" />
-          </Key>
-          <Property Name="ID_USER" Type="Int32" Nullable="false" />
-          <Property Name="ID_ROLE" Type="Int16" Nullable="false" />
-          <Property Name="ENTERBY" Type="Int32" />
-          <Property Name="ENTERDATE" Type="DateTime" Precision="3" />
-          <Property Name="MODIFYBY" Type="Int32" />
-          <Property Name="MODIFYDATE" Type="DateTime" Precision="3" />
-          <Property Name="DELETEBY" Type="Int32" />
-          <Property Name="DELETEDATE" Type="DateTime" Precision="3" />
-          <Property Name="EXPIREDDATE" Type="DateTime" Precision="3" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ROLE" Relationship="NailhubsModel.FK_USER_ROLE_ROLE" FromRole="USER_ROLE" ToRole="ROLE" />
-          <NavigationProperty Name="USER" Relationship="NailhubsModel.FK_USER_ROLE_USER" FromRole="USER_ROLE" ToRole="USER" />
-        </EntityType>
         <EntityType Name="USER_TYPE">
           <Key>
             <PropertyRef Name="ID_USERTYPE" />
@@ -1099,15 +1005,18 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <Property Name="ID_USERTYPE" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="USERs" Relationship="NailhubsModel.FK_USER_USERTYPE" FromRole="USER_TYPE" ToRole="USER" />
+          <NavigationProperty Name="USER_DETAIL" Relationship="NailhubsModel.FK_USER_DETAIL_USER_TYPE" FromRole="USER_TYPE" ToRole="USER_DETAIL" />
         </EntityType>
         <EntityType Name="USER_DETAIL">
           <Key>
-            <PropertyRef Name="FIRSTNAME" />
+            <PropertyRef Name="ID_USERTYPE" />
+            <PropertyRef Name="ID_USER" />
           </Key>
-          <Property Name="ID_USER" Type="Int32" />
+          <Property Name="ID_USER" Type="Int32" Nullable="false" />
+          <Property Name="ID_USERTYPE" Type="Int16" Nullable="false" />
           <Property Name="FIRSTNAME" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="USER" Relationship="NailhubsModel.FK_USERDETAIL_USER" FromRole="USER_DETAIL" ToRole="USER" />
+          <NavigationProperty Name="AspNetUser" Relationship="NailhubsModel.FK_USER_DETAIL_AspNetUsers" FromRole="USER_DETAIL" ToRole="AspNetUser" />
+          <NavigationProperty Name="USER_TYPE" Relationship="NailhubsModel.FK_USER_DETAIL_USER_TYPE" FromRole="USER_DETAIL" ToRole="USER_TYPE" />
         </EntityType>
         <Association Name="FK_LOCATION_CITY">
           <End Type="NailhubsModel.CITY" Role="CITY" Multiplicity="0..1" />
@@ -1229,18 +1138,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USER_ROLE_ROLE">
-          <End Type="NailhubsModel.ROLE" Role="ROLE" Multiplicity="1" />
-          <End Type="NailhubsModel.USER_ROLE" Role="USER_ROLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ROLE">
-              <PropertyRef Name="ID_ROLE" />
-            </Principal>
-            <Dependent Role="USER_ROLE">
-              <PropertyRef Name="ID_ROLE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SERVICE_TYPE">
           <End Type="NailhubsModel.TYPE" Role="TYPE" Multiplicity="0..1" />
           <End Type="NailhubsModel.SERVICE" Role="SERVICE" Multiplicity="*" />
@@ -1301,65 +1198,111 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USER_ROLE_USER">
-          <End Type="NailhubsModel.USER" Role="USER" Multiplicity="1" />
-          <End Type="NailhubsModel.USER_ROLE" Role="USER_ROLE" Multiplicity="*" />
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="NailhubsModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="NailhubsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="NailhubsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="NailhubsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="NailhubsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="USER_DETAIL" Relationship="NailhubsModel.FK_USER_DETAIL_AspNetUsers" FromRole="AspNetUser" ToRole="USER_DETAIL" />
+          <NavigationProperty Name="AspNetRoles" Relationship="NailhubsModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="NailhubsModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NailhubsModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="USER_ROLE">
-              <PropertyRef Name="ID_USER" />
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USER_USERTYPE">
-          <End Type="NailhubsModel.USER_TYPE" Role="USER_TYPE" Multiplicity="0..1" />
-          <End Type="NailhubsModel.USER" Role="USER" Multiplicity="*" />
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="NailhubsModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="NailhubsModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER_TYPE">
-              <PropertyRef Name="ID_USERTYPE" />
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="USER">
-              <PropertyRef Name="ID_USERTYPE" />
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USERDETAIL_USER">
-          <End Type="NailhubsModel.USER" Role="USER" Multiplicity="0..1" />
+        <Association Name="FK_USER_DETAIL_AspNetUsers">
+          <End Type="NailhubsModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="NailhubsModel.USER_DETAIL" Role="USER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="USER_DETAIL">
               <PropertyRef Name="ID_USER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USER_CLAIM_USER">
-          <End Type="NailhubsModel.USER" Role="USER" Multiplicity="1" />
-          <End Type="NailhubsModel.USER_CLAIM" Role="USER_CLAIM" Multiplicity="*" />
+        <Association Name="FK_USER_DETAIL_USER_TYPE">
+          <End Type="NailhubsModel.USER_TYPE" Role="USER_TYPE" Multiplicity="1" />
+          <End Type="NailhubsModel.USER_DETAIL" Role="USER_DETAIL" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
+            <Principal Role="USER_TYPE">
+              <PropertyRef Name="ID_USERTYPE" />
             </Principal>
-            <Dependent Role="USER_CLAIM">
-              <PropertyRef Name="ID_USER" />
+            <Dependent Role="USER_DETAIL">
+              <PropertyRef Name="ID_USERTYPE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_USER_LOGIN_USER">
-          <End Type="NailhubsModel.USER" Role="USER" Multiplicity="1" />
-          <End Type="NailhubsModel.USER_LOGIN" Role="USER_LOGIN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="ID_USER" />
-            </Principal>
-            <Dependent Role="USER_LOGIN">
-              <PropertyRef Name="ID_USER" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="AspNetUserRoles">
+          <End Type="NailhubsModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="NailhubsModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1480,16 +1423,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ROLEs">
-            <EntityTypeMapping TypeName="NailhubsModel.ROLE">
-              <MappingFragment StoreEntitySet="ROLE">
-                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SERVICEs">
             <EntityTypeMapping TypeName="NailhubsModel.SERVICE">
               <MappingFragment StoreEntitySet="SERVICE">
@@ -1602,62 +1535,6 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="USERs">
-            <EntityTypeMapping TypeName="NailhubsModel.USER">
-              <MappingFragment StoreEntitySet="USER">
-                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
-                <ScalarProperty Name="ACCESS_FAILED_COUNT" ColumnName="ACCESS_FAILED_COUNT" />
-                <ScalarProperty Name="LOCKOUT_ENDDATE_UTC" ColumnName="LOCKOUT_ENDDATE_UTC" />
-                <ScalarProperty Name="LOCKOUT_ENABLED" ColumnName="LOCKOUT_ENABLED" />
-                <ScalarProperty Name="TWO_FACTOR_ENABLED" ColumnName="TWO_FACTOR_ENABLED" />
-                <ScalarProperty Name="PHONE_NUMBER_CONFIRMED" ColumnName="PHONE_NUMBER_CONFIRMED" />
-                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
-                <ScalarProperty Name="EMAIL_CONFIRMED" ColumnName="EMAIL_CONFIRMED" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="SECURITY_STAMP" ColumnName="SECURITY_STAMP" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
-                <ScalarProperty Name="ID_USERTYPE" ColumnName="ID_USERTYPE" />
-                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USER_CLAIM">
-            <EntityTypeMapping TypeName="NailhubsModel.USER_CLAIM">
-              <MappingFragment StoreEntitySet="USER_CLAIM">
-                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
-                <ScalarProperty Name="ID_CLAIM" ColumnName="ID_CLAIM" />
-                <ScalarProperty Name="CLAIM_VALUE" ColumnName="CLAIM_VALUE" />
-                <ScalarProperty Name="CLAIM_TYPE" ColumnName="CLAIM_TYPE" />
-                </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USER_LOGIN">
-            <EntityTypeMapping TypeName="NailhubsModel.USER_LOGIN">
-              <MappingFragment StoreEntitySet="USER_LOGIN">
-                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
-                <ScalarProperty Name="PROVIDER_KEY" ColumnName="PROVIDER_KEY" />
-                <ScalarProperty Name="LOGIN_PROVIDER" ColumnName="LOGIN_PROVIDER" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USER_ROLE">
-            <EntityTypeMapping TypeName="NailhubsModel.USER_ROLE">
-              <MappingFragment StoreEntitySet="USER_ROLE">
-                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="EXPIREDDATE" ColumnName="EXPIREDDATE" />
-                <ScalarProperty Name="DELETEDATE" ColumnName="DELETEDATE" />
-                <ScalarProperty Name="DELETEBY" ColumnName="DELETEBY" />
-                <ScalarProperty Name="MODIFYDATE" ColumnName="MODIFYDATE" />
-                <ScalarProperty Name="MODIFYBY" ColumnName="MODIFYBY" />
-                <ScalarProperty Name="ENTERDATE" ColumnName="ENTERDATE" />
-                <ScalarProperty Name="ENTERBY" ColumnName="ENTERBY" />
-                <ScalarProperty Name="ID_ROLE" ColumnName="ID_ROLE" />
-                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="USER_TYPE">
             <EntityTypeMapping TypeName="NailhubsModel.USER_TYPE">
               <MappingFragment StoreEntitySet="USER_TYPE">
@@ -1670,11 +1547,65 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <EntitySetMapping Name="USER_DETAIL">
             <EntityTypeMapping TypeName="NailhubsModel.USER_DETAIL">
               <MappingFragment StoreEntitySet="USER_DETAIL">
+                <ScalarProperty Name="ID_USERTYPE" ColumnName="ID_USERTYPE" />
                 <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
                 <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="NailhubsModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="NailhubsModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="NailhubsModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="NailhubsModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="NailhubsModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
