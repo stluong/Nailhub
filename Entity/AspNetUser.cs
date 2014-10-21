@@ -11,8 +11,9 @@ namespace Entity
 {
     using System;
     using System.Collections.Generic;
+    using Generic.Core.Model;
     
-    public partial class AspNetUser
+    public partial class AspNetUser: BaseEntity
     {
         public AspNetUser()
         {

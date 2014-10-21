@@ -1,25 +1,24 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using AppCore.Service;
 
 
 namespace Test.Web.Controllers
 {
     public class ProductController : Controller
     {
-        //private readonly IService<Product> _service;
-        private readonly int _pageSize;
+        private readonly IIdentityService identity;
 
-        public ProductController(/*IService<Product> service*/)
+        public ProductController(IIdentityService _identity)
         {
-            //_service = service;
-            _pageSize = 10;
+            this.identity = _identity;
         }
         
-        //public async Task<ActionResult> Index(int pageIndex = 1)
-        //{
-        //    ViewBag.PageIndex = pageIndex;
-        //    var list = await new SelectList //_service.GetAllAsync(pageIndex, _pageSize);
-        //    return View();
-        //}
+        public async Task<ActionResult> Index(int pageIndex = 1)
+        {
+            ViewBag.PageIndex = pageIndex;
+            var user = await identity.Query().GetAsync();
+            return View();
+        }
 	}
 }

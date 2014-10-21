@@ -132,7 +132,6 @@ namespace Generic.Infrastructure.Repositories
         {
             return _unitOfWork.Repository<T>();
         }
-
         public virtual async Task<TEntity> FindAsync(params object[] keyValues)
         {
             return await _dbSet.FindAsync(keyValues);

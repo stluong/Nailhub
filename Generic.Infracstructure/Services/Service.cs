@@ -20,6 +20,7 @@ namespace Generic.Infracstructure.Services
 
         #region Constructor
         protected Service(IRepositoryAsync<TEntity> repository) { _repository = repository; }
+
         #endregion Constructor
 
         public virtual TEntity Find(params object[] keyValues) { return _repository.Find(keyValues); }
@@ -48,7 +49,7 @@ namespace Generic.Infracstructure.Services
         public virtual IQueryableOperation<TEntity> Query(IQueryExpression<TEntity> queryObject) { return _repository.Query(queryObject); }
 
         public virtual IQueryableOperation<TEntity> Query(Expression<Func<TEntity, bool>> query) { return _repository.Query(query); }
-
+        
         public virtual async Task<TEntity> FindAsync(params object[] keyValues) { return await _repository.FindAsync(keyValues); }
 
         public virtual async Task<TEntity> FindAsync(CancellationToken cancellationToken, params object[] keyValues) { return await _repository.FindAsync(cancellationToken, keyValues); }
