@@ -241,10 +241,10 @@
         </EntityType>
         <EntityType Name="USER_CLAIM">
           <Key>
-            <PropertyRef Name="CLAIM_ID" />
+            <PropertyRef Name="ID_CLAIM" />
           </Key>
-          <Property Name="CLAIM_ID" Type="int" Nullable="false" />
-          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="ID_CLAIM" Type="int" Nullable="false" />
+          <Property Name="ID_USER" Type="int" Nullable="false" />
           <Property Name="CLAIM_TYPE" Type="nvarchar(max)" />
           <Property Name="CLAIM_VALUE" Type="nvarchar(max)" />
         </EntityType>
@@ -261,11 +261,11 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <Key>
             <PropertyRef Name="LOGIN_PROVIDER" />
             <PropertyRef Name="PROVIDER_KEY" />
-            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="ID_USER" />
           </Key>
           <Property Name="LOGIN_PROVIDER" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="PROVIDER_KEY" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="ID_USER" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="USER_ROLE">
           <Key>
@@ -472,6 +472,30 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_CLAIM_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_CLAIM" Type="Self.USER_CLAIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USER_CLAIM">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LOGIN_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_LOGIN" Type="Self.USER_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USER_LOGIN">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_USER_ROLE_ROLE">
           <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
           <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
@@ -612,6 +636,14 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
             <End Role="THEME" EntitySet="THEME" />
             <End Role="THEME_DETAIL" EntitySet="THEME_DETAIL" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_CLAIM_USER" Association="Self.FK_USER_CLAIM_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_CLAIM" EntitySet="USER_CLAIM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LOGIN_USER" Association="Self.FK_USER_LOGIN_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
+          </AssociationSet>
           <AssociationSet Name="FK_USER_ROLE_ROLE" Association="Self.FK_USER_ROLE_ROLE">
             <End Role="ROLE" EntitySet="ROLE" />
             <End Role="USER_ROLE" EntitySet="USER_ROLE" />
@@ -735,6 +767,14 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <AssociationSet Name="FK_USERDETAIL_USER" Association="NailhubsModel.FK_USERDETAIL_USER">
             <End Role="USER" EntitySet="USERs" />
             <End Role="USER_DETAIL" EntitySet="USER_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_CLAIM_USER" Association="NailhubsModel.FK_USER_CLAIM_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="USER_CLAIM" EntitySet="USER_CLAIM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_LOGIN_USER" Association="NailhubsModel.FK_USER_LOGIN_USER">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="USER_LOGIN" EntitySet="USER_LOGIN" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CITY">
@@ -1004,25 +1044,34 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <NavigationProperty Name="USER_ROLE" Relationship="NailhubsModel.FK_USER_ROLE_USER" FromRole="USER" ToRole="USER_ROLE" />
           <NavigationProperty Name="USER_TYPE" Relationship="NailhubsModel.FK_USER_USERTYPE" FromRole="USER" ToRole="USER_TYPE" />
           <NavigationProperty Name="USER_DETAIL" Relationship="NailhubsModel.FK_USERDETAIL_USER" FromRole="USER" ToRole="USER_DETAIL" />
+          <NavigationProperty Name="USER_CLAIM" Relationship="NailhubsModel.FK_USER_CLAIM_USER" FromRole="USER" ToRole="USER_CLAIM" />
+          <NavigationProperty Name="USER_LOGIN" Relationship="NailhubsModel.FK_USER_LOGIN_USER" FromRole="USER" ToRole="USER_LOGIN" />
         </EntityType>
         <EntityType Name="USER_CLAIM">
           <Key>
             <PropertyRef Name="CLAIM_ID" />
+            <PropertyRef Name="ID_CLAIM" />
           </Key>
           <Property Name="CLAIM_ID" Type="Int32" Nullable="false" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
           <Property Name="CLAIM_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CLAIM_VALUE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_CLAIM" Type="Int32" Nullable="false" />
+          <Property Name="ID_USER" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="NailhubsModel.FK_USER_CLAIM_USER" FromRole="USER_CLAIM" ToRole="USER" />
         </EntityType>
         <EntityType Name="USER_LOGIN">
           <Key>
             <PropertyRef Name="LOGIN_PROVIDER" />
             <PropertyRef Name="PROVIDER_KEY" />
             <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="ID_USER" />
           </Key>
           <Property Name="LOGIN_PROVIDER" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="PROVIDER_KEY" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_USER" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="NailhubsModel.FK_USER_LOGIN_USER" FromRole="USER_LOGIN" ToRole="USER" />
         </EntityType>
         <EntityType Name="USER_ROLE">
           <Key>
@@ -1284,6 +1333,30 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
               <PropertyRef Name="ID_USER" />
             </Principal>
             <Dependent Role="USER_DETAIL">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_CLAIM_USER">
+          <End Type="NailhubsModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="NailhubsModel.USER_CLAIM" Role="USER_CLAIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USER_CLAIM">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_LOGIN_USER">
+          <End Type="NailhubsModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="NailhubsModel.USER_LOGIN" Role="USER_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID_USER" />
+            </Principal>
+            <Dependent Role="USER_LOGIN">
               <PropertyRef Name="ID_USER" />
             </Dependent>
           </ReferentialConstraint>
@@ -1552,17 +1625,17 @@ warning 6002: The table/view 'Nailhubs.dbo.USER_DETAIL' does not have a primary 
           <EntitySetMapping Name="USER_CLAIM">
             <EntityTypeMapping TypeName="NailhubsModel.USER_CLAIM">
               <MappingFragment StoreEntitySet="USER_CLAIM">
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID_CLAIM" ColumnName="ID_CLAIM" />
                 <ScalarProperty Name="CLAIM_VALUE" ColumnName="CLAIM_VALUE" />
                 <ScalarProperty Name="CLAIM_TYPE" ColumnName="CLAIM_TYPE" />
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-                <ScalarProperty Name="CLAIM_ID" ColumnName="CLAIM_ID" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USER_LOGIN">
             <EntityTypeMapping TypeName="NailhubsModel.USER_LOGIN">
               <MappingFragment StoreEntitySet="USER_LOGIN">
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
                 <ScalarProperty Name="PROVIDER_KEY" ColumnName="PROVIDER_KEY" />
                 <ScalarProperty Name="LOGIN_PROVIDER" ColumnName="LOGIN_PROVIDER" />
               </MappingFragment>

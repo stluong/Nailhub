@@ -15,17 +15,17 @@ using Generic.Unity;
 //using Test.Web;
 
 
-//[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IocConfig), "RegisterDependencies")]
+//[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DI), "RegisterDependencies")]
 
 namespace Generic.Unity
 {
-    public class IocConfig
+    public class DI
     {
         /// <summary>
         /// Return builder, so we can register more
         /// </summary>
         /// <returns></returns>
-        public static ContainerBuilder RegisterDependencies()
+        public static ContainerBuilder RegisterDependencies(bool initiateAdmin = false)
         {
             var builder = new ContainerBuilder();
             const string nameOrConnectionString = "name=AppContext";
@@ -37,15 +37,15 @@ namespace Generic.Unity
         /// Register all dependencies
         /// </summary>
         /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
-        public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly)
+        public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly, bool initiateAdmin = false)
         {
             var builder = new ContainerBuilder();
             const string nameOrConnectionString = "name=AppContext";
             builder.RegisterControllers(myAppAssembly);
-            Register(builder, nameOrConnectionString);
+            Register(builder, nameOrConnectionString, initiateAdmin);
         }
 
-        private static void Register(ContainerBuilder builder, string nameOrConnectionString)
+        private static void Register(ContainerBuilder builder, string nameOrConnectionString, bool initiateAdmin = false)
         {
             builder.RegisterModule<AutofacWebTypesModule>();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerHttpRequest();
@@ -54,7 +54,7 @@ namespace Generic.Unity
             builder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new MyContext(nameOrConnectionString, logger);
+                var context = new MyContext(nameOrConnectionString, logger, initiateAdmin);
                 return context;
             }).InstancePerHttpRequest();
             builder.Register(b => NLogLogger.Instance).SingleInstance();

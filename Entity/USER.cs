@@ -18,6 +18,8 @@ namespace Entity
         {
             this.USER_ROLE = new HashSet<USER_ROLE>();
             this.USER_DETAIL = new HashSet<USER_DETAIL>();
+            this.USER_CLAIM = new HashSet<USER_CLAIM>();
+            this.USER_LOGIN = new HashSet<USER_LOGIN>();
         }
     
         public int ID_USER { get; set; }
@@ -38,5 +40,7 @@ namespace Entity
         public virtual ICollection<USER_ROLE> USER_ROLE { get; set; }
         public virtual USER_TYPE USER_TYPE { get; set; }
         public virtual ICollection<USER_DETAIL> USER_DETAIL { get; set; }
+        public virtual ICollection<USER_CLAIM> USER_CLAIM { get; set; }
+        public virtual ICollection<USER_LOGIN> USER_LOGIN { get; set; }
     }
 }

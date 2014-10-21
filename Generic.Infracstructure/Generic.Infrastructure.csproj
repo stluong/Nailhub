@@ -113,6 +113,7 @@
     <Compile Include="Identity\EmailService.cs" />
     <Compile Include="Identity\IdentityExtensions.cs" />
     <Compile Include="Identity\IdentityFactory.cs" />
+    <Compile Include="Identity\InitiateAdmin.cs" />
     <Compile Include="Identity\Model\IdentityModels.cs" />
     <Compile Include="Identity\SmsService.cs" />
     <Compile Include="Logging\NLogLogger.cs" />

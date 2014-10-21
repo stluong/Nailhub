@@ -18,5 +18,9 @@ namespace Entity
         public int USER_ID { get; set; }
         public string CLAIM_TYPE { get; set; }
         public string CLAIM_VALUE { get; set; }
+        public int ID_CLAIM { get; set; }
+        public int ID_USER { get; set; }
+    
+        public virtual USER USER { get; set; }
     }
 }

@@ -50,6 +50,8 @@
         <AssociationConnector Association="NailhubsModel.FK_USER_ROLE_USER" />
         <AssociationConnector Association="NailhubsModel.FK_USER_USERTYPE" />
         <AssociationConnector Association="NailhubsModel.FK_USERDETAIL_USER" />
+        <AssociationConnector Association="NailhubsModel.FK_USER_CLAIM_USER" />
+        <AssociationConnector Association="NailhubsModel.FK_USER_LOGIN_USER" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

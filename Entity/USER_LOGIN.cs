@@ -17,5 +17,8 @@ namespace Entity
         public string LOGIN_PROVIDER { get; set; }
         public string PROVIDER_KEY { get; set; }
         public int USER_ID { get; set; }
+        public int ID_USER { get; set; }
+    
+        public virtual USER USER { get; set; }
     }
 }

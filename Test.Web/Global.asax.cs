@@ -16,7 +16,7 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //register all dependency
-            Generic.Unity.IocConfig.RegisterDependencies(typeof(MvcApplication).Assembly);
+            Generic.Unity.DI.RegisterDependencies(typeof(MvcApplication).Assembly, true);
             
         }
     }

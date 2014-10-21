@@ -7,7 +7,9 @@ using Generic.Core.Context;
 using Generic.Core.Logging;
 using Generic.Core.Repository;
 using Generic.Infrastructure.Identity;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace Generic.Infrastructure.Repositories
 {
@@ -19,11 +21,13 @@ namespace Generic.Infrastructure.Repositories
         #region Private Fields
         private readonly Guid _instanceId;
         bool _disposed;
+        private static readonly object Lock = new object();
+
         #endregion Private Fields
 
         #region Constructor
 
-        public MyContext(string nameOrConnectionString, ILogger logger)
+        public MyContext(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false)
             : base(nameOrConnectionString)
         {
 
@@ -31,13 +35,36 @@ namespace Generic.Infrastructure.Repositories
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
             Database.Log = logger.Log;
+            if (!initiateAdmin)
+            {
+                return;
+            }
+            lock (Lock)
+            {
+                if (initiateAdmin)
+                {
+                    InitializeAdminIdentity();
+                }
+            }
         }
-        public MyContext(string nameOrConnectionString)
+        public MyContext(string nameOrConnectionString, bool initiateAdmin = false)
             : base(nameOrConnectionString)
         {
             _instanceId = Guid.NewGuid();
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
+
+            if (!initiateAdmin)
+            {
+                return;
+            }
+            lock (Lock)
+            {
+                if (initiateAdmin)
+                {
+                    InitializeAdminIdentity();
+                }
+            }
         }
 
         #endregion
@@ -45,16 +72,54 @@ namespace Generic.Infrastructure.Repositories
 
         public Guid InstanceId { get { return _instanceId; } }
 
+        /// <summary>
+        /// Initialize admin identity
+        /// </summary>
+        private void InitializeAdminIdentity()
+        {
+            // This is only for testing purpose
+            const string name = "stluong@admin.com";
+            const string password = "TnTnT@2320";
+            const string roleName = "Admin";
+            var applicationRoleManager = IdentityFactory.CreateRoleManager(this);
+            var applicationUserManager = IdentityFactory.CreateUserManager(this);
+            //Create Role Admin if it does not exist
+            var role = applicationRoleManager.FindByName(roleName);
+            if (role == null)
+            {
+                role = new ApplicationIdentityRole { Name = roleName };
+                applicationRoleManager.Create(role);
+            }
+
+            var user = applicationUserManager.FindByName(name);
+            if (user == null)
+            {
+                user = new ApplicationIdentityUser { UserName = name, Email = name };
+                applicationUserManager.Create(user, password);
+                applicationUserManager.SetLockoutEnabled(user.Id, false);
+            }
+
+            // Add user admin to Role Admin if not already added
+            var rolesForUser = applicationUserManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name))
+            {
+                applicationUserManager.AddToRole(user.Id, role.Name);
+            }
+
+            this.SaveChanges();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             //Rebinding identity object to my own table
 
-            //modelBuilder.Entity<IdentityUser>().ToTable("USER"); //.Property(p => p.Id).HasColumnName("UserId");
-            //modelBuilder.Entity<IdentityUserRole>().ToTable("USER_ROLE");
-            //modelBuilder.Entity<IdentityUserLogin>().ToTable("USER_LOGIN");
-            //modelBuilder.Entity<IdentityUserClaim>().ToTable("USER_CLAIM");
-            //modelBuilder.Entity<IdentityRole>().ToTable("ROLE");
+            //modelBuilder.Entity<ApplicationIdentityUser>().ToTable("USER").Property(u => u.Id).HasColumnName("ID_USER");
+            //modelBuilder.Entity<ApplicationIdentityUserRole>().ToTable("USER_ROLE").Property(ur => ur.UserId).HasColumnName("ID_USER");
+            //modelBuilder.Entity<ApplicationIdentityUserRole>().ToTable("USER_ROLE").Property(ur => ur.RoleId).HasColumnName("ID_ROLE");
+            //modelBuilder.Entity<ApplicationIdentityUserLogin>().ToTable("USER_LOGIN");
+            //modelBuilder.Entity<ApplicationIdentityUserClaim>().ToTable("USER_CLAIM").Property(c => c.Id).HasColumnName("ID_CLAIM");
+            //modelBuilder.Entity<ApplicationIdentityRole>().ToTable("ROLE").Property(r => r.Id).HasColumnName("ID_ROLE");
         }
 
         /// <summary>
@@ -168,7 +233,12 @@ namespace Generic.Infrastructure.Repositories
         {
             foreach (var dbEntityEntry in ChangeTracker.Entries())
             {
-                ((IObjectState)dbEntityEntry.Entity).ObjectState = StateHelper.ConvertState(dbEntityEntry.State);
+                try
+                {
+                    ((IObjectState)dbEntityEntry.Entity).ObjectState = StateHelper.ConvertState(dbEntityEntry.State);
+                }
+                catch { }
+                
             }
         }
 
