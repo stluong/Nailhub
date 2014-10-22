@@ -10,9 +10,9 @@ using Generic.Infracstructure.Services;
 using Generic.Infracstructure.UnitOfWorks;
 using Generic.Infrastructure.Logging;
 using Generic.Infrastructure.Repositories;
+using System.Collections.Generic;
 
 //using Test.Web;
-
 
 //[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(DI), "RegisterDependencies")]
 
@@ -20,55 +20,72 @@ namespace Generic
 {
     public class App
     {
-        private static ContainerBuilder builder;
-        /// <summary>
-        /// Get autofac container builder
-        /// </summary>
-        /// <returns></returns>
-        public static ContainerBuilder GetAutofacContainer(){
-            return builder ?? new ContainerBuilder();
+        private static ContainerBuilder _builder;
+
+        public static ContainerBuilder builder { 
+            get{
+                return _builder?? new ContainerBuilder();
+            } 
+            set{
+                _builder = value;
+            } 
         }
+
         /// <summary>
         ///  Register all dependencies, except builder.RegisterControllers(typeof(MvcApplication).Assembly);
         /// </summary>
         /// <param name="initiateAdmin">default is false</param>
         public static void RegisterDependencies(bool initiateAdmin = false)
         {
-            builder = new ContainerBuilder();
+            var coreBuilder = builder;//new ContainerBuilder();
             const string nameOrConnectionString = "name=AppContext";
             //builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            Register(builder, nameOrConnectionString);            
+            Register(coreBuilder, nameOrConnectionString: nameOrConnectionString);            
+        }
+        /// <summary>
+        /// Register all dependencies including all controllers in myAppAssembly
+        /// </summary>
+        /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
+        /// <param name="initiateAdmin">default is false</param>
+        public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly, bool initiateAdmin = false)
+        {
+            var coreBuilder = builder;//new ContainerBuilder();
+            const string nameOrConnectionString = "name=AppContext";
+            coreBuilder.RegisterControllers(myAppAssembly);
+            Register(coreBuilder, nameOrConnectionString: nameOrConnectionString, initiateAdmin: initiateAdmin);
         }
         /// <summary>
         /// Register all dependencies
         /// </summary>
         /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
         /// <param name="initiateAdmin">default is false</param>
-        public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly, bool initiateAdmin = false)
+        public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly, IList<Module> modules, string nameOrConnectionString = null, bool initiateAdmin = false)
         {
-            builder = new ContainerBuilder();
-            const string nameOrConnectionString = "name=AppContext";
-            builder.RegisterControllers(myAppAssembly);
-            Register(builder, nameOrConnectionString, initiateAdmin);
+            var coreBuilder = builder;//new ContainerBuilder();
+            nameOrConnectionString = nameOrConnectionString ?? "name=AppContext";
+            coreBuilder.RegisterControllers(myAppAssembly);
+            Register(coreBuilder, modules, nameOrConnectionString, initiateAdmin);
         }
 
-        private static void Register(ContainerBuilder builder, string nameOrConnectionString, bool initiateAdmin = false)
+        private static void Register(ContainerBuilder coreBuilder, IList<Module> modules = null, string nameOrConnectionString = null, bool initiateAdmin = false)
         {
-            builder.RegisterModule<AutofacWebTypesModule>();
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerHttpRequest();
-            builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerHttpRequest();
-            builder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork)).InstancePerHttpRequest();
-            builder.Register<IMyContext>(b =>
+            coreBuilder.RegisterModule<AutofacWebTypesModule>();
+            coreBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerRequest();
+            coreBuilder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerRequest();
+            coreBuilder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork)).InstancePerRequest();
+            coreBuilder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
                 var context = new MyContext(nameOrConnectionString, logger, initiateAdmin);
                 return context;
-            }).InstancePerHttpRequest();
-            builder.Register(b => NLogLogger.Instance).SingleInstance();
-            builder.RegisterModule(new IdentityModule());
+            }).InstancePerRequest();
+            coreBuilder.Register(b => NLogLogger.Instance).SingleInstance();
+            //Register all my modules
+            coreBuilder.RegisterModule(new MyModule(modules));
 
-            var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            var coreContainer = coreBuilder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(coreContainer));
+           
         }
     }
 }
