@@ -70,15 +70,30 @@ namespace Generic
         private static void Register(ContainerBuilder coreBuilder, IList<Module> modules = null, string nameOrConnectionString = null, bool initiateAdmin = false)
         {
             coreBuilder.RegisterModule<AutofacWebTypesModule>();
+
+
             coreBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerRequest();
+            coreBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepositoryAsync<>)).InstancePerRequest();
             coreBuilder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerRequest();
             coreBuilder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork)).InstancePerRequest();
+            coreBuilder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWorkAsync)).InstancePerRequest();
+
+            coreBuilder.RegisterType(typeof(RepositoryProvider)).As(typeof(IRepositoryProvider)).InstancePerRequest();
+            coreBuilder.RegisterType(typeof(RepositoryFactory)).InstancePerRequest();
+            
             coreBuilder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
                 var context = new MyContext(nameOrConnectionString, logger, initiateAdmin);
                 return context;
             }).InstancePerRequest();
+            coreBuilder.Register<IMyContextAsync>(b =>
+            {
+                var logger = b.Resolve<ILogger>();
+                var context = new MyContext(nameOrConnectionString, logger, initiateAdmin);
+                return context;
+            }).InstancePerRequest();
+
             coreBuilder.Register(b => NLogLogger.Instance).SingleInstance();
             //Register all my modules
             coreBuilder.RegisterModule(new MyModule(modules));

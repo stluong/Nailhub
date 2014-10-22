@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
+using System.Collections.Generic;
 
 namespace Test.Web
 {
@@ -16,7 +18,9 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //register all dependency
-            Generic.App.RegisterDependencies(typeof(MvcApplication).Assembly);
+            var modules = new List<Module>();
+            modules.Add(new ServiceModule());
+            Generic.App.RegisterDependencies(typeof(MvcApplication).Assembly, modules);
         }
     }
 }
