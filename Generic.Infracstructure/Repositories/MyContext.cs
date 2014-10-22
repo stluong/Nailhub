@@ -30,7 +30,6 @@ namespace Generic.Infrastructure.Repositories
         public MyContext(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false)
             : base(nameOrConnectionString)
         {
-
             _instanceId = Guid.NewGuid();
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
