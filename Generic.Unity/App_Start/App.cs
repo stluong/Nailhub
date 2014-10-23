@@ -68,62 +68,21 @@ namespace Generic
             } 
         }
 
-        ///// <summary>
-        /////  Register all dependencies, except builder.RegisterControllers(typeof(MvcApplication).Assembly). Call Commit to resolve
-        ///// </summary>
-        ///// <param name="initiateAdmin">default is false</param>
-        //public static void RegisterDependencies(bool initiateAdmin = false)
-        //{
-        //    var coreBuilder = builder;//new ContainerBuilder();
-        //    const string nameOrConnectionString = "name=AppContext";
-        //    //builder.RegisterControllers(typeof(MvcApplication).Assembly);
-        //    Register(coreBuilder, nameOrConnectionString: nameOrConnectionString);            
-        //}
-        ///// <summary>
-        ///// Register all dependencies including all controllers in myAppAssembly. Call Commit to resolve
-        ///// </summary>
-        ///// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
-        ///// <param name="initiateAdmin">default is false</param>
-        //public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly, bool initiateAdmin = false)
-        //{
-        //    var coreBuilder = builder;//new ContainerBuilder();
-        //    const string nameOrConnectionString = "name=AppContext";
-        //    coreBuilder.RegisterControllers(myAppAssembly);
-        //    Register(coreBuilder, nameOrConnectionString: nameOrConnectionString, initiateAdmin: initiateAdmin);
-        //}
-        ///// <summary>
-        ///// Register all dependencies. Call Commit to resolve
-        ///// </summary>
-        ///// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
-        ///// <param name="initiateAdmin">default is false</param>
-        //public static void RegisterDependencies(System.Reflection.Assembly myAppAssembly, IList<Module> modules, string nameOrConnectionString = null, bool initiateAdmin = false)
-        //{
-        //    var coreBuilder = builder;//new ContainerBuilder();
-        //    nameOrConnectionString = nameOrConnectionString ?? "name=AppContext";
-        //    coreBuilder.RegisterControllers(myAppAssembly);
-        //    Register(coreBuilder, modules, nameOrConnectionString, initiateAdmin);
-        //}
-        ///// <summary>
-        ///// Resolve dependencies
-        ///// </summary>
-        //public static void Commit() {
-        //    var coreContainer = builder.Build();
-        //    DependencyResolver.SetResolver(new AutofacDependencyResolver(coreContainer));
-        //}
-
         /// <summary>
         /// Register core dependencies, and whether all controllers in app assembly
         /// </summary>
         /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
         /// <param name="nameOrConnectionStringContext">Name or connection string for app context</param>
-        public static void RegisterCore(Assembly myAppAssembly = null, string nameOrConnectionStringContext = null)
+        /// <param name="initializeAdminIdentity">Initialize default admin identiy:)</param>
+        public static void RegisterCore(Assembly myAppAssembly = null, string nameOrConnectionStringContext = null, bool? initializeAdminIdentity = null)
         {
             var coreBuilder = new ContainerBuilder();
             if (myAppAssembly != null || MyAppAssembly != null) {
                 coreBuilder.RegisterControllers(myAppAssembly ?? MyAppAssembly);
             }
-            if (!string.IsNullOrEmpty(nameOrConnectionStringContext)) {
-                nameOrConnectionStringContext = nameOrConnectionStringContext.Contains("name=")
+            if (!string.IsNullOrEmpty(nameOrConnectionStringContext))
+            {
+                nameOrConnectionStringContext = (nameOrConnectionStringContext.Contains("name=") || nameOrConnectionStringContext.Contains("Initial Catalog="))
                     ? nameOrConnectionStringContext
                     : string.Format("name={0}", nameOrConnectionStringContext)
                 ;
@@ -142,13 +101,13 @@ namespace Generic
             coreBuilder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new MyContext(nameOrConnectionStringContext?? NameOrConnectionString, logger, InitializeAdminIdentity);
+                var context = new MyContext(nameOrConnectionStringContext?? NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
                 return context;
             }).InstancePerLifetimeScope();
             coreBuilder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new MyContext(nameOrConnectionStringContext ?? NameOrConnectionString, logger, InitializeAdminIdentity);
+                var context = new MyContext(nameOrConnectionStringContext ?? NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
                 return context;
             }).InstancePerLifetimeScope();
 

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Generic.Core.Context;
 using Entity;
 using Generic.Core.Logging;
+using System.Configuration;
 
 namespace Test.Web
 {
@@ -20,8 +21,8 @@ namespace Test.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-           
-            Generic.App.RegisterCore(typeof(MvcApplication).Assembly);
+
+            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, ConfigurationManager.ConnectionStrings["AppContext"].ConnectionString);
         }
     }
 }
