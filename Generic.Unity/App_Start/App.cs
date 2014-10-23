@@ -123,9 +123,9 @@ namespace Generic
                 coreBuilder.RegisterControllers(myAppAssembly ?? MyAppAssembly);
             }
             if (!string.IsNullOrEmpty(nameOrConnectionStringContext)) {
-                nameOrConnectionStringContext = nameOrConnectionStringContext.Contains("app=")
+                nameOrConnectionStringContext = nameOrConnectionStringContext.Contains("name=")
                     ? nameOrConnectionStringContext
-                    : string.Format("app={0}", nameOrConnectionStringContext)
+                    : string.Format("name={0}", nameOrConnectionStringContext)
                 ;
             }
             coreBuilder.RegisterModule<AutofacWebTypesModule>();
