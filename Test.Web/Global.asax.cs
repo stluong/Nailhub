@@ -20,27 +20,8 @@ namespace Test.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //register all dependency
-            //var modules = new List<Module>();
-            //modules.Add(new ServiceModule());
-            //Generic.App.RegisterDependencies(typeof(MvcApplication).Assembly, modules);
-
-            //var mybuilder = Generic.App.builder;
-            //mybuilder.Register<IMyContext>(b =>
-            //{
-            //    var logger = b.Resolve<ILogger>();
-            //    var context = new NailhubsEntities("name=AppContext", logger);
-            //    return context;
-            //}).InstancePerLifetimeScope();
-            //mybuilder.Register<IMyContextAsync>(b =>
-            //{
-            //    var logger = b.Resolve<ILogger>();
-            //    var context = new NailhubsEntities("name=AppContext", logger);
-            //    return context;
-            //}).InstancePerLifetimeScope();
-
-            //Generic.App.MyAppAssembly = typeof(MvcApplication).Assembly;
-            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, "AppContext");
+           
+            Generic.App.RegisterCore(typeof(MvcApplication).Assembly);
         }
     }
 }

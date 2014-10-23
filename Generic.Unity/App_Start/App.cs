@@ -11,7 +11,6 @@ using Generic.Infracstructure.UnitOfWorks;
 using Generic.Infrastructure.Logging;
 using Generic.Infrastructure.Repositories;
 using System.Collections.Generic;
-using Generic;
 using System.Reflection;
 
 //using Test.Web;
