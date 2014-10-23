@@ -222,7 +222,6 @@ D:\GitHub\Nailhub\Nailhub\bin\Generic.Infracstructure.dll
 D:\GitHub\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Core.dll
 D:\GitHub\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Msie.dll
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Core.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Owin.dll
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Data.Edm.dll
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Data.OData.dll
@@ -258,6 +257,7 @@ D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.dll
 D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.Razor.dll
 D:\GitHub\Nailhub\Nailhub\bin\WebActivatorEx.dll
 D:\GitHub\Nailhub\Nailhub\bin\WebGrease.dll
+D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\GitHub\Nailhub\Nailhub\bin\NLog.dll
 D:\GitHub\Nailhub\Nailhub\bin\LinqKit.dll
 D:\GitHub\Nailhub\Nailhub\bin\AppCore.pdb
@@ -269,7 +269,6 @@ D:\GitHub\Nailhub\Nailhub\bin\Antlr3.Runtime.pdb
 D:\GitHub\Nailhub\Nailhub\bin\EntityFramework.xml
 D:\GitHub\Nailhub\Nailhub\bin\EntityFramework.SqlServer.xml
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Core.xml
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Owin.xml
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Data.Edm.xml
 D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Data.OData.xml
@@ -301,6 +300,7 @@ D:\GitHub\Nailhub\Nailhub\bin\System.Web.Razor.xml
 D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.xml
 D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.Deployment.xml
 D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.Razor.xml
+D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\GitHub\Nailhub\Nailhub\bin\NLog.xml
 D:\GitHub\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Core.resources.dll
 D:\GitHub\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Less.resources.dll

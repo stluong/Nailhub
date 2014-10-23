@@ -16,16 +16,16 @@ using Generic.Core.Logging;
 using Generic.Infrastructure.Repositories;
     
     
-    public partial class NailhubsEntities : MyContext
+    public partial class NailhubsEntities : DbContext
     {
         public NailhubsEntities()
             : base("name=NailhubsEntities")
         {
         }
-        public NailhubsEntities(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false) 
-            :base(nameOrConnectionString, logger, initiateAdmin)
-        { 
-        }
+        //public NailhubsEntities(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false) 
+        //    :base(nameOrConnectionString, logger, initiateAdmin)
+        //{ 
+        //}
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
