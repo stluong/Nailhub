@@ -12,16 +12,13 @@ using Generic.Infracstructure.Services;
 
 namespace AppService
 {
-    public class IdentiyService : IIdentityService //,Service<AspNetUser> 
+    public class IdentiyService : Service<AspNetUser>, IIdentityService
     {
-        //private readonly IRepositoryAsync<AspNetUser> rpoUser;
-        //public IdentiyService(IRepositoryAsync<AspNetUser> _rpoUser)
-        //    : base(_rpoUser)
-        //{
-        //    this.rpoUser = _rpoUser;
-        //}
-        public IdentiyService() { 
-            
+        private readonly IRepositoryAsync<AspNetUser> rpoUser;
+        public IdentiyService(IRepositoryAsync<AspNetUser> _rpoUser)
+            : base(_rpoUser)
+        {
+            this.rpoUser = _rpoUser;
         }
 
         public string GetMessage()

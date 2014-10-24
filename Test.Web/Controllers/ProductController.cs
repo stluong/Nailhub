@@ -13,7 +13,7 @@ namespace Test.Web.Controllers
         
         public ProductController(IIdentityService _identity)
         {
-            this.identity = _identity; //new IdentiyService();
+            this.identity = _identity; 
         }
         
         //public async Task<ActionResult> Index(int pageIndex = 1)
@@ -24,7 +24,7 @@ namespace Test.Web.Controllers
         //}
         public ActionResult Index() {
             var msg = identity.GetMessage();
-            ViewBag.Msg = msg;
+            ViewBag.Msg = string.Format("Hello {0}, {}", identity.Query().Get(u => u.UserName), msg);
             return View();
         }
 	}
