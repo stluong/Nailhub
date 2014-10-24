@@ -98,11 +98,17 @@ namespace Generic
                 ;
             }
             coreBuilder.RegisterModule<AutofacWebTypesModule>();
-            coreBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
-            coreBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepositoryAsync<>)).InstancePerLifetimeScope();
+            coreBuilder.RegisterGeneric(typeof(Repository<>))
+                .As(typeof(IRepository<>))
+                .As(typeof(IRepositoryAsync<>))
+                .InstancePerLifetimeScope()
+            ;
             coreBuilder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
-            coreBuilder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWork)).InstancePerLifetimeScope();
-            coreBuilder.RegisterType(typeof(UnitOfWork)).As(typeof(IUnitOfWorkAsync)).InstancePerLifetimeScope();
+            coreBuilder.RegisterType(typeof(UnitOfWork))
+                .As(typeof(IUnitOfWork))
+                .As(typeof(IUnitOfWorkAsync))
+                .InstancePerLifetimeScope()
+            ;
             coreBuilder.RegisterType(typeof(RepositoryProvider)).As(typeof(IRepositoryProvider))
                 .InstancePerLifetimeScope()
             ;
@@ -124,6 +130,8 @@ namespace Generic
             coreBuilder.Register(b => NLogLogger.Instance).SingleInstance();
             //Register identity module
             coreBuilder.RegisterModule(new IdentityModule());
+            //Testing register config
+            coreBuilder.RegisterModule(new ConfigurationSettingsReader("autofac"));
 
             var coreContainer = coreBuilder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(coreContainer));

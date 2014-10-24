@@ -9,8 +9,8 @@ using Generic.Core.Service;
 
 namespace AppCore.Service
 {
-    public interface IIdentityService : IService<AspNetUser>
+    public interface IIdentityService //: IService<AspNetUser>
     {
-
+        String GetMessage();
     }
 }
