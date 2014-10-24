@@ -83,10 +83,11 @@ namespace Generic
         /// </summary>
         /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
         /// <param name="nameOrConnectionStringContext">Name or connection string for app context</param>
+        /// <param name="setResolver">Default is true</param>
         /// <param name="initializeAdminIdentity">Initialize default admin identiy:)</param>
-        public static void RegisterCore(Assembly myAppAssembly = null, string nameOrConnectionStringContext = null, bool? initializeAdminIdentity = null)
+        public static void RegisterCore(Assembly myAppAssembly = null, string nameOrConnectionStringContext = null, bool setResolver = true, bool? initializeAdminIdentity = null)
         {
-            var coreBuilder = new ContainerBuilder();
+            var coreBuilder = Builder;
             if (myAppAssembly != null || MyAppAssembly != null) {
                 coreBuilder.RegisterControllers(myAppAssembly ?? MyAppAssembly);
             }
@@ -131,29 +132,36 @@ namespace Generic
             //Register identity module
             coreBuilder.RegisterModule(new IdentityModule());
             //Testing register config
-            coreBuilder.RegisterModule(new ConfigurationSettingsReader("autofac"));
-
-            var coreContainer = coreBuilder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(coreContainer));
-           
+            //coreBuilder.RegisterModule(new ConfigurationSettingsReader("autofac"));
+            
+            if (setResolver) {
+                var coreContainer = coreBuilder.Build();
+                DependencyResolver.SetResolver(new AutofacDependencyResolver(coreContainer));
+            } 
         }
         /// <summary>
         /// Register by autofac section name configuration
         /// </summary>
         /// <param name="autofacSectionName">autofac section name</param>
-        public static void RegisterByConfig(string autofacSectionName) {
-            var configBuilder = new ContainerBuilder();
+        /// <param name="setResolver">Default is true</param>
+        public static void RegisterByConfig(string autofacSectionName, bool setResolver = true) {
+            var configBuilder = Builder;
             configBuilder.RegisterModule(new ConfigurationSettingsReader(autofacSectionName));
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(configBuilder.Build()));
+            if (setResolver) {
+                DependencyResolver.SetResolver(new AutofacDependencyResolver(configBuilder.Build()));
+            }
         }
         /// <summary>
         /// Register by list of autofac modules
         /// </summary>
         /// <param name="autofacSectionName"></param>
-        public static void RegisterByConfig(IList<Autofac.Module> modules){
-            var moduleBuilder = new ContainerBuilder();
+        /// <param name="setResolver">Default is true</param>
+        public static void RegisterByConfig(IList<Autofac.Module> modules, bool setResolver = true){
+            var moduleBuilder = Builder;
             moduleBuilder.RegisterModule(new MyModule(modules));
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(moduleBuilder.Build()));
+            if (setResolver) {
+                DependencyResolver.SetResolver(new AutofacDependencyResolver(moduleBuilder.Build()));
+            }
         }
         
     }
