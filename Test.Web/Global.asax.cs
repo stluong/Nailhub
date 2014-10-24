@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Autofac;
 using System.Collections.Generic;
 using Generic.Core.Context;
 using Entity;
@@ -23,6 +22,7 @@ namespace Test.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Generic.App.RegisterCore(typeof(MvcApplication).Assembly, ConfigurationManager.ConnectionStrings["AppContext"].ConnectionString);
+            //Generic.App.RegisterByConfig("autofac");
         }
     }
 }

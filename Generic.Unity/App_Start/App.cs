@@ -12,6 +12,7 @@ using Generic.Infrastructure.Logging;
 using Generic.Infrastructure.Repositories;
 using System.Collections.Generic;
 using System.Reflection;
+using Autofac.Configuration;
 
 //using Test.Web;
 
@@ -59,6 +60,9 @@ namespace Generic
                 _nameOrConnectionString = value;
             }
         }
+        /// <summary>
+        /// Get autofac container builder to register more dependencies! Call SetResolver to resolve registers :)
+        /// </summary>
         public static ContainerBuilder Builder { 
             get{
                 return _builder = _builder?? new ContainerBuilder();
@@ -67,7 +71,13 @@ namespace Generic
                 _builder = value;
             } 
         }
-
+        /// <summary>
+        /// Resolve builder
+        /// </summary>
+        /// <param name="buider"></param>
+        public static void SetResolver(ContainerBuilder buider) {
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(buider.Build()));
+        }
         /// <summary>
         /// Register core dependencies, and whether all controllers in app assembly
         /// </summary>
@@ -119,5 +129,24 @@ namespace Generic
             DependencyResolver.SetResolver(new AutofacDependencyResolver(coreContainer));
            
         }
+        /// <summary>
+        /// Register by autofac section name configuration
+        /// </summary>
+        /// <param name="autofacSectionName">autofac section name</param>
+        public static void RegisterByConfig(string autofacSectionName) {
+            var configBuilder = new ContainerBuilder();
+            configBuilder.RegisterModule(new ConfigurationSettingsReader(autofacSectionName));
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(configBuilder.Build()));
+        }
+        /// <summary>
+        /// Register by list of autofac modules
+        /// </summary>
+        /// <param name="autofacSectionName"></param>
+        public static void RegisterByConfig(IList<Autofac.Module> modules){
+            var moduleBuilder = new ContainerBuilder();
+            moduleBuilder.RegisterModule(new MyModule(modules));
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(moduleBuilder.Build()));
+        }
+        
     }
 }
