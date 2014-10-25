@@ -36,8 +36,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -51,6 +58,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>NailhubEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="CITY.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
@@ -87,26 +106,23 @@
     <Compile Include="PRODUCT.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="PRODUCTDETAIL.cs">
+    <Compile Include="PRODUCT_DETAIL.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PROVINCE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ROLE.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="SERVICE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVICEDETAIL.cs">
+    <Compile Include="SERVICE_DETAIL.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SITE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SITETYPE.cs">
+    <Compile Include="SITE_TYPE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="STATE.cs">
@@ -118,25 +134,19 @@
     <Compile Include="THEME.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="THEMEDETAIL.cs">
+    <Compile Include="THEME_DETAIL.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Title.cs">
+    <Compile Include="TITLE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TYPE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="USER.cs">
+    <Compile Include="USER_DETAIL.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="USERDETAIL.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USERTYPE.cs">
-      <DependentUpon>NailhubEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USER_ROLE.cs">
+    <Compile Include="USER_TYPE.cs">
       <DependentUpon>NailhubEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -165,17 +175,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyContext\MyContext.csproj">
-      <Project>{efc18046-7abd-4f20-b798-6a81f1a24b5c}</Project>
-      <Name>MyContext</Name>
+    <ProjectReference Include="..\Generic.Core\Generic.Core.csproj">
+      <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>
+      <Name>Generic.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ObjectState\MyState.csproj">
-      <Project>{2525fee1-f582-453e-a157-5ef6115cbcce}</Project>
-      <Name>MyState</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{444f1e0d-970e-4203-a1ac-0b20fb1d9258}</Project>
-      <Name>Repository</Name>
+    <ProjectReference Include="..\Generic.Infracstructure\Generic.Infrastructure.csproj">
+      <Project>{5bed1735-d49e-4c56-bc29-f140cc3a29d9}</Project>
+      <Name>Generic.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

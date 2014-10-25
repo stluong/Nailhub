@@ -17,7 +17,7 @@ namespace Entity
         public SERVICE()
         {
             this.CURRENT_SERVICE = new HashSet<CURRENT_SERVICE>();
-            this.SERVICEDETAILs = new HashSet<SERVICEDETAIL>();
+            this.SERVICE_DETAIL = new HashSet<SERVICE_DETAIL>();
         }
     
         public int ID_SERVICE { get; set; }
@@ -28,6 +28,6 @@ namespace Entity
     
         public virtual ICollection<CURRENT_SERVICE> CURRENT_SERVICE { get; set; }
         public virtual TYPE TYPE { get; set; }
-        public virtual ICollection<SERVICEDETAIL> SERVICEDETAILs { get; set; }
+        public virtual ICollection<SERVICE_DETAIL> SERVICE_DETAIL { get; set; }
     }
 }

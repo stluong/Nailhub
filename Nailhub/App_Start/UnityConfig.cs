@@ -1,13 +1,21 @@
 using System;
-using Core.Services;
-using Core.UnitOfWork;
+using System.Configuration;
+using System.Data.Entity;
+using AppCore.Service;
+using AppService;
 using Entity;
-using Infrastructure;
-using Infrastructure.MyContext;
-using Infrastructure.Repository;
+using Generic.Core.Context;
+using Generic.Core.Identity;
+using Generic.Core.Repository;
+using Generic.Core.UnitOfWork;
+using Generic.Infracstructure.UnitOfWorks;
+using Generic.Infrastructure.Identity;
+using Generic.Infrastructure.Repositories;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using Services;
+using Nailhub.Models;
 
 namespace Nailhub.App_Start
 {
@@ -44,17 +52,33 @@ namespace Nailhub.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
+            var appContext = ConfigurationManager.AppSettings.Get("AppContext").Trim();
+            appContext = string.IsNullOrEmpty(appContext)
+                ? string.Format("name=AppContext")
+                : string.Format("name={0}", appContext)
+            ;
             container
-               .RegisterType<IMyContextAsync, NailhubsEntities>(new PerRequestLifetimeManager())
+               //.Resolve<IMyContextAsync, DbContext>(new PerRequestLifetimeManager())
+
+               .RegisterType<IMyContextAsync, MyContext>(
+                    new PerRequestLifetimeManager(),
+                    new InjectionConstructor(appContext)
+               )
                .RegisterType<IRepositoryProvider, RepositoryProvider>(
                    new PerRequestLifetimeManager(),
-                   new InjectionConstructor(new object[] { new RepositoryFactories() })
-                   )
+                   new InjectionConstructor(new object[] { new RepositoryFactory() })
+                )
                .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager())
-               .RegisterType<IRepositoryAsync<USER>, Repository<USER>>()
-               .RegisterType<IAccountService, AccountService>()
+
+
+               .RegisterType<IApplicationUserManager, ApplicationUserManager>(new PerRequestLifetimeManager())
+               .RegisterType<IUserStore<ApplicationIdentityUser>()
+
+               //.RegisterType<IRepositoryAsync<USER>, Repository<USER>>()
+               //.RegisterType<IIdentityService, IdentiyService>()
+
                //.RegisterType<INorthwindStoredProcedures, NorthwindContext>(new PerRequestLifetimeManager())
-               //.RegisterType<IStoredProcedureService, StoredProcedureService>()
+                //.RegisterType<IStoredProcedureService, StoredProcedureService>()
             ;
         }
     }

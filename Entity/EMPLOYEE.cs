@@ -19,6 +19,6 @@ namespace Entity
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
     
-        public virtual Title Title { get; set; }
+        public virtual TITLE TITLE { get; set; }
     }
 }

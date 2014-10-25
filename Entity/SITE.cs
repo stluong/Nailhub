@@ -30,8 +30,7 @@ namespace Entity
     
         public virtual ICollection<CURRENT_PRODUCT> CURRENT_PRODUCT { get; set; }
         public virtual ICollection<CURRENT_SERVICE> CURRENT_SERVICE { get; set; }
-        public virtual SITETYPE SITETYPE { get; set; }
-        public virtual USER USER { get; set; }
+        public virtual SITE_TYPE SITE_TYPE { get; set; }
         public virtual ICollection<THEME> THEMEs { get; set; }
     }
 }

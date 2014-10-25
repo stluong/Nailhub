@@ -12,12 +12,18 @@ namespace Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using Infrastructure.Repository;
+    using Generic.Core.Logging;
+    using Generic.Infrastructure.Repositories;
+    
     
     public partial class NailhubsEntities : MyContext
     {
         public NailhubsEntities()
             : base("name=NailhubsEntities")
+        {
+        }
+        public NailhubsEntities(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false)
+            : base(nameOrConnectionString, logger, initiateAdmin)
         {
         }
     
@@ -33,22 +39,23 @@ namespace Entity
         public virtual DbSet<EMPLOYEE> EMPLOYEEs { get; set; }
         public virtual DbSet<LOCATION> LOCATIONs { get; set; }
         public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
-        public virtual DbSet<PRODUCTDETAIL> PRODUCTDETAILs { get; set; }
+        public virtual DbSet<PRODUCT_DETAIL> PRODUCT_DETAIL { get; set; }
         public virtual DbSet<PROVINCE> PROVINCEs { get; set; }
-        public virtual DbSet<ROLE> ROLEs { get; set; }
         public virtual DbSet<SERVICE> SERVICEs { get; set; }
-        public virtual DbSet<SERVICEDETAIL> SERVICEDETAILs { get; set; }
+        public virtual DbSet<SERVICE_DETAIL> SERVICE_DETAIL { get; set; }
         public virtual DbSet<SITE> SITEs { get; set; }
-        public virtual DbSet<SITETYPE> SITETYPEs { get; set; }
+        public virtual DbSet<SITE_TYPE> SITE_TYPE { get; set; }
         public virtual DbSet<STATE> STATEs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THEME> THEMEs { get; set; }
-        public virtual DbSet<THEMEDETAIL> THEMEDETAILs { get; set; }
-        public virtual DbSet<Title> Titles { get; set; }
+        public virtual DbSet<THEME_DETAIL> THEME_DETAIL { get; set; }
+        public virtual DbSet<TITLE> TITLEs { get; set; }
         public virtual DbSet<TYPE> TYPEs { get; set; }
-        public virtual DbSet<USER> USERs { get; set; }
-        public virtual DbSet<USER_ROLE> USER_ROLE { get; set; }
-        public virtual DbSet<USERDETAIL> USERDETAILs { get; set; }
-        public virtual DbSet<USERTYPE> USERTYPEs { get; set; }
+        public virtual DbSet<USER_TYPE> USER_TYPE { get; set; }
+        public virtual DbSet<USER_DETAIL> USER_DETAIL { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

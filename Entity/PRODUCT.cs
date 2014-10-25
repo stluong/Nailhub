@@ -17,7 +17,7 @@ namespace Entity
         public PRODUCT()
         {
             this.CURRENT_PRODUCT = new HashSet<CURRENT_PRODUCT>();
-            this.PRODUCTDETAILs = new HashSet<PRODUCTDETAIL>();
+            this.PRODUCT_DETAIL = new HashSet<PRODUCT_DETAIL>();
         }
     
         public int ID_PRODUCT { get; set; }
@@ -28,6 +28,6 @@ namespace Entity
     
         public virtual ICollection<CURRENT_PRODUCT> CURRENT_PRODUCT { get; set; }
         public virtual TYPE TYPE { get; set; }
-        public virtual ICollection<PRODUCTDETAIL> PRODUCTDETAILs { get; set; }
+        public virtual ICollection<PRODUCT_DETAIL> PRODUCT_DETAIL { get; set; }
     }
 }
