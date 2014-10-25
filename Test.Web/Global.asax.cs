@@ -21,7 +21,7 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, ConfigurationManager.ConnectionStrings["AppContext"].ConnectionString, false);
+            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false);
             Generic.App.RegisterByConfig("autofac");
             
         }

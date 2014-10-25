@@ -57,7 +57,10 @@ namespace Generic
             }
             set
             {
-                _nameOrConnectionString = value;
+                _nameOrConnectionString = (value.Contains("name=") || value.Contains("Initial Catalog="))
+                    ? value
+                    : string.Format("name={0}", value)
+                ;
             }
         }
         /// <summary>
@@ -81,23 +84,17 @@ namespace Generic
         /// <summary>
         /// Register core dependencies, and whether all controllers in app assembly
         /// </summary>
-        /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
-        /// <param name="nameOrConnectionStringContext">Name or connection string for app context</param>
+        /// <param name="myAppAssembly">Typeof(MvcApplication).Assembly. It usually uses to register controllers</param>
         /// <param name="setResolver">Default is true</param>
+        /// <param name="myContext">App context. If not specify, It will initiate MyContext</param>
         /// <param name="initializeAdminIdentity">Initialize default admin identiy:)</param>
-        public static void RegisterCore(Assembly myAppAssembly = null, string nameOrConnectionStringContext = null, bool setResolver = true, bool? initializeAdminIdentity = null)
+        public static void RegisterCore(Assembly myAppAssembly = null, bool setResolver = true, MyContext myContext = null, bool? initializeAdminIdentity = null)
         {
             var coreBuilder = Builder;
             if (myAppAssembly != null || MyAppAssembly != null) {
                 coreBuilder.RegisterControllers(myAppAssembly ?? MyAppAssembly);
             }
-            if (!string.IsNullOrEmpty(nameOrConnectionStringContext))
-            {
-                nameOrConnectionStringContext = (nameOrConnectionStringContext.Contains("name=") || nameOrConnectionStringContext.Contains("Initial Catalog="))
-                    ? nameOrConnectionStringContext
-                    : string.Format("name={0}", nameOrConnectionStringContext)
-                ;
-            }
+            
             coreBuilder.RegisterModule<AutofacWebTypesModule>();
             coreBuilder.RegisterGeneric(typeof(Repository<>))
                 .As(typeof(IRepository<>))
@@ -118,21 +115,19 @@ namespace Generic
             coreBuilder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new MyContext(nameOrConnectionStringContext?? NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
+                var context = myContext?? new MyContext(NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
                 return context;
             }).InstancePerLifetimeScope();
             coreBuilder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new MyContext(nameOrConnectionStringContext ?? NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
+                var context = myContext?? new MyContext(NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
                 return context;
             }).InstancePerLifetimeScope();
 
             coreBuilder.Register(b => NLogLogger.Instance).SingleInstance();
             //Register identity module
             coreBuilder.RegisterModule(new IdentityModule());
-            //Testing register config
-            //coreBuilder.RegisterModule(new ConfigurationSettingsReader("autofac"));
             
             if (setResolver) {
                 var coreContainer = coreBuilder.Build();
