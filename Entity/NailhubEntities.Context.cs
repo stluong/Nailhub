@@ -18,6 +18,9 @@ namespace Entity
     
     public partial class NailhubsEntities : MyContext
     {
+        static NailhubsEntities() {
+            Database.SetInitializer<NailhubsEntities>(null);
+        }
         public NailhubsEntities()
             : base("name=AppContext")
         {
