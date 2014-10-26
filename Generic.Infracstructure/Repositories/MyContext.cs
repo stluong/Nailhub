@@ -119,6 +119,7 @@ namespace Generic.Infrastructure.Repositories
             //modelBuilder.Entity<ApplicationIdentityUserLogin>().ToTable("USER_LOGIN");
             //modelBuilder.Entity<ApplicationIdentityUserClaim>().ToTable("USER_CLAIM").Property(c => c.Id).HasColumnName("ID_CLAIM");
             //modelBuilder.Entity<ApplicationIdentityRole>().ToTable("ROLE").Property(r => r.Id).HasColumnName("ID_ROLE");
+            
         }
 
         /// <summary>

@@ -19,17 +19,12 @@ namespace Entity
     public partial class NailhubsEntities : MyContext
     {
         public NailhubsEntities()
-            : base("name=NailhubsEntities")
+            : base("name=AppContext")
         {
         }
         public NailhubsEntities(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false)
             : base(nameOrConnectionString, logger, initiateAdmin)
         {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<CITY> CITies { get; set; }
