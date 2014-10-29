@@ -14,8 +14,8 @@ namespace Entity
     
     public partial class THEME_DETAIL
     {
-        public int ID_THEMEDETAIL { get; set; }
-        public Nullable<int> ID_THEME { get; set; }
+        public int id { get; set; }
+        public Nullable<int> THEME_ID { get; set; }
         public string NAME { get; set; }
         public string DESCRIPT { get; set; }
         public string IMAGE { get; set; }

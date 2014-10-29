@@ -21,7 +21,7 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false, new NailhubsEntities());
+            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false, myContext: new NailhubsEntities());
             Generic.App.RegisterByConfig("autofac");
             
         }

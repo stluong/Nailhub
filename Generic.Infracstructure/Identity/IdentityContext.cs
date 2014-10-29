@@ -1,50 +1,113 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Threading;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Generic.Core.Context;
 using Generic.Core.Logging;
-using Generic.Core.Repository;
 using Generic.Infrastructure.Identity;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity;
+using System.Threading;
+using Generic.Core.Repository;
+using Generic.Infrastructure.Repositories;
 
-
-namespace Generic.Infrastructure.Repositories
+namespace Generic.Infracstructure.Identity
 {
-    public class MyContext : 
-        DbContext
-        , IMyContextAsync
+    public class IdentityContext :
+        IdentityDbContext<ApplicationIdentityUser, ApplicationIdentityRole, int, ApplicationIdentityUserLogin, ApplicationIdentityUserRole, ApplicationIdentityUserClaim>
+        , IIdentityContext
     {
         #region Private Fields
         private readonly Guid _instanceId;
         bool _disposed;
+        private static readonly object Lock = new object();
 
         #endregion Private Fields
 
         #region Constructor
 
-        public MyContext(string nameOrConnectionString, ILogger logger)
+        public IdentityContext(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false)
             : base(nameOrConnectionString)
         {
             _instanceId = Guid.NewGuid();
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
             Database.Log = logger.Log;
+            if (!initiateAdmin)
+            {
+                return;
+            }
+            lock (Lock)
+            {
+                if (initiateAdmin)
+                {
+                    InitializeAdminIdentity();
+                }
+            }
         }
-        public MyContext(string nameOrConnectionString)
+        public IdentityContext(string nameOrConnectionString, bool initiateAdmin = false)
             : base(nameOrConnectionString)
         {
             _instanceId = Guid.NewGuid();
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
+
+            if (!initiateAdmin)
+            {
+                return;
+            }
+            lock (Lock)
+            {
+                if (initiateAdmin)
+                {
+                    InitializeAdminIdentity();
+                }
+            }
         }
 
         #endregion
 
 
         public Guid InstanceId { get { return _instanceId; } }
+
+        /// <summary>
+        /// Initialize admin identity
+        /// </summary>
+        private void InitializeAdminIdentity()
+        {
+            // This is only for testing purpose
+            const string name = "stluong@admin.com";
+            const string password = "TnTnT@2320";
+            const string roleName = "Admin";
+            var applicationRoleManager = IdentityFactory.CreateRoleManager(this);
+            var applicationUserManager = IdentityFactory.CreateUserManager(this);
+            //Create Role Admin if it does not exist
+            var role = applicationRoleManager.FindByName(roleName);
+            if (role == null)
+            {
+                role = new ApplicationIdentityRole { Name = roleName };
+                applicationRoleManager.Create(role);
+            }
+
+            var user = applicationUserManager.FindByName(name);
+            if (user == null)
+            {
+                user = new ApplicationIdentityUser { UserName = name, Email = name };
+                applicationUserManager.Create(user, password);
+                applicationUserManager.SetLockoutEnabled(user.Id, false);
+            }
+
+            // Add user admin to Role Admin if not already added
+            var rolesForUser = applicationUserManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name))
+            {
+                applicationUserManager.AddToRole(user.Id, role.Name);
+            }
+
+            this.SaveChanges();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

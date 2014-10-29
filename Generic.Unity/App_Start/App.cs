@@ -13,6 +13,8 @@ using Generic.Infrastructure.Repositories;
 using System.Collections.Generic;
 using System.Reflection;
 using Autofac.Configuration;
+using Generic.Infracstructure.Identity;
+using System.Data;
 
 //using Test.Web;
 
@@ -88,7 +90,7 @@ namespace Generic
         /// <param name="setResolver">Default is true</param>
         /// <param name="myContext">App context. If not specify, It will initiate MyContext</param>
         /// <param name="initializeAdminIdentity">Initialize default admin identiy:)</param>
-        public static void RegisterCore(Assembly myAppAssembly = null, bool setResolver = true, MyContext myContext = null, bool? initializeAdminIdentity = null)
+        public static void RegisterCore(Assembly myAppAssembly = null, bool setResolver = true, string identityNameOrConnectionString = null, MyContext myContext = null, bool? initializeAdminIdentity = null)
         {
             var coreBuilder = Builder;
             if (myAppAssembly != null || MyAppAssembly != null) {
@@ -99,35 +101,43 @@ namespace Generic
             coreBuilder.RegisterGeneric(typeof(Repository<>))
                 .As(typeof(IRepository<>))
                 .As(typeof(IRepositoryAsync<>))
-                .InstancePerLifetimeScope()
+                .InstancePerRequest()
             ;
-            coreBuilder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
+            coreBuilder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerRequest();
             coreBuilder.RegisterType(typeof(UnitOfWork))
                 .As(typeof(IUnitOfWork))
                 .As(typeof(IUnitOfWorkAsync))
-                .InstancePerLifetimeScope()
+                .InstancePerRequest()
             ;
             coreBuilder.RegisterType(typeof(RepositoryProvider)).As(typeof(IRepositoryProvider))
-                .InstancePerLifetimeScope()
+                .InstancePerRequest()
             ;
-            coreBuilder.RegisterType(typeof(RepositoryFactory)).InstancePerLifetimeScope();
+            coreBuilder.RegisterType(typeof(RepositoryFactory)).InstancePerRequest();
 
+            //Register identiy context
+            coreBuilder.Register<IIdentityContext>(b =>
+            {
+                var logger = b.Resolve<ILogger>();
+                var identityContext = new IdentityContext(identityNameOrConnectionString?? NameOrConnectionString, logger, initializeAdminIdentity ?? InitializeAdminIdentity);
+                return identityContext;
+            }).InstancePerRequest();
+            //Register identity module
+            coreBuilder.RegisterModule(new IdentityModule());
+            coreBuilder.Register(b => NLogLogger.Instance).InstancePerRequest();
+
+            //Register my app context
             coreBuilder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = myContext?? new MyContext(NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
+                var context = myContext;
                 return context;
-            }).InstancePerLifetimeScope();
+            }).InstancePerRequest();
             coreBuilder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = myContext?? new MyContext(NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
+                var context = myContext;
                 return context;
-            }).InstancePerLifetimeScope();
-
-            coreBuilder.Register(b => NLogLogger.Instance).SingleInstance();
-            //Register identity module
-            coreBuilder.RegisterModule(new IdentityModule());
+            }).InstancePerRequest();
             
             if (setResolver) {
                 var coreContainer = coreBuilder.Build();

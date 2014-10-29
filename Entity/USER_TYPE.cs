@@ -19,7 +19,7 @@ namespace Entity
             this.USER_DETAIL = new HashSet<USER_DETAIL>();
         }
     
-        public short ID_USERTYPE { get; set; }
+        public short id { get; set; }
         public string NAME { get; set; }
         public string NOTE { get; set; }
     

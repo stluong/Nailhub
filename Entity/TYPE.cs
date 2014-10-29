@@ -20,7 +20,7 @@ namespace Entity
             this.SERVICEs = new HashSet<SERVICE>();
         }
     
-        public int ID_TYPE { get; set; }
+        public int id { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string NOTE { get; set; }

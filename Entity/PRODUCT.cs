@@ -20,8 +20,8 @@ namespace Entity
             this.PRODUCT_DETAIL = new HashSet<PRODUCT_DETAIL>();
         }
     
-        public int ID_PRODUCT { get; set; }
-        public Nullable<int> ID_TYPE { get; set; }
+        public int id { get; set; }
+        public Nullable<int> TYPE_ID { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string NOTE { get; set; }

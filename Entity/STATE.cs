@@ -19,7 +19,7 @@ namespace Entity
             this.LOCATIONs = new HashSet<LOCATION>();
         }
     
-        public short ID_STATE { get; set; }
+        public short id { get; set; }
         public string NAME { get; set; }
         public string SHORTNAME { get; set; }
         public string DESCRIPTION { get; set; }

@@ -16,7 +16,8 @@ namespace Generic
             builder.RegisterType(typeof(ApplicationUserManager)).As(typeof(IApplicationUserManager)).InstancePerRequest();
             builder.RegisterType(typeof(ApplicationRoleManager)).As(typeof(IApplicationRoleManager)).InstancePerRequest();
             builder.RegisterType(typeof(ApplicationIdentityUser)).As(typeof(IUser<int>)).InstancePerRequest();
-            builder.Register(b => b.Resolve<IMyContext>() as DbContext).InstancePerRequest();
+            
+            builder.Register(b => b.Resolve<IIdentityContext>() as DbContext).InstancePerRequest();
             builder.Register(b =>
             {
                 var manager = IdentityFactory.CreateUserManager(b.Resolve<DbContext>());

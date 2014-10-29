@@ -21,13 +21,14 @@ namespace Entity
             this.THEMEs = new HashSet<THEME>();
         }
     
-        public int ID_SITE { get; set; }
-        public Nullable<short> ID_SITETYPE { get; set; }
-        public Nullable<int> ID_USER { get; set; }
+        public int id { get; set; }
+        public Nullable<short> SITE_TYPE_ID { get; set; }
+        public Nullable<int> USER_ID { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string NOTE { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual ICollection<CURRENT_PRODUCT> CURRENT_PRODUCT { get; set; }
         public virtual ICollection<CURRENT_SERVICE> CURRENT_SERVICE { get; set; }
         public virtual SITE_TYPE SITE_TYPE { get; set; }

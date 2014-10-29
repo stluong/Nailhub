@@ -19,6 +19,7 @@ namespace Entity
         {
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
+            this.SITEs = new HashSet<SITE>();
             this.USER_DETAIL = new HashSet<USER_DETAIL>();
             this.AspNetRoles = new HashSet<AspNetRole>();
         }
@@ -38,6 +39,7 @@ namespace Entity
     
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual ICollection<SITE> SITEs { get; set; }
         public virtual ICollection<USER_DETAIL> USER_DETAIL { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }

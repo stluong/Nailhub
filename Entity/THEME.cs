@@ -19,8 +19,8 @@ namespace Entity
             this.THEME_DETAIL = new HashSet<THEME_DETAIL>();
         }
     
-        public int ID_THEME { get; set; }
-        public Nullable<int> ID_SITE { get; set; }
+        public int id { get; set; }
+        public Nullable<int> SITE_ID { get; set; }
         public string BACKGROUND { get; set; }
         public string BACKGROUNDIMAGE { get; set; }
         public string LOGO { get; set; }
