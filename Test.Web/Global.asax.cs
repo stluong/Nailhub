@@ -4,9 +4,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Collections.Generic;
 using Generic.Core.Context;
-using Entity;
 using Generic.Core.Logging;
 using System.Configuration;
+using CFEntity.Models;
 
 namespace Test.Web
 {
@@ -21,7 +21,7 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false, myContext: new NailhubsEntities());
+            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false, myContext: new NailhubsContext());
             Generic.App.RegisterByConfig("autofac");
             
         }

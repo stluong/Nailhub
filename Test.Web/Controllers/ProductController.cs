@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AppCore.Service;
 using AppService;
+using System.Linq;
 
 
 namespace Test.Web.Controllers
@@ -24,7 +25,7 @@ namespace Test.Web.Controllers
         //}
         public ActionResult Index() {
             var msg = identity.GetMessage();
-            ViewBag.Msg = string.Format("Hello {0}, {}", identity.Query().Get(u => u.UserName), msg);
+            ViewBag.Msg = string.Format("Hello {0}, {1}", identity.Query().Get(u => u.UserName).SingleOrDefault(), msg);
             return View();
         }
 	}

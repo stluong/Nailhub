@@ -5,7 +5,6 @@ using System.Web;
 using AppCore.Service;
 using AppService;
 using Autofac;
-using Entity;
 using Generic.Core.Repository;
 using Generic.Core.Service;
 using Generic.Infracstructure.Services;

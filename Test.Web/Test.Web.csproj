@@ -220,9 +220,9 @@
       <Project>{1c401b38-f70b-4892-bd5e-8f01ef0e25b2}</Project>
       <Name>AppService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{055f8179-3808-41ac-a2b2-260702d321da}</Project>
-      <Name>Entity</Name>
+    <ProjectReference Include="..\CFEntity\CFEntity.csproj">
+      <Project>{177ad736-bd14-4831-9ef5-e96aab6b7df8}</Project>
+      <Name>CFEntity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Generic.Core\Generic.Core.csproj">
       <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>
