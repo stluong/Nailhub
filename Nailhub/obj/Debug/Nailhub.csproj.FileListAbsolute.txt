@@ -199,6 +199,7 @@ D:\GitHub\Nailhub\Nailhub\bin\zh-Hant\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.dll
 D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Configuration\AppSetting.config
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Configuration\ConnectionString.config
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Nailhub.dll.config
@@ -324,6 +325,5 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ko\Sys
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru\System.Spatial.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.pdb

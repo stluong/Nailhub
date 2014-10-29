@@ -126,16 +126,17 @@ namespace Generic
             coreBuilder.Register(b => NLogLogger.Instance).InstancePerRequest();
 
             //Register my app context
+
             coreBuilder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = myContext;
+                var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);;
                 return context;
             }).InstancePerRequest();
             coreBuilder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = myContext;
+                var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);
                 return context;
             }).InstancePerRequest();
             
