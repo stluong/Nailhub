@@ -10,7 +10,7 @@ namespace Generic
 {
     /// <summary>
     /// Author: StevenLuong, 10/22/2014
-    /// Description: Auto register all autofac modules with parameters on configuration file
+    /// Description: Auto register all autofac modules with parameters on configuration file (Can can Autofac.Configuration instead of this class)
     /// </summary>
     public class MyModule : Module
     {
