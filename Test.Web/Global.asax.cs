@@ -7,6 +7,7 @@ using Generic.Core.Context;
 using Generic.Core.Logging;
 using System.Configuration;
 using CFEntity.Models;
+using Autofac;
 
 namespace Test.Web
 {
@@ -21,7 +22,21 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false, myContext: new NailhubsContext());
+            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false);
+
+            Generic.App.Builder.Register<IMyContext>(b =>
+            {
+                var logger = b.Resolve<ILogger>();
+                var context = new NailhubsContext();
+                return context;
+            }).InstancePerRequest();
+            Generic.App.Builder.Register<IMyContextAsync>(b =>
+            {
+                var logger = b.Resolve<ILogger>();
+                var context = new NailhubsContext();
+                return context;
+            }).InstancePerRequest();
+
             Generic.App.RegisterByConfig("autofac");
             
         }

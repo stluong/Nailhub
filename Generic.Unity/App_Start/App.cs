@@ -90,7 +90,7 @@ namespace Generic
         /// <param name="setResolver">Default is true</param>
         /// <param name="myContext">App context. If not specify, It will initiate MyContext</param>
         /// <param name="initializeAdminIdentity">Initialize default admin identiy:)</param>
-        public static void RegisterCore(Assembly myAppAssembly = null, bool setResolver = true, string identityNameOrConnectionString = null, MyContext myContext = null, bool? initializeAdminIdentity = null)
+        public static void RegisterCore(Assembly myAppAssembly = null, bool setResolver = true, string identityNameOrConnectionString = null, bool? initializeAdminIdentity = null)
         {
             var coreBuilder = Builder;
             if (myAppAssembly != null || MyAppAssembly != null) {
@@ -125,20 +125,19 @@ namespace Generic
             coreBuilder.RegisterModule(new IdentityModule());
             coreBuilder.Register(b => NLogLogger.Instance).InstancePerRequest();
 
-            //Register my app context
-
-            coreBuilder.Register<IMyContext>(b =>
-            {
-                var logger = b.Resolve<ILogger>();
-                var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);;
-                return context;
-            }).InstancePerRequest();
-            coreBuilder.Register<IMyContextAsync>(b =>
-            {
-                var logger = b.Resolve<ILogger>();
-                var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);
-                return context;
-            }).InstancePerRequest();
+            //Register my app context. It need to initiate the context whenever it is resolved!!
+            //coreBuilder.Register<IMyContext>(b =>
+            //{
+            //    var logger = b.Resolve<ILogger>();
+            //    var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);;
+            //    return context;
+            //}).InstancePerRequest();
+            //coreBuilder.Register<IMyContextAsync>(b =>
+            //{
+            //    var logger = b.Resolve<ILogger>();
+            //    var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);
+            //    return context;
+            //}).InstancePerRequest();
             
             if (setResolver) {
                 var coreContainer = coreBuilder.Build();
