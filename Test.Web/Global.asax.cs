@@ -1,11 +1,8 @@
-﻿using Test.Web.Models;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Collections.Generic;
 using Generic.Core.Context;
 using Generic.Core.Logging;
-using System.Configuration;
 using CFEntity.Models;
 using Autofac;
 
