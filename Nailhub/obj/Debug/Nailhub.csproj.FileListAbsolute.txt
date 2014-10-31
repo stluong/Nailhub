@@ -336,3 +336,5 @@ D:\GitHub\Nailhub\Nailhub\bin\zh-Hant\System.Spatial.resources.dll
 D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.dll
 D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.pdb
+D:\GitHub\Nailhub\Nailhub\bin\CFEntity.dll
+D:\GitHub\Nailhub\Nailhub\bin\CFEntity.pdb

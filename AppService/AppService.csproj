@@ -74,9 +74,9 @@
       <Project>{28d82819-c812-4480-9989-f87a8695f694}</Project>
       <Name>AppCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{055f8179-3808-41ac-a2b2-260702d321da}</Project>
-      <Name>Entity</Name>
+    <ProjectReference Include="..\CFEntity\CFEntity.csproj">
+      <Project>{1ba0f972-f30e-4e42-8342-f34796036337}</Project>
+      <Name>CFEntity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Generic.Core\Generic.Core.csproj">
       <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>

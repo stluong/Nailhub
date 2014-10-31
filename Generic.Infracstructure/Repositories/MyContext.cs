@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Threading;
 using System.Threading.Tasks;
@@ -119,6 +120,22 @@ namespace Generic.Infrastructure.Repositories
             //modelBuilder.Entity<ApplicationIdentityUserLogin>().ToTable("USER_LOGIN");
             //modelBuilder.Entity<ApplicationIdentityUserClaim>().ToTable("USER_CLAIM").Property(c => c.Id).HasColumnName("ID_CLAIM");
             //modelBuilder.Entity<ApplicationIdentityRole>().ToTable("ROLE").Property(r => r.Id).HasColumnName("ID_ROLE");
+
+            ConfigIdentityModelToContext(modelBuilder);
+
+        }
+
+        private void ConfigIdentityModelToContext(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ApplicationIdentityUser>()
+                 .Property(e => e.Id)
+                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<ApplicationIdentityRole>()
+                .Property(e => e.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<ApplicationIdentityUserClaim>()
+                 .Property(e => e.Id)
+                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
 
         /// <summary>

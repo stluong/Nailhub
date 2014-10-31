@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppCore.Service;
-using Entity;
+using CFEntity.Models;
 using Generic.Core.Repository;
 using Generic.Core.Service;
 using Generic.Infracstructure.Services;

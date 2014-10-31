@@ -19,7 +19,7 @@ namespace Entity
     public partial class NailhubsEntities : MyContext
     {
         public NailhubsEntities()
-            : base("name=NailhubsEntities")
+            : base("name=AppContext")
         {
         }
         public NailhubsEntities(string nameOrConnectionString, ILogger logger, bool initiateAdmin = false)

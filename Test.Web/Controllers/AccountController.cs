@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Generic.Core.Identity;
 using Generic.Core.Model.Identity;
+using Autofac;
 
 namespace Test.Web.Controllers
 {
