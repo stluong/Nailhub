@@ -10,7 +10,7 @@ namespace CFEntity.Models
             this.LOCATIONs = new List<LOCATION>();
         }
 
-        public short ID_COUNTRY { get; set; }
+        public short id { get; set; }
         public string NAME { get; set; }
         public string NATIVELANGUAGE { get; set; }
         public string DESCRIPTION { get; set; }

@@ -111,6 +111,7 @@
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\EmailService.cs" />
+    <Compile Include="Identity\IdentityContext.cs" />
     <Compile Include="Identity\IdentityExtensions.cs" />
     <Compile Include="Identity\IdentityFactory.cs" />
     <Compile Include="Identity\InitiateAdmin.cs" />

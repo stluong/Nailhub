@@ -8,13 +8,13 @@ namespace CFEntity.Models.Mapping
         public USER_DETAILMap()
         {
             // Primary Key
-            this.HasKey(t => new { t.ID_USER, t.ID_USERTYPE });
+            this.HasKey(t => new { t.userId, t.UserTypeId });
 
             // Properties
-            this.Property(t => t.ID_USER)
+            this.Property(t => t.userId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
-            this.Property(t => t.ID_USERTYPE)
+            this.Property(t => t.UserTypeId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.FIRSTNAME)
@@ -22,19 +22,24 @@ namespace CFEntity.Models.Mapping
                 .IsFixedLength()
                 .HasMaxLength(10);
 
+            this.Property(t => t.LASTNAME)
+                .IsRequired()
+                .HasMaxLength(50);
+
             // Table & Column Mappings
             this.ToTable("USER_DETAIL");
-            this.Property(t => t.ID_USER).HasColumnName("ID_USER");
-            this.Property(t => t.ID_USERTYPE).HasColumnName("ID_USERTYPE");
+            this.Property(t => t.userId).HasColumnName("userId");
+            this.Property(t => t.UserTypeId).HasColumnName("UserTypeId");
             this.Property(t => t.FIRSTNAME).HasColumnName("FIRSTNAME");
+            this.Property(t => t.LASTNAME).HasColumnName("LASTNAME");
 
             // Relationships
             this.HasRequired(t => t.AspNetUser)
                 .WithMany(t => t.USER_DETAIL)
-                .HasForeignKey(d => d.ID_USER);
+                .HasForeignKey(d => d.userId);
             this.HasRequired(t => t.USER_TYPE)
                 .WithMany(t => t.USER_DETAIL)
-                .HasForeignKey(d => d.ID_USERTYPE);
+                .HasForeignKey(d => d.UserTypeId);
 
         }
     }

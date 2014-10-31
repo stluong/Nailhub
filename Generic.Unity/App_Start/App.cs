@@ -13,6 +13,8 @@ using Generic.Infrastructure.Repositories;
 using System.Collections.Generic;
 using System.Reflection;
 using Autofac.Configuration;
+using Generic.Infracstructure.Identity;
+using System.Data;
 
 //using Test.Web;
 
@@ -57,7 +59,10 @@ namespace Generic
             }
             set
             {
-                _nameOrConnectionString = value;
+                _nameOrConnectionString = (value.Contains("name=") || value.Contains("Initial Catalog="))
+                    ? value
+                    : string.Format("name={0}", value)
+                ;
             }
         }
         /// <summary>
@@ -81,58 +86,58 @@ namespace Generic
         /// <summary>
         /// Register core dependencies, and whether all controllers in app assembly
         /// </summary>
-        /// <param name="myAppAssembly">typeof(MvcApplication).Assembly</param>
-        /// <param name="nameOrConnectionStringContext">Name or connection string for app context</param>
+        /// <param name="myAppAssembly">Typeof(MvcApplication).Assembly. It usually uses to register controllers</param>
         /// <param name="setResolver">Default is true</param>
+        /// <param name="myContext">App context. If not specify, It will initiate MyContext</param>
         /// <param name="initializeAdminIdentity">Initialize default admin identiy:)</param>
-        public static void RegisterCore(Assembly myAppAssembly = null, MyContext myContext = null, bool setResolver = true, bool? initializeAdminIdentity = null)
+        public static void RegisterCore(Assembly myAppAssembly = null, bool setResolver = true, string identityNameOrConnectionString = null, bool? initializeAdminIdentity = null)
         {
             var coreBuilder = Builder;
             if (myAppAssembly != null || MyAppAssembly != null) {
                 coreBuilder.RegisterControllers(myAppAssembly ?? MyAppAssembly);
             }
-            //if (!string.IsNullOrEmpty(nameOrConnectionStringContext))
-            //{
-            //    nameOrConnectionStringContext = (nameOrConnectionStringContext.Contains("name=") || nameOrConnectionStringContext.Contains("Initial Catalog="))
-            //        ? nameOrConnectionStringContext
-            //        : string.Format("name={0}", nameOrConnectionStringContext)
-            //    ;
-            //}
+            
             coreBuilder.RegisterModule<AutofacWebTypesModule>();
             coreBuilder.RegisterGeneric(typeof(Repository<>))
                 .As(typeof(IRepository<>))
                 .As(typeof(IRepositoryAsync<>))
-                .InstancePerLifetimeScope()
+                .InstancePerRequest()
             ;
-            coreBuilder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
+            coreBuilder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerRequest();
             coreBuilder.RegisterType(typeof(UnitOfWork))
                 .As(typeof(IUnitOfWork))
                 .As(typeof(IUnitOfWorkAsync))
-                .InstancePerLifetimeScope()
+                .InstancePerRequest()
             ;
             coreBuilder.RegisterType(typeof(RepositoryProvider)).As(typeof(IRepositoryProvider))
-                .InstancePerLifetimeScope()
+                .InstancePerRequest()
             ;
-            coreBuilder.RegisterType(typeof(RepositoryFactory)).InstancePerLifetimeScope();
+            coreBuilder.RegisterType(typeof(RepositoryFactory)).InstancePerRequest();
 
-            coreBuilder.Register<IMyContext>(b =>
+            //Register identiy context
+            coreBuilder.Register<IIdentityContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = myContext?? new MyContext(NameOrConnectionString, logger, initializeAdminIdentity?? InitializeAdminIdentity);
-                return context;
-            }).InstancePerLifetimeScope();
-            coreBuilder.Register<IMyContextAsync>(b =>
-            {
-                var logger = b.Resolve<ILogger>();
-                var context = myContext ?? new MyContext(NameOrConnectionString, logger, initializeAdminIdentity ?? InitializeAdminIdentity);
-                return context;
-            }).InstancePerLifetimeScope();
-
-            coreBuilder.Register(b => NLogLogger.Instance).SingleInstance();
+                var identityContext = new IdentityContext(identityNameOrConnectionString?? NameOrConnectionString, logger, initializeAdminIdentity ?? InitializeAdminIdentity);
+                return identityContext;
+            }).InstancePerRequest();
             //Register identity module
             coreBuilder.RegisterModule(new IdentityModule());
-            //Testing register config
-            //coreBuilder.RegisterModule(new ConfigurationSettingsReader("autofac"));
+            coreBuilder.Register(b => NLogLogger.Instance).InstancePerRequest();
+
+            //Register my app context. It need to initiate the context whenever it is resolved!!
+            //coreBuilder.Register<IMyContext>(b =>
+            //{
+            //    var logger = b.Resolve<ILogger>();
+            //    var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);;
+            //    return context;
+            //}).InstancePerRequest();
+            //coreBuilder.Register<IMyContextAsync>(b =>
+            //{
+            //    var logger = b.Resolve<ILogger>();
+            //    var context = new MyContext(identityNameOrConnectionString ?? NameOrConnectionString, logger);
+            //    return context;
+            //}).InstancePerRequest();
             
             if (setResolver) {
                 var coreContainer = coreBuilder.Build();

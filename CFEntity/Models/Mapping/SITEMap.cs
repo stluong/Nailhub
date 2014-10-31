@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public SITEMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_SITE);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_SITE)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.NAME)
@@ -25,17 +25,20 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("SITE");
-            this.Property(t => t.ID_SITE).HasColumnName("ID_SITE");
-            this.Property(t => t.ID_SITETYPE).HasColumnName("ID_SITETYPE");
-            this.Property(t => t.ID_USER).HasColumnName("ID_USER");
+            this.Property(t => t.id).HasColumnName("id");
+            this.Property(t => t.SITE_TYPE_ID).HasColumnName("SITE_TYPE_ID");
+            this.Property(t => t.USER_ID).HasColumnName("USER_ID");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.DESCRIPTION).HasColumnName("DESCRIPTION");
             this.Property(t => t.NOTE).HasColumnName("NOTE");
 
             // Relationships
+            this.HasOptional(t => t.AspNetUser)
+                .WithMany(t => t.SITEs)
+                .HasForeignKey(d => d.USER_ID);
             this.HasOptional(t => t.SITE_TYPE)
                 .WithMany(t => t.SITEs)
-                .HasForeignKey(d => d.ID_SITETYPE);
+                .HasForeignKey(d => d.SITE_TYPE_ID);
 
         }
     }

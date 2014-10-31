@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public THEMEMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_THEME);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_THEME)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.BACKGROUND)
@@ -34,8 +34,8 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("THEME");
-            this.Property(t => t.ID_THEME).HasColumnName("ID_THEME");
-            this.Property(t => t.ID_SITE).HasColumnName("ID_SITE");
+            this.Property(t => t.id).HasColumnName("id");
+            this.Property(t => t.SITE_ID).HasColumnName("SITE_ID");
             this.Property(t => t.BACKGROUND).HasColumnName("BACKGROUND");
             this.Property(t => t.BACKGROUNDIMAGE).HasColumnName("BACKGROUNDIMAGE");
             this.Property(t => t.LOGO).HasColumnName("LOGO");
@@ -46,7 +46,7 @@ namespace CFEntity.Models.Mapping
             // Relationships
             this.HasOptional(t => t.SITE)
                 .WithMany(t => t.THEMEs)
-                .HasForeignKey(d => d.ID_SITE);
+                .HasForeignKey(d => d.SITE_ID);
 
         }
     }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using Generic.Core.Model;
 
 namespace CFEntity.Models
@@ -11,9 +10,11 @@ namespace CFEntity.Models
         {
             this.AspNetUserClaims = new List<AspNetUserClaim>();
             this.AspNetUserLogins = new List<AspNetUserLogin>();
+            this.SITEs = new List<SITE>();
             this.USER_DETAIL = new List<USER_DETAIL>();
             this.AspNetRoles = new List<AspNetRole>();
         }
+
         public int Id { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
@@ -28,6 +29,7 @@ namespace CFEntity.Models
         public string UserName { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual ICollection<SITE> SITEs { get; set; }
         public virtual ICollection<USER_DETAIL> USER_DETAIL { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }

@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public STATEMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_STATE);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_STATE)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.NAME)
@@ -29,7 +29,7 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("STATE");
-            this.Property(t => t.ID_STATE).HasColumnName("ID_STATE");
+            this.Property(t => t.id).HasColumnName("id");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.SHORTNAME).HasColumnName("SHORTNAME");
             this.Property(t => t.DESCRIPTION).HasColumnName("DESCRIPTION");

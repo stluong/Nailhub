@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public CURRENT_PRODUCTMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_CURRENT_PRODUCT);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_CURRENT_PRODUCT)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.NAME)
@@ -22,9 +22,9 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("CURRENT_PRODUCT");
-            this.Property(t => t.ID_CURRENT_PRODUCT).HasColumnName("ID_CURRENT_PRODUCT");
-            this.Property(t => t.ID_PRODUCT).HasColumnName("ID_PRODUCT");
-            this.Property(t => t.ID_SITE).HasColumnName("ID_SITE");
+            this.Property(t => t.id).HasColumnName("id");
+            this.Property(t => t.PRODUCT_ID).HasColumnName("PRODUCT_ID");
+            this.Property(t => t.SITE_ID).HasColumnName("SITE_ID");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.PRICE).HasColumnName("PRICE");
             this.Property(t => t.ENTERBY).HasColumnName("ENTERBY");
@@ -37,10 +37,10 @@ namespace CFEntity.Models.Mapping
             // Relationships
             this.HasOptional(t => t.PRODUCT)
                 .WithMany(t => t.CURRENT_PRODUCT)
-                .HasForeignKey(d => d.ID_PRODUCT);
+                .HasForeignKey(d => d.PRODUCT_ID);
             this.HasOptional(t => t.SITE)
                 .WithMany(t => t.CURRENT_PRODUCT)
-                .HasForeignKey(d => d.ID_SITE);
+                .HasForeignKey(d => d.SITE_ID);
 
         }
     }

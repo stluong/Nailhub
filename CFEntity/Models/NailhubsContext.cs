@@ -29,7 +29,6 @@ namespace CFEntity.Models
         public DbSet<LOCATION> LOCATIONs { get; set; }
         public DbSet<PRODUCT> PRODUCTs { get; set; }
         public DbSet<PRODUCT_DETAIL> PRODUCT_DETAIL { get; set; }
-        public DbSet<PROVINCE> PROVINCEs { get; set; }
         public DbSet<SERVICE> SERVICEs { get; set; }
         public DbSet<SERVICE_DETAIL> SERVICE_DETAIL { get; set; }
         public DbSet<SITE> SITEs { get; set; }
@@ -57,7 +56,6 @@ namespace CFEntity.Models
             modelBuilder.Configurations.Add(new LOCATIONMap());
             modelBuilder.Configurations.Add(new PRODUCTMap());
             modelBuilder.Configurations.Add(new PRODUCT_DETAILMap());
-            modelBuilder.Configurations.Add(new PROVINCEMap());
             modelBuilder.Configurations.Add(new SERVICEMap());
             modelBuilder.Configurations.Add(new SERVICE_DETAILMap());
             modelBuilder.Configurations.Add(new SITEMap());

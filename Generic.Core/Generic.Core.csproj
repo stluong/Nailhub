@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\IIdentityContext.cs" />
     <Compile Include="Context\IMyContext.cs" />
     <Compile Include="Context\IMyContextAsync.cs" />
     <Compile Include="Identity\IApplicationRoleManager.cs" />

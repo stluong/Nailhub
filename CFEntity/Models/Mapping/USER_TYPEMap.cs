@@ -8,7 +8,7 @@ namespace CFEntity.Models.Mapping
         public USER_TYPEMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_USERTYPE);
+            this.HasKey(t => t.id);
 
             // Properties
             this.Property(t => t.NAME)
@@ -19,7 +19,7 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("USER_TYPE");
-            this.Property(t => t.ID_USERTYPE).HasColumnName("ID_USERTYPE");
+            this.Property(t => t.id).HasColumnName("id");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.NOTE).HasColumnName("NOTE");
         }

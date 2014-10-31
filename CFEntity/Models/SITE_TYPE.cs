@@ -10,7 +10,7 @@ namespace CFEntity.Models
             this.SITEs = new List<SITE>();
         }
 
-        public short ID_SITETYPE { get; set; }
+        public short id { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string NOTE { get; set; }

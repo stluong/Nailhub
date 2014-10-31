@@ -11,7 +11,7 @@ namespace CFEntity.Models
             this.SERVICEs = new List<SERVICE>();
         }
 
-        public int ID_TYPE { get; set; }
+        public int id { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string NOTE { get; set; }

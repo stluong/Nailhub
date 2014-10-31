@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public PRODUCTMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_PRODUCT);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_PRODUCT)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.NAME)
@@ -25,8 +25,8 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("PRODUCT");
-            this.Property(t => t.ID_PRODUCT).HasColumnName("ID_PRODUCT");
-            this.Property(t => t.ID_TYPE).HasColumnName("ID_TYPE");
+            this.Property(t => t.id).HasColumnName("id");
+            this.Property(t => t.TYPE_ID).HasColumnName("TYPE_ID");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.DESCRIPTION).HasColumnName("DESCRIPTION");
             this.Property(t => t.NOTE).HasColumnName("NOTE");
@@ -34,7 +34,7 @@ namespace CFEntity.Models.Mapping
             // Relationships
             this.HasOptional(t => t.TYPE)
                 .WithMany(t => t.PRODUCTs)
-                .HasForeignKey(d => d.ID_TYPE);
+                .HasForeignKey(d => d.TYPE_ID);
 
         }
     }

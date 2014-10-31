@@ -75,7 +75,7 @@
       <Name>AppCore</Name>
     </ProjectReference>
     <ProjectReference Include="..\CFEntity\CFEntity.csproj">
-      <Project>{1ba0f972-f30e-4e42-8342-f34796036337}</Project>
+      <Project>{177ad736-bd14-4831-9ef5-e96aab6b7df8}</Project>
       <Name>CFEntity</Name>
     </ProjectReference>
     <ProjectReference Include="..\Generic.Core\Generic.Core.csproj">

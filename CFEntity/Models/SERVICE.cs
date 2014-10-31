@@ -11,8 +11,8 @@ namespace CFEntity.Models
             this.SERVICE_DETAIL = new List<SERVICE_DETAIL>();
         }
 
-        public int ID_SERVICE { get; set; }
-        public Nullable<int> ID_TYPE { get; set; }
+        public int id { get; set; }
+        public Nullable<int> TYPE_ID { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string NOTE { get; set; }

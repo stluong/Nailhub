@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public TYPEMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_TYPE);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_TYPE)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.NAME)
@@ -25,7 +25,7 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("TYPE");
-            this.Property(t => t.ID_TYPE).HasColumnName("ID_TYPE");
+            this.Property(t => t.id).HasColumnName("id");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.DESCRIPTION).HasColumnName("DESCRIPTION");
             this.Property(t => t.NOTE).HasColumnName("NOTE");

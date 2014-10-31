@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using Generic.Core.Context;
 using Generic.Infrastructure.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;

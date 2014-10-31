@@ -5,8 +5,8 @@ namespace CFEntity.Models
 {
     public partial class EMPLOYEE
     {
-        public string ID_EMPLYEE { get; set; }
-        public Nullable<short> ID_TITLE { get; set; }
+        public string id { get; set; }
+        public Nullable<short> TITLE_ID { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public virtual TITLE TITLE { get; set; }

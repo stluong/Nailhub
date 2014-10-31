@@ -5,8 +5,8 @@ namespace CFEntity.Models
 {
     public partial class PRODUCT_DETAIL
     {
-        public int ID_PRODUCTDETAIL { get; set; }
-        public Nullable<int> ID_PRODUCT { get; set; }
+        public int id { get; set; }
+        public Nullable<int> PRODUCT_ID { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string IMAGE { get; set; }

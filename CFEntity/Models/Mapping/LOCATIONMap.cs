@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public LOCATIONMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_LOCATION);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_LOCATION)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.NAME)
@@ -32,25 +32,25 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("LOCATION");
-            this.Property(t => t.ID_LOCATION).HasColumnName("ID_LOCATION");
+            this.Property(t => t.id).HasColumnName("id");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.ADDRESS).HasColumnName("ADDRESS");
             this.Property(t => t.ADDRESS2).HasColumnName("ADDRESS2");
-            this.Property(t => t.ID_STATE).HasColumnName("ID_STATE");
-            this.Property(t => t.ID_CITY).HasColumnName("ID_CITY");
+            this.Property(t => t.STATE_ID).HasColumnName("STATE_ID");
+            this.Property(t => t.CITY_ID).HasColumnName("CITY_ID");
             this.Property(t => t.ZIP).HasColumnName("ZIP");
-            this.Property(t => t.ID_COUNTRY).HasColumnName("ID_COUNTRY");
+            this.Property(t => t.COUNTRY_ID).HasColumnName("COUNTRY_ID");
 
             // Relationships
             this.HasOptional(t => t.CITY)
                 .WithMany(t => t.LOCATIONs)
-                .HasForeignKey(d => d.ID_CITY);
+                .HasForeignKey(d => d.CITY_ID);
             this.HasOptional(t => t.COUNTRY)
                 .WithMany(t => t.LOCATIONs)
-                .HasForeignKey(d => d.ID_COUNTRY);
+                .HasForeignKey(d => d.COUNTRY_ID);
             this.HasOptional(t => t.STATE)
                 .WithMany(t => t.LOCATIONs)
-                .HasForeignKey(d => d.ID_STATE);
+                .HasForeignKey(d => d.STATE_ID);
 
         }
     }

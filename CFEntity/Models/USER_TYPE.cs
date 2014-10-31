@@ -10,7 +10,7 @@ namespace CFEntity.Models
             this.USER_DETAIL = new List<USER_DETAIL>();
         }
 
-        public short ID_USERTYPE { get; set; }
+        public short id { get; set; }
         public string NAME { get; set; }
         public string NOTE { get; set; }
         public virtual ICollection<USER_DETAIL> USER_DETAIL { get; set; }

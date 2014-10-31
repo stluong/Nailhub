@@ -8,10 +8,10 @@ namespace CFEntity.Models.Mapping
         public CURRENT_SERVICEMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID_CURRENT_SERVICE);
+            this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.ID_CURRENT_SERVICE)
+            this.Property(t => t.id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.NAME)
@@ -25,9 +25,9 @@ namespace CFEntity.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("CURRENT_SERVICE");
-            this.Property(t => t.ID_CURRENT_SERVICE).HasColumnName("ID_CURRENT_SERVICE");
-            this.Property(t => t.ID_SERVICE).HasColumnName("ID_SERVICE");
-            this.Property(t => t.ID_SITE).HasColumnName("ID_SITE");
+            this.Property(t => t.id).HasColumnName("id");
+            this.Property(t => t.SERVICE_ID).HasColumnName("SERVICE_ID");
+            this.Property(t => t.SITE_ID).HasColumnName("SITE_ID");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.PRICE).HasColumnName("PRICE");
             this.Property(t => t.DESCRIPTION).HasColumnName("DESCRIPTION");
@@ -42,10 +42,10 @@ namespace CFEntity.Models.Mapping
             // Relationships
             this.HasOptional(t => t.SERVICE)
                 .WithMany(t => t.CURRENT_SERVICE)
-                .HasForeignKey(d => d.ID_SERVICE);
+                .HasForeignKey(d => d.SERVICE_ID);
             this.HasOptional(t => t.SITE)
                 .WithMany(t => t.CURRENT_SERVICE)
-                .HasForeignKey(d => d.ID_SITE);
+                .HasForeignKey(d => d.SITE_ID);
 
         }
     }
