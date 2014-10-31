@@ -100,16 +100,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Generic.Core\Generic.Core.csproj">
-      <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>
-      <Name>Generic.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Generic.Infracstructure\Generic.Infrastructure.csproj">
-      <Project>{5bed1735-d49e-4c56-bc29-f140cc3a29d9}</Project>
-      <Name>Generic.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

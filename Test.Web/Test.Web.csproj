@@ -224,14 +224,6 @@
       <Project>{177ad736-bd14-4831-9ef5-e96aab6b7df8}</Project>
       <Name>CFEntity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Generic.Core\Generic.Core.csproj">
-      <Project>{ce01ac7b-ce9d-421b-928a-933706ae72a1}</Project>
-      <Name>Generic.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Generic.Infracstructure\Generic.Infrastructure.csproj">
-      <Project>{5bed1735-d49e-4c56-bc29-f140cc3a29d9}</Project>
-      <Name>Generic.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
