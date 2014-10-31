@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Generic.Core.Model;
 
+
 namespace CFEntity.Models
 {
     public partial class AspNetUser: BaseEntity
