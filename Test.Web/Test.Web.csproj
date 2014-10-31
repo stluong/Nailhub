@@ -232,10 +232,6 @@
       <Project>{5bed1735-d49e-4c56-bc29-f140cc3a29d9}</Project>
       <Name>Generic.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Generic.Unity\Generic.csproj">
-      <Project>{90af6e73-b790-4207-87ca-2680f7fc11f1}</Project>
-      <Name>Generic</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
