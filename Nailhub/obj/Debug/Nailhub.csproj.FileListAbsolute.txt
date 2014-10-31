@@ -77,7 +77,6 @@ D:\GitHub\Nailhub\Nailhub\bin\AppCore.dll
 D:\GitHub\Nailhub\Nailhub\bin\AppService.dll
 D:\GitHub\Nailhub\Nailhub\bin\BundleTransformer.Core.dll
 D:\GitHub\Nailhub\Nailhub\bin\BundleTransformer.Less.dll
-D:\GitHub\Nailhub\Nailhub\bin\Entity.dll
 D:\GitHub\Nailhub\Nailhub\bin\EntityFramework.dll
 D:\GitHub\Nailhub\Nailhub\bin\EntityFramework.SqlServer.dll
 D:\GitHub\Nailhub\Nailhub\bin\Generic.Core.dll
@@ -125,7 +124,6 @@ D:\GitHub\Nailhub\Nailhub\bin\NLog.dll
 D:\GitHub\Nailhub\Nailhub\bin\LinqKit.dll
 D:\GitHub\Nailhub\Nailhub\bin\AppCore.pdb
 D:\GitHub\Nailhub\Nailhub\bin\AppService.pdb
-D:\GitHub\Nailhub\Nailhub\bin\Entity.pdb
 D:\GitHub\Nailhub\Nailhub\bin\Generic.Core.pdb
 D:\GitHub\Nailhub\Nailhub\bin\Generic.Infracstructure.pdb
 D:\GitHub\Nailhub\Nailhub\bin\Antlr3.Runtime.pdb
@@ -327,3 +325,5 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Han
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.pdb
+D:\GitHub\Nailhub\Nailhub\bin\CFEntity.dll
+D:\GitHub\Nailhub\Nailhub\bin\CFEntity.pdb

@@ -27,13 +27,13 @@ namespace Test.Web
             Generic.App.Builder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext();
+                var context = new NailhubsContext("name=AppContext");
                 return context;
             }).InstancePerRequest();
             Generic.App.Builder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext();
+                var context = new NailhubsContext("name=AppContext");
                 return context;
             }).InstancePerRequest();
 
