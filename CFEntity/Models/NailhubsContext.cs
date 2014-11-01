@@ -1,7 +1,8 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using CFEntity.Models.Mapping;
-using Generic.Infrastructure.Repositories;
+using TNT.Infrastructure.Repositories;
+
 
 namespace CFEntity.Models
 {
@@ -11,9 +12,12 @@ namespace CFEntity.Models
         {
             Database.SetInitializer<NailhubsContext>(null);
         }
-
+        public NailhubsContext(string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        {
+        }
         public NailhubsContext()
-            : base("Name=AppContext")
+            : base("Name=NailhubsContext")
         {
         }
 

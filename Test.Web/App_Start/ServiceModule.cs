@@ -5,10 +5,10 @@ using System.Web;
 using AppCore.Service;
 using AppService;
 using Autofac;
-using Generic.Core.Repository;
-using Generic.Core.Service;
-using Generic.Infracstructure.Services;
-using Generic.Infrastructure.Repositories;
+using TNT.Core.Repository;
+using TNT.Core.Service;
+using TNT.Infracstructure.Services;
+using TNT.Infrastructure.Repositories;
 
 namespace Test.Web
 {
