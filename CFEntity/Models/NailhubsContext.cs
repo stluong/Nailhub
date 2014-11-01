@@ -1,7 +1,8 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using CFEntity.Models.Mapping;
-using Generic.Infrastructure.Repositories;
+using TNT.Infrastructure.Repositories;
+
 
 namespace CFEntity.Models
 {

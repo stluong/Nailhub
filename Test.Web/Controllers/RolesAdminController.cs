@@ -4,8 +4,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Collections.Generic;
-using Generic.Core.Identity;
-using Generic.Core.Model.Identity;
+using TNT.Core.Identity;
+using TNT.Core.Model.Identity;
 
 namespace Test.Web.Controllers
 {

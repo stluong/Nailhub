@@ -1,7 +1,6 @@
 ﻿@model  Test.Web.Models.ExternalLoginListViewModel
 
 @using Microsoft.Owin.Security
-@using Generic.Core.Model.Identity
 
 
 <h4>Use another service to log in.</h4>
@@ -21,7 +20,7 @@
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
                 <p>
-                    @foreach (ApplicationAuthenticationDescription p in loginProviders) {
+                    @foreach (TNT.Core.Model.Identity.ApplicationAuthenticationDescription p in loginProviders) {
                         <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
                     }
                 </p>

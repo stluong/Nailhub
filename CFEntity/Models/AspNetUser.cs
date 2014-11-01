@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Generic.Core.Model;
+using TNT.Core.Model;
+
 
 
 namespace CFEntity.Models

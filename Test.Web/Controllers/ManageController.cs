@@ -3,8 +3,8 @@ using Test.Web.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Generic.Core.Identity;
-using Generic.Core.Model.Identity;
+using TNT.Core.Identity;
+using TNT.Core.Model.Identity;
 
 namespace Test.Web.Controllers
 {

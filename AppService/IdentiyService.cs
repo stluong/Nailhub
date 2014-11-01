@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AppCore.Service;
 using CFEntity.Models;
-using Generic.Core.Repository;
-using Generic.Core.Service;
-using Generic.Infracstructure.Services;
+using TNT.Core.Repository;
+using TNT.Infracstructure.Services;
+
 
 
 namespace AppService

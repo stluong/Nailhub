@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Generic.Core.Context;
-using Generic.Core.Logging;
+using TNT.Core.Context;
+using TNT.Core.Logging;
 using CFEntity.Models;
 using Autofac;
 
@@ -20,22 +20,22 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Generic.App.RegisterCore(typeof(MvcApplication).Assembly, false);
+            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
 
-            Generic.App.Builder.Register<IMyContext>(b =>
+            TNT.App.Builder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
                 var context = new NailhubsContext("name=AppContext");
                 return context;
             }).InstancePerRequest();
-            Generic.App.Builder.Register<IMyContextAsync>(b =>
+            TNT.App.Builder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
                 var context = new NailhubsContext("name=AppContext");
                 return context;
             }).InstancePerRequest();
 
-            Generic.App.RegisterByConfig("autofac");
+            TNT.App.RegisterByConfig("autofac");
             
         }
     }

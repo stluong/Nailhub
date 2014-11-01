@@ -1,5 +1,4 @@
-﻿using Generic.Core.Context;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Nailhub.Models
 {
@@ -8,8 +7,7 @@ namespace Nailhub.Models
     {
     }
 
-    public class ApplicationDbContext : 
-        IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection")

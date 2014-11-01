@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Generic.Core.Model.Identity;
+using TNT.Core.Model.Identity;
 
 namespace Test.Web.Models
 {
