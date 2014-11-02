@@ -18,6 +18,8 @@ namespace Nailhub
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            TNT.App.RegisterCore(typeof(MvcApplication).Assembly);
         }
     }
 }
