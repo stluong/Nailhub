@@ -79,7 +79,6 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Micros
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MsieJavaScriptEngine.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Newtonsoft.Json.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\NLog.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Owin.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Spatial.dll
