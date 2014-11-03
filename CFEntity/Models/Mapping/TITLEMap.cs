@@ -3,17 +3,14 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace CFEntity.Models.Mapping
 {
-    public class TITLEMap : EntityTypeConfiguration<TITLE>
+    public class TitleMap : EntityTypeConfiguration<Title>
     {
-        public TITLEMap()
+        public TitleMap()
         {
             // Primary Key
             this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
             this.Property(t => t.NAME)
                 .IsFixedLength()
                 .HasMaxLength(10);
@@ -27,7 +24,7 @@ namespace CFEntity.Models.Mapping
                 .HasMaxLength(10);
 
             // Table & Column Mappings
-            this.ToTable("TITLE");
+            this.ToTable("Title");
             this.Property(t => t.id).HasColumnName("id");
             this.Property(t => t.NAME).HasColumnName("NAME");
             this.Property(t => t.DESCRIPTION).HasColumnName("DESCRIPTION");

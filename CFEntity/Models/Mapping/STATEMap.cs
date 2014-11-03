@@ -11,9 +11,6 @@ namespace CFEntity.Models.Mapping
             this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
             this.Property(t => t.NAME)
                 .HasMaxLength(50);
 

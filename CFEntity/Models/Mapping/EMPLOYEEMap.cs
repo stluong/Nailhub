@@ -11,11 +11,6 @@ namespace CFEntity.Models.Mapping
             this.HasKey(t => t.id);
 
             // Properties
-            this.Property(t => t.id)
-                .IsRequired()
-                .IsFixedLength()
-                .HasMaxLength(10);
-
             this.Property(t => t.NAME)
                 .IsFixedLength()
                 .HasMaxLength(10);
@@ -32,7 +27,7 @@ namespace CFEntity.Models.Mapping
             this.Property(t => t.DESCRIPTION).HasColumnName("DESCRIPTION");
 
             // Relationships
-            this.HasOptional(t => t.TITLE)
+            this.HasOptional(t => t.Title)
                 .WithMany(t => t.EMPLOYEEs)
                 .HasForeignKey(d => d.TITLE_ID);
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace CFEntity.Models
 {
-    public partial class TITLE
+    public partial class Title
     {
-        public TITLE()
+        public Title()
         {
             this.EMPLOYEEs = new List<EMPLOYEE>();
         }

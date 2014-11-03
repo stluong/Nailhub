@@ -3,7 +3,6 @@ using System.Data.Entity.Infrastructure;
 using CFEntity.Models.Mapping;
 using TNT.Infrastructure.Repositories;
 
-
 namespace CFEntity.Models
 {
     public partial class NailhubsContext : MyContext
@@ -12,9 +11,10 @@ namespace CFEntity.Models
         {
             Database.SetInitializer<NailhubsContext>(null);
         }
+
         public NailhubsContext(string nameOrConnectionString)
-            : base(nameOrConnectionString)
-        {
+        :base(nameOrConnectionString)
+        { 
         }
         public NailhubsContext()
             : base("Name=NailhubsContext")
@@ -41,7 +41,7 @@ namespace CFEntity.Models
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<THEME> THEMEs { get; set; }
         public DbSet<THEME_DETAIL> THEME_DETAIL { get; set; }
-        public DbSet<TITLE> TITLEs { get; set; }
+        public DbSet<Title> Titles { get; set; }
         public DbSet<TYPE> TYPEs { get; set; }
         public DbSet<USER_DETAIL> USER_DETAIL { get; set; }
         public DbSet<USER_TYPE> USER_TYPE { get; set; }
@@ -68,7 +68,7 @@ namespace CFEntity.Models
             modelBuilder.Configurations.Add(new sysdiagramMap());
             modelBuilder.Configurations.Add(new THEMEMap());
             modelBuilder.Configurations.Add(new THEME_DETAILMap());
-            modelBuilder.Configurations.Add(new TITLEMap());
+            modelBuilder.Configurations.Add(new TitleMap());
             modelBuilder.Configurations.Add(new TYPEMap());
             modelBuilder.Configurations.Add(new USER_DETAILMap());
             modelBuilder.Configurations.Add(new USER_TYPEMap());

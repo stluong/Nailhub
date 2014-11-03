@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using TNT.Core.Model;
 
 namespace CFEntity.Models
 {
-    public partial class COUNTRY
+    public partial class COUNTRY: BaseEntity
     {
         public COUNTRY()
         {
