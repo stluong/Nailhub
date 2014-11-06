@@ -51,6 +51,7 @@ namespace Nailhub.Controllers
 
             //Find by primary key
             var country = rpoCountry.Find(1);
+            ViewBag.Country = country.NAME;
 
             return View();
         }

@@ -23,18 +23,20 @@ namespace Nailhub
 
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
             
-            var builder = TNT.App.Builder;
-            builder.Register<IMyContext>(c =>
-            {
-                return new CFEntity.Models.NailhubsContext("name=AppContext");
-            }).InstancePerRequest();
+            //var builder = TNT.App.Builder;
+            //builder.Register<IMyContext>(c =>
+            //{
+            //    return new CFEntity.Models.NailhubsContext("name=AppContext");
+            //}).InstancePerRequest();
 
-            builder.Register<IMyContextAsync>(c =>
-            {
-                return new CFEntity.Models.NailhubsContext("name=AppContext");
-            }).InstancePerRequest();
+            //builder.Register<IMyContextAsync>(c =>
+            //{
+            //    return new CFEntity.Models.NailhubsContext("name=AppContext");
+            //}).InstancePerRequest();
 
-            TNT.App.SetResolver(builder);
+            //TNT.App.SetResolver(builder);
+
+            TNT.App.RegisterContext(() => new CFEntity.Models.NailhubsContext());
            
         }
     }
