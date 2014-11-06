@@ -36,7 +36,7 @@ namespace Nailhub
 
             //TNT.App.SetResolver(builder);
 
-            TNT.App.RegisterContext(() => new CFEntity.Models.NailhubsContext());
+            TNT.App.RegisterContext(() => new CFEntity.Models.NailhubsContext("name=AppContext"));
            
         }
     }
