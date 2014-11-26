@@ -3,8 +3,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TNT.Core.Context;
 using TNT.Core.Logging;
-using CFEntity.Models;
+//using CFEntity.Models;
+
 using Autofac;
+using DFEntity;
 
 
 namespace Test.Web

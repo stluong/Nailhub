@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CFEntity.Models;
+//using CFEntity.Models;
+using DFEntity;
 using TNT.Core.Service;
 
 namespace AppCore.Service
