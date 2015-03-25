@@ -62,6 +62,7 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofa
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofac.Integration.Mvc.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Core.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Less.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.SqlServer.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Core.dll
@@ -81,6 +82,7 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Micros
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MsieJavaScriptEngine.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\NLog.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Owin.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Net.Http.Formatting.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Spatial.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Helpers.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.dll
@@ -97,6 +99,7 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.Co
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.Infracstructure.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\WebGrease.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.pdb
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Antlr3.Runtime.pdb
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.WebHost.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Optimization.xml
@@ -104,9 +107,7 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Less.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\MsieJavaScriptEngine.resources.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Net.Http.Formatting.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Newtonsoft.Json.dll

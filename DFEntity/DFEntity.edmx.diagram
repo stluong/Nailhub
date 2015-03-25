@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="928e82b419d44661a14f01f3e9cd6fed" Name="Diagram1" >
+        <EntityTypeShape EntityType="DFEntity.AspNetRole" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="DFEntity.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="DFEntity.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="16.375" />
+        <EntityTypeShape EntityType="DFEntity.AspNetUser" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="DFEntity.CITY" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="DFEntity.COUNTRY" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="DFEntity.CURRENT_PRODUCT" Width="1.5" PointX="13.5" PointY="10.125" />
+        <EntityTypeShape EntityType="DFEntity.CURRENT_SERVICE" Width="1.5" PointX="10.5" PointY="9.875" />
+        <EntityTypeShape EntityType="DFEntity.EMPLOYEE" Width="1.5" PointX="8" PointY="0.875" />
+        <EntityTypeShape EntityType="DFEntity.LOCATION" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DFEntity.PRODUCT" Width="1.5" PointX="11.25" PointY="6.625" />
+        <EntityTypeShape EntityType="DFEntity.PRODUCT_DETAIL" Width="1.5" PointX="13.5" PointY="6.75" />
+        <EntityTypeShape EntityType="DFEntity.SERVICE" Width="1.5" PointX="8.25" PointY="14.625" />
+        <EntityTypeShape EntityType="DFEntity.SERVICE_DETAIL" Width="1.5" PointX="10.5" PointY="14.75" />
+        <EntityTypeShape EntityType="DFEntity.SITE" Width="1.5" PointX="8.25" PointY="10.25" />
+        <EntityTypeShape EntityType="DFEntity.SITE_TYPE" Width="1.5" PointX="6" PointY="7.875" />
+        <EntityTypeShape EntityType="DFEntity.STATE" Width="1.5" PointX="0.75" PointY="14.375" />
+        <EntityTypeShape EntityType="DFEntity.THEME" Width="1.5" PointX="10.5" PointY="19.25" />
+        <EntityTypeShape EntityType="DFEntity.THEME_DETAIL" Width="1.5" PointX="12.75" PointY="19.625" />
+        <EntityTypeShape EntityType="DFEntity.Title" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="DFEntity.TYPE" Width="1.5" PointX="9" PointY="6.75" />
+        <EntityTypeShape EntityType="DFEntity.USER_DETAIL" Width="1.5" PointX="5.25" PointY="10.75" />
+        <EntityTypeShape EntityType="DFEntity.USER_TYPE" Width="1.5" PointX="3" PointY="7" />
+        <AssociationConnector Association="DFEntity.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DFEntity.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DFEntity.FK_SITE_AspNetUsers" />
+        <AssociationConnector Association="DFEntity.FK_USER_DETAIL_AspNetUsers" />
+        <AssociationConnector Association="DFEntity.FK_LOCATION_CITY" />
+        <AssociationConnector Association="DFEntity.FK_LOCATION_COUNTRY" />
+        <AssociationConnector Association="DFEntity.FK_CURRENT_PRODUCT_PRODUCT" />
+        <AssociationConnector Association="DFEntity.FK_CURRENT_PRODUCT_SITE" />
+        <AssociationConnector Association="DFEntity.FK_CURRENT_SERVICE_SERVICE" />
+        <AssociationConnector Association="DFEntity.FK_CURRENT_SERVICE_SITE" />
+        <AssociationConnector Association="DFEntity.FK_EMPLOYEE_Title" />
+        <AssociationConnector Association="DFEntity.FK_LOCATION_STATE" />
+        <AssociationConnector Association="DFEntity.FK_PRODUCT_TYPE" />
+        <AssociationConnector Association="DFEntity.FK_PRODUCTDETAIL_PRODUCT" />
+        <AssociationConnector Association="DFEntity.FK_SERVICE_TYPE" />
+        <AssociationConnector Association="DFEntity.FK_SERVICEDETAIL_SERVICE" />
+        <AssociationConnector Association="DFEntity.FK_SITE_SITETYPE" />
+        <AssociationConnector Association="DFEntity.FK_THEME_SITE" />
+        <AssociationConnector Association="DFEntity.FK_THEMEDETAIL_THEME" />
+        <AssociationConnector Association="DFEntity.FK_USER_DETAIL_USER_TYPE" />
+        <AssociationConnector Association="DFEntity.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

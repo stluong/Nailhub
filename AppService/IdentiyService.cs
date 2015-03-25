@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AppCore.Service;
-using CFEntity.Models;
+//using CFEntity.Models;
+using DFEntity;
 using TNT.Core.Repository;
 using TNT.Infracstructure.Services;
 

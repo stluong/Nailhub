@@ -7,6 +7,8 @@ using TNT.Core.Repository;
 using CFEntity.Models;
 using TNT.Core.UnitOfWork;
 
+using Autofac;
+
 namespace Nailhub.Controllers
 {
     public class HomeController : Controller
@@ -50,8 +52,15 @@ namespace Nailhub.Controllers
             //uow.SaveChanges();
 
             //Find by primary key
-            var country = rpoCountry.Find(1);
-            ViewBag.Country = country.NAME;
+            var country1 = rpoCountry.Find(1);
+
+            //Get current IRepository from container
+
+            var crpoCountry = TNT.App.Scope.Resolve<IRepository<COUNTRY>>();
+
+            var country2 = crpoCountry.Find(2);
+
+            ViewBag.Country = string.Format(@"<br\> {0}-{1}", country1.NAME, country2.NAME);
 
             return View();
         }
