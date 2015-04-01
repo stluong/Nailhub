@@ -16,6 +16,9 @@ namespace Mybrus
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false, initializeAdminIdentity: true);
+            TNT.App.RegisterContext(() => new CoLucContext.CoLucEntities("name=DefaultConnection"));
         }
     }
 }

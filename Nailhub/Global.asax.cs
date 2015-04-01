@@ -21,7 +21,7 @@ namespace Nailhub
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, initializeAdminIdentity: true);
+            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false, initializeAdminIdentity: true);
             
             //var builder = TNT.App.Builder;
             //builder.Register<IMyContext>(c =>
@@ -36,7 +36,8 @@ namespace Nailhub
 
             //TNT.App.SetResolver(builder);
 
-            TNT.App.RegisterContext(() => new CFEntity.Models.NailhubsContext("name=AppContext"));
+            //TNT.App.RegisterContext(() => new CFEntity.Models.NailhubsContext("name=AppContext"));
+            TNT.App.RegisterContext(() => new CoLucContext.CoLucEntities("name=AppContext"));
            
         }
     }

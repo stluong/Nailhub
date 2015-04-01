@@ -368,6 +368,10 @@
       <Project>{1ba0f972-f30e-4e42-8342-f34796036337}</Project>
       <Name>CFEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CoLucContext\CoLucContext.csproj">
+      <Project>{0a91245e-905f-4f82-b0c8-8d9b73d32f51}</Project>
+      <Name>CoLucContext</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
