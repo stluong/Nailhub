@@ -21,7 +21,7 @@ namespace Nailhub
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
+            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, initializeAdminIdentity: true);
             
             //var builder = TNT.App.Builder;
             //builder.Register<IMyContext>(c =>
