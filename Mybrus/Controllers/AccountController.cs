@@ -1,23 +1,24 @@
-﻿using System.Threading.Tasks;
-using System.Web;
+﻿using Mybrus.Models;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using Microsoft.Owin.Security;
-using Mybrus.Models;
 using TNT.Core.Identity;
 using TNT.Core.Model.Identity;
-using System.Linq;
+using Autofac;
 
 namespace Mybrus.Controllers
 {
-    public class AccountController : _Controller
+    [Authorize]
+    public class AccountController : Controller
     {
         private IApplicationUserManager _userManager;
-
         public AccountController(IApplicationUserManager userManager)
         {
             _userManager = userManager;
         }
 
+        //
+        // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -33,40 +34,47 @@ namespace Mybrus.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            ViewBag.LoginProviders = _userManager.GetExternalAuthenticationTypes();
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            // This doen't count login failures towards lockout only two factor authentication
+            // To enable password failures to trigger lockout, change to shouldLockout: true
             var result = await _userManager.PasswordSignIn(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
-                case TNT.Core.Identity.SignInStatus.Success:
+                case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case TNT.Core.Identity.SignInStatus.LockedOut:
+                case SignInStatus.LockedOut:
                     return View("Lockout");
-                case TNT.Core.Identity.SignInStatus.RequiresTwoFactorAuthentication:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case TNT.Core.Identity.SignInStatus.Failure:
+                case SignInStatus.RequiresTwoFactorAuthentication:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
         }
 
-        //
+     
         // GET: /Account/VerifyCode
         [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
+        public async Task<ActionResult> VerifyCode(string provider, string returnUrl)
         {
             // Require that the user has already logged in via username/password or external login
             if (!await _userManager.HasBeenVerified())
             {
                 return View("Error");
             }
-            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            var id = await _userManager.GetVerifiedUserIdAsync();
+            var user = await _userManager.FindByIdAsync(id.Value);
+            if (user != null)
+            {
+                // To exercise the flow without actually sending codes, uncomment the following line
+                ViewBag.Status = "For DEMO purposes the current " + provider + " code is: " + await _userManager.GenerateTwoFactorTokenAsync(user.Id, provider);
+            }
+            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl });
         }
 
         //
@@ -81,18 +89,13 @@ namespace Mybrus.Controllers
                 return View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
-            var result = await _userManager.TwoFactorSignIn(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await _userManager.TwoFactorSignIn(model.Provider, model.Code, false, model.RememberBrowser);
             switch (result)
             {
-                case TNT.Core.Identity.SignInStatus.Success:
+                case SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
-                case TNT.Core.Identity.SignInStatus.LockedOut:
+                case SignInStatus.LockedOut:
                     return View("Lockout");
-                case TNT.Core.Identity.SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid code.");
                     return View(model);
@@ -120,15 +123,11 @@ namespace Mybrus.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await _userManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, Request.Url == null ? "" : Request.Url.Scheme);
+                    await _userManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    ViewBag.Link = callbackUrl;
+                    return View("DisplayEmail");
                 }
                 AddErrors(result);
             }
@@ -140,14 +139,19 @@ namespace Mybrus.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(int? userId, string code)
         {
             if (userId == null || code == null)
             {
                 return View("Error");
             }
-            var result = await _userManager.ConfirmEmailAsync(int.Parse(userId), code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            var result = await _userManager.ConfirmEmailAsync(userId.Value, code);
+            if (result.Succeeded)
+            {
+                return View("ConfirmEmail");
+            }
+            AddErrors(result);
+            return View();
         }
 
         //
@@ -174,12 +178,11 @@ namespace Mybrus.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, Request.Url == null ? "" : Request.Url.Scheme);
+                await _userManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+                ViewBag.Link = callbackUrl;
+                return View("ForgotPasswordConfirmation");
             }
 
             // If we got this far, something failed, redisplay form
@@ -244,13 +247,13 @@ namespace Mybrus.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }), _userManager);
         }
 
         //
         // GET: /Account/SendCode
         [AllowAnonymous]
-        public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
+        public async Task<ActionResult> SendCode(string returnUrl)
         {
             var userId = await _userManager.GetVerifiedUserIdAsync();
             if (userId == null)
@@ -259,7 +262,7 @@ namespace Mybrus.Controllers
             }
             var userFactors = await _userManager.GetValidTwoFactorProvidersAsync(userId.Value);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl });
         }
 
         //
@@ -269,17 +272,17 @@ namespace Mybrus.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
+            // Generate the token and send it
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            // Generate the token and send it
             if (!await _userManager.SendTwoFactorCode(model.SelectedProvider))
             {
                 return View("Error");
             }
-            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, model.ReturnUrl });
         }
 
         //
@@ -297,13 +300,12 @@ namespace Mybrus.Controllers
             var result = await _userManager.ExternalSignIn(loginInfo, isPersistent: false);
             switch (result)
             {
-                case TNT.Core.Identity.SignInStatus.Success:
+                case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case TNT.Core.Identity.SignInStatus.LockedOut:
+                case SignInStatus.LockedOut:
                     return View("Lockout");
-                case TNT.Core.Identity.SignInStatus.RequiresTwoFactorAuthentication:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
-                case TNT.Core.Identity.SignInStatus.Failure:
+                case SignInStatus.RequiresTwoFactorAuthentication:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 default:
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
@@ -332,7 +334,7 @@ namespace Mybrus.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new AppUser { UserName = model.Email, Email = model.Email };
+                var user = new AppUser{ UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -356,7 +358,7 @@ namespace Mybrus.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
+            _userManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
@@ -370,29 +372,17 @@ namespace Mybrus.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && _userManager != null)
             {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
+                _userManager.Dispose();
+                _userManager = null;
             }
-
             base.Dispose(disposing);
         }
 
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
 
         private void AddErrors(ApplicationIdentityResult result)
         {
@@ -413,30 +403,27 @@ namespace Mybrus.Controllers
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri, IApplicationUserManager userManager)
+                : this(provider, redirectUri, null, userManager)
             {
             }
 
-            public ChallengeResult(string provider, string redirectUri, string userId)
+            public ChallengeResult(string provider, string redirectUri, int? userId, IApplicationUserManager userManager)
             {
                 LoginProvider = provider;
                 RedirectUri = redirectUri;
                 UserId = userId;
+                UserManager = userManager;
             }
 
             public string LoginProvider { get; set; }
             public string RedirectUri { get; set; }
-            public string UserId { get; set; }
+            public int? UserId { get; set; }
+            public IApplicationUserManager UserManager { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-                if (UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+                UserManager.Challenge(RedirectUri, XsrfKey, UserId, LoginProvider);
             }
         }
         #endregion

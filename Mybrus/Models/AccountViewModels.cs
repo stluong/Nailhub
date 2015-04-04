@@ -1,30 +1,27 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using TNT.Core.Model.Identity;
 
 namespace Mybrus.Models
 {
-    public class ExternalLoginConfirmationViewModel
-    {
+    public class ExternalLoginConfirmationViewModel {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
-    public class ExternalLoginListViewModel
-    {
+    public class ExternalLoginListViewModel {
         public string ReturnUrl { get; set; }
+        public IEnumerable<ApplicationAuthenticationDescription> LoginProviders { get; set; }
     }
 
-    public class SendCodeViewModel
-    {
+    public class SendCodeViewModel {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
         public string ReturnUrl { get; set; }
-        public bool RememberMe { get; set; }
     }
 
-    public class VerifyCodeViewModel
-    {
+    public class VerifyCodeViewModel {
         [Required]
         public string Provider { get; set; }
 
@@ -35,19 +32,15 @@ namespace Mybrus.Models
 
         [Display(Name = "Remember this browser?")]
         public bool RememberBrowser { get; set; }
-
-        public bool RememberMe { get; set; }
     }
 
-    public class ForgotViewModel
-    {
+    public class ForgotViewModel {
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
-    {
+    public class LoginViewModel {
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -62,8 +55,7 @@ namespace Mybrus.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
-    {
+    public class RegisterViewModel {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -81,8 +73,7 @@ namespace Mybrus.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class ResetPasswordViewModel
-    {
+    public class ResetPasswordViewModel {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -102,8 +93,7 @@ namespace Mybrus.Models
         public string Code { get; set; }
     }
 
-    public class ForgotPasswordViewModel
-    {
+    public class ForgotPasswordViewModel {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
