@@ -29,10 +29,13 @@ jQuery(document).ready(function() {
 
 function setActiveStyleSheet(title) {
 	var i, a, main;
-	for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
-		if(a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title")) {
+	for (i = 0; (a = document.getElementsByTagName("link")[i]) ; i++) {
+	    $a = $(a);
+	    if($a.attr("rel").indexOf("style") != -1 && $a.attr("href").indexOf("color_scheme/") > -1){
+	        var theme = $a.attr("href").split("color_scheme/")[1].split(".")[0];
+	        $a.attr("title", theme);
 			a.disabled = true;
-			if(a.getAttribute("title") == title) { a.disabled = false; }
+			if(theme == title) { a.disabled = false; }
 		}
 	}
 
@@ -40,9 +43,9 @@ function setActiveStyleSheet(title) {
 	var color_skin = readCookie('color_skin');
 	if(color_skin == 'dark') {
 		jQuery("#css_dark_skin").remove();
-		jQuery("head").append('<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
+		jQuery("head").append('<link id="css_dark_skin" href="Content/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
 		jQuery("#is_dark").trigger('click');
-		jQuery("a.logo img").attr('src', 'assets/images/logo_dark.png');
+		jQuery("a.logo img").attr('src', 'Content/images/logo_dark.png');
 	}
 }
 
@@ -119,9 +122,9 @@ window.onload = function(e) {
 	var color_skin = readCookie('color_skin');
 	if(color_skin == 'dark') {
 		jQuery("#css_dark_skin").remove();
-		jQuery("head").append('<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
+		jQuery("head").append('<link id="css_dark_skin" href="Content/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
 		jQuery("#is_dark").trigger('click');
-		jQuery("a.logo img").attr('src', 'assets/images/logo_dark.png');
+		jQuery("a.logo img").attr('src', 'Content/images/logo_dark.png');
 	}
 
 	// BOXED or WIDE
@@ -193,13 +196,13 @@ jQuery("input.dark_switch").bind("click", function() {
 
 	if(color_skin == 'dark') {
 		jQuery("#css_dark_skin").remove();
-		jQuery("head").append('<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
+		jQuery("head").append('<link id="css_dark_skin" href="Content/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
 		createCookie("color_skin", 'dark', 365);
-		jQuery("a.logo img").attr('src', 'assets/images/logo_dark.png');
+		jQuery("a.logo img").attr('src', 'Content/images/logo_dark.png');
 	} else {
 		jQuery("#css_dark_skin").remove();
 		createCookie("color_skin", '', -1);
-		jQuery("a.logo img").attr('src', 'assets/images/logo.png');
+		jQuery("a.logo img").attr('src', 'Content/images/logo.png');
 	}
 });
 
@@ -295,7 +298,7 @@ function background_switch(imgbkg) {
 
 		var data_background = jQuery('body').attr('data-background');
 		if(data_background) {
-			jQuery.backstretch(data_background);
+		    jQuery.backstretch(data_background);
 			jQuery('body').addClass('transparent'); // remove backround color of boxed class
 		}
 	}
@@ -312,7 +315,7 @@ function resetSwitcher() {
 	jQuery("#css_dark_skin").remove();
 	jQuery('body').attr('data-background', '');
 	jQuery('.backstretch').remove();
-	jQuery("a.logo img").attr('src', 'assets/images/logo.png');
+	jQuery("a.logo img").attr('src', '/Content/images/logo.png');
 
 	jQuery("#is_light").trigger('click');
 	jQuery("#is_wide").trigger('click');
