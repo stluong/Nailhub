@@ -1116,6 +1116,7 @@
     <Content Include="Content\plugins\superslides\src\.jshintrc" />
     <Content Include="Content\plugins\superslides\superslides.jquery.json" />
     <Content Include="Content\plugins\superslides\test\.jshintrc" />
+    <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
