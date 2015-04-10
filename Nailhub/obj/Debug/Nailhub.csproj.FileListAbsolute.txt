@@ -1,231 +1,51 @@
-D:\GitHub\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll.config
-D:\GitHub\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll
-D:\GitHub\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.pdb
-D:\GitHub\Nailhub\Nailhub\bin\Antlr3.Runtime.dll
-D:\GitHub\Nailhub\Nailhub\bin\Autofac.Configuration.dll
-D:\GitHub\Nailhub\Nailhub\bin\Autofac.dll
-D:\GitHub\Nailhub\Nailhub\bin\Autofac.Integration.Mvc.dll
-D:\GitHub\Nailhub\Nailhub\bin\BundleTransformer.Core.dll
-D:\GitHub\Nailhub\Nailhub\bin\BundleTransformer.Less.dll
-D:\GitHub\Nailhub\Nailhub\bin\EntityFramework.dll
-D:\GitHub\Nailhub\Nailhub\bin\EntityFramework.SqlServer.dll
-D:\GitHub\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Core.dll
-D:\GitHub\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Msie.dll
-D:\GitHub\Nailhub\Nailhub\bin\LinqKit.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Core.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Owin.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Data.Edm.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Data.OData.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Owin.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Owin.Host.SystemWeb.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Owin.Security.Cookies.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Owin.Security.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Owin.Security.OAuth.dll
-D:\GitHub\Nailhub\Nailhub\bin\Microsoft.Web.Infrastructure.dll
-D:\GitHub\Nailhub\Nailhub\bin\MsieJavaScriptEngine.dll
-D:\GitHub\Nailhub\Nailhub\bin\Newtonsoft.Json.dll
-D:\GitHub\Nailhub\Nailhub\bin\NLog.dll
-D:\GitHub\Nailhub\Nailhub\bin\Owin.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Spatial.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Helpers.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Http.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Http.OData.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Http.Owin.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Http.WebHost.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Mvc.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Optimization.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Razor.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.Deployment.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.dll
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.WebPages.Razor.dll
-D:\GitHub\Nailhub\Nailhub\bin\TNT.Core.dll
-D:\GitHub\Nailhub\Nailhub\bin\TNT.dll
-D:\GitHub\Nailhub\Nailhub\bin\TNT.Infracstructure.dll
-D:\GitHub\Nailhub\Nailhub\bin\WebGrease.dll
-D:\GitHub\Nailhub\Nailhub\bin\Antlr3.Runtime.pdb
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Http.WebHost.xml
-D:\GitHub\Nailhub\Nailhub\bin\System.Web.Optimization.xml
-D:\GitHub\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Core.resources.dll
-D:\GitHub\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Less.resources.dll
-D:\GitHub\Nailhub\Nailhub\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
-D:\GitHub\Nailhub\Nailhub\bin\ru-ru\MsieJavaScriptEngine.resources.dll
-D:\GitHub\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
-D:\GitHub\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
-D:\GitHub\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll.config
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Antlr3.Runtime.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofac.Configuration.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofac.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofac.Integration.Mvc.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Core.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Less.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.SqlServer.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Core.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Msie.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\LinqKit.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.Edm.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.OData.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MsieJavaScriptEngine.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\NLog.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Owin.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Net.Http.Formatting.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Spatial.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Helpers.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.OData.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.Owin.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.WebHost.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Mvc.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Optimization.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Razor.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.Deployment.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.Razor.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.Core.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.Infracstructure.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\WebGrease.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.pdb
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Antlr3.Runtime.pdb
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.WebHost.xml
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Optimization.xml
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Core.resources.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Less.resources.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\MsieJavaScriptEngine.resources.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Newtonsoft.Json.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll.config
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Antlr3.Runtime.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofac.Configuration.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofac.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Autofac.Integration.Mvc.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\BundleTransformer.Less.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\EntityFramework.SqlServer.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\JavaScriptEngineSwitcher.Msie.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\LinqKit.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.Edm.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Data.OData.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\MsieJavaScriptEngine.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Newtonsoft.Json.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\NLog.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Net.Http.Formatting.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Spatial.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Helpers.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.OData.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.WebHost.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Mvc.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Optimization.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Razor.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.Deployment.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.WebPages.Razor.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\TNT.Infracstructure.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\WebGrease.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\CFEntity.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\Antlr3.Runtime.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Http.WebHost.xml
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\System.Web.Optimization.xml
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Core.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\BundleTransformer.Less.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\bin\ru-ru\MsieJavaScriptEngine.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\Nailhub\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll.config
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Antlr3.Runtime.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Autofac.Configuration.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Autofac.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Autofac.Integration.Mvc.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\BundleTransformer.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\BundleTransformer.Less.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\CFEntity.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\EntityFramework.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\EntityFramework.SqlServer.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\JavaScriptEngineSwitcher.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\JavaScriptEngineSwitcher.Msie.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\LinqKit.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Data.Edm.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Data.OData.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Owin.Security.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\MsieJavaScriptEngine.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Newtonsoft.Json.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\NLog.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Net.Http.Formatting.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Spatial.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Helpers.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Http.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Http.OData.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Http.Owin.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Http.WebHost.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Mvc.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Optimization.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Razor.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.WebPages.Deployment.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.WebPages.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.WebPages.Razor.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\TNT.Core.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\TNT.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\TNT.Infracstructure.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\WebGrease.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\CFEntity.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\Antlr3.Runtime.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Http.WebHost.xml
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\System.Web.Optimization.xml
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\ru-ru\BundleTransformer.Core.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\ru-ru\BundleTransformer.Less.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\ru-ru\MsieJavaScriptEngine.resources.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\obj\Debug\MVC5Bootstrap-3-1-1-Less.pdb
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\CoLucContext.dll
-C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\Nailhub\bin\CoLucContext.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Test.Web.dll.config
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Test.Web.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Test.Web.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Antlr3.Runtime.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\AppCore.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\AppService.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Autofac.Configuration.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Autofac.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Autofac.Integration.Mvc.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\DFEntity.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\EntityFramework.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\LinqKit.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Data.Edm.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Data.OData.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Owin.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Owin.Security.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Newtonsoft.Json.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\NLog.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Owin.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Net.Http.Formatting.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Spatial.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Helpers.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Http.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Http.OData.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Http.Owin.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Mvc.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Optimization.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Razor.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.WebPages.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.WebPages.Razor.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\TNT.Core.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\TNT.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\TNT.Infracstructure.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\WebGrease.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\AppCore.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\AppService.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\DFEntity.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Antlr3.Runtime.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Optimization.xml
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Test.Web.dll
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Test.Web.pdb

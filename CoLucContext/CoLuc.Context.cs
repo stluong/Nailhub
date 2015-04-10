@@ -12,16 +12,11 @@ namespace CoLucContext
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using TNT.Infrastructure.Repositories;
     
-    public partial class CoLucEntities : MyContext
+    public partial class CoLucEntities : DbContext
     {
         public CoLucEntities()
             : base("name=CoLucEntities")
-        {
-        }
-        public CoLucEntities(string nameOrConnectionString)
-            : base(nameOrConnectionString)
         {
         }
     
@@ -30,6 +25,13 @@ namespace CoLucContext
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<SpecialEvent> SpecialEvents { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }

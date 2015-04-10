@@ -185,9 +185,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DFEntity\DFEntity.csproj">
+    <ProjectReference Include="..\DFEntity\EFNailhub.csproj">
       <Project>{9aaeac4c-9a50-4998-878f-cada4fc3c86b}</Project>
-      <Name>DFEntity</Name>
+      <Name>EFNailhub</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

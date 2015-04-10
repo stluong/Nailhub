@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Test.Web.Models;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using TNT.Core.Identity;
 using TNT.Core.Model.Identity;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
-using Nailhub.Models;
+using Autofac;
 
-namespace Nailhub.Controllers
+namespace Test.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -63,7 +57,7 @@ namespace Nailhub.Controllers
             }
         }
 
-
+     
         // GET: /Account/VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl)
@@ -340,7 +334,7 @@ namespace Nailhub.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new AppUser { UserName = model.Email, Email = model.Email };
+                var user = new AppUser{ UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

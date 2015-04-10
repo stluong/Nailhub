@@ -1183,9 +1183,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoLucContext\CoLucContext.csproj">
+    <ProjectReference Include="..\CoLucContext\EFColuc.csproj">
       <Project>{0a91245e-905f-4f82-b0c8-8d9b73d32f51}</Project>
-      <Name>CoLucContext</Name>
+      <Name>EFColuc</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
