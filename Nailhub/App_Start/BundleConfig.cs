@@ -18,13 +18,44 @@ namespace Test
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+            bundles.Add(new ScriptBundle("~/bundles/plugins").Include(
+               "~/Content/js/vendor/jquery-migrate-1.2.1.min.js"
+               , "~/Content/js/vendor/bootstrap.min.js"
+               , "~/Content/js/vendor/placeholdem.min.js"
+               , "~/Content/js/vendor/hoverIntent.js"
+               , "~/Content/js/vendor/superfish.js"
+               , "~/Content/js/vendor/jquery.actual.min.js"
+               , "~/Content/js/vendor/jquery.appear.js"
+               , "~/Content/js/vendor/jquerypp.custom.js"
+               , "~/Content/js/vendor/jquery.elastislide.js"
+               , "~/Content/js/vendor/jquery.flexslider-min.js"
+               , "~/Content/js/vendor/jquery.prettyPhoto.js"
+               , "~/Content/js/vendor/jquery.easing.1.3.js"
+               , "~/Content/js/vendor/jquery.ui.totop.js"
+               , "~/Content/js/vendor/jquery.isotope.min.js"
+               , "~/Content/js/vendor/jquery.easypiechart.min.js"
+               , "~/Content/js/vendor/jflickrfeed.min.js"
+               , "~/Content/js/vendor/jquery.sticky.js"
+               , "~/Content/js/vendor/owl.carousel.min.js"
+               , "~/Content/js/vendor/jquery.nicescroll.min.js"
+               , "~/Content/js/vendor/jquery.fractionslider.min.js"
+               , "~/Content/js/vendor/jquery.scrollTo-min.js"
+               , "~/Content/js/vendor/jquery.localscroll-min.js"
+               , "~/Content/js/vendor/jquery.parallax-1.1.3.js"
+               , "~/Content/js/vendor/jquery.bxslider.min.js"
+               , "~/Content/js/vendor/jquery.funnyText.min.js"
+               , "~/Content/js/vendor/jquery.countTo.js"
+               , "~/Content/js/vendor/grid.js"
+               , "~/Content/twitter/jquery.tweet.min.js"
+               , "~/Content/js/plugins.js"
+               , "~/Content/js/main.js"
+            ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Content/css/bootstrap.min.css"
+                , "~/Content/css/animations.css"
+                , "~/Content/css/main.css"
+            ));
         }
     }
 }
