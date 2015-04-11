@@ -58,7 +58,6 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\AppSer
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Autofac.Configuration.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Autofac.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Autofac.Integration.Mvc.dll
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\DFEntity.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\EntityFramework.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\EntityFramework.SqlServer.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\LinqKit.dll
@@ -94,9 +93,10 @@ C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\TNT.In
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\WebGrease.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\AppCore.pdb
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\AppService.pdb
-C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\DFEntity.pdb
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\Antlr3.Runtime.pdb
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.Optimization.xml
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Test.Web.dll
 C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Test.Web.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\EFNailhub.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\EFNailhub.pdb
