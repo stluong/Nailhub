@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Data.Entity;

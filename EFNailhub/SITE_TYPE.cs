@@ -7,24 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class STATE
+    public partial class SITE_TYPE
     {
-        public STATE()
+        public SITE_TYPE()
         {
-            this.LOCATIONs = new HashSet<LOCATION>();
+            this.SITEs = new HashSet<SITE>();
         }
     
-        public short STATE_ID { get; set; }
+        public short SITE_TYPE_ID { get; set; }
         public string NAME { get; set; }
-        public string SHORTNAME { get; set; }
         public string DESCRIPTION { get; set; }
         public string NOTE { get; set; }
     
-        public virtual ICollection<LOCATION> LOCATIONs { get; set; }
+        public virtual ICollection<SITE> SITEs { get; set; }
     }
 }

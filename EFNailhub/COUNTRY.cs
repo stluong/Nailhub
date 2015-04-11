@@ -7,20 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class THEME_DETAIL
+    public partial class COUNTRY
     {
-        public int THEME_DETAIL_ID { get; set; }
-        public Nullable<int> THEME_ID { get; set; }
-        public string NAME { get; set; }
-        public string DESCRIPT { get; set; }
-        public string IMAGE { get; set; }
-        public string STYLE { get; set; }
+        public COUNTRY()
+        {
+            this.LOCATIONs = new HashSet<LOCATION>();
+        }
     
-        public virtual THEME THEME { get; set; }
+        public short COUNTRY_ID { get; set; }
+        public string NAME { get; set; }
+        public string NATIVELANGUAGE { get; set; }
+        public string DESCRIPTION { get; set; }
+        public string NOTE { get; set; }
+    
+        public virtual ICollection<LOCATION> LOCATIONs { get; set; }
     }
 }

@@ -7,17 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogin
+    public partial class AspNetUserRole
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
         public int UserId { get; set; }
+        public int RoleId { get; set; }
+        public Nullable<int> ENTERBY { get; set; }
+        public Nullable<System.DateTime> ENTERDATE { get; set; }
+        public Nullable<int> MODIFYBY { get; set; }
+        public Nullable<System.DateTime> MODIFYDATE { get; set; }
+        public Nullable<System.DateTime> ENDDATE { get; set; }
     
+        public virtual AspNetRole AspNetRole { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
     }
 }

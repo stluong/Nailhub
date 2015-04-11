@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AppCore.Service;
 //using CFEntity.Models;
-using DFEntity;
+//using DFEntity;
+using EFNailhub;
 using TNT.Core.Repository;
 using TNT.Infracstructure.Services;
 

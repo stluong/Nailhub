@@ -7,34 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EMPLOYEE
+    public partial class AspNetRole
     {
-        public EMPLOYEE()
+        public AspNetRole()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.AspNetUserRoles = new HashSet<AspNetUserRole>();
         }
     
-        public int EMPLOYEE_ID { get; set; }
-        public Nullable<short> TITLE_ID { get; set; }
-        public int SITE_ID { get; set; }
-        public Nullable<int> LOCATION_ID { get; set; }
-        public string NAME { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public string DESCRIPTION { get; set; }
-        public int ENTERBY { get; set; }
-        public System.DateTime ENTERDATE { get; set; }
+        public Nullable<int> ENTERBY { get; set; }
+        public Nullable<System.DateTime> ENTERDATE { get; set; }
         public Nullable<int> MODIFYBY { get; set; }
         public Nullable<System.DateTime> MODIFYDATE { get; set; }
         public Nullable<System.DateTime> ENDDATE { get; set; }
         public string COMMENT { get; set; }
     
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
-        public virtual LOCATION LOCATION { get; set; }
-        public virtual SITE SITE { get; set; }
-        public virtual Title Title { get; set; }
+        public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
     }
 }

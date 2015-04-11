@@ -445,9 +445,9 @@
       <Project>{1c401b38-f70b-4892-bd5e-8f01ef0e25b2}</Project>
       <Name>AppService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DFEntity\DFEntity.csproj">
-      <Project>{9aaeac4c-9a50-4998-878f-cada4fc3c86b}</Project>
-      <Name>DFEntity</Name>
+    <ProjectReference Include="..\EFNailhub\EFNailhub.csproj">
+      <Project>{3c0d54f7-ac06-4d43-a4e0-0843929b163e}</Project>
+      <Name>EFNailhub</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

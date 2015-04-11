@@ -186,6 +186,10 @@
       <Project>{9aaeac4c-9a50-4998-878f-cada4fc3c86b}</Project>
       <Name>DFEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EFNailhub\EFNailhub.csproj">
+      <Project>{3c0d54f7-ac06-4d43-a4e0-0843929b163e}</Project>
+      <Name>EFNailhub</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

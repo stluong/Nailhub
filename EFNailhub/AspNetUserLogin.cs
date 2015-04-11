@@ -7,24 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class COUNTRY
+    public partial class AspNetUserLogin
     {
-        public COUNTRY()
-        {
-            this.LOCATIONs = new HashSet<LOCATION>();
-        }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public int UserId { get; set; }
     
-        public short COUNTRY_ID { get; set; }
-        public string NAME { get; set; }
-        public string NATIVELANGUAGE { get; set; }
-        public string DESCRIPTION { get; set; }
-        public string NOTE { get; set; }
-    
-        public virtual ICollection<LOCATION> LOCATIONs { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

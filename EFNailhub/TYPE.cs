@@ -7,28 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PRODUCT
+    public partial class TYPE
     {
-        public PRODUCT()
+        public TYPE()
         {
-            this.CURRENT_PRODUCT = new HashSet<CURRENT_PRODUCT>();
+            this.PRODUCTs = new HashSet<PRODUCT>();
+            this.SERVICEs = new HashSet<SERVICE>();
         }
     
-        public int PRODUCT_ID { get; set; }
-        public Nullable<int> TYPE_ID { get; set; }
-        public string CODE { get; set; }
+        public int TYPE_ID { get; set; }
         public string NAME { get; set; }
-        public string IMAGE { get; set; }
-        public decimal COST { get; set; }
+        public string MADE_BY { get; set; }
+        public string MADE_IN { get; set; }
+        public string MADE_OF { get; set; }
         public string DESCRIPTION { get; set; }
-        public short ONHAND { get; set; }
-        public short ONORDER { get; set; }
-        public short QUANTITY { get; set; }
         public string NOTE { get; set; }
         public int ENTERBY { get; set; }
         public System.DateTime ENTERDATE { get; set; }
@@ -36,7 +33,7 @@ namespace EFNailhubs
         public Nullable<System.DateTime> MODIFYDATE { get; set; }
         public Nullable<System.DateTime> ENDDATE { get; set; }
     
-        public virtual ICollection<CURRENT_PRODUCT> CURRENT_PRODUCT { get; set; }
-        public virtual TYPE TYPE { get; set; }
+        public virtual ICollection<PRODUCT> PRODUCTs { get; set; }
+        public virtual ICollection<SERVICE> SERVICEs { get; set; }
     }
 }

@@ -7,30 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class SERVICE
+    public partial class EMPLOYEE
     {
-        public SERVICE()
+        public EMPLOYEE()
         {
-            this.CURRENT_SERVICE = new HashSet<CURRENT_SERVICE>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public int SERVICE_ID { get; set; }
-        public Nullable<int> TYPE_ID { get; set; }
+        public int EMPLOYEE_ID { get; set; }
+        public Nullable<short> TITLE_ID { get; set; }
+        public int SITE_ID { get; set; }
+        public Nullable<int> LOCATION_ID { get; set; }
         public string NAME { get; set; }
         public string DESCRIPTION { get; set; }
-        public string NOTE { get; set; }
         public int ENTERBY { get; set; }
         public System.DateTime ENTERDATE { get; set; }
         public Nullable<int> MODIFYBY { get; set; }
         public Nullable<System.DateTime> MODIFYDATE { get; set; }
         public Nullable<System.DateTime> ENDDATE { get; set; }
+        public string COMMENT { get; set; }
     
-        public virtual ICollection<CURRENT_SERVICE> CURRENT_SERVICE { get; set; }
-        public virtual TYPE TYPE { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual LOCATION LOCATION { get; set; }
+        public virtual SITE SITE { get; set; }
+        public virtual Title Title { get; set; }
     }
 }

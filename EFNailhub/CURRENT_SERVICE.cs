@@ -7,28 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRole
+    public partial class CURRENT_SERVICE
     {
-        public AspNetRole()
-        {
-            this.AspNetUserRoles = new HashSet<AspNetUserRole>();
-        }
-    
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int CURRENT_SERVICE_ID { get; set; }
+        public Nullable<int> SERVICE_ID { get; set; }
+        public Nullable<int> SITE_ID { get; set; }
+        public string NAME { get; set; }
+        public Nullable<decimal> PRICE { get; set; }
+        public Nullable<decimal> TAX { get; set; }
+        public Nullable<decimal> DISCOUNT { get; set; }
         public string DESCRIPTION { get; set; }
+        public string NOTE { get; set; }
         public Nullable<int> ENTERBY { get; set; }
         public Nullable<System.DateTime> ENTERDATE { get; set; }
         public Nullable<int> MODIFYBY { get; set; }
         public Nullable<System.DateTime> MODIFYDATE { get; set; }
         public Nullable<System.DateTime> ENDDATE { get; set; }
-        public string COMMENT { get; set; }
     
-        public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual SERVICE SERVICE { get; set; }
+        public virtual SITE SITE { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\EFNailhubs\Nailhubs.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\EFNailhub\Nailhub.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

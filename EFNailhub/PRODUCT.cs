@@ -7,33 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EFNailhubs
+namespace EFNailhub
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class THEME
+    public partial class PRODUCT
     {
-        public THEME()
+        public PRODUCT()
         {
-            this.THEME_DETAIL = new HashSet<THEME_DETAIL>();
+            this.CURRENT_PRODUCT = new HashSet<CURRENT_PRODUCT>();
         }
     
-        public int THEME_ID { get; set; }
-        public Nullable<int> SITE_ID { get; set; }
-        public string CSS_FILE { get; set; }
-        public string LOGO { get; set; }
-        public string SITENAME { get; set; }
+        public int PRODUCT_ID { get; set; }
+        public Nullable<int> TYPE_ID { get; set; }
+        public string CODE { get; set; }
+        public string NAME { get; set; }
+        public string IMAGE { get; set; }
+        public decimal COST { get; set; }
         public string DESCRIPTION { get; set; }
+        public short ONHAND { get; set; }
+        public short ONORDER { get; set; }
+        public short QUANTITY { get; set; }
         public string NOTE { get; set; }
         public int ENTERBY { get; set; }
         public System.DateTime ENTERDATE { get; set; }
         public Nullable<int> MODIFYBY { get; set; }
         public Nullable<System.DateTime> MODIFYDATE { get; set; }
         public Nullable<System.DateTime> ENDDATE { get; set; }
-        public string COMMENT { get; set; }
     
-        public virtual SITE SITE { get; set; }
-        public virtual ICollection<THEME_DETAIL> THEME_DETAIL { get; set; }
+        public virtual ICollection<CURRENT_PRODUCT> CURRENT_PRODUCT { get; set; }
+        public virtual TYPE TYPE { get; set; }
     }
 }

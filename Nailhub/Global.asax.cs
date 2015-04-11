@@ -4,9 +4,10 @@ using System.Web.Routing;
 using TNT.Core.Context;
 using TNT.Core.Logging;
 //using CFEntity.Models;
-
+//using DFEntity;
+using EFNailhub;
 using Autofac;
-using DFEntity;
+
 
 
 namespace Test.Web
@@ -27,13 +28,15 @@ namespace Test.Web
             TNT.App.Builder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext("name=AppContext");
+                //var context = new NailhubsContext("name=AppContext");
+                var context = new NailhubsEntities("name=AppContext");
                 return context;
             }).InstancePerRequest();
             TNT.App.Builder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext("name=AppContext");
+                //var context = new NailhubsContext("name=AppContext");
+                var context = new NailhubsEntities("name=AppContext");
                 return context;
             }).InstancePerRequest();
 
