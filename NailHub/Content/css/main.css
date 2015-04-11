@@ -673,7 +673,7 @@ background-color: #29210C;
 height: 100px;
 }
 .frontpage #header {background-image: none;
-background-color: rgba(0,0,0,0.35);
+background-color: rgba(0,0,0,1);
 }
 #header.affix  {
 position: fixed;

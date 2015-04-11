@@ -1,19 +1,65 @@
 @using Mybrus.Extensions
-@if (Request.IsAuthenticated) {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
-        @Html.AntiForgeryToken()
+@model Mybrus.Models.LoginViewModel
 
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        </ul>
-    }
-}
-else {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+<div class="pull-right nav signin-dd">
+    <a id="quick_sign_in" href="page-signin.html" data-toggle="dropdown"><i class="fa fa-users"></i><span class="hidden-xs"> Sign In</span></a>
+    <div class="dropdown-menu" role="menu" aria-labelledby="quick_sign_in">
+        
+        @if (Request.IsAuthenticated)
+        {
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
+            }
+        }
+        else
+        {
+            <h4>Sign In</h4>
+            using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+            
+                <div class="form-group">
+                    <!-- email -->
+                    @*<input required type="email" class="form-control" placeholder="Username or email">*@
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Username or email" })
+                </div>
+
+                <div class="input-group">
+
+                    <!-- password -->
+                    <input required type="password" class="form-control" placeholder="Password">
+
+                    <!-- submit button -->
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary">Sign In</button>
+                    </span>
+
+                </div>
+
+                <div class="checkbox">
+                    <!-- remmember -->
+                    <label>
+                        <input type="checkbox"> Remember me &bull; <a href="page-signin.html">Forgot password?</a>
+                    </label>
+                </div>
+            }
+            
+            <hr />
+
+            <a href="#" class="btn btn-facebook fullwidth radius3"><i class="fa fa-facebook"></i> Connect With Facebook</a>
+            <a href="#" class="btn btn-twitter fullwidth radius3"><i class="fa fa-twitter"></i> Connect With Twitter</a>
+            <!--<a href="#" class="btn-google-plus fullwidth radius3"><i class="fa fa-google-plus"></i> Connect With Google</a>-->
+
+            <p class="bottom-create-account">
+                <a href="page-signup.html">Manual create account</a>
+            </p>
+        }
+
+    </div>
+</div>

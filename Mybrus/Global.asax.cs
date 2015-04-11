@@ -17,8 +17,9 @@ namespace Mybrus
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false, initializeAdminIdentity: true);
+            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
             TNT.App.RegisterContext(() => new CoLucContext.CoLucEntities("name=DefaultConnection"));
+            TNT.App.RegisterByConfig("autofac");
         }
     }
 }

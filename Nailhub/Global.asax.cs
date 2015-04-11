@@ -25,20 +25,22 @@ namespace Test.Web
 
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
 
-            TNT.App.Builder.Register<IMyContext>(b =>
-            {
-                var logger = b.Resolve<ILogger>();
-                //var context = new NailhubsContext("name=AppContext");
-                var context = new NailhubsEntities("name=AppContext");
-                return context;
-            }).InstancePerRequest();
-            TNT.App.Builder.Register<IMyContextAsync>(b =>
-            {
-                var logger = b.Resolve<ILogger>();
-                //var context = new NailhubsContext("name=AppContext");
-                var context = new NailhubsEntities("name=AppContext");
-                return context;
-            }).InstancePerRequest();
+            //TNT.App.Builder.Register<IMyContext>(b =>
+            //{
+            //    var logger = b.Resolve<ILogger>();
+            //    //var context = new NailhubsContext("name=AppContext");
+            //    var context = new NailhubsEntities("name=AppContext");
+            //    return context;
+            //}).InstancePerRequest();
+            //TNT.App.Builder.Register<IMyContextAsync>(b =>
+            //{
+            //    var logger = b.Resolve<ILogger>();
+            //    //var context = new NailhubsContext("name=AppContext");
+            //    var context = new NailhubsEntities("name=AppContext");
+            //    return context;
+            //}).InstancePerRequest();
+
+            TNT.App.RegisterContext(() => new NailhubsEntities("name=AppContext"));
 
             TNT.App.RegisterByConfig("autofac");
             
