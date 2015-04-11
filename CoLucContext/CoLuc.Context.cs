@@ -12,11 +12,16 @@ namespace CoLucContext
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using TNT.Infrastructure.Repositories;
     
-    public partial class CoLucEntities : DbContext
+    public partial class CoLucEntities : MyContext
     {
         public CoLucEntities()
             : base("name=CoLucEntities")
+        {
+        }
+        public CoLucEntities(string nameOrConnectionString)
+            : base(nameOrConnectionString)
         {
         }
     
