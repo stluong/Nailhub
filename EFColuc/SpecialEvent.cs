@@ -7,22 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CoLucContext
+namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class SpecialEvent
     {
+        public int EventId { get; set; }
         public int ProductId { get; set; }
-        public int OrderId { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
-        public Nullable<decimal> Discount { get; set; }
-        public decimal Total { get; set; }
+        public string Name { get; set; }
+        public Nullable<System.DateTime> ExpiredDate { get; set; }
         public string Description { get; set; }
+        public int EnteredBy { get; set; }
+        public System.DateTime EnteredDate { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }
 }

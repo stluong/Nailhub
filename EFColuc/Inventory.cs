@@ -7,30 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CoLucContext
+namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Brand
+    public partial class Inventory
     {
-        public Brand()
-        {
-            this.Products = new HashSet<Product>();
-        }
-    
-        public int BrandId { get; set; }
-        public string Name { get; set; }
+        public int InventoryId { get; set; }
+        public int ProductId { get; set; }
+        public decimal Cost { get; set; }
+        public int OnHand { get; set; }
+        public int OnOrder { get; set; }
+        public int Quantity { get; set; }
         public string Description { get; set; }
-        public string MadeOf { get; set; }
-        public string MadeFrom { get; set; }
-        public string MadeBy { get; set; }
         public int EnteredBy { get; set; }
         public System.DateTime EnteredDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
     
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

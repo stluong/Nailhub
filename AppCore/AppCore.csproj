@@ -185,14 +185,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoLucContext\EFColuc.csproj">
-      <Project>{0a91245e-905f-4f82-b0c8-8d9b73d32f51}</Project>
-      <Name>EFColuc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DFEntity\DFEntity.csproj">
-      <Project>{9aaeac4c-9a50-4998-878f-cada4fc3c86b}</Project>
-      <Name>DFEntity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EFNailhub\EFNailhub.csproj">
       <Project>{3c0d54f7-ac06-4d43-a4e0-0843929b163e}</Project>
       <Name>EFNailhub</Name>

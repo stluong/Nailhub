@@ -7,17 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CoLucContext
+namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserLogin
+    public partial class OrderDetail
     {
-        public string LoginProvider { get; set; }
-        public string ProviderKey { get; set; }
-        public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public int OrderId { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public Nullable<decimal> Discount { get; set; }
+        public decimal Total { get; set; }
+        public string Description { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

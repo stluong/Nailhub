@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CoLucContext
+namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaim
+    public partial class AspNetRole
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
+        public AspNetRole()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
     
-        public virtual AspNetUser AspNetUser { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{0A91245E-905F-4F82-B0C8-8D9B73D32F51}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoLucContext</RootNamespace>
-    <AssemblyName>CoLucContext</AssemblyName>
+    <RootNamespace>EFColuc</RootNamespace>
+    <AssemblyName>EFColuc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

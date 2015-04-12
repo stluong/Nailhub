@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CoLucContext
+namespace EFColuc
 {
     using System;
     using System.Collections.Generic;

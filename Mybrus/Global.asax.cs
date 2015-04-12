@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using EFColuc;
 
 namespace Mybrus
 {
@@ -18,7 +19,7 @@ namespace Mybrus
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
-            TNT.App.RegisterContext(() => new CoLucContext.CoLucEntities("name=DefaultConnection"));
+            TNT.App.RegisterContext(() => new CoLucEntities("name=CoLucEntities"));
             TNT.App.RegisterByConfig("autofac");
         }
     }
