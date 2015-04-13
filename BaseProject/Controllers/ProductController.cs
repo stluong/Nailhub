@@ -25,7 +25,7 @@ namespace Test.Web.Controllers
         //}
         public ActionResult Index() {
             var msg = identity.GetMessage();
-            ViewBag.Msg = string.Format("Hello {0}, {1}", identity.Query().Get(u => u.UserName).SingleOrDefault(), msg);
+            ViewBag.Msg = "stesting";//string.Format("Hello {0}, {1}", identity.Query().Get(u => u.UserName).SingleOrDefault(), msg);
             return View();
         }
 	}

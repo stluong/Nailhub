@@ -22,20 +22,26 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            //StevenLuong, 04/12/2015: Set connection string for IdentiyContext and NailhubsContext
+            TNT.App.NameOrConnectionString = "name=AppContext"; //Default for IdentityContext is AppContext
+
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
 
             TNT.App.Builder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext("name=AppContext");
+                var context = new NailhubsContext(TNT.App.NameOrConnectionString);
                 return context;
             }).InstancePerRequest();
             TNT.App.Builder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext("name=AppContext");
+                var context = new NailhubsContext(TNT.App.NameOrConnectionString);
                 return context;
             }).InstancePerRequest();
+
+            //Or just call register context to register context
+            //TNT.App.RegisterContext(() => new NailhubsContext(TNT.App.NameOrConnectionString));
 
             TNT.App.RegisterByConfig("autofac");
             
