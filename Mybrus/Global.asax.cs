@@ -19,7 +19,7 @@ namespace Mybrus
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
-            TNT.App.RegisterContext(() => new CoLucEntities("name=CoLucEntities"));
+            TNT.App.RegisterContext(() => new CoLucEntities("name=AppContext"));
             TNT.App.RegisterByConfig("autofac");
         }
     }
