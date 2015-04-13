@@ -9,6 +9,7 @@
         {
             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
+                @Html.AntiForgeryToken()
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
@@ -20,36 +21,6 @@
         else
         {
             <h4>Sign In</h4>
-            @*using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-            
-                <div class="form-group">
-                    <!-- email -->
-                    @*<input required type="email" class="form-control" placeholder="Username or email">* @
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", required = string.Empty, placeholder = "Username or email" })
-                </div>
-
-                <div class="input-group">
-
-                    <!-- password -->
-                    <input required type="password" class="form-control" placeholder="Password">
-
-                    <!-- submit button -->
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary">Sign In</button>
-                    </span>
-
-                </div>
-
-                <div class="checkbox">
-                    <!-- remmember -->
-                    <label>
-                        <input type="checkbox"> Remember me &bull; <a href="page-signin.html">Forgot password?</a>
-                    </label>
-                </div>
-            }*@
-            
             using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
             {
                 @Html.AntiForgeryToken()
@@ -69,17 +40,6 @@
                     @Html.CheckBoxFor(m => m.RememberMe)
                     @Html.LabelFor(m => m.RememberMe)
                 </div>
-                @*<div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>*@
-                @*<p>
-                    @Html.ActionLink("Register a new user?", "Register")
-                </p>
-                <p>
-                    @Html.ActionLink("Forget your password?", "ForgotPassword")
-                </p>*@
             }
 
             <hr />
