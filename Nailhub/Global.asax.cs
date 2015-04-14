@@ -23,6 +23,7 @@ namespace Test.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            TNT.App.NameOrConnectionString = "NailhubEntities";
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
 
             //TNT.App.Builder.Register<IMyContext>(b =>
@@ -40,7 +41,7 @@ namespace Test.Web
             //    return context;
             //}).InstancePerRequest();
 
-            TNT.App.RegisterContext(() => new NailhubsEntities("name=AppContext"));
+            TNT.App.RegisterContext(() => new NailhubsEntities(TNT.App.NameOrConnectionString));
 
             TNT.App.RegisterByConfig("autofac");
             
