@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TNT.Core.Identity;
 using TNT.Core.Model.Identity;
 
+
 namespace Test.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -17,7 +18,7 @@ namespace Test.Web.Controllers
         public RolesAdminController(IApplicationUserManager userManager, IApplicationRoleManager roleManager)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
+            _roleManager = roleManager; 
         }
       
         //

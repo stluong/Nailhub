@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Test.Web.Models
+namespace Mybrus.Models
 {
     public class RoleViewModel
     {

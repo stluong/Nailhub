@@ -230,12 +230,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Extensions\ESettings.cs" />
     <Compile Include="Extensions\ExBundle.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1168,6 +1170,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_stylewitcher.cshtml" />
+    <Content Include="Views\Manage\Role.cshtml" />
+    <Content Include="Views\Manage\RoleDetails.cshtml" />
+    <Content Include="Views\Manage\RoleCreate.cshtml" />
+    <Content Include="Views\Manage\RoleEdit.cshtml" />
+    <Content Include="Views\Manage\RoleDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1184,6 +1191,10 @@
     <ProjectReference Include="..\EFColuc\EFColuc.csproj">
       <Project>{0a91245e-905f-4f82-b0c8-8d9b73d32f51}</Project>
       <Name>EFColuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TNT.Helper\TNTHelper.csproj">
+      <Project>{b6b9c121-55bd-4ff4-ac92-62c5b0d8ca5d}</Project>
+      <Name>TNTHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
