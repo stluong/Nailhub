@@ -254,6 +254,7 @@
     <Content Include="Content\css\color_scheme\pink.css" />
     <Content Include="Content\css\color_scheme\red.css" />
     <Content Include="Content\css\color_scheme\yellow.css" />
+    <Content Include="Content\css\common.css" />
     <Content Include="Content\css\countdown.css" />
     <Content Include="Content\css\custom_example.css" />
     <Content Include="Content\css\essentials.css" />
@@ -1175,6 +1176,11 @@
     <Content Include="Views\Manage\RoleCreate.cshtml" />
     <Content Include="Views\Manage\RoleEdit.cshtml" />
     <Content Include="Views\Manage\RoleDelete.cshtml" />
+    <Content Include="Views\Manage\Users.cshtml" />
+    <Content Include="Views\Manage\UserDetails.cshtml" />
+    <Content Include="Views\Manage\UserCreate.cshtml" />
+    <Content Include="Views\Manage\UserEdit.cshtml" />
+    <Content Include="Views\Manage\UserDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

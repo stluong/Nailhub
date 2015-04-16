@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TNT.Core.Model.Identity.AppUser>
+
+@{
+    ViewBag.Title = "User Management";
+}
+
+<div class="editor-content">
+    <h2 class="text-center caption">@ViewBag.Title</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "UserDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <p>
+        @Html.ActionLink("Create New", "UserCreate", null, new { @class = "btn btn-success" })
+    </p>
+</div>
+

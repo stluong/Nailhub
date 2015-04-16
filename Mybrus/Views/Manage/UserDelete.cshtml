@@ -1,34 +1,33 @@
-﻿@model TNT.Core.Model.Identity.ApplicationRole
+﻿@model TNT.Core.Model.Identity.AppUser
 
 @{
     ViewBag.Title = "Delete";
 }
+
 <div class="editor-content">
-    <h3>Are you sure you want to delete this Role? </h3>
-    <p>Deleting this Role will remove all users from this role. It will not delete the users.</p>
+    <h3>Are you sure you want to delete this User?</h3>
     <div>
-        <h4>Role.</h4>
+        <h4>User.</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.UserName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Name)
+                @Html.DisplayFor(model => model.UserName)
             </dd>
         </dl>
+
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Role")
+                @Html.ActionLink("Back to List", "User")
             </div>
         }
     </div>
-
 </div>
-
 
