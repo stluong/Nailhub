@@ -840,6 +840,7 @@
     <Content Include="Content\js\countdown.js" />
     <Content Include="Content\js\scripts.js" />
     <Content Include="Content\js\slider_revolution.js" />
+    <Content Include="Content\plugins\bootstrap\css\bootstrap-paper.min.css" />
     <Content Include="Content\plugins\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\plugins\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\plugins\bootstrap\css\bootstrap.css" />

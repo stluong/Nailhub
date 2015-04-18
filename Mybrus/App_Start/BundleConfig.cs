@@ -46,7 +46,7 @@ namespace Mybrus
             ));
             //Css bundles
             bundles.Add(new StyleBundle("~/Content/css_core").Include(
-                      "~/Content/plugins/bootstrap/css/bootstrap.min.css"
+                      "~/Content/plugins/bootstrap/css/bootstrap-paper.min.css"
                       , "~/Content/css/font-awesome.css"
                       , "~/Content/plugins/owl-carousel/owl.carousel.css"
                       , "~/Content/plugins/owl-carousel/owl.theme.css"
