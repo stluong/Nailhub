@@ -27,16 +27,17 @@
 <body>
     <!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="~/Content/images/boxed_background/1.jpg"  -->
     <!-- Top Bar -->
-    <header id="topHead">
+    <header id="topHead" class="color">
         <div class="container">
             <!-- PHONE/EMAIL -->
             <span class="quick-contact pull-left">
-                <i class="fa fa-phone"></i> 314-484-4923 &bull;
-                <a class="hidden-xs" href="mailto:mail@yourdomain.com">mail@domain.com</a>
+                <i class="fa fa-phone"></i> 1-314-914-243
+                <i class="glyphicon glyphicon-envelope"> </i>
+                <a class="hidden-xs" href="mailto:luc.huynh78@gmail.com">luc.huynh78@gmail.com</a>
             </span>
             <!-- /PHONE/EMAIL -->
             <!-- LANGUAGE -->
-            @*<div class="btn-group pull-right hidden-xs">
+            <div class="btn-group pull-right hidden-xs">
                     <button class="dropdown-toggle language" type="button" data-toggle="dropdown">
                         <img src="~/Content/images/flags/us.png" width="16" height="11" alt="EN Language" /> English <span class="caret"></span>
                     </button>
@@ -51,7 +52,7 @@
                                 <img src="~/Content/images/flags/de.png" width="16" height="11" alt="DE Language" /> [VN] Vietnamese
                             </a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="#">
                                 <img src="~/Content/images/flags/fr.png" width="16" height="11" alt="FR Language" /> [FR] French
                             </a>
@@ -60,9 +61,9 @@
                             <a href="#">
                                 <img src="~/Content/images/flags/ru.png" width="16" height="11" alt="RU Language" /> [RU] Russian
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
-                </div>*@
+                </div>
             <!-- /LANGUAGE -->
             <!-- SIGN IN -->
             @{Html.RenderPartial("_LoginPartial");}
@@ -239,26 +240,32 @@
                 <div class="row">
                     <!-- FOOTER CONTACT INFO -->
                     <div class="column col-md-4">
-                        <h3>CONTACT</h3>
+                        @*<h3>CONTACT</h3>
                         <p class="contact-desc">
                             Contact description
-                        </p>
-                        <address class="font-opensans">
+                        </p>*@
+                        @*<address class="font-opensans">
                             <ul>
                                 <li class="footer-sprite address">
                                     Street<br />
                                     address<br />
                                     address2<br />
                                 </li>
-                                <li class="footer-sprite phone">
-                                    Phone: 314-484-4923
+                                @*<li class="footer-sprite phone">
+                                    Phone: 1-314-914-3425
                                 </li>
                                 <li class="footer-sprite email">
-                                    <a href="mailto:support@yourname.com">support@yourname.com</a>
-                                </li>
+                                    <a href="mailto:luc.huynh78@gmail.com">luc.huynh78@gmail.com</a>
+                                </li>* @
                             </ul>
-                        </address>
+                        </address>*@
 
+                        <div class="post-item">
+                            <span>Stree</span>
+                        </div>
+                        <div class="post-item">
+                            <span>Address</span>
+                        </div>
                     </div>
                     <!-- /FOOTER CONTACT INFO -->
                     <!-- FOOTER LOGO -->
@@ -271,10 +278,10 @@
                     <!-- /FOOTER LOGO -->
                     <!-- FOOTER LATEST POSTS -->
                     <div class="column col-md-4 text-right">
-                        <h3></h3>
+                        @*<h3></h3>
                         <p class="contact-desc">
                             Contact description
-                        </p>
+                        </p>*@
                         <div class="post-item">
                             <a href="blog-post.html">Privacy Policy</a>
                         </div>

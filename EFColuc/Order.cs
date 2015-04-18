@@ -11,8 +11,9 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
+    using TNT.Core.Model;
     
-    public partial class Order
+    public partial class Order:BaseEntity
     {
         public Order()
         {

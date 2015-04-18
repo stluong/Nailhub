@@ -13,19 +13,17 @@ namespace EFColuc
     using System.Collections.Generic;
     using TNT.Core.Model;
     
-    public partial class SpecialEvent: BaseEntity
+    public partial class Language:BaseEntity
     {
-        public int EventId { get; set; }
-        public int ProductId { get; set; }
-        public string Name { get; set; }
-        public Nullable<System.DateTime> ExpiredDate { get; set; }
-        public string Description { get; set; }
-        public int EnteredBy { get; set; }
-        public System.DateTime EnteredDate { get; set; }
-        public Nullable<int> ModifiedBy { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
+        public Language()
+        {
+            this.ProductDetails = new HashSet<ProductDetail>();
+        }
     
-        public virtual Product Product { get; set; }
+        public int LangId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+    
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
     }
 }

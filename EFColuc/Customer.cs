@@ -11,8 +11,9 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
+    using TNT.Core.Model;
     
-    public partial class Customer
+    public partial class Customer: BaseEntity
     {
         public Customer()
         {

@@ -11,26 +11,26 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
+    using TNT.Core.Model;
     
-    public partial class Product
+    public partial class Product:BaseEntity
     {
         public Product()
         {
-            this.Inventories = new HashSet<Inventory>();
             this.OrderDetails = new HashSet<OrderDetail>();
+            this.ProductDetails = new HashSet<ProductDetail>();
             this.SpecialEvents = new HashSet<SpecialEvent>();
+            this.Inventories = new HashSet<Inventory>();
         }
     
         public int ProductId { get; set; }
         public int BrandId { get; set; }
         public string Code { get; set; }
-        public string Name { get; set; }
         public string Image { get; set; }
         public decimal Price { get; set; }
         public Nullable<decimal> Length { get; set; }
         public Nullable<decimal> Size { get; set; }
         public string Color { get; set; }
-        public string Description { get; set; }
         public int EnteredBy { get; set; }
         public System.DateTime EnteredDate { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
@@ -38,8 +38,9 @@ namespace EFColuc
         public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual Brand Brand { get; set; }
-        public virtual ICollection<Inventory> Inventories { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
         public virtual ICollection<SpecialEvent> SpecialEvents { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
     }
 }

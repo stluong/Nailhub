@@ -4,20 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c29031c76bcd49eaa3a66745c443a6ad" Name="Diagram1" ZoomLevel="52">
+      <Diagram DiagramId="c29031c76bcd49eaa3a66745c443a6ad" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="CoLucModel.Brand" Width="1.5" PointX="8.375" PointY="1.625" />
         <EntityTypeShape EntityType="CoLucModel.Customer" Width="1.5" PointX="8.25" PointY="5.375" />
-        <EntityTypeShape EntityType="CoLucModel.Inventory" Width="1.5" PointX="6.5" PointY="4.125" />
-        <EntityTypeShape EntityType="CoLucModel.Order" Width="1.5" PointX="10.875" PointY="5.5" />
-        <EntityTypeShape EntityType="CoLucModel.OrderDetail" Width="1.5" PointX="13.25" PointY="1.25" />
-        <EntityTypeShape EntityType="CoLucModel.Product" Width="1.5" PointX="10.875" PointY="0.5" />
+        <EntityTypeShape EntityType="CoLucModel.Order" Width="1.5" PointX="4.625" PointY="9.375" />
+        <EntityTypeShape EntityType="CoLucModel.OrderDetail" Width="1.5" PointX="13" PointY="9" />
         <EntityTypeShape EntityType="CoLucModel.SpecialEvent" Width="1.5" PointX="6.625" PointY="0.5" />
-        <AssociationConnector Association="CoLucModel.FK_Product_Brand" />
         <AssociationConnector Association="CoLucModel.FK_Order_Customer" />
-        <AssociationConnector Association="CoLucModel.FK_Inventory_Product" />
         <AssociationConnector Association="CoLucModel.FK_OrderDetail_Order" />
-        <AssociationConnector Association="CoLucModel.FK_OrderDetail_Product" />
-        <AssociationConnector Association="CoLucModel.FK_SpecialEvent_Product" />
         <EntityTypeShape EntityType="CoLucModel.AspNetRole" Width="1.5" PointX="15.75" PointY="3.5" />
         <EntityTypeShape EntityType="CoLucModel.AspNetUserClaim" Width="1.5" PointX="20.25" PointY="4.625" />
         <EntityTypeShape EntityType="CoLucModel.AspNetUserLogin" Width="1.5" PointX="20.25" PointY="2" />
@@ -25,6 +19,16 @@
         <AssociationConnector Association="CoLucModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CoLucModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CoLucModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CoLucModel.Language" Width="1.5" PointX="15.5" PointY="8" />
+        <EntityTypeShape EntityType="CoLucModel.Product" Width="1.5" PointX="10.625" PointY="2.625" />
+        <EntityTypeShape EntityType="CoLucModel.ProductDetail" Width="1.5" PointX="12.875" PointY="0.75" />
+        <AssociationConnector Association="CoLucModel.FK_Product_Brand" />
+        <AssociationConnector Association="CoLucModel.FK_ProductDetail_Language" />
+        <AssociationConnector Association="CoLucModel.FK_OrderDetail_Product" />
+        <AssociationConnector Association="CoLucModel.FK_ProductDetail_Product" />
+        <AssociationConnector Association="CoLucModel.FK_SpecialEvent_Product" />
+        <EntityTypeShape EntityType="CoLucModel.Inventory" Width="1.5" PointX="12.875" PointY="4" />
+        <AssociationConnector Association="CoLucModel.FK_Inventory_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

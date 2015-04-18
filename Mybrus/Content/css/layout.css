@@ -1397,7 +1397,8 @@ span.js_loader {
 /** 10. Footer
  **************************************************************** **/
 footer  {
-	color:#87919F;
+	/*color:#87919F;*/
+    color:#fff;
 	font-size:13px;
 	overflow:hidden;
 }
@@ -1427,12 +1428,12 @@ footer .footer-bar .copyright {
 footer .footer-bar .toTop {
 	position:absolute;
 	right:0;
-	padding:20px 0;
+	padding:20px 10px;
 	padding-left:70px;
 	width:50%;
 	display:inline-block;
 	float:right;
-	text-align:center;
+	text-align:right;
 	border-left:#403E44 1px dashed;
 } 
 footer .footer-bar .toTop:hover {

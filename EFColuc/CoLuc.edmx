@@ -101,6 +101,7 @@
           <Property Name="InventoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DidOrder" Type="int" Nullable="false" />
           <Property Name="OnHand" Type="int" Nullable="false" />
           <Property Name="OnOrder" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
@@ -110,6 +111,14 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LangId" />
+          </Key>
+          <Property Name="LangId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -157,18 +166,26 @@
           <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BrandId" Type="int" Nullable="false" />
           <Property Name="Code" Type="nchar" MaxLength="10" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Image" Type="nvarchar" MaxLength="50" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Length" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Size" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="EnteredBy" Type="int" Nullable="false" />
           <Property Name="EnteredDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductDetail">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="LangId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="LangId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="SpecialEvent">
           <Key>
@@ -301,6 +318,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductDetail_Language">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LangId" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="LangId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SpecialEvent_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="SpecialEvent" Type="Self.SpecialEvent" Multiplicity="*" />
@@ -322,9 +363,11 @@
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpecialEvent" EntityType="Self.SpecialEvent" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -362,6 +405,14 @@
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductDetail_Language" Association="Self.FK_ProductDetail_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="ProductDetail" EntitySet="ProductDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetail_Product" Association="Self.FK_ProductDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductDetail" EntitySet="ProductDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_SpecialEvent_Product" Association="Self.FK_SpecialEvent_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="SpecialEvent" EntitySet="SpecialEvent" />
@@ -374,34 +425,16 @@
         <EntityContainer Name="CoLucEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brands" EntityType="CoLucModel.Brand" />
           <EntitySet Name="Customers" EntityType="CoLucModel.Customer" />
-          <EntitySet Name="Inventories" EntityType="CoLucModel.Inventory" />
           <EntitySet Name="Orders" EntityType="CoLucModel.Order" />
           <EntitySet Name="OrderDetails" EntityType="CoLucModel.OrderDetail" />
-          <EntitySet Name="Products" EntityType="CoLucModel.Product" />
           <EntitySet Name="SpecialEvents" EntityType="CoLucModel.SpecialEvent" />
-          <AssociationSet Name="FK_Product_Brand" Association="CoLucModel.FK_Product_Brand">
-            <End Role="Brand" EntitySet="Brands" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Customer" Association="CoLucModel.FK_Order_Customer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inventory_Product" Association="CoLucModel.FK_Inventory_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Inventory" EntitySet="Inventories" />
-          </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="CoLucModel.FK_OrderDetail_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDetail_Product" Association="CoLucModel.FK_OrderDetail_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="OrderDetail" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SpecialEvent_Product" Association="CoLucModel.FK_SpecialEvent_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="SpecialEvent" EntitySet="SpecialEvents" />
           </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="CoLucModel.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="CoLucModel.AspNetUserClaim" />
@@ -418,6 +451,34 @@
           <AssociationSet Name="AspNetUserRoles" Association="CoLucModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Languages" EntityType="CoLucModel.Language" />
+          <EntitySet Name="Products" EntityType="CoLucModel.Product" />
+          <EntitySet Name="ProductDetails" EntityType="CoLucModel.ProductDetail" />
+          <AssociationSet Name="FK_Product_Brand" Association="CoLucModel.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetail_Language" Association="CoLucModel.FK_ProductDetail_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="ProductDetail" EntitySet="ProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Product" Association="CoLucModel.FK_OrderDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetail_Product" Association="CoLucModel.FK_ProductDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductDetail" EntitySet="ProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecialEvent_Product" Association="CoLucModel.FK_SpecialEvent_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="SpecialEvent" EntitySet="SpecialEvents" />
+          </AssociationSet>
+          <EntitySet Name="Inventories" EntityType="CoLucModel.Inventory" />
+          <AssociationSet Name="FK_Inventory_Product" Association="CoLucModel.FK_Inventory_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Brand">
@@ -459,24 +520,6 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Orders" Relationship="CoLucModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="Inventory">
-          <Key>
-            <PropertyRef Name="InventoryId" />
-          </Key>
-          <Property Name="InventoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="OnHand" Type="Int32" Nullable="false" />
-          <Property Name="OnOrder" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="EnteredBy" Type="Int32" Nullable="false" />
-          <Property Name="EnteredDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Product" Relationship="CoLucModel.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -521,30 +564,6 @@
           <NavigationProperty Name="Order" Relationship="CoLucModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="CoLucModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BrandId" Type="Int32" Nullable="false" />
-          <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Length" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Size" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="EnteredBy" Type="Int32" Nullable="false" />
-          <Property Name="EnteredDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Brand" Relationship="CoLucModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
-          <NavigationProperty Name="Inventories" Relationship="CoLucModel.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
-          <NavigationProperty Name="OrderDetails" Relationship="CoLucModel.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
-          <NavigationProperty Name="SpecialEvents" Relationship="CoLucModel.FK_SpecialEvent_Product" FromRole="Product" ToRole="SpecialEvent" />
-        </EntityType>
         <EntityType Name="SpecialEvent">
           <Key>
             <PropertyRef Name="EventId" />
@@ -561,18 +580,6 @@
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Product" Relationship="CoLucModel.FK_SpecialEvent_Product" FromRole="SpecialEvent" ToRole="Product" />
         </EntityType>
-        <Association Name="FK_Product_Brand">
-          <End Type="CoLucModel.Brand" Role="Brand" Multiplicity="1" />
-          <End Type="CoLucModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Brand">
-              <PropertyRef Name="BrandId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="BrandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Customer">
           <End Type="CoLucModel.Customer" Role="Customer" Multiplicity="1" />
           <End Type="CoLucModel.Order" Role="Order" Multiplicity="*" />
@@ -585,18 +592,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inventory_Product">
-          <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="CoLucModel.Inventory" Role="Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderDetail_Order">
           <End Type="CoLucModel.Order" Role="Order" Multiplicity="1" />
           <End Type="CoLucModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
@@ -606,30 +601,6 @@
             </Principal>
             <Dependent Role="OrderDetail">
               <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderDetail_Product">
-          <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="CoLucModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="OrderDetail">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SpecialEvent_Product">
-          <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="CoLucModel.SpecialEvent" Role="SpecialEvent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="SpecialEvent">
-              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -714,6 +685,141 @@
           <End Type="CoLucModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CoLucModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LangId" />
+          </Key>
+          <Property Name="LangId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductDetails" Relationship="CoLucModel.FK_ProductDetail_Language" FromRole="Language" ToRole="ProductDetail" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandId" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Length" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Size" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EnteredBy" Type="Int32" Nullable="false" />
+          <Property Name="EnteredDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Brand" Relationship="CoLucModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="OrderDetails" Relationship="CoLucModel.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="ProductDetails" Relationship="CoLucModel.FK_ProductDetail_Product" FromRole="Product" ToRole="ProductDetail" />
+          <NavigationProperty Name="SpecialEvents" Relationship="CoLucModel.FK_SpecialEvent_Product" FromRole="Product" ToRole="SpecialEvent" />
+          <NavigationProperty Name="Inventories" Relationship="CoLucModel.FK_Inventory_Product" FromRole="Product" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="ProductDetail">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="LangId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="LangId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Language" Relationship="CoLucModel.FK_ProductDetail_Language" FromRole="ProductDetail" ToRole="Language" />
+          <NavigationProperty Name="Product" Relationship="CoLucModel.FK_ProductDetail_Product" FromRole="ProductDetail" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Product_Brand">
+          <End Type="CoLucModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="CoLucModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetail_Language">
+          <End Type="CoLucModel.Language" Role="Language" Multiplicity="1" />
+          <End Type="CoLucModel.ProductDetail" Role="ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LangId" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="LangId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Product">
+          <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CoLucModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetail_Product">
+          <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CoLucModel.ProductDetail" Role="ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecialEvent_Product">
+          <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CoLucModel.SpecialEvent" Role="SpecialEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="SpecialEvent">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="InventoryId" />
+          </Key>
+          <Property Name="InventoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="DidOrder" Type="Int32" Nullable="false" />
+          <Property Name="OnHand" Type="Int32" Nullable="false" />
+          <Property Name="OnOrder" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EnteredBy" Type="Int32" Nullable="false" />
+          <Property Name="EnteredDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="CoLucModel.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Inventory_Product">
+          <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="CoLucModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -760,24 +866,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="CoLucModel.Inventory">
-              <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
-                <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="OnOrder" ColumnName="OnOrder" />
-                <ScalarProperty Name="OnHand" ColumnName="OnHand" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="CoLucModel.Order">
               <MappingFragment StoreEntitySet="Order">
@@ -814,27 +902,6 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="CoLucModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
-                <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -908,6 +975,63 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="CoLucModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LangId" ColumnName="LangId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CoLucModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDetails">
+            <EntityTypeMapping TypeName="CoLucModel.ProductDetail">
+              <MappingFragment StoreEntitySet="ProductDetail">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LangId" ColumnName="LangId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="CoLucModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="EnteredBy" ColumnName="EnteredBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="OnOrder" ColumnName="OnOrder" />
+                <ScalarProperty Name="OnHand" ColumnName="OnHand" />
+                <ScalarProperty Name="DidOrder" ColumnName="DidOrder" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -32,14 +32,16 @@ namespace EFColuc
     
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SpecialEvent> SpecialEvents { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductDetail> ProductDetails { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
     }
 }

@@ -11,12 +11,14 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
+    using TNT.Core.Model;
     
-    public partial class Inventory
+    public partial class Inventory:BaseEntity
     {
         public int InventoryId { get; set; }
         public int ProductId { get; set; }
         public decimal Cost { get; set; }
+        public int DidOrder { get; set; }
         public int OnHand { get; set; }
         public int OnOrder { get; set; }
         public int Quantity { get; set; }

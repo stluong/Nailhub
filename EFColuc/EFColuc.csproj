@@ -212,6 +212,9 @@
     <Compile Include="Inventory.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Language.cs">
+      <DependentUpon>CoLuc.tt</DependentUpon>
+    </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
@@ -219,6 +222,9 @@
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
+      <DependentUpon>CoLuc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetail.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
