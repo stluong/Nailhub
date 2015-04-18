@@ -19,5 +19,10 @@ namespace TNTHelper
             var converter = TypeDescriptor.GetConverter(typeof(T));
             return (T)(converter.ConvertFromInvariantString(appSetting));
         }
+        public static string GetConString(string name) {
+            var connectionString = ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            return connectionString.NullToEmpty().Trim();
+        }
     }
+    
 }
