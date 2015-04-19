@@ -1204,6 +1204,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\demo\revolution_slider\New folder\" />
+    <Folder Include="Scripts\TNT\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
