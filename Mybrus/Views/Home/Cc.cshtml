@@ -1,0 +1,149 @@
+﻿<div id="shop" class="mt30">
+    <section class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+
+                <h2>Credit Card Payment</h2>
+                <form class="white-row" method="post" action="#">
+
+                    <p>
+                        <span class="pull-right shop-cc-icons">
+
+                            <img src="~/Content/images/cc/ico-american-express.jpg" width="41" height="25" alt="">
+                            <img src="~/Content/images/cc/ico-discover.jpg" width="41" height="25" alt="">
+                            <img src="~/Content/images/cc/ico-mastercard.jpg" width="41" height="25" alt="">
+                            <img src="~/Content/images/cc/ico-visa.jpg" width="41" height="25" alt="">
+                            <img src="~/Content/images/cc/ico-paypal.jpg" width="41" height="25" alt="">
+
+                        </span>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.
+                    </p>
+
+                    <!-- CREDIT CARD -->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">Name (as it appears on yout credit card)</label>
+                                <input required type="text" class="form-control" name="card_name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Type -->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="control-label">Card Type</label>
+                                <select name="card_type" class="form-control pointer">
+                                    <option value="visa">Visa</option>
+                                    <option value="mastercard">Mastercard</option>
+                                    <option value="maestro">Maestro</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Number /CVV -->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <!-- Number -->
+                                <label class="control-label">Card number (no dashes or spaces)</label>
+                                <input required type="text" class="form-control" name="card_number" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <!-- CVV/CVV2 -->
+                                <label class="control-label">Security Code</label>
+                                <input required type="text" class="form-control" name="card_code" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Expiration -->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <!-- Month -->
+                                <label class="control-label">Exp. Month</label>
+                                <select name="expiration_month" class="form-control pointer">
+                                    <option value="01">January</option>
+                                    <option value="02">Febryary</option>
+                                    <option value="03">March</option>
+                                    <option value="04">Apryl</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option value="09">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">Ovember</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <!-- Year -->
+                                <label class="control-label">Exp. Year</label>
+                                <select name="expiration_year" class="form-control pointer">
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button class="btn btn-primary btn-lg"><i class="fa fa-check"></i> &nbsp; SUBMIT</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /CREDIT CARD -->
+
+                </form>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h2>Discount Code</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam porta.</p>
+
+                <div class="alert alert-success">
+                    <i class="fa fa-check-circle"></i>
+                    <strong>CODE-0017Y</strong> - 10% Discount!
+                </div>
+
+                <div class="alert alert-danger">
+                    <i class="fa fa-frown-o"></i>
+                    Sorry, Invalid Code!
+                </div>
+
+                <form class="input-group" method="post" action="#">
+                    <input type="text" class="form-control" name="k" id="k" value="" placeholder="promo code" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary"><i class="fa fa-check"></i></button>
+                    </span>
+                </form>
+
+                <div class="shop-cart-final-payment text-right">
+                    <hr />
+                    <span class="block fsize13">Shipping: $0</span>
+                    <span class="block fsize13">Discount: $0</span>
+                    <span class="fsize20 styleSecondColor bold">TOTAL: $64</span>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</div>

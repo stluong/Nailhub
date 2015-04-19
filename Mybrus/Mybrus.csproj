@@ -1198,6 +1198,8 @@
     <Content Include="Views\Manage\UserEdit.cshtml" />
     <Content Include="Views\Manage\UserDelete.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Home\Cc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

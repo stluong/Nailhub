@@ -6,4 +6,9 @@
 .ml20i{
     margin-left: 20px !important;
 }
- 
+.mt30{
+    margin-top: 30px;
+}
+.aln-v-i{
+    vertical-align: inherit;
+}
