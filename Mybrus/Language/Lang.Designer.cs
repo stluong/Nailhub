@@ -151,7 +151,7 @@ namespace Mybrus.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subribe &lt;b&gt;now&lt;/b&gt; and get the &lt;b&gt;latest&lt;b&gt; offers.
+        ///   Looks up a localized string similar to Subribe now and get the latest offers.
         /// </summary>
         public static string Subscribe {
             get {
