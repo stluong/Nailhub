@@ -122,3 +122,5 @@
 /// <reference path="../content/js/slider_revolution.js" />
 /// <reference path="mybrus.js" />
 /// <reference path="../content/plugins/cookie.js" />
+/// <reference path="tnt/libs.js" />
+/// <reference path="tnt/extensions.js" />
