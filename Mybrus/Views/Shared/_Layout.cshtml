@@ -8,7 +8,8 @@
 <html>
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="vi" />
     <title>Wellcome to Mybrus.</title>
     <meta name="keywords" content="nail, spa, brush" />
     <!-- mobile settings -->
@@ -24,7 +25,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body class="boxed">
     <!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="~/Content/images/boxed_background/1.jpg"  -->
     <!-- Top Bar -->
     <header id="topHead" class="color">
@@ -75,8 +76,8 @@
             <!-- CART MOBILE BUTTON -->
             <!-- LINKS -->
             <div class="pull-right nav hidden-xs">
-                <a href="@Url.Action("About","Home")"><i class="fa fa-angle-right"></i> About</a>
-                <a href="@Url.Action("Contact", "Home")"><i class="fa fa-angle-right"></i> Contact</a>
+                <a href="@Url.Action("About","Home")"><i class="fa fa-angle-right"></i> @Lang.About</a>
+                <a href="@Url.Action("Contact", "Home")"><i class="fa fa-angle-right"></i> @Lang.Contact</a>
             </div>
             <!-- /LINKS -->
 
@@ -104,13 +105,13 @@
                 <nav class="nav-main mega-menu">
                     <ul class="nav nav-pills nav-main scroll-menu" id="topMain">
                         <li class="active">
-                            <a href="#">
-                                Home
+                            <a href="@Url.Action("Index", "Home")">
+                                @Lang.Home
                             </a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
-                                Brush Brand @*<i class="fa fa-angle-down"></i>*@
+                                @Lang.BrushBrand @*<i class="fa fa-angle-down"></i>*@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="blog-post.html">Brand 1</a></li>

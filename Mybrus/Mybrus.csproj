@@ -1197,6 +1197,7 @@
     <Content Include="Views\Manage\UserCreate.cshtml" />
     <Content Include="Views\Manage\UserEdit.cshtml" />
     <Content Include="Views\Manage\UserDelete.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

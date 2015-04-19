@@ -117,10 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="BrushBrand" xml:space="preserve">
+    <value>Brush Brand</value>
+  </data>
+  <data name="Cart_Add" xml:space="preserve">
+    <value>ADD TO CART</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="Prod_Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
   <data name="SiteName" xml:space="preserve">
     <value>Mybrus</value>
+  </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>BEST BRUSHES YOU EVER SEEN</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Subribe &lt;b&gt;now&lt;/b&gt; and get the &lt;b&gt;latest&lt;b&gt; offers</value>
+  </data>
+  <data name="Subscribe_Email" xml:space="preserve">
+    <value>Type your best Email Address</value>
   </data>
 </root>

@@ -1,4 +1,8 @@
-﻿
+﻿@using Mybrus.Language;
+@{
+    
+    var urlTemp = Url.Action("Detail", "Home");
+}
 <!-- REVOLUTION SLIDER -->
 <div class="fullwidthbanner-container roundedcorners">
     <div class="fullwidthbanner">
@@ -33,7 +37,7 @@
                         data-speed="600"
                         data-start="1100"
                         data-easing="easeOutExpo" data-end="3100" data-endspeed="600" data-endeasing="easeInSine">
-                    <a href="shop-product-full-width.html"><img src="~/Content/images/demo/shop/slider/1.jpg" alt="Image 1"></a>
+                    <a href="@urlTemp"><img src="~/Content/images/demo/shop/slider/1.jpg" alt="Image 1"></a>
                 </div>
 
                 <div class="tp-caption medium_bg_darkblue sft stb"
@@ -60,7 +64,7 @@
                         data-speed="600"
                         data-start="3600"
                         data-easing="easeOutExpo" data-end="5600" data-endspeed="600" data-endeasing="easeInSine">
-                    <a href="shop-product-full-width.html"><img src="~/Content/images/demo/shop/slider/5.jpg" alt="Image 2"></a>
+                    <a href="@urlTemp"><img src="~/Content/images/demo/shop/slider/5.jpg" alt="Image 2"></a>
                 </div>
 
                 <div class="tp-caption medium_bg_darkblue sft stb"
@@ -87,7 +91,7 @@
                         data-speed="600"
                         data-start="6100"
                         data-easing="easeOutExpo" data-end="8100" data-endspeed="300" data-endeasing="easeInSine">
-                    <a href="shop-product-full-width.html"><img src="~/Content/images/demo/shop/slider/9.jpg" alt="Image 3"></a>
+                    <a href="@urlTemp"><img src="~/Content/images/demo/shop/slider/9.jpg" alt="Image 3"></a>
                 </div>
 
                 <div class="tp-caption medium_bg_darkblue sft stb"
@@ -140,7 +144,7 @@
                         data-speed="900"
                         data-start="1700"
                         data-easing="easeOutBack">
-                    <a class="fsize20" href="shop-product-full-width.html">
+                    <a class="fsize20" href="@urlTemp">
                         <img class="block hover-scale" src="~/Content/images/demo/shop/7.jpg" width="200" height="200" alt="" />
                         <strong>$ 32.00</strong>
                     </a>
@@ -152,7 +156,7 @@
                         data-speed="900"
                         data-start="2000"
                         data-easing="easeOutBack">
-                    <a class="fsize20" href="shop-product-full-width.html">
+                    <a class="fsize20" href="@urlTemp">
                         <img class="block hover-scale" src="~/Content/images/demo/shop/5.jpg" width="200" height="200" alt="" />
                         <strong>$ 45.87</strong>
                     </a>
@@ -164,7 +168,7 @@
                         data-speed="900"
                         data-start="2300"
                         data-easing="easeOutBack">
-                    <a class="fsize20" href="shop-product-full-width.html">
+                    <a class="fsize20" href="@urlTemp">
                         <img class="block hover-scale" src="~/Content/images/demo/shop/1.jpg" width="200" height="200" alt="" />
                         <strong>$ 64.00</strong>
                     </a>
@@ -183,7 +187,7 @@
 <section class="container text-center">
     <h1 class="text-center">
         <strong>Welcome</strong> to Mybrus
-        <span class="subtitle">BEST BRUSHES YOU EVER SEEN!</span>
+        <span class="subtitle">@Lang.Slogan</span>
     </h1>
     <p class="lead">
         Description here
@@ -200,14 +204,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/9.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -221,14 +225,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/2.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -242,14 +246,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/3.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -263,14 +267,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/4.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -285,14 +289,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/5.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -306,14 +310,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/6.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -327,14 +331,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/7.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -348,14 +352,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/8.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -369,14 +373,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/1.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -390,14 +394,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/2.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -411,14 +415,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/3.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -432,14 +436,14 @@
                 <!-- item -->
                 <div class="item-box fixed-box">
                     <figure>
-                        <a class="item-hover" href="shop-product-full-width.html">
+                        <a class="item-hover" href="@urlTemp">
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                <strong>PRODUCT</strong> DETAIL
+                                @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
+                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
                         <img class="img-responsive" src="~/Content/images/demo/shop/4.jpg" width="260" height="260" alt="">
                     </figure>
                     <div class="item-box-desc">
@@ -460,11 +464,11 @@
 
     <div class="row bs-callout nomargin-bottom">
         <div class="col-md-8 text-center">
-            <h3 class="padding20">Subscribe <strong>now</strong> and get the <strong>latest</strong> offers.</h3>
+            <h3 class="padding20">@Lang.Subscribe</h3>
         </div>
         <div class="col-md-4">
 
-            <p class="nomargin">Type your best E-mail Address</p>
+            <p class="nomargin">@Lang.Subscribe_Email</p>
 
             <form method="get" action="#" class="input-group">
                 <input type="text" class="form-control" name="s" id="s" value="" placeholder="E-mail Address" />

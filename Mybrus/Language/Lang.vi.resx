@@ -117,10 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Giới Thiệu</value>
+  </data>
+  <data name="BrushBrand" xml:space="preserve">
+    <value>Loại Cọ</value>
+  </data>
+  <data name="Cart_Add" xml:space="preserve">
+    <value>Thêm Giỏ Hàng</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Liên Hệ</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Trang Chủ</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Vietnamese</value>
   </data>
+  <data name="Prod_Detail" xml:space="preserve">
+    <value>Chi Tiết</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Đăng Nhập</value>
+  </data>
   <data name="SiteName" xml:space="preserve">
-    <value>Co Nail</value>
+    <value>Cọ Nail</value>
+  </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>Sản Phẩm Tốt Nhất Trên Thị Trường</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Đăng ký ngay để có khuyến mãi tốt nhất</value>
+  </data>
+  <data name="Subscribe_Email" xml:space="preserve">
+    <value>Vui lòng nhập vào Email</value>
   </data>
 </root>

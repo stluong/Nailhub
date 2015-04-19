@@ -105,8 +105,7 @@ function readCookie(name) {
 /**
 	@ON LOAD
 **/
-window.onload = function(e) {
-
+window.onload = function (e) {
 	// COLOR SCHEME
 	var cookie = readCookie("style");
 	var title = cookie ? cookie : getPreferredStyleSheet();
@@ -129,10 +128,11 @@ window.onload = function(e) {
 
 	// BOXED or WIDE
 	var is_boxed = readCookie('is_boxed');
-	if(is_boxed == 'true') {
-		jQuery('body').removeClass('boxed');
-		jQuery('body').addClass('boxed');
-		jQuery("#is_boxed").trigger('click');
+	if(!is_boxed) {
+	    jQuery('body')
+            .removeClass("boxed")
+        ;
+		//jQuery("#is_boxed").trigger('click');
 	}
 
 	// PATTERN BACKGROUND
@@ -207,9 +207,6 @@ jQuery("input.dark_switch").bind("click", function() {
 });
 
 
-
-
-
 /**
 	LAYOUT STYLE [wide|boxed]
 **/
@@ -226,10 +223,6 @@ jQuery("input.boxed_switch").bind("click", function() {
 		jQuery('body').removeClass('transparent');
 	}
 });
-
-
-
-
 /**
 	Pattern Background
 **/

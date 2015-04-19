@@ -20,12 +20,8 @@ namespace Mybrus.Controllers {
             return View();
         }
 
-        //[AllowAnonymous]
-        //public JsonResult SetCulture(string code) {
-        //    var cultureInfo = TNTHelper.CultureManager.SetCulture(code);
-        //    Thread.CurrentThread.CurrentCulture = cultureInfo;
-        //    Thread.CurrentThread.CurrentUICulture = cultureInfo;
-        //    return Json("success", JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult Detail(int productId = 1) {
+            return View();
+        }
     }
 }

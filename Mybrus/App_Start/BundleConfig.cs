@@ -65,8 +65,7 @@ namespace Mybrus
                       "~/Content/css/essentials.css"
                       , "~/Content/css/layout.css"
                       , "~/Content/css/layout-responsive.css"
-                      , "~/Content/shop.css"
-                      
+                      , "~/Content/css/shop.css"
                       , "~/Content/css/color_scheme/orange.css"
             ));
             bundles.Add(new StyleBundle("~/Content/css_themestyle").Include(
@@ -75,6 +74,7 @@ namespace Mybrus
                       , "~/Content/css/color_scheme/red.css"
                       , "~/Content/css/color_scheme/pink.css"
                       , "~/Content/css/color_scheme/yellow.css"
+                      , "~/Content/css/color_scheme/green.css"
                       , "~/Content/css/color_scheme/darkgreen.css"
                       , "~/Content/css/color_scheme/darkblue.css"
                       , "~/Content/css/color_scheme/blue.css"
