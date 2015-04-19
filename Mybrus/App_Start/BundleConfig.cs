@@ -40,9 +40,11 @@ namespace Mybrus
                 , "~/Content/plugins/revolution-slider/js/jquery.themepunch.tools.min.js"
                 , "~/Content/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js"
                 , "~/Content/js/slider_revolution.js"
+                , "~/Content/plugins/cookie.js"
             ));
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                 "~/Content/js/scripts.js"
+                , "~/Scripts/mybrus.js" 
             ));
             //Css bundles
             bundles.Add(new StyleBundle("~/Content/css_core").Include(

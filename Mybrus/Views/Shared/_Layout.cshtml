@@ -1,4 +1,5 @@
 ﻿@using Mybrus.Extensions;
+@using Mybrus.Language;
 
 <!DOCTYPE html>
 <!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
@@ -37,32 +38,34 @@
             <!-- /PHONE/EMAIL -->
             <!-- LANGUAGE -->
             <div class="btn-group pull-right hidden-xs">
-                    <button class="dropdown-toggle language" type="button" data-toggle="dropdown">
-                        <img src="~/Content/images/flags/us.png" width="16" height="11" alt="EN Language" /> English <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">
-                                <img src="~/Content/images/flags/us.png" width="16" height="11" alt="EN Language" /> [US] English
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="~/Content/images/flags/de.png" width="16" height="11" alt="DE Language" /> [VN] Vietnamese
-                            </a>
-                        </li>
-                        @*<li>
-                            <a href="#">
-                                <img src="~/Content/images/flags/fr.png" width="16" height="11" alt="FR Language" /> [FR] French
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="~/Content/images/flags/ru.png" width="16" height="11" alt="RU Language" /> [RU] Russian
-                            </a>
-                        </li>*@
-                    </ul>
-                </div>
+                <button id="dnmLanguage" class="dropdown-toggle language" type="button" data-toggle="dropdown">
+                    <img src="~/Content/images/flags/us.png" width="16" height="11"/>
+                    <span id="spanLanguage">@Lang.Language</span>
+                    <span class="caret"></span>
+                </button>
+                <ul id="ulLanguage" class="dropdown-menu">
+                    <li>
+                        <a href="#">
+                            <img id="EN" src="~/Content/images/flags/us.png" width="16" height="11" alt="EN Language" /> [US] English
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img id="VN" src="~/Content/images/flags/de.png" width="16" height="11" alt="VN Language" /> [VN] Vietnamese
+                        </a>
+                    </li>
+                    @*<li>
+                        <a href="#">
+                            <img src="~/Content/images/flags/fr.png" width="16" height="11" alt="FR Language" /> [FR] French
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="~/Content/images/flags/ru.png" width="16" height="11" alt="RU Language" /> [RU] Russian
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
             <!-- /LANGUAGE -->
             <!-- SIGN IN -->
             @{Html.RenderPartial("_LoginPartial");}
@@ -93,7 +96,7 @@
             <!-- Logo text or image -->
             <a class="logo" href="@Url.Action("Index", "Home")">
                 @*<img src="~/Content/images/logo.png" alt="Atropos" />*@
-                MyBrus
+               @Lang.SiteName
             </a>
 
             <!-- Top Nav -->

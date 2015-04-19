@@ -9,6 +9,7 @@ namespace TNTHelper
 {
     public static class Extensions
     {
+
         public static bool IsIn<T>(T o, params T[] values)
         {
             foreach (T value in values)

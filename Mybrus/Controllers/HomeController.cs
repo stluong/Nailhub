@@ -1,7 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading;
+using System.Web.Mvc;
 
 namespace Mybrus.Controllers {
-    public class HomeController : Controller {
+    public class HomeController : BaseController {
         public ActionResult Index()
         {
             return View();
@@ -18,5 +19,13 @@ namespace Mybrus.Controllers {
 
             return View();
         }
+
+        //[AllowAnonymous]
+        //public JsonResult SetCulture(string code) {
+        //    var cultureInfo = TNTHelper.CultureManager.SetCulture(code);
+        //    Thread.CurrentThread.CurrentCulture = cultureInfo;
+        //    Thread.CurrentThread.CurrentUICulture = cultureInfo;
+        //    return Json("success", JsonRequestBehavior.AllowGet);
+        //}
     }
 }

@@ -24,5 +24,7 @@ namespace Mybrus
             TNT.App.RegisterContext(() => new CoLucEntities(TNT.App.NameOrConnectionString));
             TNT.App.RegisterByConfig("autofac");
         }
+
+        
     }
 }
