@@ -8,8 +8,7 @@ using Autofac;
 
 namespace Mybrus.Controllers
 {
-    [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private IApplicationUserManager _userManager;
         public AccountController(IApplicationUserManager userManager)
