@@ -10,6 +10,7 @@ using System.Net;
 
 namespace Mybrus.Controllers
 {
+    [Authorize]
     public class ManageController : BaseController
     {
         private IApplicationUserManager _userManager;

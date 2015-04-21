@@ -6,10 +6,8 @@ using System.Web.Mvc;
 
 namespace Mybrus.Controllers
 {
-    [Authorize]
     public class BaseController : Controller
     {
-        
         public BaseController() { 
             
         }

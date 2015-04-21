@@ -231,6 +231,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Extensions\ESettings.cs" />
     <Compile Include="Extensions\ExBundle.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
@@ -1202,11 +1203,11 @@
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Home\Cc.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\demo\revolution_slider\New folder\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1216,6 +1217,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoLucCore\CoLucCore.csproj">
+      <Project>{e2aaf0ff-6aad-4f9b-a16f-bb2972821e61}</Project>
+      <Name>CoLucCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoLucService\CoLucService.csproj">
+      <Project>{c9f1fb19-9f9b-4819-b662-16fe8f1fe2e1}</Project>
+      <Name>CoLucService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EFColuc\EFColuc.csproj">
       <Project>{0a91245e-905f-4f82-b0c8-8d9b73d32f51}</Project>
       <Name>EFColuc</Name>

@@ -153,7 +153,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentiyService.cs" />
+    <Compile Include="IdentityService.cs" />
+    <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
