@@ -1,15 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.EntityClient;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace TNTHelper
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Convert connection string to dictionary EF connections with key for code first(CF) and database first (DF) connection string
+        /// </summary>
+        /// <param name="nameOrConnectionString"></param>
+        /// <returns></returns>
+        public static Dictionary<string, string> ToEFConnection(this string nameOrConnectionString)
+        {
+            var myMetaData = "res://*";
+            Dictionary<string, string> dicEFConnection = new Dictionary<string, string>();
+            if (nameOrConnectionString.Like("name="))
+            {
+                nameOrConnectionString = AppSettings.GetConString(nameOrConnectionString.Replace("name=", ""));
+                if (!nameOrConnectionString.Like(".csdl|res:", ".ssdl|res:"))
+                {
+                    try
+                    {
+                        nameOrConnectionString = Cryptography.DecryptString(nameOrConnectionString);
+                    }
+                    catch
+                    {
+                        //do nothing
+                    }
+                    finally
+                    {
+                        if (nameOrConnectionString.Like("=>"))
+                        {
+                            var tmp = nameOrConnectionString.Split(new string[] { "=>" }, StringSplitOptions.RemoveEmptyEntries)
+                                .Select(p => p.Trim())
+                                .ToArray();
+                            myMetaData = string.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", tmp[0]);
+                            nameOrConnectionString = tmp[1].Trim();
+                        }
+                    }
+                }
+            }
+            var efConnection = new EntityConnectionStringBuilder
+            {
+                Metadata = myMetaData,
+                Provider = "System.Data.SqlClient",
+                ProviderConnectionString = new SqlConnectionStringBuilder(nameOrConnectionString).ConnectionString
+            };
 
+            dicEFConnection.Add("CF", efConnection.ProviderConnectionString);
+            dicEFConnection.Add("DF", efConnection.ConnectionString);
+
+            return dicEFConnection;
+        }
         public static bool IsIn<T>(T o, params T[] values)
         {
             foreach (T value in values)
