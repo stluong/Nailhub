@@ -19,10 +19,10 @@ namespace Mybrus
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Steven.Luong, 04/12/2015: Connection string for TNT is just a connection string, not EF connection string!!!
-            TNT.App.NameOrConnectionString = "name=CoLucEntities".ToEFConnectionString();
-            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
-            TNT.App.RegisterContext(() => new CoLucEntities(TNT.App.NameOrConnectionString), false);
+            //StevenLuong, 04/21/2014: Core IdentityContext is code first
+            Dictionary<string, string> efConnection = "name=CoLucEntities".ToEFConnection();
+            TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false, efConnection["CF"]);
+            TNT.App.RegisterContext(() => new CoLucEntities(efConnection["DF"]), false);
             TNT.App.RegisterByConfig("autofac");
         }
 

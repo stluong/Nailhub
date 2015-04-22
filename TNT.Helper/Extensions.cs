@@ -13,13 +13,14 @@ namespace TNTHelper
     public static class Extensions
     {
         /// <summary>
-        /// Convert connection string to EF connection string
+        /// Convert connection string to dictionary EF connections with key for code first(CF) and database first (DF) connection string
         /// </summary>
         /// <param name="nameOrConnectionString"></param>
         /// <returns></returns>
-        public static string ToEFConnectionString(this string nameOrConnectionString)
+        public static Dictionary<string, string> ToEFConnection(this string nameOrConnectionString)
         {
             var myMetaData = "res://*";
+            Dictionary<string, string> dicEFConnection = new Dictionary<string, string>();
             if (nameOrConnectionString.Like("name="))
             {
                 nameOrConnectionString = AppSettings.GetConString(nameOrConnectionString.Replace("name=", ""));
@@ -44,19 +45,19 @@ namespace TNTHelper
                             nameOrConnectionString = tmp[1].Trim();
                         }
                     }
-
-                    var efConnection = new EntityConnectionStringBuilder
-                    {
-                        Metadata = myMetaData,
-                        Provider = "System.Data.SqlClient",
-                        ProviderConnectionString = new SqlConnectionStringBuilder(nameOrConnectionString).ConnectionString
-                    };
-
-                    nameOrConnectionString = efConnection.ConnectionString;
                 }
             }
+            var efConnection = new EntityConnectionStringBuilder
+            {
+                Metadata = myMetaData,
+                Provider = "System.Data.SqlClient",
+                ProviderConnectionString = new SqlConnectionStringBuilder(nameOrConnectionString).ConnectionString
+            };
 
-            return nameOrConnectionString;
+            dicEFConnection.Add("CF", efConnection.ProviderConnectionString);
+            dicEFConnection.Add("DF", efConnection.ConnectionString);
+
+            return dicEFConnection;
         }
         public static bool IsIn<T>(T o, params T[] values)
         {
