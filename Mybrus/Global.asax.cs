@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using EFColuc;
+using TNTHelper;
 
 namespace Mybrus
 {
@@ -19,7 +20,7 @@ namespace Mybrus
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //Steven.Luong, 04/12/2015: Connection string for TNT is just a connection string, not EF connection string!!!
-            TNT.App.NameOrConnectionString = TNTHelper.Cryptography.DecryptString(TNTHelper.AppSettings.GetConString("CoLucEntities"));
+            TNT.App.NameOrConnectionString = "name=CoLucEntities".ToEFConnectionString();
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
             TNT.App.RegisterContext(() => new CoLucEntities(TNT.App.NameOrConnectionString), false);
             TNT.App.RegisterByConfig("autofac");
