@@ -1,15 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.EntityClient;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace TNTHelper
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Convert connection string to EF connection string
+        /// </summary>
+        /// <param name="nameOrConnectionString"></param>
+        /// <returns></returns>
+        public static string ToEFConnectionString(this string nameOrConnectionString)
+        {
+            var myMetaData = "res://*";
+            if (nameOrConnectionString.Like("name="))
+            {
+                nameOrConnectionString = AppSettings.GetConString(nameOrConnectionString.Replace("name=", ""));
+                if (!nameOrConnectionString.Like(".csdl|res:", ".ssdl|res:"))
+                {
+                    try
+                    {
+                        nameOrConnectionString = Cryptography.DecryptString(nameOrConnectionString);
+                    }
+                    catch
+                    {
+                        //do nothing
+                    }
+                    finally
+                    {
+                        if (nameOrConnectionString.Like("=>"))
+                        {
+                            var tmp = nameOrConnectionString.Split(new string[] { "=>" }, StringSplitOptions.RemoveEmptyEntries)
+                                .Select(p => p.Trim())
+                                .ToArray();
+                            myMetaData = string.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", tmp[0]);
+                            nameOrConnectionString = tmp[1].Trim();
+                        }
+                    }
 
+                    var efConnection = new EntityConnectionStringBuilder
+                    {
+                        Metadata = myMetaData,
+                        Provider = "System.Data.SqlClient",
+                        ProviderConnectionString = new SqlConnectionStringBuilder(nameOrConnectionString).ConnectionString
+                    };
+
+                    nameOrConnectionString = efConnection.ConnectionString;
+                }
+            }
+
+            return nameOrConnectionString;
+        }
         public static bool IsIn<T>(T o, params T[] values)
         {
             foreach (T value in values)
