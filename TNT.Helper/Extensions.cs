@@ -59,6 +59,31 @@ namespace TNTHelper
 
             return dicEFConnection;
         }
+        /// <summary>
+        /// Get connection string from nameOrConnectionString
+        /// </summary>
+        /// <param name="nameOrConnectionString">Could be encrypted nameOrConnectionString</param>
+        /// <returns></returns>
+        public static string GetConnnectionString(this string nameOrConnectionString)
+        {
+            if (nameOrConnectionString.Like("name="))
+            {
+                nameOrConnectionString = AppSettings.GetConString(nameOrConnectionString.Replace("name=", ""));
+                if (!nameOrConnectionString.Like(".csdl|res:", ".ssdl|res:"))
+                {
+                    try
+                    {
+                        nameOrConnectionString = Cryptography.DecryptString(nameOrConnectionString);
+                    }
+                    catch
+                    {
+                        //do nothing
+                    }
+                }
+            }
+
+            return nameOrConnectionString;
+        }
         public static bool IsIn<T>(T o, params T[] values)
         {
             foreach (T value in values)
