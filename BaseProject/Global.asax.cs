@@ -7,7 +7,7 @@ using TNT.Core.Logging;
 
 using Autofac;
 using DFEntity;
-
+using System.Data.Entity;
 
 namespace Test.Web
 {
@@ -23,20 +23,20 @@ namespace Test.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //StevenLuong, 04/12/2015: Set connection string for IdentiyContext and NailhubsContext
-            TNT.App.NameOrConnectionString = "name=AppContext"; //Default for IdentityContext is AppContext
+            TNT.App.InitEFConnection("name=AppContext"); //Default for IdentityContext is AppContext
 
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
 
             TNT.App.Builder.Register<IMyContext>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext(TNT.App.NameOrConnectionString);
+                var context = new NailhubsContext(TNT.App.EFConnection.ConnectionString);
                 return context;
             }).InstancePerRequest();
             TNT.App.Builder.Register<IMyContextAsync>(b =>
             {
                 var logger = b.Resolve<ILogger>();
-                var context = new NailhubsContext(TNT.App.NameOrConnectionString);
+                var context = new NailhubsContext(TNT.App.EFConnection.ConnectionString);
                 return context;
             }).InstancePerRequest();
 

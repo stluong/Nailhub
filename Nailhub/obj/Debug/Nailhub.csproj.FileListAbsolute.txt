@@ -100,3 +100,6 @@ C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.
 C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Nailhub.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Test.Web.dll
 C:\Users\Admin\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\obj\Debug\Test.Web.pdb
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Web.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Data.dll
+C:\Users\Steven\Documents\Visual Studio 2013\Projects\TNT2015\NailHub\bin\System.Data.Entity.dll

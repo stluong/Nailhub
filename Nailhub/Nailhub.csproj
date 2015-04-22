@@ -47,146 +47,157 @@
     </Reference>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Autofac.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Configuration, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Autofac.Configuration.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Autofac.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="LinqKit, Version=1.1.1.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\LinqKit.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\LinqKit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Data.Edm.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Data.Edm.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Data.OData.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Data.OData.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\NLog.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\Owin.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Data.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Spatial.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.Http.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.OData, Version=5.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.Http.OData.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.Http.OData.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.Http.Owin.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.Http.Owin.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="TNT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\TNT.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\TNT.dll</HintPath>
     </Reference>
     <Reference Include="TNT.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\TNT.Core.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\TNT.Core.dll</HintPath>
     </Reference>
     <Reference Include="TNT.Infracstructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TNT.1.0.0\lib\net451\TNT.Infracstructure.dll</HintPath>
+      <HintPath>..\packages\TNT.1.0.1\lib\net451\TNT.Infracstructure.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
