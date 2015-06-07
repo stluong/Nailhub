@@ -187,6 +187,7 @@
   <ItemGroup>
     <Compile Include="IIdentityService.cs" />
     <Compile Include="IProductService.cs" />
+    <Compile Include="ProductExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CoLucCore;
+using Mybrus.Models;
 
 namespace Mybrus.Controllers
 {
@@ -93,6 +94,17 @@ namespace Mybrus.Controllers
             {
                 return View();
             }
+        }
+
+        [AllowAnonymous]
+        public ActionResult PtBrandMenu() {
+            return PartialView(this.prod.GetBrands()
+                .Select(b => new MdBrandMenu { 
+                    BrandId = b.BrandId,
+                    Name = b.Name
+                })
+                .ToList()
+            );                 
         }
     }
 }

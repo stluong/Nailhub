@@ -11,5 +11,6 @@ namespace CoLucCore
     public interface IProductService : IService<Product>
     {
         IEnumerable<Product> GetProducts();
+        IEnumerable<Brand> GetBrands();
     }
 }

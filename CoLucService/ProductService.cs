@@ -11,7 +11,8 @@ using TNT.Infracstructure.Services;
 
 namespace CoLucService
 {
-    public class ProductService: Service<Product>, IProductService
+    public class ProductService: Service<Product>
+        , IProductService
     {
         private readonly IRepositoryAsync<Product> rpoProduct;
         
@@ -20,9 +21,121 @@ namespace CoLucService
         {
             this.rpoProduct = _rpoProduct;
         }
-        public IEnumerable<Product> GetProducts()
+        //public IEnumerable<Product> GetProducts()
+        //{
+        //    return this.rpoProduct.Query().Get();
+        //}
+
+
+        IEnumerable<Product> IProductService.GetProducts()
         {
             return this.rpoProduct.Query().Get();
+        }
+
+        void TNT.Core.Service.IService<Product>.Delete(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void TNT.Core.Service.IService<Product>.Delete(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> TNT.Core.Service.IService<Product>.DeleteAsync(System.Threading.CancellationToken cancellationToken, params object[] keyValues)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> TNT.Core.Service.IService<Product>.DeleteAsync(params object[] keyValues)
+        {
+            throw new NotImplementedException();
+        }
+
+        Product TNT.Core.Service.IService<Product>.Find(params object[] keyValues)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Product> TNT.Core.Service.IService<Product>.FindAsync(System.Threading.CancellationToken cancellationToken, params object[] keyValues)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Product> TNT.Core.Service.IService<Product>.FindAsync(params object[] keyValues)
+        {
+            throw new NotImplementedException();
+        }
+
+        System.Web.Http.SingleResult<Product> TNT.Core.Service.IService<Product>.GetSingleResult(params object[] keyValues)
+        {
+            throw new NotImplementedException();
+        }
+
+        void TNT.Core.Service.IService<Product>.Insert(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void TNT.Core.Service.IService<Product>.InsertGraph(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void TNT.Core.Service.IService<Product>.InsertGraphRange(IEnumerable<Product> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        void TNT.Core.Service.IService<Product>.InsertRange(IEnumerable<Product> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable<Product> TNT.Core.Service.IService<Product>.ODataQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable TNT.Core.Service.IService<Product>.ODataQueryable(System.Web.Http.OData.Query.ODataQueryOptions<Product> oDataQueryOptions)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryableOperation<Product> TNT.Core.Service.IService<Product>.Query(System.Linq.Expressions.Expression<Func<Product, bool>> query)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryableOperation<Product> TNT.Core.Service.IService<Product>.Query(IQueryExpression<Product> queryObject)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryableOperation<Product> TNT.Core.Service.IService<Product>.Query()
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable<Product> TNT.Core.Service.IService<Product>.SelectQuery(string query, params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        void TNT.Core.Service.IService<Product>.Update(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public IEnumerable<Brand> GetBrands()
+        {
+            //return this.rpoProduct.GetRepository<Brand>().Queryable()
+            //    .Where(b => b.EndDate == null)
+            //    .ToList()
+            //;
+
+            return this.rpoProduct.GetBrands();
         }
     }
 }

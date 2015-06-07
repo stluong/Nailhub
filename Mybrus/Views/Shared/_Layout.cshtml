@@ -84,6 +84,7 @@
     </header>
     <!-- /Top Bar -->
     <!-- TOP NAV -->
+
     <header id="topNav" class="topHead">
         <!-- remove class="topHead" if no topHead used! -->
         <div class="container">
@@ -112,10 +113,8 @@
                             <a class="dropdown-toggle" href="#">
                                 @Lang.BrushBrand @*<i class="fa fa-angle-down"></i>*@
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-post.html">Brand 1</a></li>
-                                <li><a href="blog-post.html">Brand 2</a></li>
-                            </ul>
+                            @{Html.RenderAction("PtBrandMenu", "Product");}
+
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
