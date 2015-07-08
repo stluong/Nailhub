@@ -45,7 +45,7 @@ namespace CoLucService
         }
 
         IEnumerable<xProduct> IProductService.GetXProducts(int? productId, int? langId) {
-            using (var co = new CoLucEntities()) {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
                 return co.GetProduct(productId, langId);
             }
         }
