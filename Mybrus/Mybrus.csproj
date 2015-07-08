@@ -259,10 +259,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.vi.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdminViewModel.cs" />
-    <Compile Include="Models\MdBrandMenu.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Controllers\Models\AccountViewModels.cs" />
+    <Compile Include="Controllers\Models\AdminViewModel.cs" />
+    <Compile Include="Controllers\Models\MdBrandMenu.cs" />
+    <Compile Include="Controllers\Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

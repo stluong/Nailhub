@@ -12,5 +12,6 @@ namespace CoLucCore
     {
         IEnumerable<Product> GetProducts();
         IEnumerable<Brand> GetBrands();
+        IEnumerable<xProduct> GetXProducts(int? productId = null, int? langId = null);
     }
 }

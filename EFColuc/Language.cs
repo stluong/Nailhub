@@ -11,9 +11,8 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
-    using TNT.Core.Model;
     
-    public partial class Language:BaseEntity
+    public partial class Language
     {
         public Language()
         {

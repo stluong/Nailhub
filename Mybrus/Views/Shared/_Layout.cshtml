@@ -33,6 +33,7 @@
 <body class="boxed">
     <!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="~/Content/images/boxed_background/1.jpg"  -->
     <!-- Top Bar -->
+    <input type="hidden" id="hdfImgError" value="@Url.Content("~/Content/images/error.jpg")">
     <header id="topHead" class="color">
         <div class="container">
             <!-- PHONE/EMAIL -->
@@ -97,7 +98,7 @@
             <!-- Logo text or image -->
             <a class="logo" href="@Url.Action("Index", "Home")">
                 @*<img src="~/Content/images/logo.png" alt="Atropos" />*@
-               @Lang.SiteName
+                @Lang.SiteName
             </a>
 
             <!-- Top Nav -->
@@ -120,27 +121,27 @@
                         {
                             if (User.IsInRole(ESettings.Get.Value(ESettings.Role.Admin)))
                             {
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" href="#">
-                                        Administrator
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="@Url.Action("Users", "Manage")">User Management</a></li>
-                                        <li><a href="@Url.Action("Role", "Manage")">Role Management</a></li>
-                                        <li><a href="blog-post.html">Customer Management</a></li>
-                                        <li><a href="blog-post.html">Special Event</a></li>
-                                    </ul>
-                                </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#">
+                                Administrator
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Users", "Manage")">User Management</a></li>
+                                <li><a href="@Url.Action("Role", "Manage")">Role Management</a></li>
+                                <li><a href="blog-post.html">Customer Management</a></li>
+                                <li><a href="blog-post.html">Special Event</a></li>
+                            </ul>
+                        </li>
                             }
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="#">
-                                    Site Management
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Index", "Product")">Product Management</a></li>
-                                    <li><a href="blog-post.html">Sale Report</a></li>
-                                </ul>
-                            </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#">
+                                Site Management
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "Product")">Product Management</a></li>
+                                <li><a href="blog-post.html">Sale Report</a></li>
+                            </ul>
+                        </li>
                         }
                         <!-- GLOBAL SEARCH -->
                         <li class="search">
@@ -242,24 +243,24 @@
                     <!-- FOOTER CONTACT INFO -->
                     <div class="column col-md-4">
                         @*<h3>CONTACT</h3>
-                        <p class="contact-desc">
-                            Contact description
-                        </p>*@
+                            <p class="contact-desc">
+                                Contact description
+                            </p>*@
                         @*<address class="font-opensans">
-                            <ul>
-                                <li class="footer-sprite address">
-                                    Street<br />
-                                    address<br />
-                                    address2<br />
-                                </li>
-                                @*<li class="footer-sprite phone">
-                                    Phone: 1-314-914-3425
-                                </li>
-                                <li class="footer-sprite email">
-                                    <a href="mailto:luc.huynh78@gmail.com">luc.huynh78@gmail.com</a>
-                                </li>* @
-                            </ul>
-                        </address>*@
+                                <ul>
+                                    <li class="footer-sprite address">
+                                        Street<br />
+                                        address<br />
+                                        address2<br />
+                                    </li>
+                                    @*<li class="footer-sprite phone">
+                                        Phone: 1-314-914-3425
+                                    </li>
+                                    <li class="footer-sprite email">
+                                        <a href="mailto:luc.huynh78@gmail.com">luc.huynh78@gmail.com</a>
+                                    </li>* @
+                                </ul>
+                            </address>*@
 
                         <div class="post-item">
                             <span>Stree</span>
@@ -280,9 +281,9 @@
                     <!-- FOOTER LATEST POSTS -->
                     <div class="column col-md-4 text-right">
                         @*<h3></h3>
-                        <p class="contact-desc">
-                            Contact description
-                        </p>*@
+                            <p class="contact-desc">
+                                Contact description
+                            </p>*@
                         <div class="post-item">
                             <a href="blog-post.html">Privacy Policy</a>
                         </div>

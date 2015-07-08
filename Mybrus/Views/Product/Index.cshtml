@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EFColuc.Product>
+﻿@model IEnumerable<EFColuc.xProduct>
 @{
     ViewBag.Title = "Product Managment";
 }
@@ -8,41 +8,33 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BrandId)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Code)
+                Brand
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Image)
+                Code
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Length)
+                Image
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Size)
+                Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Color)
+                Length
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EnteredBy)
+                Size
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EnteredDate)
+                Color
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
+            
             <th></th>
         </tr>
 
@@ -50,40 +42,29 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BrandId)
+                    @Html.DisplayFor(modelItem => item.productid)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Code)
+                    @Html.DisplayFor(modelItem => item.brand)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Image)
+                    @Html.DisplayFor(modelItem => item.code)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @*@Html.DisplayFor(modelItem => item.Image)*@
+                    <img src="@item.image" onerror="Mybrus.Common.ImageError(this);" />
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Length)
+                    @Html.DisplayFor(modelItem => item.price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Size)
+                    @Html.DisplayFor(modelItem => item.length)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Color)
+                    @Html.DisplayFor(modelItem => item.size)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EnteredBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EnteredDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModifiedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModifiedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
+                    @Html.DisplayFor(modelItem => item.color)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
@@ -99,4 +80,4 @@
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
     </p>
 </div>
-    
+

@@ -11,9 +11,8 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
-    using TNT.Core.Model;
     
-    public partial class AspNetUser: BaseEntity
+    public partial class AspNetUser
     {
         public AspNetUser()
         {

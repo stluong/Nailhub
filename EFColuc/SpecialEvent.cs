@@ -11,9 +11,8 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
-    using TNT.Core.Model;
     
-    public partial class SpecialEvent: BaseEntity
+    public partial class SpecialEvent
     {
         public int EventId { get; set; }
         public int ProductId { get; set; }

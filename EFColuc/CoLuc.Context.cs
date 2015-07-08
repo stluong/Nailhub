@@ -12,16 +12,14 @@ namespace EFColuc
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     using TNT.Infrastructure.Repositories;
     
     public partial class CoLucEntities : MyContext
     {
         public CoLucEntities()
             : base("name=CoLucEntities")
-        {
-        }
-        public CoLucEntities(string nameOrConnectionString)
-            : base(nameOrConnectionString)
         {
         }
     
@@ -43,5 +41,18 @@ namespace EFColuc
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
+    
+        public virtual ObjectResult<xProduct> GetProduct(Nullable<int> productId, Nullable<int> langId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("productId", productId) :
+                new ObjectParameter("productId", typeof(int));
+    
+            var langIdParameter = langId.HasValue ?
+                new ObjectParameter("langId", langId) :
+                new ObjectParameter("langId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<xProduct>("GetProduct", productIdParameter, langIdParameter);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿$(function () {
+﻿var Mybrus = window.Mybrus || {};
+
+Mybrus.Language || (Mybrus.Language = (function ($) {
     var $spanLanguage = $("span#spanLanguage", "body")
         , $dnmLanguage = $("button#dnmLanguage", "body")
         , $ulLanguage = $("ul#ulLanguage", "body")
@@ -13,7 +15,7 @@
             else {
                 $.cookie("mybruslang", "en")
                 $spanLanguage.text("English");
-                
+
             }
             $dnmLanguage
                 .dropdown('toggle')
@@ -22,4 +24,14 @@
             location.reload();
         });
     });
-});
+
+}(jQuery)));
+
+Mybrus.Common || (Mybrus.Common = (function ($) {
+    return {
+        ImageError: function (thss) {
+	        thss.onerror = null;
+	        thss.src = $("body").find("input#hdfImgError").val();
+        }
+    }
+}(jQuery)));

@@ -49,11 +49,12 @@ if (container.FunctionImports.Any())
 #>
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using TNT.Infrastructure.Repositories;
 <#
 }
 #>
 
-<#=Accessibility.ForType(container)#> partial class <#=code.Escape(container)#> : DbContext
+<#=Accessibility.ForType(container)#> partial class <#=code.Escape(container)#> : MyContext
 {
     public <#=code.Escape(container)#>()
         : base("name=<#=container.Name#>")

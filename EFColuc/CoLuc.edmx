@@ -354,6 +354,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sl_GetProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+          <Parameter Name="langId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="CoLucModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -480,6 +484,10 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Inventory" EntitySet="Inventories" />
           </AssociationSet>
+          <FunctionImport Name="GetProduct" ReturnType="Collection(CoLucModel.xProduct)">
+            <Parameter Name="productId" Mode="In" Type="Int32" />
+            <Parameter Name="langId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Brand">
           <Key>
@@ -820,6 +828,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="xProduct">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="Int32" Name="brandid" Nullable="false" />
+          <Property Type="Int32" Name="langid" Nullable="true" />
+          <Property Type="String" Name="code" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="image" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="length" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="size" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="color" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="brand" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1032,6 +1054,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetProduct" FunctionName="CoLucModel.Store.sl_GetProduct">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="CoLucModel.xProduct">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="brandid" ColumnName="brandid" />
+                <ScalarProperty Name="langid" ColumnName="langid" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

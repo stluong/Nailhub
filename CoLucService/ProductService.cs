@@ -8,6 +8,7 @@ using EFColuc;
 using TNT.Core.Repository;
 using TNT.Core.UnitOfWork;
 using TNT.Infracstructure.Services;
+using System.Data.Entity;
 
 namespace CoLucService
 {
@@ -29,7 +30,24 @@ namespace CoLucService
 
         IEnumerable<Product> IProductService.GetProducts()
         {
-            return this.rpoProduct.Query().Get();
+            //using (var brus = new CoLucEntities())
+            //{
+            //    return brus.Products
+            //        .Include(p => p.ProductDetails)
+            //        .ToList()
+            //    ;
+            //}
+
+            return this.rpoProduct.Query()
+                .Include(p => p.ProductDetails)
+                .Get()
+            ;
+        }
+
+        IEnumerable<xProduct> IProductService.GetXProducts(int? productId, int? langId) {
+            using (var co = new CoLucEntities()) {
+                return co.GetProduct(productId, langId);
+            }
         }
 
         void TNT.Core.Service.IService<Product>.Delete(Product entity)

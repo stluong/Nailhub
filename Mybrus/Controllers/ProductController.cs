@@ -20,7 +20,10 @@ namespace Mybrus.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
-            var prods = this.prod.GetProducts().ToList();
+            var prods =
+                //this.prod.GetProducts().ToList()
+                this.prod.GetXProducts();
+            ;
             return View(prods);
         }
 

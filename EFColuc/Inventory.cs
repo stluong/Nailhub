@@ -11,9 +11,8 @@ namespace EFColuc
 {
     using System;
     using System.Collections.Generic;
-    using TNT.Core.Model;
     
-    public partial class Inventory:BaseEntity
+    public partial class Inventory
     {
         public int InventoryId { get; set; }
         public int ProductId { get; set; }

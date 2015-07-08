@@ -239,8 +239,12 @@
     <Compile Include="ProductDetail.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExtenedEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecialEvent.cs">
+      <DependentUpon>CoLuc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="xProduct.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
   </ItemGroup>
