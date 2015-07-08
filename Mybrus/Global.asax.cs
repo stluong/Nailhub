@@ -28,7 +28,7 @@ namespace Mybrus
             //Or use efconnection
             TNT.App.InitEFConnection("name=CoLucEntities".GetConnnectionString());
             TNT.App.RegisterCore(typeof(MvcApplication).Assembly, false);
-            TNT.App.RegisterContext(() => new CoLucEntities(TNT.App.EFConnection.ConnectionString), false);
+            TNT.App.RegisterContext(() => new CoLucEntities(TNT.App.EFConnection.ToString()), false);
             TNT.App.RegisterByConfig("autofac");
         }
 
