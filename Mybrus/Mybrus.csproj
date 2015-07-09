@@ -581,6 +581,7 @@
     <Content Include="Content\images\email_template\social_icon3_default.png" />
     <Content Include="Content\images\email_template\social_icon4.png" />
     <Content Include="Content\images\email_template\social_icon4_default.png" />
+    <Content Include="Content\images\error.jpg" />
     <Content Include="Content\images\female.png" />
     <Content Include="Content\images\flags\ad.png" />
     <Content Include="Content\images\flags\ae.png" />
@@ -1216,6 +1217,7 @@
     <Content Include="Views\Home\Cc.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\PtBrandMenu.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

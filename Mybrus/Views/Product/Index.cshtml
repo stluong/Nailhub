@@ -51,8 +51,12 @@
                     @Html.DisplayFor(modelItem => item.code)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
                     @*@Html.DisplayFor(modelItem => item.Image)*@
-                    <img src="@item.image" onerror="Mybrus.Common.ImageError(this);" />
+                    <img class="xSize100" src="@Url.Content("~/Content/images/female.png")" 
+                         onerror="Mybrus.Common.ImageError(this);"/>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.price)
@@ -67,9 +71,9 @@
                     @Html.DisplayFor(modelItem => item.color)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.productid }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.productid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.productid })
                 </td>
             </tr>
         }
@@ -80,4 +84,3 @@
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
     </p>
 </div>
-

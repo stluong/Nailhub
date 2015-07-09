@@ -46,18 +46,20 @@ namespace CoLucService
 
         IEnumerable<xProduct> IProductService.GetXProducts(int? productId, int? langId) {
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
-                return co.GetProduct(productId, langId);
+                return co.GetProduct(productId, langId)
+                    .ToList()
+                ;
             }
         }
 
         void TNT.Core.Service.IService<Product>.Delete(Product entity)
         {
-            throw new NotImplementedException();
+            this.rpoProduct.Delete(entity);
         }
 
         void TNT.Core.Service.IService<Product>.Delete(object id)
         {
-            throw new NotImplementedException();
+            this.rpoProduct.Delete(id);
         }
 
         Task<bool> TNT.Core.Service.IService<Product>.DeleteAsync(System.Threading.CancellationToken cancellationToken, params object[] keyValues)
@@ -72,7 +74,7 @@ namespace CoLucService
 
         Product TNT.Core.Service.IService<Product>.Find(params object[] keyValues)
         {
-            throw new NotImplementedException();
+            return this.rpoProduct.Find(keyValues);
         }
 
         Task<Product> TNT.Core.Service.IService<Product>.FindAsync(System.Threading.CancellationToken cancellationToken, params object[] keyValues)
@@ -92,7 +94,7 @@ namespace CoLucService
 
         void TNT.Core.Service.IService<Product>.Insert(Product entity)
         {
-            throw new NotImplementedException();
+            this.rpoProduct.Insert(entity);
         }
 
         void TNT.Core.Service.IService<Product>.InsertGraph(Product entity)
@@ -142,7 +144,7 @@ namespace CoLucService
 
         void TNT.Core.Service.IService<Product>.Update(Product entity)
         {
-            throw new NotImplementedException();
+            this.rpoProduct.Update(entity);
         }
 
 

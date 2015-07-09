@@ -12,3 +12,7 @@
 .aln-v-i{
     vertical-align: inherit;
 }
+.xSize100{
+    max-width: 100px;
+    max-height: 100px
+}

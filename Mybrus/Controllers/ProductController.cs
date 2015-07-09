@@ -30,7 +30,8 @@ namespace Mybrus.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pd = this.prod.Find(id);
+            return View(pd);
         }
 
         // GET: ProductController/Create
