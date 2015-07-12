@@ -221,6 +221,9 @@
     <Compile Include="Customer.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>CoLuc.tt</DependentUpon>
+    </Compile>
     <Compile Include="Inventory.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>

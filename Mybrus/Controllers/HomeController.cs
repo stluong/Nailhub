@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Web.Mvc;
 using CoLucCore;
+using TNTHelper;
 
 namespace Mybrus.Controllers {
     public class HomeController : BaseController {
@@ -15,7 +16,8 @@ namespace Mybrus.Controllers {
 
         public ActionResult Index()
         {
-            return View(this.prod.GetXProducts());
+            ViewBag.splProduct = this.prod.GetSpecialProduct(langId: int.Parse(Language.Lang.LangId));
+            return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>()));
         }
 
         public ActionResult About() {

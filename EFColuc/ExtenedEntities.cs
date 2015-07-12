@@ -55,5 +55,7 @@ namespace EFColuc
     public partial class SpecialEvent : BaseEntity
     {
     }
+    public partial class Image: BaseEntity
+    { }
 
 }

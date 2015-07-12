@@ -203,6 +203,10 @@
       <Project>{0a91245e-905f-4f82-b0c8-8d9b73d32f51}</Project>
       <Name>EFColuc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TNT.Helper\TNTHelper.csproj">
+      <Project>{b6b9c121-55bd-4ff4-ac92-62c5b0d8ca5d}</Project>
+      <Name>TNTHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -132,6 +132,9 @@
   <data name="Home" xml:space="preserve">
     <value>Trang Chủ</value>
   </data>
+  <data name="LangId" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Vietnamese</value>
   </data>

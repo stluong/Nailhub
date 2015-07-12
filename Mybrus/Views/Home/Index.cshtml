@@ -1,118 +1,74 @@
 ﻿@using Mybrus.Language;
+@model IEnumerable<EFColuc.xProduct>
 
 @{
-    
+    var spProduct = ViewBag.splProduct;
     var urlTemp = Url.Action("Detail", "Home");
+    var imgPath = Url.Content("~/Content/images/demo/shop/");
+    var lstBgdImg = new string[]{
+        "medium_bg_darkblue",
+        "medium_bg_orange",
+    };
+    var prdDiscount = TNTHelper.AppSettings.Get<int>("productDiscount");
 }
 <!-- REVOLUTION SLIDER -->
 <div class="fullwidthbanner-container roundedcorners">
     <div class="fullwidthbanner">
         <ul>
             <!-- SLIDE  -->
-            <li data-transition="3dcurtain-vertical" ddata-slotamount="15" data-masterspeed="300" data-delay="9400">
+            <li data-transition="3dcurtain-vertical" ddata-slotamount="15" data-masterspeed="300" data-delay="3000">
 
                 <!-- COVER IMAGE -->
                 <img src="~/Content/images/demo/revolution_slider/sliderbg.jpg" alt="" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
 
                 <div class="tp-caption large_bold_grey lfl stl"
-                        data-x="18"
-                        data-y="233"
-                        data-speed="300"
-                        data-start="500"
-                        data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine">
+                     data-x="18"
+                     data-y="233"
+                     data-speed="300"
+                     data-start="500"
+                     data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine">
                     Mybrus Shopping
                 </div>
 
                 <div class="tp-caption large_bold_grey medium_thin_grey lfl stl"
-                        data-x="18"
-                        data-y="200"
-                        data-speed="300"
-                        data-start="800"
-                        data-easing="easeOutExpo" data-end="9100" data-endspeed="300" data-endeasing="easeInSine">
+                     data-x="18"
+                     data-y="200"
+                     data-speed="300"
+                     data-start="800"
+                     data-easing="easeOutExpo" data-end="9100" data-endspeed="300" data-endeasing="easeInSine">
                     <a target="_blank" href="#">BUY NOW</a>
                 </div>
 
-                <div class="tp-caption lft"
-                        data-x="right" data-hoffset="-20"
-                        data-y="0"
-                        data-speed="600"
-                        data-start="1100"
-                        data-easing="easeOutExpo" data-end="3100" data-endspeed="600" data-endeasing="easeInSine">
-                        <a href="@urlTemp"><img src="~/Content/images/demo/shop/slider/1.jpg" alt="Image 1"></a>
-                </div>
+                
 
-                <div class="tp-caption medium_bg_darkblue sft stb"
-                        data-x="720"
-                        data-y="200"
-                        data-speed="300"
-                        data-start="1400"
-                        data-easing="easeOutExpo" data-end="3300" data-endspeed="300" data-endeasing="easeInSine">
-                    MAN CHERRY SHIRT
-                </div>
+                @foreach (var xp in spProduct)
+                {
+                    <div class="tp-caption lft"
+                         data-x="right" data-hoffset="-20"
+                         data-y="0"
+                         data-speed="600"
+                         data-start="1100"
+                         data-easing="easeOutExpo" data-end="3100" data-endspeed="600" data-endeasing="easeInSine">
+                        <a href="@urlTemp"><img src="@(imgPath + "1.jpg")" alt="Image 1" onerror="Mybrus.Common.ImageError(this);"/></a>
+                    </div>
+                    <div class="tp-caption @lstBgdImg[new Random().Next(0, 1)] sft stb"
+                         data-x="720"
+                         data-y="200"
+                         data-speed="300"
+                         data-start="1400"
+                         data-easing="easeOutExpo" data-end="3300" data-endspeed="300" data-endeasing="easeInSine">
+                        @xp.name
+                    </div>
 
-                <div class="tp-caption medium_bg_orange sfb stb"
-                        data-x="720"
-                        data-y="160"
-                        data-speed="300"
-                        data-start="1700"
-                        data-easing="easeOutExpo" data-end="3200" data-endspeed="300" data-endeasing="easeInSine">
-                    $ 7.49
-                </div>
-
-                <div class="tp-caption lft ltb"
-                        data-x="right" data-hoffset="-20"
-                        data-y="0"
-                        data-speed="600"
-                        data-start="3600"
-                        data-easing="easeOutExpo" data-end="5600" data-endspeed="600" data-endeasing="easeInSine">
-                    <a href="@urlTemp"><img src="~/Content/images/demo/shop/slider/5.jpg" alt="Image 2"></a>
-                </div>
-
-                <div class="tp-caption medium_bg_darkblue sft stb"
-                        data-x="720"
-                        data-y="200"
-                        data-speed="300"
-                        data-start="3900"
-                        data-easing="easeOutExpo" data-end="5800" data-endspeed="300" data-endeasing="easeInSine">
-                    YELLOW WOMAN DRESS
-                </div>
-
-                <div class="tp-caption medium_bg_orange sfb stb"
-                        data-x="720"
-                        data-y="160"
-                        data-speed="300"
-                        data-start="4200"
-                        data-easing="easeOutExpo" data-end="5700" data-endspeed="300" data-endeasing="easeInSine">
-                    $ 5.99
-                </div>
-
-                <div class="tp-caption lft ltb"
-                        data-x="right" data-hoffset="-20"
-                        data-y="0"
-                        data-speed="600"
-                        data-start="6100"
-                        data-easing="easeOutExpo" data-end="8100" data-endspeed="300" data-endeasing="easeInSine">
-                    <a href="@urlTemp"><img src="~/Content/images/demo/shop/slider/9.jpg" alt="Image 3"></a>
-                </div>
-
-                <div class="tp-caption medium_bg_darkblue sft stb"
-                        data-x="720"
-                        data-y="200"
-                        data-speed="300"
-                        data-start="6400"
-                        data-easing="easeOutExpo" data-end="8300" data-endspeed="300" data-endeasing="easeInSine">
-                    COOL RED CHIAR
-                </div>
-
-                <div class="tp-caption medium_bg_orange sfb stb"
-                        data-x="720"
-                        data-y="160"
-                        data-speed="300"
-                        data-start="6700"
-                        data-easing="easeOutExpo" data-end="8200" data-endspeed="300" data-endeasing="easeInSine">
-                    $ 6.79
-                </div>
-
+                    <div class="tp-caption @lstBgdImg[new Random().Next(0, 1)] sfb stb"
+                         data-x="720"
+                         data-y="160"
+                         data-speed="300"
+                         data-start="1700"
+                         data-easing="easeOutExpo" data-end="3200" data-endspeed="300" data-endeasing="easeInSine">
+                        @xp.price.ToString("C")
+                    </div>
+                }
             </li>
 
             <!-- SLIDE -->
@@ -122,63 +78,37 @@
                 <img src="~/Content/images/demo/revolution_slider/slider7.jpg" alt="" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
 
                 <div class="tp-caption large_text sft"
-                        data-x="center"
-                        data-y="100"
-                        data-speed="300"
-                        data-start="800"
-                        data-easing="easeOutExpo">
+                     data-x="center"
+                     data-y="100"
+                     data-speed="300"
+                     data-start="800"
+                     data-easing="easeOutExpo">
                     TODAY BEST DEAL
                 </div>
 
                 <div class="tp-caption medium_bold_red medium_light_red sfr"
-                        data-x="center"
-                        data-y="75"
-                        data-speed="300"
-                        data-start="1100"
-                        data-easing="easeOutExpo">
-                    <a href="https://wrapbootstrap.com/theme/atropos-responsive-website-template-WB05SR527" target="_blank">PURCHASE NOW</a>
+                     data-x="center"
+                     data-y="75"
+                     data-speed="300"
+                     data-start="1100"
+                     data-easing="easeOutExpo">
+                    <a href="#" target="_blank">PURCHASE NOW</a>
                 </div>
-
-                <div class="tp-caption lfb text-center"
-                        data-x="270"
-                        data-y="200"
-                        data-speed="900"
-                        data-start="1700"
-                        data-easing="easeOutBack">
-                    <a class="fsize20" href="@urlTemp">
-                        <img class="block hover-scale" src="~/Content/images/demo/shop/7.jpg" width="200" height="200" alt="" />
-                        <strong>$ 32.00</strong>
-                    </a>
-                </div>
-
-                <div class="tp-caption lfb text-center"
-                        data-x="480"
-                        data-y="200"
-                        data-speed="900"
-                        data-start="2000"
-                        data-easing="easeOutBack">
-                    <a class="fsize20" href="@urlTemp">
-                        <img class="block hover-scale" src="~/Content/images/demo/shop/5.jpg" width="200" height="200" alt="" />
-                        <strong>$ 45.87</strong>
-                    </a>
-                </div>
-
-                <div class="tp-caption lfb text-center"
-                        data-x="690"
-                        data-y="200"
-                        data-speed="900"
-                        data-start="2300"
-                        data-easing="easeOutBack">
-                    <a class="fsize20" href="@urlTemp">
-                        <img class="block hover-scale" src="~/Content/images/demo/shop/1.jpg" width="200" height="200" alt="" />
-                        <strong>$ 64.00</strong>
-                    </a>
-                </div>
-
-
+                @foreach (var xp in spProduct)
+                {
+                    <div class="tp-caption lfb text-center"
+                         data-x="270"
+                         data-y="200"
+                         data-speed="900"
+                         data-start="1700"
+                         data-easing="easeOutBack">
+                        <a class="fsize20" href="@urlTemp">
+                            <img class="block hover-scale" src="@(imgPath + "/7.jpg")" width="200" height="200" alt="" onerror="Mybrus.Common.ImageError(this);" />
+                            <strong>@xp.price.ToString("C")</strong>
+                        </a>
+                    </div>
+                }
             </li>
-
-
         </ul>
 
         <div class="tp-bannertimer"></div>
@@ -191,273 +121,43 @@
         <span class="subtitle">@Lang.Slogan</span>
     </h1>
     <p class="lead">
-        Description here
+        @*Description here*@
     </p>
 </section>
 
 <div id="shop">
 
     <section class="container">
-
         <div class="row">
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/9.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Cool Chair</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
+            @foreach (var xp in Model)
+            {
+                <div class="col-sm-6 col-md-3">
+                    <!-- item -->
+                    <div class="item-box fixed-box">
+                        <figure>
+                            <a class="item-hover" href="@urlTemp">
+                                <span class="overlay color2"></span>
+                                <span class="inner">
+                                    <span class="block fa fa-plus fsize20"></span>
+                                    @Lang.Prod_Detail
+                                </span>
+                            </a>
+                            <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
+                            <img class="img-responsive" src="@(imgPath + "9.jpg")" width="260" height="260" alt="" onerror="Mybrus.Common.ImageError(this);">
+                        </figure>
+                        <div class="item-box-desc">
+                            <h4>@xp.name</h4>
+                            <small class="styleColor">
+                                <span>@xp.price.ToString("C")</span>
+                                @((xp.price - (xp.price * prdDiscount) / 100).ToString("C"))
+                            </small>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/2.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Black Shoes</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/3.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>James Bond Watch - Titanium Case</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/4.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Pink Lady Shoes</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/5.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Yellow Lady Dress</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/6.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>White Hat</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/7.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Man Shirt</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/8.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Futuristic Sofa</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/1.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Another Man Shirt</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/2.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Same Black Shoe</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/3.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>James Bond Watch</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
-                <!-- item -->
-                <div class="item-box fixed-box">
-                    <figure>
-                        <a class="item-hover" href="@urlTemp">
-                            <span class="overlay color2"></span>
-                            <span class="inner">
-                                <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
-                            </span>
-                        </a>
-                        <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                        <img class="img-responsive" src="~/Content/images/demo/shop/4.jpg" width="260" height="260" alt="">
-                    </figure>
-                    <div class="item-box-desc">
-                        <h4>Pink Lady Shoes</h4>
-                        <small class="styleColor"><span>$180</span> $150</small>
-                    </div>
-                </div>
-            </div>
+            }
 
         </div>
-
     </section>
-
 </div>
 
 <!-- CALLOUT -->

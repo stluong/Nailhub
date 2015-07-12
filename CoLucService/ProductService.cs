@@ -9,6 +9,8 @@ using TNT.Core.Repository;
 using TNT.Core.UnitOfWork;
 using TNT.Infracstructure.Services;
 using System.Data.Entity;
+using TNTHelper;
+
 
 namespace CoLucService
 {
@@ -156,6 +158,39 @@ namespace CoLucService
             //;
 
             return this.rpoProduct.GetBrands();
+        }
+
+
+        public IEnumerable<xProduct> GetSpecialProduct(int? eventId, int langId = 1)
+        {
+            using (var ct = new CoLucEntities(TNT.App.EFConnection.ToString())) {
+                var mySpeProducts = ct.SpecialEvents
+                    .Include(e => e.Product)
+                    .Include(e => e.Product.ProductDetails)
+                    .LeftJoin(ct.Images
+                        , p => p.Product.SetImageId
+                        , i => i.imageId
+                        , (p, i) => new { p, i }
+                    )
+                    .Select(pi => new
+                    {
+                        productid = pi.p.ProductId,
+                        name = pi.p.Product.ProductDetails.FirstOrDefault(pd => pd.LangId == 1).Name,
+                        price = pi.p.Product.Price,
+                        image = pi.i != null ? pi.i.Path : string.Empty
+                    })
+                    .ToList()
+                ;
+
+                return mySpeProducts.Select(p => new xProduct
+                {
+                    productid = p.productid,
+                    name = p.name,
+                    price = p.price,
+                    image = p.image
+                })
+                .ToList();
+            }
         }
     }
 }

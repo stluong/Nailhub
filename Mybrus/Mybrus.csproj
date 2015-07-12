@@ -1144,6 +1144,9 @@
     <Content Include="Content\plugins\superslides\src\.jshintrc" />
     <Content Include="Content\plugins\superslides\superslides.jquery.json" />
     <Content Include="Content\plugins\superslides\test\.jshintrc" />
+    <Content Include="Content\plugins\revolution-slider\js\jquery.themepunch.revolution.min.js.map">
+      <DependentUpon>jquery.themepunch.revolution.min.js</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

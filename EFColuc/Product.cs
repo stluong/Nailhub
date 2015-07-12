@@ -25,7 +25,6 @@ namespace EFColuc
         public int ProductId { get; set; }
         public int BrandId { get; set; }
         public string Code { get; set; }
-        public string Image { get; set; }
         public decimal Price { get; set; }
         public Nullable<decimal> Length { get; set; }
         public Nullable<decimal> Size { get; set; }
@@ -35,6 +34,7 @@ namespace EFColuc
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
+        public Nullable<int> SetImageId { get; set; }
     
         public virtual Brand Brand { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

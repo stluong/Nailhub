@@ -29,6 +29,7 @@
         <AssociationConnector Association="CoLucModel.FK_SpecialEvent_Product" />
         <EntityTypeShape EntityType="CoLucModel.Inventory" Width="1.5" PointX="12.875" PointY="4" />
         <AssociationConnector Association="CoLucModel.FK_Inventory_Product" />
+        <EntityTypeShape EntityType="CoLucModel.Image" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
