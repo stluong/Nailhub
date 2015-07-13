@@ -39,8 +39,6 @@
                     <a target="_blank" href="#">BUY NOW</a>
                 </div>
 
-                
-
                 @foreach (var xp in spProduct)
                 {
                     <div class="tp-caption lft"
@@ -49,7 +47,9 @@
                          data-speed="600"
                          data-start="1100"
                          data-easing="easeOutExpo" data-end="3100" data-endspeed="600" data-endeasing="easeInSine">
-                        <a href="@urlTemp"><img src="@(imgPath + "1.jpg")" alt="Image 1" onerror="Mybrus.Common.ImageError(this);"/></a>
+                        <a href="@(string.Format("{0}/{1}", urlTemp, xp.productid))">
+                            <img src="@(string.Format("{0}/{1}", imgPath, xp.image))" alt="Image 1" onerror="Mybrus.Common.ImageError(this);" />
+                        </a>
                     </div>
                     <div class="tp-caption @lstBgdImg[new Random().Next(0, 1)] sft stb"
                          data-x="720"
@@ -102,8 +102,8 @@
                          data-speed="900"
                          data-start="1700"
                          data-easing="easeOutBack">
-                        <a class="fsize20" href="@urlTemp">
-                            <img class="block hover-scale" src="@(imgPath + "/7.jpg")" width="200" height="200" alt="" onerror="Mybrus.Common.ImageError(this);" />
+                        <a class="fsize20" href="@(string.Format("{0}/{1}", urlTemp, xp.productid))">
+                            <img class="block hover-scale" src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="200" height="200" alt="" onerror="Mybrus.Common.ImageError(this);" />
                             <strong>@xp.price.ToString("C")</strong>
                         </a>
                     </div>
@@ -135,7 +135,7 @@
                     <!-- item -->
                     <div class="item-box fixed-box">
                         <figure>
-                            <a class="item-hover" href="@urlTemp">
+                            <a class="item-hover" href="@(string.Format("{0}/{1}", urlTemp, xp.productid))">
                                 <span class="overlay color2"></span>
                                 <span class="inner">
                                     <span class="block fa fa-plus fsize20"></span>
@@ -143,7 +143,7 @@
                                 </span>
                             </a>
                             <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                            <img class="img-responsive" src="@(imgPath + "9.jpg")" width="260" height="260" alt="" onerror="Mybrus.Common.ImageError(this);">
+                            <img class="img-responsive" src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="260" height="260" alt="" onerror="Mybrus.Common.ImageError(this);">
                         </figure>
                         <div class="item-box-desc">
                             <h4>@xp.name</h4>

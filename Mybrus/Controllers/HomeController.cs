@@ -17,6 +17,7 @@ namespace Mybrus.Controllers {
         public ActionResult Index()
         {
             ViewBag.splProduct = this.prod.GetSpecialProduct(langId: int.Parse(Language.Lang.LangId));
+            
             return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>()));
         }
 
@@ -32,8 +33,9 @@ namespace Mybrus.Controllers {
             return View();
         }
 
-        public ActionResult Detail(int productId = 1) {
-            return View();
+        public ActionResult Detail(int id = 1) {
+            ViewBag.prdDetail = this.prod.GetXProducts(id, Language.Lang.LangId.ToNullable<int>());
+            return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>()));
         }
 
         public ActionResult Cart() {

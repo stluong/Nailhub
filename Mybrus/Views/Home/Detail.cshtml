@@ -1,22 +1,23 @@
 ﻿@using Mybrus.Language;
-@{
 
-    var urlTemp = Url.Action("Detail", "Home");
+@model IEnumerable<EFColuc.xProduct>
+@{
+    var prdDetail = ((IEnumerable<EFColuc.xProduct>)ViewBag.prdDetail).FirstOrDefault();
+    var imgs = prdDetail.image.Split(';').ToList();
+    var imgPath = Url.Content("~/Content/images/demo/shop/");
+    var prdDiscount = TNTHelper.AppSettings.Get<int>("productDiscount");
 }
 <section class="container mt30l15r10">
 
     <div class="row">
         <div class="col-sm-6 col-md-6">
             <div class="owl-carousel controlls-over product-image" data-plugin-options='{"items": 1, "singleItem": true, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
-                <div>
-                    <img alt="" class="img-responsive" src="~/Content/images/demo/shop/4.jpg">
-                </div>
-                <div>
-                    <img alt="" class="img-responsive" src="~/Content/images/demo/shop/view2.jpg">
-                </div>
-                <div>
-                    <img alt="" class="img-responsive" src="~/Content/images/demo/shop/view3.jpg">
-                </div>
+                @foreach (var img in imgs)
+                {
+                    <div>
+                        <img alt="" class="img-responsive" src="@(imgPath + img)" onerror="Mybrus.Common.ImageError(this);">
+                    </div>
+                }
             </div>
         </div>
 
@@ -29,18 +30,17 @@
                 <input type="hidden" name="action" value="cart_add" />
                 <input type="hidden" name="product_id" value="1" />
 
-                <h2 class="product-title">Pink Lady Perfect Shoes</h2>
+                <h2 class="product-title">@prdDetail.name</h2>
 
                 <!-- product unique code -->
-                <span class="code">PART NUMBER: 0F3DSS</span>
+                <span class="code">@prdDetail.code</span>
                 <!-- /product unique code -->
                 <!-- product price -->
                 <div class="productRowInfo">
-                    <span class="price styleSecondColor fsize20">$40.00</span>
-                    <span class="oldprice">$43.00</span>
+                    <span class="price styleSecondColor fsize20">@prdDetail.price.ToString("C")</span>
+                    @*<span class="oldprice">$43.00</span>*@
                 </div>
                 <!-- /product price -->
-
 
                 <div class="row attributes">
 
@@ -67,7 +67,6 @@
                                 </select>
                             </div>
                             <!-- /product size -->
-
                         </div>
 
                     </div>
@@ -76,7 +75,6 @@
 
 
                 <div class="row">
-
                     <!-- quantity + @Lang.Cart_Add -->
                     <div class="row">
                         <div class="col-md-7 col-sm-12">
@@ -93,14 +91,13 @@
                         </div>
                     </div>
                     <!-- /quantity + @Lang.Cart_Add -->
-
                 </div>
 
                 <!-- product description -->
                 <div class="desc">
                     <h3 class="page-header">DESCRIPTION</h3>
                     <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.
+                        @prdDetail.description
                     </p>
                 </div>
                 <!-- /product description -->
@@ -134,91 +131,32 @@
     <!-- RELATED -->
     <h2><strong>Related</strong> Products</h2>
     <div id="shop" class="row">
-
-        <div class="col-sm-6 col-md-3">
-            <!-- item -->
-            <div class="item-box fixed-box">
-                <figure>
-                    <a class="item-hover" href="@urlTemp">
-                        <span class="overlay color2"></span>
-                        <span class="inner">
-                            <span class="block fa fa-plus fsize20"></span>
-                            @Lang.Prod_Detail
-                        </span>
-                    </a>
-                    <a href="shop-cart.html" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                    <img class="img-responsive" src="~/Content/images/demo/shop/9.jpg" width="260" height="260" alt="">
-                </figure>
-                <div class="item-box-desc">
-                    <h4>Cool Chair</h4>
-                    <small class="styleColor"><span>$180</span> $150</small>
+        @foreach (var xp in Model)
+        {
+            <div class="col-sm-6 col-md-3">
+                <!-- item -->
+                <div class="item-box fixed-box">
+                    <figure>
+                        <a class="item-hover" href="@Url.Action("Detail", "Home", new { id = xp.productid })">
+                            <span class="overlay color2"></span>
+                            <span class="inner">
+                                <span class="block fa fa-plus fsize20"></span>
+                                @Lang.Prod_Detail
+                            </span>
+                        </a>
+                        <a href="shop-cart.html" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
+                        <img class="img-responsive" src="@(string.Format("{0}/{1}",imgPath, xp.image))" width="260" height="260" alt="" onerror="Mybrus.Common.ImageError(this);">
+                    </figure>
+                    <div class="item-box-desc">
+                        <h4>@xp.name</h4>
+                        <small class="styleColor">
+                            <span>@xp.price.ToString("C")</span>
+                            @((xp.price - (xp.price * prdDiscount) / 100).ToString("C"))
+                        </small>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <!-- item -->
-            <div class="item-box fixed-box">
-                <figure>
-                    <a class="item-hover" href="@urlTemp">
-                        <span class="overlay color2"></span>
-                        <span class="inner">
-                            <span class="block fa fa-plus fsize20"></span>
-                            @Lang.Prod_Detail
-                        </span>
-                    </a>
-                    <a href="shop-cart.html" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                    <img class="img-responsive" src="~/Content/images/demo/shop/2.jpg" width="260" height="260" alt="">
-                </figure>
-                <div class="item-box-desc">
-                    <h4>Black Shoes</h4>
-                    <small class="styleColor"><span>$180</span> $150</small>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <!-- item -->
-            <div class="item-box fixed-box">
-                <figure>
-                    <a class="item-hover" href="@urlTemp">
-                        <span class="overlay color2"></span>
-                        <span class="inner">
-                            <span class="block fa fa-plus fsize20"></span>
-                            @Lang.Prod_Detail
-                        </span>
-                    </a>
-                    <a href="shop-cart.html" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                    <img class="img-responsive" src="~/Content/images/demo/shop/3.jpg" width="260" height="260" alt="">
-                </figure>
-                <div class="item-box-desc">
-                    <h4>James Bond Watch - Titanium Case</h4>
-                    <small class="styleColor"><span>$180</span> $150</small>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <!-- item -->
-            <div class="item-box fixed-box">
-                <figure>
-                    <a class="item-hover" href="@urlTemp">
-                        <span class="overlay color2"></span>
-                        <span class="inner">
-                            <span class="block fa fa-plus fsize20"></span>
-                            @Lang.Prod_Detail
-                        </span>
-                    </a>
-                    <a href="shop-cart.html" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
-                    <img class="img-responsive" src="~/Content/images/demo/shop/4.jpg" width="260" height="260" alt="">
-                </figure>
-                <div class="item-box-desc">
-                    <h4>Pink Lady Shoes</h4>
-                    <small class="styleColor"><span>$180</span> $150</small>
-                </div>
-            </div>
-        </div>
-
+        }
     </div>
     <!-- /RELATED -->
 
