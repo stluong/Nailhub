@@ -1221,6 +1221,8 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\PtBrandMenu.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Home\Policy.cshtml" />
+    <Content Include="Views\Home\TermsofUse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

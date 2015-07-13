@@ -32,6 +32,13 @@ namespace Mybrus.Controllers {
 
             return View();
         }
+        public ActionResult TermsofUse()
+        {
+            return View();
+        }
+        public ActionResult Policy() {
+            return View();
+        }
 
         public ActionResult Detail(int id = 1) {
             ViewBag.prdDetail = this.prod.GetXProducts(id, Language.Lang.LangId.ToNullable<int>());
