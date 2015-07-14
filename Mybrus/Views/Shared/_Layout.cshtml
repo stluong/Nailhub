@@ -28,12 +28,23 @@
     @Styles.Render("~/Content/css_themestyle")
     <link href="~/Content/css/common.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/plugins")
+    @Scripts.Render("~/bundles/main")
+    <script src="https://checkout.stripe.com/checkout.js"></script>
 
 </head>
 <body class="boxed">
     <!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="~/Content/images/boxed_background/1.jpg"  -->
     <!-- Top Bar -->
-    <input type="hidden" id="hdfImgError" value="@Url.Content("~/Content/images/error.jpg")">
+    <header id="mySettings">
+        <input type="hidden" id="img-Error" value="@Url.Content("~/Content/images/error.jpg")">
+        <input type="hidden" id="img-Mybrus" value="@Url.Content("~/Content/images/error.jpg")">
+        <input type="hidden" id="url-Charge" value="@Url.Action("Home", "Charge")">
+    </header>
+    
     <header id="topHead" class="color">
         <div class="container">
             <!-- PHONE/EMAIL -->
@@ -312,11 +323,6 @@
 
     </footer>
     <!-- /FOOTER -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/plugins")
-    @Scripts.Render("~/bundles/main")
     @RenderSection("scripts", required: false)
 
     <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->

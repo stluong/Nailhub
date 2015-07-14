@@ -55,8 +55,8 @@
                 </td>
                 <td>
                     @*@Html.DisplayFor(modelItem => item.Image)*@
-                    <img class="xSize100" src="@Url.Content("~/Content/images/female.png")" 
-                         onerror="Mybrus.Common.ImageError(this);"/>
+                    <img class="xSize100" src="@item.image" 
+                         onerror="TNT.Common.ImageError(this);"/>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.price)

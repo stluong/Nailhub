@@ -6,7 +6,7 @@ namespace Stripe
 {
     public class StripeChargeCreateOptions
     {
-        [JsonProperty("amount")]
+        [JsonProperty("amount")]        
         public int? Amount { get; set; }
 
         [JsonProperty("currency")]

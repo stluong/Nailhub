@@ -121,9 +121,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TNT.1.0.1\lib\net451\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Stripe.net">
-      <HintPath>..\packages\Stripe.net.4.1.0\lib\net40\Stripe.net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data">
       <Private>True</Private>
@@ -1250,6 +1247,10 @@
     <ProjectReference Include="..\EFColuc\EFColuc.csproj">
       <Project>{0a91245e-905f-4f82-b0c8-8d9b73d32f51}</Project>
       <Name>EFColuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stripe\Stripe.csproj">
+      <Project>{e48e9ac1-3a88-406b-82ff-166b1e3c7a48}</Project>
+      <Name>Stripe</Name>
     </ProjectReference>
     <ProjectReference Include="..\TNT.Helper\TNTHelper.csproj">
       <Project>{b6b9c121-55bd-4ff4-ac92-62c5b0d8ca5d}</Project>
