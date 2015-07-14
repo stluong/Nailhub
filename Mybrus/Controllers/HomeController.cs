@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using CoLucCore;
+using Stripe;
 using TNTHelper;
 
 namespace Mybrus.Controllers {
@@ -44,6 +47,40 @@ namespace Mybrus.Controllers {
             ViewBag.prdDetail = this.prod.GetXProducts(id, Language.Lang.LangId.ToNullable<int>());
             return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>()));
         }
+
+        public async Task<ActionResult> Charge(string stripeToken, string stripeEmail)
+        {
+            try
+            {
+                var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail);
+                return View(stripeCharge);
+            }
+            catch (Exception e)
+            {
+                return View(e);
+            }
+        }
+
+
+        private static async Task<StripeCharge> _ChargeCustomer(string stripeToken, string stripeEmail)
+        {
+            return await System.Threading.Tasks.Task.Run(() =>
+            {
+                var myCharge = new StripeChargeCreateOptions
+                {
+                    Amount = 50,
+                    Description = "Charge for property sign and postage",
+                    ReceiptEmail = stripeEmail,
+                    Source = new StripeSourceOptions { TokenId = stripeToken }                
+                };
+
+                var chargeService = new StripeChargeService();
+                var stripeCharge = chargeService.Create(myCharge);
+
+                return stripeCharge;
+            });
+        }
+
 
         public ActionResult Cart() {
             return View();
