@@ -79,12 +79,16 @@
                     <!-- quantity + @Lang.Cart_Add -->
                     <div class="row">
                         <div class="col-md-7 col-sm-12">
-
-                            <div class="addCartBtn">
+                            <div class="addCartBtn mt10">
                                 <div class="input-group">
                                     <input type="text" name="product_qty" id="product_qty" class="text-center form-control" value="1" placeholder="Qty" />
                                     <span class="input-group-btn">
-                                        <button id="addToCartBtn" class="btn btn-primary" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail));"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</button>
+                                        <button id="addToCartBtn" class="btn btn-primary" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail));">
+                                            <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
+                                        </button>
+                                        <button id="buyNow" class="btn btn-primary" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail));">
+                                            <i class="fa fa-usd"></i> Buy Now
+                                        </button>
                                     </span>
                                 </div><!-- /input-group -->
                             </div>

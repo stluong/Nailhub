@@ -53,6 +53,7 @@ namespace Mybrus.Controllers {
         {
             try
             {
+                stripeToken = await _GetTokenId();
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, chargingObject);
                 if (stripeCharge.Status == "succeed" && stripeCharge.Paid)
                 {
@@ -66,7 +67,27 @@ namespace Mybrus.Controllers {
             }
             return Json("error", JsonRequestBehavior.AllowGet);
         }
+        private static async Task<string> _GetTokenId()
+        {
+            return await System.Threading.Tasks.Task.Run(() =>
+            {
+                var myToken = new StripeTokenCreateOptions
+                {
+                    Card = new StripeCreditCardOptions
+                    {
+                        Number = "4242424242424242",
+                        Cvc = "123",
+                        ExpirationMonth= "07",
+                        ExpirationYear = "17"
+                    }
+                };
 
+                var tokenService = new StripeTokenService();
+                var stripeToken = tokenService.Create(myToken);
+
+                return stripeToken.Id;
+            });
+        }
         private static async Task<StripeCharge> _ChargeCustomer(string stripeToken, string stripeEmail, [Bind(Include = "productid, price, description")]xProduct chargingObject)
         {
             return await System.Threading.Tasks.Task.Run(() =>
