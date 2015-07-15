@@ -27,6 +27,7 @@ namespace EFColuc
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
+        public int Size { get; set; }
     
         public virtual Product Product { get; set; }
     }

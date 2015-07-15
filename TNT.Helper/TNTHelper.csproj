@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CultureManager.cs" />
+    <Compile Include="Mailing.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Cryptography.cs" />
     <Compile Include="Extensions.cs" />

@@ -101,7 +101,7 @@
           <Property Name="imageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="productId" Type="int" Nullable="false" />
           <Property Name="Path" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="EnteredBy" Type="int" />
           <Property Name="EnteredDate" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
@@ -114,7 +114,8 @@
           </Key>
           <Property Name="InventoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="Cost" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DidOrder" Type="int" Nullable="false" />
           <Property Name="OnHand" Type="int" Nullable="false" />
           <Property Name="OnOrder" Type="int" Nullable="false" />
@@ -819,7 +820,7 @@
           </Key>
           <Property Name="InventoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="DidOrder" Type="Int32" Nullable="false" />
           <Property Name="OnHand" Type="Int32" Nullable="false" />
           <Property Name="OnOrder" Type="Int32" Nullable="false" />
@@ -831,6 +832,7 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Product" Relationship="CoLucModel.FK_Inventory_Product" FromRole="Inventory" ToRole="Product" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Inventory_Product">
           <End Type="CoLucModel.Product" Role="Product" Multiplicity="1" />
@@ -853,10 +855,11 @@
           <Property Type="String" Name="description" Nullable="true" MaxLength="250" />
           <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="length" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="size" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="size" Nullable="true" />
           <Property Type="String" Name="color" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="brand" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="image" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="image" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
         </ComplexType>
         <EntityType Name="Image">
           <Key>
@@ -865,7 +868,7 @@
           <Property Name="imageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="productId" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="EnteredBy" Type="Int32" />
           <Property Name="EnteredDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
@@ -1068,6 +1071,7 @@
           <EntitySetMapping Name="Inventories">
             <EntityTypeMapping TypeName="CoLucModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -1099,6 +1103,7 @@
                 <ScalarProperty Name="color" ColumnName="color" />
                 <ScalarProperty Name="brand" ColumnName="brand" />
                 <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

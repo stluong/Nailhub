@@ -21,9 +21,10 @@ namespace EFColuc
         public string description { get; set; }
         public decimal price { get; set; }
         public Nullable<decimal> length { get; set; }
-        public Nullable<decimal> size { get; set; }
+        public Nullable<int> size { get; set; }
         public string color { get; set; }
         public string brand { get; set; }
         public string image { get; set; }
+        public Nullable<int> quantity { get; set; }
     }
 }

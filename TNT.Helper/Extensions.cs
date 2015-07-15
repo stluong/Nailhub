@@ -5,6 +5,7 @@ using System.Data.EntityClient;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -187,6 +188,23 @@ namespace TNTHelper
             return new string(input.ToCharArray()
                 .Where(c => !Char.IsWhiteSpace(c))
                 .ToArray());
+        }
+        public static bool IsEmpty(this string value)
+        {
+            return (value == null || value.Trim().Length == 0);
+        }
+        public static bool IsValidEmail(this string value)
+        {
+            value = value.Trim();
+            Regex r = new Regex(AppSettings.Get<string>("EmailRegex") ?? @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+            if (r.IsMatch(value))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #region Join Extension

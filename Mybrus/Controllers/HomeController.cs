@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using CoLucCore;
 using EFColuc;
 using Stripe;
 using TNTHelper;
+using System.Linq;
 
 namespace Mybrus.Controllers {
     public class HomeController : BaseController {
@@ -21,8 +23,10 @@ namespace Mybrus.Controllers {
         public ActionResult Index()
         {
             ViewBag.splProduct = this.prod.GetSpecialProduct(langId: int.Parse(Language.Lang.LangId));
-            
-            return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>()));
+            return View(
+                this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>())
+                    .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
+            );
         }
 
         public ActionResult About() {
@@ -57,6 +61,7 @@ namespace Mybrus.Controllers {
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, chargingObject);
                 if (stripeCharge.Status == "succeed" && stripeCharge.Paid)
                 {
+                    Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering!! Your order will be sent asap.");
                     return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
                 }
                 
