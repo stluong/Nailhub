@@ -49,8 +49,19 @@ namespace Mybrus.Controllers {
         }
 
         public ActionResult Detail(int id = 1) {
-            ViewBag.prdDetail = this.prod.GetXProducts(id, Language.Lang.LangId.ToNullable<int>());
-            return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>()));
+            var prdDetails = this.prod.GetXProducts(id, Language.Lang.LangId.ToNullable<int>());
+            ViewBag.prdDetail = prdDetails.GroupBy(p => p.productid, (p, e) => e.FirstOrDefault());
+            ViewBag.prdSize = prdDetails
+                .Select(p => new SelectListItem
+                {
+                    Value = p.productid.ToString(),
+                    Text = p.size.ToString(),
+                }).ToArray()
+            ;
+
+            return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>())
+                .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
+            );
         }
 
         public async Task<ActionResult> Charge(string stripeToken, string stripeEmail, xProduct chargingObject)

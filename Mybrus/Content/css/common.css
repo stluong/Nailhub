@@ -19,3 +19,6 @@
 .mt10 {
     margin-top: 10px;
 }
+.txt-strike{
+    text-decoration:line-through;
+}

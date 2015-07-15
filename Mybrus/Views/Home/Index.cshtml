@@ -142,7 +142,13 @@
                                     @Lang.Prod_Detail
                                 </span>
                             </a>
-                            <a href="shop-cart.html?action=cart_add&amp;product_id=1&amp;product_color=red&amp;product_size=l&amp;product_qty=1" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
+                            <a href="#" class="btn btn-primary add_to_cart">
+                                <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
+                            </a>
+                            <a href="#" class="btn btn-primary buy_now" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(xp));">
+                                <i class="fa fa-usd"></i> Buy Now
+                            </a>
+                            
                             <img class="img-responsive" src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="260" height="260" alt="" onerror="TNT.Common.ImageError(this);">
                         </figure>
                         <div class="item-box-desc">

@@ -125,14 +125,14 @@ window.onload = function (e) {
 		jQuery("#is_dark").trigger('click');
 		jQuery("a.logo img").attr('src', 'Content/images/logo_dark.png');
 	}
-
+	debugger;
 	// BOXED or WIDE
 	var is_boxed = readCookie('is_boxed');
 	if(!is_boxed) {
 	    jQuery('body')
             .removeClass("boxed")
         ;
-		//jQuery("#is_boxed").trigger('click');
+	    jQuery("#is_boxed").trigger();
 	}
 
 	// PATTERN BACKGROUND
@@ -184,45 +184,47 @@ jQuery(document).ready(function() {
 		});
 
 	});
+    /**
+	    COLOR SKIN [light|dark]
+    **/
+	jQuery("input.dark_switch").bind("click", function () {
+	    var color_skin = jQuery(this).attr('value');
+
+	    if (color_skin == 'dark') {
+	        jQuery("#css_dark_skin").remove();
+	        jQuery("head").append('<link id="css_dark_skin" href="Content/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
+	        createCookie("color_skin", 'dark', 365);
+	        jQuery("a.logo img").attr('src', 'Content/images/logo_dark.png');
+	    } else {
+	        jQuery("#css_dark_skin").remove();
+	        createCookie("color_skin", '', -1);
+	        jQuery("a.logo img").attr('src', 'Content/images/logo.png');
+	    }
+	});
+
+
+    /**
+        LAYOUT STYLE [wide|boxed]
+    **/
+	jQuery("input.boxed_switch").bind("click", function () {
+	    var boxed_switch = jQuery(this).attr('value');
+	    debugger;
+
+	    if (boxed_switch == 'boxed') {
+	        jQuery("body").removeClass('wide');
+	        jQuery("body").addClass('boxed');
+	        createCookie("is_boxed", 'true', 365);
+	        jQuery('body').removeClass('transparent');
+	    } else {
+	        jQuery("body").removeClass('boxed');
+	        jQuery("body").addClass('wide');
+	        createCookie("is_boxed", 'false', 365);
+	    }
+	});
 
 }); 
 
 
-/**
-	COLOR SKIN [light|dark]
-**/
-jQuery("input.dark_switch").bind("click", function() {
-	var color_skin = jQuery(this).attr('value');
-
-	if(color_skin == 'dark') {
-		jQuery("#css_dark_skin").remove();
-		jQuery("head").append('<link id="css_dark_skin" href="Content/css/layout-dark.css" rel="stylesheet" type="text/css" title="dark" />');
-		createCookie("color_skin", 'dark', 365);
-		jQuery("a.logo img").attr('src', 'Content/images/logo_dark.png');
-	} else {
-		jQuery("#css_dark_skin").remove();
-		createCookie("color_skin", '', -1);
-		jQuery("a.logo img").attr('src', 'Content/images/logo.png');
-	}
-});
-
-
-/**
-	LAYOUT STYLE [wide|boxed]
-**/
-jQuery("input.boxed_switch").bind("click", function() {
-	var boxed_switch = jQuery(this).attr('value');
-
-	if(boxed_switch == 'boxed') {
-		jQuery("body").removeClass('boxed');
-		jQuery("body").addClass('boxed');
-		createCookie("is_boxed", 'true', 365);
-	} else {
-		jQuery("body").removeClass('boxed');
-		createCookie("is_boxed", '', -1);
-		jQuery('body').removeClass('transparent');
-	}
-});
 /**
 	Pattern Background
 **/
@@ -264,7 +266,6 @@ function remove_pattern() {
 }
 
 
-
 /**
 	Image Background
 **/
@@ -296,7 +297,6 @@ function background_switch(imgbkg) {
 		}
 	}
 }
-
 
 
 /**

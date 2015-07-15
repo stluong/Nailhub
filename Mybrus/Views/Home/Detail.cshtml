@@ -6,7 +6,6 @@
     var imgs = prdDetail.image.Split(';').ToList();
     var imgPath = Url.Content("~/Content/images/demo/shop/");
     var prdDiscount = TNTHelper.AppSettings.Get<int>("productDiscount");
-    //var stripeApi = "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA";
 }
 
 <section class="container mt30l15r10">
@@ -39,8 +38,8 @@
                 <!-- /product unique code -->
                 <!-- product price -->
                 <div class="productRowInfo">
-                    <span class="price styleSecondColor fsize20">@prdDetail.price.ToString("C")</span>
-                    @*<span class="oldprice">$43.00</span>*@
+                    <span class="price styleSecondColor fsize20">@((prdDetail.price - (prdDetail.price * prdDiscount) / 100).ToString("C"))</span>
+                    <span class="txt-strike">@prdDetail.price.ToString("C")</span>
                 </div>
                 <!-- /product price -->
 
@@ -53,20 +52,14 @@
                             <div class="col-md-6 col-sm-6">
                                 <label class="block" for="product_color">Color</label>
                                 <select class="form-control pointer" name="product_color" id="product_color">
-                                    <option value="red">Red</option>
-                                    <option value="blue">Blue</option>
-                                    <option value="cherry">Cherry</option>
+                                    <option value="red">Natual</option>
                                 </select>
                             </div>
                             <!-- /product color -->
                             <!-- product size -->
                             <div class="col-md-6 col-sm-6">
                                 <label class="block" for="product_size">Size</label>
-                                <select class="form-control pointer" name="product_size" id="product_size">
-                                    <option value="l">L</option>
-                                    <option value="m">M</option>
-                                    <option value="xxl">XXL</option>
-                                </select>
+                                @Html.DropDownList("dllSize", (IEnumerable<SelectListItem>)ViewBag.prdSize)
                             </div>
                             <!-- /product size -->
                         </div>
@@ -166,3 +159,10 @@
     <!-- /RELATED -->
 
 </section>
+
+@*<script>
+    $(function () {
+        debugger;
+        TNT.Common.SetDropdownlist($("select#prdSize"), @jsPrdSize);
+    })
+</script>*@

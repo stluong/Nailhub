@@ -61,6 +61,28 @@
 	filter: alpha(opacity=100);
 }
 
+#shop .item-box .buy_now {
+	position:absolute;
+	left:0; right:0; top:0;
+	width:100%;
+	z-index:101;
+
+	opacity: 0;
+	filter: alpha(opacity=0);
+
+	-webkit-border-radius:0;
+	   -moz-border-radius:0;
+			border-radius:0;
+
+	-webkit-transition: all 0.2s;
+	   -moz-transition: all 0.2s;
+		 -o-transition: all 0.2s;
+			transition: all 0.2s;
+}
+#shop .item-box:hover .buy_now {
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
 
 
 /** Shop Product

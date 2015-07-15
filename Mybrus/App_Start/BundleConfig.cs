@@ -44,6 +44,8 @@ namespace Mybrus
             ));
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                 "~/Content/js/scripts.js"
+                , "~/Scripts/TNT/extensions.js"
+                , "~/Scripts/TNT/libs.js"
                 , "~/Scripts/mybrus.js" 
             ));
             //Css bundles

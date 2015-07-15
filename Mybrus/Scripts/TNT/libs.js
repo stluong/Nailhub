@@ -3,213 +3,257 @@
  * Steven Luong, 12/31/2014: All libraries
  */
 
-Insiite.Common || (Insiite.Common = (function ($) {
-	return {
-		Alert: function(msg, /*Default is green*/bgdColor,
+var TNT = window.TNT || {};
+
+TNT.Common || (TNT.Common = (function ($) {
+    return {
+        $Settings: function (findingSelector) {
+            return $("body >header#mySettings").find(findingSelector);
+        }
+        , ImageError: function (thss) {
+            thss.onerror = null;
+            thss.src = TNT.Common.$Settings("input#img-Error").val();
+        }
+        , FormatMoney: function (elm, currencyType) {
+            return currencyType + parseInt(elm).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+        }
+		, AlertTo: function (/*Prepend alert to this selector*/$selector, alert,
 			/*
 				{
-					display: "block",
-					opacity: 0.90,
-					position: "fixed",
-					"text-align": "center",
-					width: "100%",
-					left: 0,
-					top: 0,
-					color: "white",					
+					type: "alert-success||alert-info||alert-warning||alert-danger"
+					, href: "link"                    
 				}
 			 */
 			options) {
-			var _settings = {
-				display: "block",
-				opacity: 0.90,
-				position: "fixed",
-				"text-align": "center",
-				width: "100%",
-				left: 0,
-				top: 0,
-				color: "white",
-				"background-color": bgdColor || "green"
-			};            
-			_settings = $.extend(true, _settings, options);
-			$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>{0}</h3></div>".format(msg))
-				.css(_settings)
-				.appendTo($.mobile.pageContainer).delay(1500)
+		    //seting default setting
+		    var _settings = {
+		        type: "msgSuccess"
+					, href: ""
+		    }
+		    ;
+		    var _myAlert = ""
+				, _waitTime = 5000
+		    ;
+		    //merge with setting parameter
+		    _settings = $.extend(true, _settings, options);
+
+		    if (_settings.href !== "") {
+		        _myAlert = "{0}. <a href='{1}' class='clwhite textunderline'>Click for detail</a>".format(alert, _settings.href);
+		        _waitTime = 2000 * 60;
+		    }
+		    else {
+		        _myAlert = alert;
+		    }
+
+		    $("<div class='alert {0} alert-dismissable text-center'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button><strong>Notice!</strong> {1}.</div>".format(_settings.type, _myAlert))
+				.appendTo($selector).delay(_waitTime)
 				.fadeOut(400, function () {
-					$(this).remove();
-				});
+				    $(this).remove();
+				})
+		    ;
 		}
-		, Modal: function (open, options, $selector) {
-			var isClose = ($.type(open) !== Insiite.Enum.Common.undefined && open !== "show");
-			options = $.extend(true, {
-				text: ""
-				, textVisible: true
-				, theme: "b"                    
-			}, options);
-
-			if ($.type($selector) !== Insiite.Enum.Common.undefined) {
-				$selector = $($selector);
-				if (!$selector.hasClass("wdn-modal")) {
-					$selector.addClass("wdn-modal");
+        , Alert: function (alert,
+			/*
+				{
+					type: "alert-success||alert-info||alert-warning||alert-danger"
+					, href: "link"                    
 				}
-			}
-			else {
-				if ($("body").find("div.wdn-modal").length < 1) {
-					$selector = $("<div class='wdn-modal'/>");
-					$("body").append($selector);
-				}
-			}
+			 */
+			options) {
+            TNT.Common.AlertTo($("body>header#topHead"), alert, options);
+        }
+        //Initiate data for dropdownlist
+        , SetDropdownlist: function ($select, ddlData, selectedIdText) {
+	        if (ddlData.length > 0) {
+	            $select = $($select);
+	            $select.find('option').remove();
+	            $.each(ddlData, function (i, item) {
+	                var option = $('<option>', {
+	                    value: item.Value
+	                }).html(item.Text).appendTo($select);
+	            });
+	            _DdlSetSelected($select, selectedIdText);
+	        };
 
-			if (isClose) {
-				$selector = $selector || $("div.wdn-modal");
-				$selector.removeClass("wdn-modal");
-				$.mobile.loading("hide");
-			}
-			else {                
-				$.mobile.loading("show", options).addClass("img-loader");
-			}            
-		}
-		, ShowLoading: function () {
-			this.Modal();
-		}
-		, HideLoading: function () {
-			this.Modal("hide");
-		}
-		
+	        function _DdlSetSelected($ddlSelector, selectedIdText) {
+	            selectedIdText = $.trim(selectedIdText);
+	            if (selectedIdText) {
+	                if ($.isNumeric(selectedIdText)) {
+	                    $ddlSelector.val(selectedIdText);
+	                }
+	                else {
+	                    $ddlSelector.find("option")
+                                .filter(function () { return $.trim($(this).text()) == selectedIdText; })
+                                .attr('selected', true);
+	                }
+	            }
+	        }
 
-	}
-})(jQuery));
+        }
 
-Insiite.Service || (Insiite.Service = function ($) {
-	var _authorization = "Basic {0}";
-	var _headers = {
-		"Authorization": _authorization.format(_token())
-	};
-	function _token(/*x=>tokenValue*/value) {
-		if (value) {	        
-			var tokenValue = value.split("=>")[1];
-			//Update headers
-			_headers.Authorization = _authorization.format(tokenValue);
-			localStorage.setItem(Insiite.Enum.Login.credentialKey, tokenValue);            
-		}
-		return localStorage.getItem(Insiite.Enum.Login.credentialKey);
-	}
-	return {
-		//Default is basic.
-		Headers: function (/*header authorization for Insiite.Service*/headers) {
-			return _headers || (_headers = headers);
-		}
-		//Set, get, token value
-		, Token: function (/*x=>tokenValue*/tokenValue) {
-			
-			return _token(tokenValue);
-		}
-		//Remove stored token
-		, TokenClean: function () {
-			localStorage.removeItem(Insiite.Enum.Login.credentialKey);
-		}
-		//Server reponses not FAILURE
-		, Success: function (serverResponse) {
-			if ($.trim(serverResponse).indexOf("FAILURE") < 0) {
-				return true;
-			}
-			return false;
-		}
-		//Get exception message from server response failure if existing
-		, Failure: function (/*FAILURE => exception*/serverResponse) {
-			serverResponse = $.trim(serverResponse);
-			if (serverResponse.indexOf("FAILURE") > -1 && serverResponse.indexOf("=>") > -1) {
-				var exMsg = serverResponse.split("=>");
-				if (exMsg.length > 1) {
-					return exMsg[1].trim();
-				} 
-			}
-			return "";
-		}
-		, Message: {
-			friendly: "An error occured, please try later!"
+    }
+}(jQuery)));
+
+TNT.Service || (TNT.Service = function ($) {
+    var _authorization = "Basic {0}"
+        , _cridentailKey = "DDAYLAMAXCUARTUI"
+    ;
+    var _headers = {
+        "Authorization": _authorization.format(_token())
+    };
+    function _token(/*x=>tokenValue*/value) {
+        if (value) {
+            var tokenValue = value.split("=>")[1];
+            //Update headers
+            _headers.Authorization = _authorization.format(tokenValue);
+            localStorage.setItem(_cridentailKey, tokenValue);
+        }
+        return localStorage.getItem(_cridentailKey);
+    }
+    return {
+        Message: {
+            friendly: "An error occured, please try later!"
 			, error: "Server returned failure."
 			, failure: "Cannot call the service"
+        }
+        //Default is basic.
+        , Headers: function (/*header authorization for TNT.Service*/headers) {
+            return _headers || (_headers = headers);
+        }
+        //Set, get, token value
+		, Token: function (/*x=>tokenValue*/tokenValue) {
+
+		    return _token(tokenValue);
 		}
-		//consolidate $.ajax service call generic. Just return back Done, Success. Failure, and Complete are all taking care!
+        //Remove stored token
+		, TokenClean: function () {
+		    localStorage.removeItem(_cridentailKey);
+		}
+        //Server reponses not FAILURE
+		, Success: function (serverResponse) {
+		    if ($.trim(serverResponse).indexOf("FAILURE") < 0) {
+		        return true;
+		    }
+		    return false;
+		}
+        //Get exception message from server response failure if existing
+		, Failure: function (/*FAILURE => exception*/serverResponse) {
+		    serverResponse = $.trim(serverResponse);
+		    if (serverResponse.indexOf("FAILURE") > -1 && serverResponse.indexOf("=>") > -1) {
+		        var exMsg = serverResponse.split("=>");
+		        if (exMsg.length > 1) {
+		            return exMsg[1].trim();
+		        }
+		    }
+		    return "";
+		}
+        //consolidate $.ajax service call generic. Just return back Done, Success. Failure, and Complete are all taking care!
 		, Call: function (options) {
-			Insiite.Common.ShowLoading();
-			var _serviceReponsed = $.ajax(options);
-			_serviceReponsed
+		    var _serviceReponsed = $.ajax(options);
+		    _serviceReponsed
 				.error(function () {
-					Insiite.Common.Alert(Insiite.Service.Message.friendly, "red");
+				    TNT.Common.Alert(TNT.Service.Message.friendly, { type: "alert-warning" });
 				})
 				.complete(function () {
-					Insiite.Common.HideLoading();
+				    //TNT.Common.Alert(TNT.Service.Message.friendly, { type: "alert-warning" });
 				})
-			;
-			return {
-				Done: function (callback) {
-					_serviceReponsed.success(function (serverResponse) {
-						callback(serverResponse);
-					});
-				}
+		    ;
+		    return {
+		        Done: function (callback) {
+		            _serviceReponsed.success(function (serverResponse) {
+		                callback(serverResponse);
+		            });
+		        }
 				, Success: function (callback) {
-					_serviceReponsed.success(function (serverResponse) {
-						if (Insiite.Service.Success(serverResponse)) {
-							callback(serverResponse);                            
-						}
-						else {
-							//Server responsed failure with exception message
-							Insiite.Common.Alert(Insiite.Service.Failure(serverResponse), "red");                            
-						}
-					});
-					
+				    _serviceReponsed.success(function (serverResponse) {
+				        if (TNT.Service.Success(serverResponse)) {
+				            callback(serverResponse);
+				        }
+				        else {
+				            //Server responsed failure with exception message
+				            TNT.Common.Alert(TNT.Service.Message.failure, { type: "alert-warning" });
+				        }
+				    });
+
 				}
-				
-			}                            
+
+		    }
 		}
-		//Get service
+        //Get service
 		, GCall: function (/*Action url*/url, /*parameters: json, or serialized string*/paras) {
-			return Insiite.Service.Call({
-				url: url
+		    return TNT.Service.Call({
+		        url: url
 				, type: "get"
 				, data: paras || ""
-			});
+		    });
 		}
-		//Post service
+        //Post service
 		, PCall: function (/*Action url*/url, /*parameters: json, or serialized string*/paras) {
-			return Insiite.Service.Call({
-				url: url
+		    return TNT.Service.Call({
+		        url: url
 				, type: "post"
 				, data: paras || ""
-			});
+		    });
 		}
-		//Authorized get service
+        //Authorized get service
 		, AGCall: function (/*Action url*/url, /*parameters: json, or serialized string*/paras) {
-			return Insiite.Service.Call({
-				url: url
+		    return TNT.Service.Call({
+		        url: url
 				, type: "get"
 				, headers: _headers
 				, data: paras || ""
-			});
+		    });
 		}
-		//Authorized post service
+        //Authorized post service
 		, APCall: function (/*Action url*/url, /*parameters: json, or serialized string*/paras) {
-			return Insiite.Service.Call({
-				url: url
+		    return TNT.Service.Call({
+		        url: url
 				, type: "post"
 				, headers: _headers
 				, data: paras || ""
-			});
+		    });
 		}
-        //Get url paras
-        , GetPassedParas: function() {
-            var paras =[]
+        //Get url paras on mobile navigation
+        , GetPassedParas: function () {
+            var paras = []
                 , hash
             ;
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-            for(var i = 0; i < hashes.length; i++)
-            {
+            for (var i = 0; i < hashes.length; i++) {
                 hash = hashes[i].split('=');
                 paras.push(hash[0]);
-                paras[hash[0]]= hash[1];
+                paras[hash[0]] = hash[1];
             }
             return paras;
         }
-	}
+        //Show stripe checkout form, then call server side action to perform charging
+        , StripeCheckout: function (object) {
+
+            var myStripe = StripeCheckout.configure({
+                key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
+                image: TNT.Common.$Settings("input#img-Mybrus").val(),
+                token: function (token) {
+                    // Use the token to create the charge with a server-side script.
+                    // You can access the token ID with token.id, token.email and token.card
+                    debugger;
+                    var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                    //TNT.Common.$Settings("input#url-Charge").val()
+                    TNT.Service.GCall("/home/charge", myParas)
+                        .Success(function (d) {
+                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                        });
+                }
+            });
+
+            myStripe.open({
+                name: "MyBrus",
+                description: object.description,
+                amount: object.amount * 100
+            });
+
+            $(window).on("popstate", function () {
+                myStripe.close();
+            });
+        }
+    }
 }(jQuery));
