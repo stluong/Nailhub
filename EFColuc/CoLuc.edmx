@@ -860,6 +860,7 @@
           <Property Type="String" Name="brand" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="image" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="String" Name="Note" Nullable="false" MaxLength="1" />
         </ComplexType>
         <EntityType Name="Image">
           <Key>
@@ -1104,6 +1105,7 @@
                 <ScalarProperty Name="brand" ColumnName="brand" />
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

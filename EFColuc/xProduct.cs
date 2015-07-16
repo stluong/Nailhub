@@ -26,5 +26,6 @@ namespace EFColuc
         public string brand { get; set; }
         public string image { get; set; }
         public Nullable<int> quantity { get; set; }
+        public string Note { get; set; }
     }
 }

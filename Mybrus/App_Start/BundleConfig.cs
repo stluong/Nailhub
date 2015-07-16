@@ -41,6 +41,7 @@ namespace Mybrus
                 , "~/Content/plugins/revolution-slider/js/jquery.themepunch.revolution.min.js"
                 , "~/Content/js/slider_revolution.js"
                 , "~/Content/plugins/cookie.js"
+                , "~/Content/plugins/jquery-confirm/jquery-confirm.js"
             ));
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                 "~/Content/js/scripts.js"
@@ -59,6 +60,7 @@ namespace Mybrus
                       , "~/Content/css/animate.css"
                       , "~/Content/css/superslides.css"
                       , "~/Content/plugins/styleswitcher/styleswitcher.css"
+                      , "~/Content/plugins/jquery-confirm/jquery-confirm.css"
             ));
             bundles.Add(new StyleBundle("~/Content/css_slider").Include(
                       "~/Content/plugins/revolution-slider/css/settings.css"

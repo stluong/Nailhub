@@ -124,3 +124,4 @@
 /// <reference path="tnt/extensions.js" />
 /// <reference path="tnt/libs.js" />
 /// <reference path="mybrus.js" />
+/// <reference path="../content/plugins/jquery-confirm/jquery-confirm.js" />

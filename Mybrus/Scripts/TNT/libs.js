@@ -62,6 +62,90 @@ TNT.Common || (TNT.Common = (function ($) {
 			options) {
             TNT.Common.AlertTo($("body>header#topHead"), alert, options);
         }
+        //Open dialog
+        , OpenMyDialog: function ($selector, urlAction, para, newTitle, width, positionTop, isAntiScroll) {
+            var $dialog = $("<div class='dialogWrapper dpl-none box-size-content'><div class='dialog-content'><div class='myspinner'></div></div></div>");
+            //Check if dialog is not existing
+            if ($.type($selector) === InsiiteEnum.String) {
+                $selector = $($selector);
+                if ($selector.find("div.dialogWrapper").length < 1) {
+                    $selector.prepend($dialog);
+                }
+            }
+            else {
+                $dialog = $selector;
+            }
+    
+            var option = {
+                autoOpen: false,
+                resizable: false,
+                title: newTitle ? newTitle : $dialog.attr("title"),
+                height: "auto",
+                width: width ? width : $(window).width() - 100 < 950 ? $(window).width() - 100 : 950,
+                position: ['top', positionTop ? positionTop : 0],
+                modal: true,
+                create: function (event, ui) {
+                    //here we can apply unique styling  
+                    //$dialog.parents(".ui-dialog:first").find(".ui-dialog-titlebar").addClass("lightboxtitlebar");
+                    //$dialog.parents(".ui-dialog:first").find(".ui-dialog-titlebar-close").addClass("lightboxclose");
+                    //$dialog.parents(".ui-dialog:first").find(".ui-icon-closethick").addClass("lightboxclosespan");
+                    //$dialog.parents(".ui-dialog:first").find(".ui-dialog-buttonpane").addClass("lightboxButtonPane");
+                    //$dialog.parents(".ui-dialog:first").find(".ui-dialog-buttonset").addClass("lightboxbutton");
+                    ///*
+                    //$(this).parents(".ui-dialog:first").find(".ui-button:first").addClass("lightboxblue");
+                    //$(this).parents(".ui-dialog:first").find(".ui-button:last").addClass("lightboxgray");
+                    //*/
+                    //$dialog.parents(".ui-dialog:first").find(".ui-button-text").hide();
+                    //$dialog.parents(".ui-dialog").addClass("lightbox");
+                },
+                close: function (event, ui) {
+                    $dialog.dialog("destroy");
+                },
+                open: function () {
+                    //$(this).dialog("option", "position", "center");
+                },
+                buttons: {
+                }
+            };
+    
+            //Setup dialog
+            $dialog.dialog(option);
+            try {
+                $dialog.dialog('open');
+                _LoadContent();
+            }
+            catch (ex) {
+
+            }
+	
+            function _LoadContent() {
+                var $dialogContent = $dialog.find('div.dialog-content');
+		
+                if ($.type(urlAction) != "undefined" && urlAction != null && urlAction != '') {
+                    //load content from urlaction
+                    $dialogContent.css("display", "block");
+                    //$dialogContent.html("");
+                    $dialogContent.load(
+				        urlAction
+				        , para ? para : ""
+				        , function (response, status, xhr) {
+				            //$(this).removeClass("bgspinner");
+				            if ($.type(isAntiScroll) != "undefined") {
+				                //$dialog.find("div.antiscroll-wrap").antiscroll({ width: $dialog.width(), height: "500px" });
+				                //$dialog.find("table.fixedHeader").m_ScrollTable();
+				            }
+				        }
+			        );
+                }
+                else {
+                    if ($.type(isAntiScroll) != "undefined") {
+                        //$dialog.find("div.antiscroll-wrap").antiscroll({ width: $dialog.width(), height: "500px" });
+                        //$dialog.find("table.fixedHeader").m_ScrollTable();
+                    }
+                }
+            }
+	
+        }
         //Initiate data for dropdownlist
         , SetDropdownlist: function ($select, ddlData, selectedIdText) {
 	        if (ddlData.length > 0) {
@@ -228,7 +312,6 @@ TNT.Service || (TNT.Service = function ($) {
         }
         //Show stripe checkout form, then call server side action to perform charging
         , StripeCheckout: function (object, thss) {
-            
             var myStripe = StripeCheckout.configure({
                 key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
                 image: TNT.Common.$Settings("input#img-Mybrus").val(),
@@ -248,19 +331,44 @@ TNT.Service || (TNT.Service = function ($) {
                 , quantity = $scope.find("input#product_qty").val() || 1
                 , size = $scope.find("select#ddlSize").val()
             ;
-            
+
             object.quantity = quantity;
             object.size = size;
-
-            myStripe.open({
-                name: "MyBrus",
-                description: object.description,
-                amount: object.quantity * object.price * 100
-            });
 
             $(window).on("popstate", function () {
                 myStripe.close();
             });
+
+            var myContent = "<div class='form-group'>"
+            myContent += "<label class='control-label checkbox' />"
+            myContent += "<input type='checkbox' value='Option one' /> Bop co"
+            myContent += "</div>"
+
+            myContent += "<div class='form-group'>"
+            myContent += "<input type='text' placeholder='Email' class='form-control input-large'>"
+            myContent += "<p class='help-block'>Enter if you have!</p>"
+            myContent += "</div>"
+
+            $.confirm({
+                title: "Notice"
+                , content: myContent
+                , confirmButton: "READY TO PAY"
+                , confirmButtonClass: "btn-success"
+                , cancelButtonClass: "btn-danger"
+                , confirmCancel: "CANCEL"
+                , confirm: function (e) {
+                    object.note = this.content;
+                    myStripe.open({
+                        name: "MyBrus",
+                        description: object.description,
+                        amount: object.quantity * object.price * 100
+                    });
+                }
+                , cancel: function () {
+                    //alert('Canceled!')
+                }
+            });
+
         }
     }
 }(jQuery));

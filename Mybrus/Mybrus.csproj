@@ -906,6 +906,8 @@
     <Content Include="Content\plugins\html_summernote\summernote.js" />
     <Content Include="Content\plugins\html_summernote\summernote.min.js" />
     <Content Include="Content\plugins\jquery-2.1.3.min.js" />
+    <Content Include="Content\plugins\jquery-confirm\jquery-confirm.css" />
+    <Content Include="Content\plugins\jquery-confirm\jquery-confirm.js" />
     <Content Include="Content\plugins\jquery-countdown\countdownBasic.html" />
     <Content Include="Content\plugins\jquery-countdown\countdownGlowing.gif" />
     <Content Include="Content\plugins\jquery-countdown\countdownLED.png" />
