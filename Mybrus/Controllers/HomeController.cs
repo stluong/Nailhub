@@ -14,12 +14,12 @@ namespace Mybrus.Controllers {
     public class HomeController : BaseController {
 
         private readonly IProductService prod;
+        private const string sssQuickCart = "mySSSQuickCart";
 
         public HomeController(IProductService _prod)
         {
             this.prod = _prod;
         }
-
         public ActionResult Index()
         {
             ViewBag.splProduct = this.prod.GetSpecialProduct(langId: int.Parse(Language.Lang.LangId));
@@ -28,13 +28,11 @@ namespace Mybrus.Controllers {
                     .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
             );
         }
-
         public ActionResult About() {
             ViewBag.Message = "Your app description page.";
 
             return View();
         }
-
         public ActionResult Contact() {
             ViewBag.Message = "Your contact page.";
 
@@ -47,14 +45,13 @@ namespace Mybrus.Controllers {
         public ActionResult Policy() {
             return View();
         }
-
         public ActionResult Detail(int id = 1) {
             var prdDetails = this.prod.GetXProducts(id, Language.Lang.LangId.ToNullable<int>());
             ViewBag.prdDetail = prdDetails.GroupBy(p => p.productid, (p, e) => e.FirstOrDefault());
             ViewBag.prdSize = prdDetails
                 .Select(p => new SelectListItem
                 {
-                    Value = p.productid.ToString(),
+                    Value = p.size.ToString(),//p.productid.ToString(),
                     Text = p.size.ToString(),
                 }).ToArray()
             ;
@@ -63,14 +60,13 @@ namespace Mybrus.Controllers {
                 .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
             );
         }
-
         public async Task<ActionResult> Charge(string stripeToken, string stripeEmail, xProduct chargingObject)
         {
             try
             {
-                stripeToken = await _GetTokenId();
+                //stripeToken = await _GetTokenId();
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, chargingObject);
-                if (stripeCharge.Status == "succeed" && stripeCharge.Paid)
+                if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
                 {
                     Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering!! Your order will be sent asap.");
                     return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
@@ -83,6 +79,45 @@ namespace Mybrus.Controllers {
             }
             return Json("error", JsonRequestBehavior.AllowGet);
         }
+        public ActionResult QuickCart() {
+            return PartialView();
+        }
+        public ActionResult Cart() {
+            return View();
+        }
+        public ActionResult Cc() {
+            return View();
+        }
+        public JsonResult AddCart(xProduct prod){
+            try
+            {
+                List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart];
+                myCart.Add(prod);
+                Session[sssQuickCart] = myCart;
+                return Json("success", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex) { 
+                //throw
+            }
+            return Json("error", JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult RemoveCart(xProduct prod){
+            try
+            {
+                List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart];
+                myCart.Remove(prod);
+                Session[sssQuickCart] = myCart;
+                return Json("success", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                //throw
+            }
+            return Json("error", JsonRequestBehavior.AllowGet);
+        }
+
+        #region Helper
+        [Obsolete("Use stripe checkout for faster way!!")]
         private static async Task<string> _GetTokenId()
         {
             return await System.Threading.Tasks.Task.Run(() =>
@@ -93,7 +128,7 @@ namespace Mybrus.Controllers {
                     {
                         Number = "4242424242424242",
                         Cvc = "123",
-                        ExpirationMonth= "07",
+                        ExpirationMonth = "07",
                         ExpirationYear = "17"
                     }
                 };
@@ -111,10 +146,10 @@ namespace Mybrus.Controllers {
                 var myCharge = new StripeChargeCreateOptions
                 {
                     Amount = (int)(chargingObject.price * 100),
-                    Currency= "USD",
+                    Currency = "USD",
                     Description = chargingObject.description,
                     ReceiptEmail = stripeEmail,
-                    Source = new StripeSourceOptions { TokenId = stripeToken }                
+                    Source = new StripeSourceOptions { TokenId = stripeToken }
                 };
 
                 var chargeService = new StripeChargeService();
@@ -124,13 +159,6 @@ namespace Mybrus.Controllers {
             });
         }
 
-
-        public ActionResult Cart() {
-            return View();
-        }
-
-        public ActionResult Cc() {
-            return View();
-        }
+        #endregion
     }
 }

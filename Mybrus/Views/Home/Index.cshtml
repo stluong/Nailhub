@@ -146,9 +146,8 @@
                                 <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
                             </a>
                             <a href="#" class="btn btn-primary buy_now" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(xp));">
-                                <i class="fa fa-usd"></i> Buy Now
-                            </a>
-                            
+                                <i class="fa fa-usd"></i> BUY NOW
+                            </a>                            
                             <img class="img-responsive" src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="260" height="260" alt="" onerror="TNT.Common.ImageError(this);">
                         </figure>
                         <div class="item-box-desc">

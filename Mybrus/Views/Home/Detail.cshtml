@@ -2,7 +2,7 @@
 
 @model IEnumerable<EFColuc.xProduct>
 @{
-    var prdDetail = ((IEnumerable<EFColuc.xProduct>)ViewBag.prdDetail).FirstOrDefault();    
+    var prdDetail = ((IEnumerable<EFColuc.xProduct>)ViewBag.prdDetail).FirstOrDefault();
     var imgs = prdDetail.image.Split(';').ToList();
     var imgPath = Url.Content("~/Content/images/demo/shop/");
     var prdDiscount = TNTHelper.AppSettings.Get<int>("productDiscount");
@@ -22,107 +22,88 @@
             </div>
         </div>
 
-        <div class="col-sm-6 col-md-6">
-
-            <!-- product detail -->
-            @*<form class="form-inline productDescription noajax" role="form">*@
-
-                <!-- hidden fields -->
-                <input type="hidden" name="action" value="cart_add" />
-                <input type="hidden" name="product_id" value="1" />
-
-                <h2 class="product-title">@prdDetail.name</h2>
-
-                <!-- product unique code -->
-                <span class="code">@prdDetail.code</span>
-                <!-- /product unique code -->
-                <!-- product price -->
-                <div class="productRowInfo">
-                    <span class="price styleSecondColor fsize20">@((prdDetail.price - (prdDetail.price * prdDiscount) / 100).ToString("C"))</span>
-                    <span class="txt-strike">@prdDetail.price.ToString("C")</span>
-                </div>
-                <!-- /product price -->
-
-                <div class="row attributes">
-
-                    <div class="row">
-                        <div class="col-md-7">
-
-                            <!-- product color -->
-                            <div class="col-md-6 col-sm-6">
-                                <label class="block" for="product_color">Color</label>
-                                <select class="form-control pointer" name="product_color" id="product_color">
-                                    <option value="red">Natual</option>
-                                </select>
-                            </div>
-                            <!-- /product color -->
-                            <!-- product size -->
-                            <div class="col-md-6 col-sm-6">
-                                <label class="block" for="product_size">Size</label>
-                                @Html.DropDownList("dllSize", (IEnumerable<SelectListItem>)ViewBag.prdSize)
-                            </div>
-                            <!-- /product size -->
-                        </div>
-
-                    </div>
-
-                </div>
-
+        <div id="scopeBuy" class="col-sm-6 col-md-6">
+            <h2 class="product-title">@prdDetail.name</h2>
+            <!-- product unique code -->
+            <span class="code">@prdDetail.code</span>
+            <!-- /product unique code -->
+            <!-- product price -->
+            <div class="productRowInfo">
+                <span class="price styleSecondColor fsize20">@((prdDetail.price - (prdDetail.price * prdDiscount) / 100).ToString("C"))</span>
+                <span class="txt-strike">@prdDetail.price.ToString("C")</span>
+            </div>
+            <!-- /product price -->
+            <div class="row attributes">
                 <div class="row">
-                    <!-- quantity + @Lang.Cart_Add -->
-                    <div class="row">
-                        <div class="col-md-7 col-sm-12">
-                            <div class="addCartBtn mt10">
-                                <div class="input-group">
-                                    <input type="text" name="product_qty" id="product_qty" class="text-center form-control" value="1" placeholder="Qty" />
-                                    <span class="input-group-btn">
-                                        <button id="addToCartBtn" class="btn btn-primary" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail));">
-                                            <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
-                                        </button>
-                                        <button id="buyNow" class="btn btn-primary" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail));">
-                                            <i class="fa fa-usd"></i> Buy Now
-                                        </button>
-                                    </span>
-                                </div><!-- /input-group -->
-                            </div>
-
+                    <div class="col-md-7">
+                        <!-- product color -->
+                        <div class="col-md-6 col-sm-6">
+                            <label class="block" for="product_color">Color</label>
+                            <select class="form-control pointer" name="product_color" id="product_color">
+                                <option value="red">Natual</option>
+                            </select>
                         </div>
-                    </div>
-                    <!-- /quantity + @Lang.Cart_Add -->
-                </div>
-
-                <!-- product description -->
-                <div class="desc">
-                    <h3 class="page-header">DESCRIPTION</h3>
-                    <p>
-                        @prdDetail.description
-                    </p>
-                </div>
-                <!-- /product description -->
-
-                <div class="socialApis">
-                    <h3 class="page-header">TELL TO YOUR FRIENDS</h3>
-
-                    <!-- facebook -->
-                    <div class="api">
-                        <div class="fb-like" data-href="https://www.facebook.com/stepofweb" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-                    </div>
-
-                    <!-- twitter -->
-                    <div class="api">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
-                    </div>
-
-                    <!-- google plus -->
-                    <div class="api">
-                        <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>
+                        <!-- /product color -->
+                        <!-- product size -->
+                        <div class="col-md-6 col-sm-6">
+                            <label class="block" for="product_size">Size</label>
+                            @Html.DropDownList("ddlSize", (IEnumerable<SelectListItem>)ViewBag.prdSize)
+                        </div>
+                        <!-- /product size -->
                     </div>
 
                 </div>
 
-            @*</form>*@
-            <!-- product detail -->
+            </div>
+            <div class="row">
+                <!-- quantity + @Lang.Cart_Add -->
+                <div class="row">
+                    <div class="col-md-7 col-sm-12">
+                        <div class="addCartBtn mt10">
+                            <div class="input-group">
+                                <input type="text" name="product_qty" id="product_qty" class="text-center form-control" value="1" placeholder="Qty" />
+                                <span class="input-group-btn">
+                                    <button id="addToCartBtn" class="btn btn-primary" onclick="">
+                                        <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
+                                    </button>
+                                    <button id="buyNow" class="btn btn-primary" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail), this);">
+                                        <i class="fa fa-usd"></i> Buy Now
+                                    </button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div>
 
+                    </div>
+                </div>
+                <!-- /quantity + @Lang.Cart_Add -->
+            </div>
+            <!-- product description -->
+            <div class="desc">
+                <h3 class="page-header">DESCRIPTION</h3>
+                <p>
+                    @prdDetail.description
+                </p>
+            </div>
+            <!-- /product description -->
+            <div class="socialApis">
+                <h3 class="page-header">TELL TO YOUR FRIENDS</h3>
+
+                <!-- facebook -->
+                <div class="api">
+                    <div class="fb-like" data-href="https://www.facebook.com/stepofweb" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                </div>
+
+                <!-- twitter -->
+                <div class="api">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+                </div>
+
+                <!-- google plus -->
+                <div class="api">
+                    <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="300"></div>
+                </div>
+
+            </div>
         </div>
     </div>
     <hr />
@@ -142,7 +123,12 @@
                                 @Lang.Prod_Detail
                             </span>
                         </a>
-                        <a href="shop-cart.html" class="btn btn-primary add_to_cart"><i class="fa fa-shopping-cart"></i> @Lang.Cart_Add</a>
+                        <a href="#" class="btn btn-primary add_to_cart">
+                            <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
+                        </a>
+                        <a href="#" class="btn btn-primary buy_now" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(xp));">
+                            <i class="fa fa-usd"></i> BUY NOW
+                        </a>
                         <img class="img-responsive" src="@(string.Format("{0}/{1}",imgPath, xp.image))" width="260" height="260" alt="" onerror="TNT.Common.ImageError(this);">
                     </figure>
                     <div class="item-box-desc">
@@ -160,9 +146,3 @@
 
 </section>
 
-@*<script>
-    $(function () {
-        debugger;
-        TNT.Common.SetDropdownlist($("select#prdSize"), @jsPrdSize);
-    })
-</script>*@

@@ -227,15 +227,15 @@ TNT.Service || (TNT.Service = function ($) {
             return paras;
         }
         //Show stripe checkout form, then call server side action to perform charging
-        , StripeCheckout: function (object) {
-
+        , StripeCheckout: function (object, thss) {
+            
             var myStripe = StripeCheckout.configure({
                 key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
                 image: TNT.Common.$Settings("input#img-Mybrus").val(),
+                email: "luc.huynh78@gmail.com",
                 token: function (token) {
                     // Use the token to create the charge with a server-side script.
                     // You can access the token ID with token.id, token.email and token.card
-                    debugger;
                     var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
                     //TNT.Common.$Settings("input#url-Charge").val()
                     TNT.Service.GCall("/home/charge", myParas)
@@ -243,12 +243,19 @@ TNT.Service || (TNT.Service = function ($) {
                             TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
                         });
                 }
-            });
+            })
+                , $scope = $(thss).parents($("div#scopeBuy"))
+                , quantity = $scope.find("input#product_qty").val() || 1
+                , size = $scope.find("select#ddlSize").val()
+            ;
+            
+            object.quantity = quantity;
+            object.size = size;
 
             myStripe.open({
                 name: "MyBrus",
                 description: object.description,
-                amount: object.amount * 100
+                amount: object.quantity * object.price * 100
             });
 
             $(window).on("popstate", function () {

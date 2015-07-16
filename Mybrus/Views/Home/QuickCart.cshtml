@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EFColuc.xProduct>
+@{
+    var urlTemp = Url.Action("Detail", "Home");
+    var imgPath = Url.Content("~/Content/images/demo/shop/");
+    var cartUrl = Url.Action("Cart", "Home");
+}
+
+@if (Model != null)
+{
+    <div class="quick-cart-content">
+        <span class="badge pull-right">@Model.Count()</span>
+        <p><i class="fa fa-warning"></i> You have @Model.Count() products on your cart</p>
+        @foreach (var xp in Model)
+            {
+            <a class="item" href="@(string.Format("{0}/{1}", urlTemp, xp.productid))">
+                <!-- item 1 -->
+                <img class="pull-left" src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="40" alt="quick cart" onerror="TNT.Common.ImageError(this);" />
+                <div class="inline-block">
+                    <span class="title">@xp.description</span>
+                    <span class="price">@xp.quantity &times; @(xp.price.ToString("C"))</span>
+                </div>
+            </a>
+            }
+        <!-- QUICK CART BUTTONS -->
+        <div class="row cart-footer">
+            <div class="col-md-6 nopadding-right">
+                <a href="@cartUrl" class="btn btn-primary btn-xs fullwidth">VIEW CART</a>
+            </div>
+            <div class="col-md-6 nopadding-left">
+                <a href="#" class="btn btn-info btn-xs fullwidth" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(Model));">BUY NOW</a>
+            </div>
+        </div>
+        <!-- /QUICK CART BUTTONS -->
+    </div>
+}
+else
+{
+    <span class="badge pull-right">0</span>
+    <div class="quick-cart-content">
+        <p><i class="fa fa-warning"></i> You have 0 products on your cart</p>
+        <!-- QUICK CART BUTTONS -->
+        <div class="row cart-footer">
+            <div class="col-md-6 nopadding-right">
+                <a href="@cartUrl" class="btn btn-primary btn-xs fullwidth">VIEW CART</a>
+            </div>
+            <div class="col-md-6 nopadding-left">
+                <a href="#" class="btn btn-info btn-xs fullwidth" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(Model));">BUY NOW</a>
+            </div>
+        </div>
+        <!-- /QUICK CART BUTTONS -->
+    </div>
+}
+
+
+
