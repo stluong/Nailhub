@@ -42,7 +42,11 @@
     <header id="mySettings">
         <input type="hidden" id="img-Error" value="@Url.Content("~/Content/images/error.jpg")">
         <input type="hidden" id="img-Mybrus" value="@Url.Content("~/Content/images/error.jpg")">
-        <input type="hidden" id="url-Charge" value="@Url.Action("Home", "Charge")">
+        <input type="hidden" id="url-Charge" value="@Url.Action("Charge", "Home")">
+        <input type="hidden" id="url-Cart-Add" value="@Url.Action("AddCart", "Home")">
+        <input type="hidden" id="url-Cart-Remove" value="@Url.Action("RemoveCart", "Home")">
+        <input type="hidden" id="url-Cart-Quick" value="@Url.Action("QuickCart", "Home")">
+        <input type="hidden" id="url-Cart-Detail" value="@Url.Action("CartDetail", "Home")">
     </header>
     
     <header id="topHead" class="color">
@@ -167,7 +171,7 @@
                         </li>
                         <!-- /GLOBAL SEARCH -->
                         <!-- QUICK SHOP CART -->
-                        <li class="quick-cart">
+                        <li id="quickCart" class="quick-cart">
                             @{Html.RenderAction("QuickCart", "Home");}
                         </li>
                         <!-- /QUICK SHOP CART -->

@@ -80,7 +80,13 @@ namespace Mybrus.Controllers {
             return Json("error", JsonRequestBehavior.AllowGet);
         }
         public ActionResult QuickCart() {
-            return PartialView();
+            IEnumerable<xProduct> myCart = (IEnumerable<xProduct>)Session[sssQuickCart];
+            return PartialView(myCart);
+        }
+        public ActionResult CartDetail()
+        {
+            IEnumerable<xProduct> myCart = (IEnumerable<xProduct>)Session[sssQuickCart];
+            return PartialView(myCart);
         }
         public ActionResult Cart() {
             return View();
@@ -91,29 +97,34 @@ namespace Mybrus.Controllers {
         public JsonResult AddCart(xProduct prod){
             try
             {
-                List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart];
+                List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart] ?? new List<xProduct>();
+                //Add quantity 1 for quick cart
+                prod.quantity = 1;
                 myCart.Add(prod);
                 Session[sssQuickCart] = myCart;
                 return Json("success", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex) { 
                 //throw
+                return Json("error", JsonRequestBehavior.AllowGet);
             }
-            return Json("error", JsonRequestBehavior.AllowGet);
         }
         public JsonResult RemoveCart(xProduct prod){
             try
             {
                 List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart];
-                myCart.Remove(prod);
-                Session[sssQuickCart] = myCart;
+                Session[sssQuickCart] = myCart
+                    .Where(p=>p.productid != prod.productid)
+                    .ToList()
+                ;
                 return Json("success", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 //throw
+                return Json("error", JsonRequestBehavior.AllowGet);
             }
-            return Json("error", JsonRequestBehavior.AllowGet);
+            
         }
 
         #region Helper

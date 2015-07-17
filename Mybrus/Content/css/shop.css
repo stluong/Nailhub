@@ -183,6 +183,7 @@
  **************************************************************** **/
 #cartContent .item {
 	border-bottom:#ddd 1px dotted;
+    margin-bottom:10px;
 }
 
 #cartContent .cart_img {
@@ -193,11 +194,17 @@
 }
 #cartContent .product_name {
 	float:left;
-	width:50%;
+	width:40%;
 	padding:10px;
 }
+#cartContent .product_size {
+	float:left;
+	width: 3px;
+	padding:10px 80px;
+   
+}
 #cartContent .qty {
-	float:right;
+	float:left;
 	width:160px;
 	font-size:15px;
 	padding:10px;
@@ -220,7 +227,7 @@
 }
 #cartContent .remove_item {
 	float:right;
-	padding:5px 0 0 10px;
+	padding:1px 0 0 8px;
 	width:30px;
 }
 #cartContent a.remove_item {

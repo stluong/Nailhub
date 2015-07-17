@@ -5,14 +5,14 @@
 
 var TNT = window.TNT || {};
 
-TNT.Common || (TNT.Common = (function ($) {
+TNT.Common || (TNT.Common = function ($) {
     return {
-        $Settings: function (findingSelector) {
+        Settings: function (findingSelector) {
             return $("body >header#mySettings").find(findingSelector);
         }
         , ImageError: function (thss) {
             thss.onerror = null;
-            thss.src = TNT.Common.$Settings("input#img-Error").val();
+            thss.src = TNT.Common.Settings("input#img-Error").val();
         }
         , FormatMoney: function (elm, currencyType) {
             return currencyType + parseInt(elm).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -21,22 +21,24 @@ TNT.Common || (TNT.Common = (function ($) {
 			/*
 				{
 					type: "alert-success||alert-info||alert-warning||alert-danger"
-					, href: "link"                    
+					, href: "link"   
+                    , timeOut: 5000
 				}
 			 */
 			options) {
 		    //seting default setting
 		    var _settings = {
 		        type: "msgSuccess"
-					, href: ""
+				, href: ""
+                , timeOut: 5000
 		    }
-		    ;
-		    var _myAlert = ""
-				, _waitTime = 5000
 		    ;
 		    //merge with setting parameter
 		    _settings = $.extend(true, _settings, options);
 
+		    var _myAlert = ""
+				, _waitTime = _settings.timeOut
+		    ;
 		    if (_settings.href !== "") {
 		        _myAlert = "{0}. <a href='{1}' class='clwhite textunderline'>Click for detail</a>".format(alert, _settings.href);
 		        _waitTime = 2000 * 60;
@@ -63,7 +65,7 @@ TNT.Common || (TNT.Common = (function ($) {
             TNT.Common.AlertTo($("body>header#topHead"), alert, options);
         }
         //Open dialog
-        , OpenMyDialog: function ($selector, urlAction, para, newTitle, width, positionTop, isAntiScroll) {
+        , Dialog: function ($selector, urlAction, para, newTitle, width, positionTop, isAntiScroll) {
             var $dialog = $("<div class='dialogWrapper dpl-none box-size-content'><div class='dialog-content'><div class='myspinner'></div></div></div>");
             //Check if dialog is not existing
             if ($.type($selector) === InsiiteEnum.String) {
@@ -75,7 +77,7 @@ TNT.Common || (TNT.Common = (function ($) {
             else {
                 $dialog = $selector;
             }
-    
+
             var option = {
                 autoOpen: false,
                 resizable: false,
@@ -107,7 +109,7 @@ TNT.Common || (TNT.Common = (function ($) {
                 buttons: {
                 }
             };
-    
+
             //Setup dialog
             $dialog.dialog(option);
             try {
@@ -117,10 +119,10 @@ TNT.Common || (TNT.Common = (function ($) {
             catch (ex) {
 
             }
-	
+
             function _LoadContent() {
                 var $dialogContent = $dialog.find('div.dialog-content');
-		
+
                 if ($.type(urlAction) != "undefined" && urlAction != null && urlAction != '') {
                     //load content from urlaction
                     $dialogContent.css("display", "block");
@@ -144,39 +146,39 @@ TNT.Common || (TNT.Common = (function ($) {
                     }
                 }
             }
-	
+
         }
         //Initiate data for dropdownlist
         , SetDropdownlist: function ($select, ddlData, selectedIdText) {
-	        if (ddlData.length > 0) {
-	            $select = $($select);
-	            $select.find('option').remove();
-	            $.each(ddlData, function (i, item) {
-	                var option = $('<option>', {
-	                    value: item.Value
-	                }).html(item.Text).appendTo($select);
-	            });
-	            _DdlSetSelected($select, selectedIdText);
-	        };
+            if (ddlData.length > 0) {
+                $select = $($select);
+                $select.find('option').remove();
+                $.each(ddlData, function (i, item) {
+                    var option = $('<option>', {
+                        value: item.Value
+                    }).html(item.Text).appendTo($select);
+                });
+                _DdlSetSelected($select, selectedIdText);
+            };
 
-	        function _DdlSetSelected($ddlSelector, selectedIdText) {
-	            selectedIdText = $.trim(selectedIdText);
-	            if (selectedIdText) {
-	                if ($.isNumeric(selectedIdText)) {
-	                    $ddlSelector.val(selectedIdText);
-	                }
-	                else {
-	                    $ddlSelector.find("option")
+            function _DdlSetSelected($ddlSelector, selectedIdText) {
+                selectedIdText = $.trim(selectedIdText);
+                if (selectedIdText) {
+                    if ($.isNumeric(selectedIdText)) {
+                        $ddlSelector.val(selectedIdText);
+                    }
+                    else {
+                        $ddlSelector.find("option")
                                 .filter(function () { return $.trim($(this).text()) == selectedIdText; })
                                 .attr('selected', true);
-	                }
-	            }
-	        }
+                    }
+                }
+            }
 
         }
 
     }
-}(jQuery)));
+}(jQuery));
 
 TNT.Service || (TNT.Service = function ($) {
     var _authorization = "Basic {0}"
@@ -310,42 +312,32 @@ TNT.Service || (TNT.Service = function ($) {
             }
             return paras;
         }
+
+    }
+}(jQuery));
+
+TNT.Stripe || (TNT.Stripe = function ($) {
+    var _myStripe;
+
+    return {
         //Show stripe checkout form, then call server side action to perform charging
-        , StripeCheckout: function (object, thss) {
-            var myStripe = StripeCheckout.configure({
-                key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
-                image: TNT.Common.$Settings("input#img-Mybrus").val(),
-                email: "luc.huynh78@gmail.com",
-                token: function (token) {
-                    // Use the token to create the charge with a server-side script.
-                    // You can access the token ID with token.id, token.email and token.card
-                    var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
-                    //TNT.Common.$Settings("input#url-Charge").val()
-                    TNT.Service.GCall("/home/charge", myParas)
-                        .Success(function (d) {
-                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
-                        });
-                }
-            })
-                , $scope = $(thss).parents($("div#scopeBuy"))
+        Checkout: function (object, thss) {
+            var $scope = $(thss).parents($("div#scopeBuy"))
                 , quantity = $scope.find("input#product_qty").val() || 1
                 , size = $scope.find("select#ddlSize").val()
+                , defaultEmail = "luc.huynh78@gmail.com"
             ;
 
             object.quantity = quantity;
             object.size = size;
 
-            $(window).on("popstate", function () {
-                myStripe.close();
-            });
-
             var myContent = "<div class='form-group'>"
             myContent += "<label class='control-label checkbox' />"
-            myContent += "<input type='checkbox' value='Option one' /> Bop co"
+            myContent += "<input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co"
             myContent += "</div>"
 
             myContent += "<div class='form-group'>"
-            myContent += "<input type='text' placeholder='Email' class='form-control input-large'>"
+            myContent += "<input id='txtEmail' type='text' placeholder='Email' class='form-control input-large'>"
             myContent += "<p class='help-block'>Enter if you have!</p>"
             myContent += "</div>"
 
@@ -375,12 +367,56 @@ TNT.Service || (TNT.Service = function ($) {
                 buttons: [{
                     label: "READY TO PAY",
                     action: function (dialog) {
+                        var                        
+                            isBopCo = dialog.$modalBody.find("input#chkBopCo").is(":checked")
+                            , email = dialog.$modalBody.find("input#txtEmail").val()
+                        ;
                         dialog.close();
-                        object.note = this.content;
-                        myStripe.open({
+
+                        object.note = isBopCo ? "Bop co" : "";
+
+                        if (email) {
+                            _myStripe = StripeCheckout.configure({
+                                key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
+                                image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                email: email,
+                                token: function (token) {
+                                    // Use the token to create the charge with a server-side script.
+                                    // You can access the token ID with token.id, token.email and token.card
+                                    var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                    TNT.Service.GCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
+                                        .Success(function (d) {
+                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                        });
+                                }
+                            });
+                        }
+                        else {
+                            _myStripe = StripeCheckout.configure({
+                                key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
+                                image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                email: "luc.huynh78@gmail.com",
+                                token: function (token) {
+                                    // Use the token to create the charge with a server-side script.
+                                    // You can access the token ID with token.id, token.email and token.card
+                                    var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                    //TNT.Common.Settings("input#url-Charge").val()
+                                    TNT.Service.GCall("/home/charge", myParas)
+                                        .Success(function (d) {
+                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                        });
+                                }
+                            });
+                        }
+
+                        _myStripe.open({
                             name: "MyBrus",
                             description: object.description,
                             amount: object.quantity * object.price * 100
+                        });
+
+                        $(window).on("popstate", function () {
+                            _myStripe.close();
                         });
                     }
                 }, {
@@ -392,5 +428,6 @@ TNT.Service || (TNT.Service = function ($) {
             });
 
         }
+
     }
 }(jQuery));

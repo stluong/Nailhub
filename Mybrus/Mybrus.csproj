@@ -861,6 +861,7 @@
     <Content Include="Content\images\patterns\pattern8.png" />
     <Content Include="Content\images\patterns\pattern9.png" />
     <Content Include="Content\images\slider_pagebullet.png" />
+    <Content Include="Content\images\spinner.gif" />
     <Content Include="Content\js\contact_ajax.js" />
     <Content Include="Content\js\countdown.js" />
     <Content Include="Content\js\scripts.js" />
@@ -1226,6 +1227,7 @@
     <Content Include="Views\Home\Policy.cshtml" />
     <Content Include="Views\Home\TermsofUse.cshtml" />
     <Content Include="Views\Home\QuickCart.cshtml" />
+    <Content Include="Views\Home\CartDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

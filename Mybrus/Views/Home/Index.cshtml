@@ -10,6 +10,7 @@
         "medium_bg_orange",
     };
     var prdDiscount = TNTHelper.AppSettings.Get<int>("productDiscount");
+    var jsPrdDetail = string.Empty;
 }
 <!-- REVOLUTION SLIDER -->
 <div class="fullwidthbanner-container roundedcorners">
@@ -131,6 +132,7 @@
         <div class="row">
             @foreach (var xp in Model)
             {
+                jsPrdDetail = Newtonsoft.Json.JsonConvert.SerializeObject(xp);
                 <div class="col-sm-6 col-md-3">
                     <!-- item -->
                     <div class="item-box fixed-box">
@@ -142,10 +144,10 @@
                                     @Lang.Prod_Detail
                                 </span>
                             </a>
-                            <a href="#" class="btn btn-primary add_to_cart">
+                            <a href="#" class="btn btn-primary add_to_cart" onclick="TNT.Cart.Add(@jsPrdDetail);">
                                 <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
                             </a>
-                            <a href="#" class="btn btn-primary buy_now" onclick="TNT.Service.StripeCheckout(@Newtonsoft.Json.JsonConvert.SerializeObject(xp));">
+                            <a href="#" class="btn btn-primary buy_now" onclick="TNT.Stripe.Checkout(@jsPrdDetail);">
                                 <i class="fa fa-usd"></i> BUY NOW
                             </a>                            
                             <img class="img-responsive" src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="260" height="260" alt="" onerror="TNT.Common.ImageError(this);">

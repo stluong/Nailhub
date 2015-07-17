@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EFColuc.xProduct>
+
+@if (Model != null)
+{
+    var imgPath = Url.Content("~/Content/images/demo/shop");
+    var shippingCost = 0;
+    var totalPrice = Model.Sum(p => p.price * p.quantity ?? 1).ToString("C");
+
+    <div id="cartDetail">
+        <section class="container mt20">
+            <h2>Shopping Cart</h2>
+            <div class="white-row">
+                <!-- cart content -->
+                <div id="cartContent" class="mt30">
+                    <div class="row item head">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">PRODUCT NAME</div>
+                        <div class="col-lg-1">SIZE</div>
+                        <div class="col-lg-2">QUANTITY</div>
+                        <div class="col-lg-2 col-lg-push-2">TOTAL</div>
+                        <div class="col-lg-1 col-lg-push-1"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    @foreach (var xp in Model)
+                    {
+                        <div class="row item">
+                            <div class="col-lg-1"><img src="@string.Format("{0}/{1}", imgPath, xp.image)" alt="" width="60" onerror="TNT.Common.ImageError(this);"/></div>
+                            <div class="col-lg-4"><a href="#">@xp.name</a></div>
+                            <div class="col-lg-1">@xp.size</div>
+                            <div class="col-lg-2"><input type="text" class="wth35" value="@xp.quantity" name="qty" maxlength="3" /> x @xp.price.ToString("C")</div>
+                            <div class="col-lg-2 col-lg-push-2">@((xp.price * xp.quantity ?? 1).ToString("C"))</div>
+                            <div class="col-lg-1 col-lg-push-1"><a href="#" class="remove_item" title="Remove" onclick="TNT.Cart.Remove(@Newtonsoft.Json.JsonConvert.SerializeObject(xp), this);">X</a></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+                    <div class="total pull-right">
+                        <small>
+                            Shipping: @shippingCost
+                        </small>
+                        <span class="totalToPay styleSecondColor">
+                            TOTAL: <span id="spnTotal">@totalPrice</span> 
+                        </span>
+                    </div>
+                    <!-- /cart total -->
+                    <!-- update cart -->
+                    <a href="#" class="btn_update btn btn-primary btn-md pull-right ml10"> PAY NOW</a>
+                    <a href="#" class="btn_update btn btn-primary btn-md pull-right">UPDATE CART </a>
+                    <!-- /update cart -->
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="divider styleColor">
+                <!-- divider -->
+                <i class="fa fa-chevron-down"></i>
+            </div>
+
+
+        </section>
+    </div>
+}
+else
+{
+    <div id="cartDetail">
+        <section class="container mt30">
+            <h2>Cart is empty!</h2>
+        </section>
+    </div>
+}
+
+
+
+
