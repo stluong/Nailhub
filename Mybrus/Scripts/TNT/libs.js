@@ -349,24 +349,46 @@ TNT.Service || (TNT.Service = function ($) {
             myContent += "<p class='help-block'>Enter if you have!</p>"
             myContent += "</div>"
 
-            $.confirm({
-                title: "Notice"
-                , content: myContent
-                , confirmButton: "READY TO PAY"
-                , confirmButtonClass: "btn-success"
-                , cancelButtonClass: "btn-danger"
-                , confirmCancel: "CANCEL"
-                , confirm: function (e) {
-                    object.note = this.content;
-                    myStripe.open({
-                        name: "MyBrus",
-                        description: object.description,
-                        amount: object.quantity * object.price * 100
-                    });
-                }
-                , cancel: function () {
-                    //alert('Canceled!')
-                }
+            //$.confirm({
+            //    title: "Notice"
+            //    , content: myContent
+            //    , confirmButton: "READY TO PAY"
+            //    , confirmButtonClass: "btn-success"
+            //    , cancelButtonClass: "btn-danger"
+            //    , confirmCancel: "CANCEL"
+            //    , confirm: function (e) {
+            //        object.note = this.content;
+            //        myStripe.open({
+            //            name: "MyBrus",
+            //            description: object.description,
+            //            amount: object.quantity * object.price * 100
+            //        });
+            //    }
+            //    , cancel: function () {
+            //        //alert('Canceled!')
+            //    }
+            //});
+
+            BootstrapDialog.show({
+                title: "Notice",
+                message: myContent,
+                buttons: [{
+                    label: "READY TO PAY",
+                    action: function (dialog) {
+                        dialog.close();
+                        object.note = this.content;
+                        myStripe.open({
+                            name: "MyBrus",
+                            description: object.description,
+                            amount: object.quantity * object.price * 100
+                        });
+                    }
+                }, {
+                    label: "CANCEL",
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
             });
 
         }
