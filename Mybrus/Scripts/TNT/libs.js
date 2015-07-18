@@ -317,7 +317,19 @@ TNT.Service || (TNT.Service = function ($) {
 }(jQuery));
 
 TNT.Stripe || (TNT.Stripe = function ($) {
-    var _myStripe;
+    var _myStripe
+        , _apiKey = "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA"
+        , _defaultEmail = "luc.huynh78@gmail.com"
+        , _myContent = "<div class='form-group'>"
+        _myContent += "<label class='control-label checkbox' />"
+        _myContent += "<input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co"
+        _myContent += "</div>"
+
+        _myContent += "<div class='form-group'>"
+        _myContent += "<input id='txtEmail' type='text' placeholder='Email' class='form-control input-large'>"
+        _myContent += "<p class='help-block'>Enter if you have!</p>"
+        _myContent += "</div>"
+    ;
 
     return {
         //Show stripe checkout form, then call server side action to perform charging
@@ -325,49 +337,18 @@ TNT.Stripe || (TNT.Stripe = function ($) {
             var $scope = $(thss).parents($("div#scopeBuy"))
                 , quantity = $scope.find("input#product_qty").val() || 1
                 , size = $scope.find("select#ddlSize").val()
-                , defaultEmail = "luc.huynh78@gmail.com"
             ;
 
             object.quantity = quantity;
             object.size = size;
 
-            var myContent = "<div class='form-group'>"
-            myContent += "<label class='control-label checkbox' />"
-            myContent += "<input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co"
-            myContent += "</div>"
-
-            myContent += "<div class='form-group'>"
-            myContent += "<input id='txtEmail' type='text' placeholder='Email' class='form-control input-large'>"
-            myContent += "<p class='help-block'>Enter if you have!</p>"
-            myContent += "</div>"
-
-            //$.confirm({
-            //    title: "Notice"
-            //    , content: myContent
-            //    , confirmButton: "READY TO PAY"
-            //    , confirmButtonClass: "btn-success"
-            //    , cancelButtonClass: "btn-danger"
-            //    , confirmCancel: "CANCEL"
-            //    , confirm: function (e) {
-            //        object.note = this.content;
-            //        myStripe.open({
-            //            name: "MyBrus",
-            //            description: object.description,
-            //            amount: object.quantity * object.price * 100
-            //        });
-            //    }
-            //    , cancel: function () {
-            //        //alert('Canceled!')
-            //    }
-            //});
-
             BootstrapDialog.show({
                 title: "Notice",
-                message: myContent,
+                message: _myContent,
                 buttons: [{
                     label: "READY TO PAY",
                     action: function (dialog) {
-                        var                        
+                        var
                             isBopCo = dialog.$modalBody.find("input#chkBopCo").is(":checked")
                             , email = dialog.$modalBody.find("input#txtEmail").val()
                         ;
@@ -377,7 +358,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 
                         if (email) {
                             _myStripe = StripeCheckout.configure({
-                                key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
+                                key: _apiKey,
                                 image: TNT.Common.Settings("input#img-Mybrus").val(),
                                 email: email,
                                 token: function (token) {
@@ -393,9 +374,9 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                         }
                         else {
                             _myStripe = StripeCheckout.configure({
-                                key: "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA",
+                                key: _apiKey,
                                 image: TNT.Common.Settings("input#img-Mybrus").val(),
-                                email: "luc.huynh78@gmail.com",
+                                email: _defaultEmail,
                                 token: function (token) {
                                     // Use the token to create the charge with a server-side script.
                                     // You can access the token ID with token.id, token.email and token.card
@@ -427,6 +408,78 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                 }]
             });
 
+        }
+        //Checkout multiple items
+        , Checkouts: function (objects, scope) {
+            var $scope = $(scope);
+
+            BootstrapDialog.show({
+                title: "Notice",
+                message: _myContent,
+                buttons: [{
+                    label: "READY TO PAY",
+                    action: function (dialog) {
+                        var
+                            bopCo = dialog.$modalBody.find("input#chkBopCo").is(":checked") ? "Bop co" : ""
+                            , email = dialog.$modalBody.find("input#txtEmail").val()
+                        ;
+                        dialog.close();
+                        //Update objects from ui
+                        $scope.find("input[name='qty']").each(function (i, e) {
+                            objects[i].quantity = $(e).val();
+                            objects[i].note = bopCo
+                        });
+
+                        if (email) {
+                            _myStripe = StripeCheckout.configure({
+                                key: _apiKey,
+                                image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                email: email,
+                                token: function (token) {
+                                    // Use the token to create the charge with a server-side script.
+                                    // You can access the token ID with token.id, token.email and token.card
+                                    var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                    TNT.Service.GCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
+                                        .Success(function (d) {
+                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                        });
+                                }
+                            });
+                        }
+                        else {
+                            _myStripe = StripeCheckout.configure({
+                                key: _apiKey,
+                                image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                email: _defaultEmail,
+                                token: function (token) {
+                                    // Use the token to create the charge with a server-side script.
+                                    // You can access the token ID with token.id, token.email and token.card
+                                    var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                    TNT.Service.GCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
+                                        .Success(function (d) {
+                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                        });
+                                }
+                            });
+                        }
+
+                        _myStripe.open({
+                            name: "MyBrus",
+                            description: "Shopping cart checkout",
+                            amount: $scope.attr("attr-total") * 100
+                        });
+
+                        $(window).on("popstate", function () {
+                            _myStripe.close();
+                        });
+                    }
+                }, {
+                    label: "CANCEL",
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
+            });
         }
 
     }
