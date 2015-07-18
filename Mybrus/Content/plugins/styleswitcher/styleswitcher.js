@@ -208,7 +208,6 @@ jQuery(document).ready(function() {
     **/
 	jQuery("input.boxed_switch").bind("click", function () {
 	    var boxed_switch = jQuery(this).attr('value');
-	    debugger;
 
 	    if (boxed_switch == 'boxed') {
 	        jQuery("body").removeClass('wide');
