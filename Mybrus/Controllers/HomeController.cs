@@ -94,6 +94,19 @@ namespace Mybrus.Controllers {
         public ActionResult Cc() {
             return View();
         }
+        public JsonResult UpdateCart(List<xProduct> prods)
+        {
+            try
+            {
+                Session[sssQuickCart] = prods;
+                return Json("success", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                //throw
+                return Json("error", JsonRequestBehavior.AllowGet);
+            }
+        }
         public JsonResult AddCart(xProduct prod){
             try
             {
