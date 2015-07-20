@@ -60,12 +60,12 @@ namespace Mybrus.Controllers {
                 .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
             );
         }
-        public async Task<ActionResult> Charge(string stripeToken, string stripeEmail, xProduct chargingObject)
+        public async Task<ActionResult> Charge(string stripeToken, string stripeEmail, xProduct prod)
         {
             try
             {
                 //stripeToken = await _GetTokenId();
-                var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, chargingObject);
+                var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, prod.price, prod.description);
                 if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
                 {
                     Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering!! Your order will be sent asap.");
@@ -79,6 +79,32 @@ namespace Mybrus.Controllers {
             }
             return Json("error", JsonRequestBehavior.AllowGet);
         }
+
+        public async Task<ActionResult> Charges(string stripeToken, string stripeEmail, List<xProduct> prods)
+        {
+            try
+            {
+                //stripeToken = await _GetTokenId();
+                var totalcharge = prods.Sum(p => p.price * p.quantity ?? 1);
+                var description = string.Format("Order for product: {0}"
+                    , string.Join(", ", prods.Select(p => p.productid))
+                );
+                var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, totalcharge, description);
+                if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
+                {
+                    Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering!! Your order will be sent asap.");
+                    return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception e)
+            {
+                //Do something with this exception
+            }
+            return Json("error", JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult QuickCart() {
             IEnumerable<xProduct> myCart = (IEnumerable<xProduct>)Session[sssQuickCart];
             return PartialView(myCart);
@@ -163,15 +189,15 @@ namespace Mybrus.Controllers {
                 return stripeToken.Id;
             });
         }
-        private static async Task<StripeCharge> _ChargeCustomer(string stripeToken, string stripeEmail, [Bind(Include = "productid, price, description")]xProduct chargingObject)
+        private static async Task<StripeCharge> _ChargeCustomer(string stripeToken, string stripeEmail, decimal price, string description)
         {
             return await System.Threading.Tasks.Task.Run(() =>
             {
                 var myCharge = new StripeChargeCreateOptions
                 {
-                    Amount = (int)(chargingObject.price * 100),
+                    Amount = (int)(price * 100),
                     Currency = "USD",
-                    Description = chargingObject.description,
+                    Description = description,
                     ReceiptEmail = stripeEmail,
                     Source = new StripeSourceOptions { TokenId = stripeToken }
                 };
