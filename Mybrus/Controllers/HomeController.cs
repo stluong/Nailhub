@@ -15,6 +15,7 @@ namespace Mybrus.Controllers {
 
         private readonly IProductService prod;
         private const string sssQuickCart = "mySSSQuickCart";
+        
 
         public HomeController(IProductService _prod)
         {
@@ -68,7 +69,8 @@ namespace Mybrus.Controllers {
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, prod.price, prod.description);
                 if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
                 {
-                    Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering!! Your order will be sent asap.");
+                    this.prod.CrudOrder(new xProduct[] { prod });
+                    Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering! Your order will be sent asap.");
                     return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
                 }
                 
@@ -76,8 +78,10 @@ namespace Mybrus.Controllers {
             catch (Exception e)
             {
                 //Do something with this exception
+                return Json("error", JsonRequestBehavior.AllowGet);
             }
             return Json("error", JsonRequestBehavior.AllowGet);
+
         }
 
         public async Task<ActionResult> Charges(string stripeToken, string stripeEmail, List<xProduct> prods)
@@ -100,7 +104,9 @@ namespace Mybrus.Controllers {
             catch (Exception e)
             {
                 //Do something with this exception
+                return Json("error", JsonRequestBehavior.AllowGet);
             }
+
             return Json("error", JsonRequestBehavior.AllowGet);
         }
 
@@ -166,49 +172,6 @@ namespace Mybrus.Controllers {
             
         }
 
-        #region Helper
-        [Obsolete("Use stripe checkout for faster way!!")]
-        private static async Task<string> _GetTokenId()
-        {
-            return await System.Threading.Tasks.Task.Run(() =>
-            {
-                var myToken = new StripeTokenCreateOptions
-                {
-                    Card = new StripeCreditCardOptions
-                    {
-                        Number = "4242424242424242",
-                        Cvc = "123",
-                        ExpirationMonth = "07",
-                        ExpirationYear = "17"
-                    }
-                };
-
-                var tokenService = new StripeTokenService();
-                var stripeToken = tokenService.Create(myToken);
-
-                return stripeToken.Id;
-            });
-        }
-        private static async Task<StripeCharge> _ChargeCustomer(string stripeToken, string stripeEmail, decimal price, string description)
-        {
-            return await System.Threading.Tasks.Task.Run(() =>
-            {
-                var myCharge = new StripeChargeCreateOptions
-                {
-                    Amount = (int)(price * 100),
-                    Currency = "USD",
-                    Description = description,
-                    ReceiptEmail = stripeEmail,
-                    Source = new StripeSourceOptions { TokenId = stripeToken }
-                };
-
-                var chargeService = new StripeChargeService();
-                var stripeCharge = chargeService.Create(myCharge);
-
-                return stripeCharge;
-            });
-        }
-
-        #endregion
+        
     }
 }

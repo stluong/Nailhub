@@ -141,9 +141,9 @@
           </Key>
           <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustId" Type="int" Nullable="false" />
-          <Property Name="SubTotal" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Tax" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Delivery" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SubTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Delivery" Type="decimal" Precision="18" Scale="2" />
           <Property Name="OrderDate" Type="datetime" Nullable="false" />
           <Property Name="OrderStatus" Type="int" Nullable="false" />
           <Property Name="TrackingNo" Type="varchar" MaxLength="50" />
@@ -152,7 +152,7 @@
           <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" />
           <Property Name="InvoiceDate" Type="datetime" />
           <Property Name="InvoiceComment" Type="nvarchar" MaxLength="250" />
-          <Property Name="RefundTotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RefundTotal" Type="decimal" Precision="18" Scale="2" />
           <Property Name="RefundDate" Type="datetime" />
           <Property Name="RefundTransId" Type="nchar" MaxLength="10" />
           <Property Name="EnteredBy" Type="int" Nullable="false" />
@@ -169,9 +169,9 @@
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Product">
@@ -552,9 +552,9 @@
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustId" Type="Int32" Nullable="false" />
-          <Property Name="SubTotal" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Tax" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Delivery" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SubTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Delivery" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="OrderStatus" Type="Int32" Nullable="false" />
           <Property Name="TrackingNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -563,7 +563,7 @@
           <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
           <Property Name="InvoiceComment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="RefundTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RefundTotal" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="RefundDate" Type="DateTime" Precision="3" />
           <Property Name="RefundTransId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="EnteredBy" Type="Int32" Nullable="false" />
@@ -582,9 +582,9 @@
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Order" Relationship="CoLucModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="CoLucModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />

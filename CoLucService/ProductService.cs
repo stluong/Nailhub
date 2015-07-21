@@ -10,6 +10,9 @@ using TNT.Core.UnitOfWork;
 using TNT.Infracstructure.Services;
 using System.Data.Entity;
 using TNTHelper;
+using TNT.Core.Context;
+using TNT.Infracstructure.UnitOfWorks;
+using TNT.Infrastructure.Repositories;
 
 
 namespace CoLucService
@@ -18,17 +21,20 @@ namespace CoLucService
         , IProductService
     {
         private readonly IRepositoryAsync<Product> rpoProduct;
+        private readonly IRepositoryProvider rpoProvider;
+        private const int retailCustomerId = 1;
         
         public ProductService(IRepositoryAsync<Product> _rpoProduct) 
             :base(_rpoProduct)
         {
             this.rpoProduct = _rpoProduct;
+            this.rpoProvider = new RepositoryProvider(new RepositoryFactory());
         }
+
         //public IEnumerable<Product> GetProducts()
         //{
         //    return this.rpoProduct.Query().Get();
         //}
-
 
         IEnumerable<Product> IProductService.GetProducts()
         {
@@ -149,7 +155,6 @@ namespace CoLucService
             this.rpoProduct.Update(entity);
         }
 
-
         public IEnumerable<Brand> GetBrands()
         {
             //return this.rpoProduct.GetRepository<Brand>().Queryable()
@@ -159,7 +164,6 @@ namespace CoLucService
 
             return this.rpoProduct.GetBrands();
         }
-
 
         public IEnumerable<xProduct> GetSpecialProduct(int? eventId, int langId = 1)
         {
@@ -191,6 +195,57 @@ namespace CoLucService
                 })
                 .ToList();
             }
+        }
+
+        public int CrudOrder(IEnumerable<xProduct> prods) { 
+            using(var ct = new CoLucEntities(TNT.App.EFConnection.ToString()))
+            using (var uow = new UnitOfWork(ct, rpoProvider)) {
+                uow.BeginTransaction();
+                var rpoOrder = new Repository<Order>(ct, uow);
+                var rpoOrderDetail = new Repository<OrderDetail>(ct, uow);
+                try
+                {
+                    var order = new Order
+                    {
+                        CustId = retailCustomerId,
+                        EnteredBy = 1,
+                        EnteredDate = DateTime.Now,
+                        OrderStatus = 0,
+                        SubTotal = prods.Sum(p => p.price * p.quantity),
+                        OrderDate = DateTime.Now,
+                        OrderComment = prods.FirstOrDefault().Note,
+                        ObjectState = ObjectState.Added
+                    };
+
+                    rpoOrder.Insert(order);
+                    uow.SaveChanges();
+
+                    var orderDetails = prods.Select(p => new OrderDetail
+                        {
+                            OrderId = order.OrderId,
+                            ProductId = p.productid,
+                            Quantity = p.quantity ?? 1,
+                            Price = p.price,
+                            Total = p.price * p.quantity ?? 1,
+                            Description = p.description,
+                            ObjectState = ObjectState.Added
+                        }).ToList()
+                    ;
+
+                    rpoOrderDetail.InsertGraphRange(orderDetails);
+                    uow.SaveChanges();
+
+                    uow.Commit();
+
+                    return 1;
+                }
+                catch {
+                    uow.Rollback();
+                    return -1;
+                }
+                
+                
+            }   
         }
     }
 }

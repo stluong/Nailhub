@@ -316,19 +316,25 @@ TNT.Service || (TNT.Service = function ($) {
     }
 }(jQuery));
 
+
+
 TNT.Stripe || (TNT.Stripe = function ($) {
     var _myStripe
         , _apiKey = "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA"
         , _defaultEmail = "luc.huynh78@gmail.com"
-        , _myContent = "<div class='form-group'>"
-        _myContent += "<label class='control-label checkbox' />"
-        _myContent += "<input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co"
-        _myContent += "</div>"
+        //, _myContent = "<div class='form-group'>"
+        //_myContent += "<input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co"
+        //_myContent += "</div>"
 
-        _myContent += "<div class='form-group'>"
-        _myContent += "<input id='txtEmail' type='text' placeholder='Email' class='form-control input-large'>"
-        _myContent += "<p class='help-block'>Enter if you have!</p>"
-        _myContent += "</div>"
+        //_myContent += "<div class='form-group'>"
+        //_myContent += "<input id='txtEmail' type='text' placeholder='Email' class='form-control input-large'/>"
+        //_myContent += "<p class='help-block'>Enter if you have!</p>"
+        //_myContent += "</div>"
+
+        //_myContent += "<div class='form-group'>"
+        //_myContent += "<label class='control-label checkbox'>Shipping address</label>"
+        //_myContent += "<textarea id='txtShipping' placeholder='Tell me where to ship?' class='form-control input-large'/>"
+        //_myContent += "</div>"
     ;
 
     return {
@@ -341,71 +347,79 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 
             object.quantity = quantity;
             object.size = size;
-
             BootstrapDialog.show({
                 title: "Notice",
-                message: _myContent,
+                message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val()), //_myContent,
                 buttons: [{
                     label: "READY TO PAY",
                     action: function (dialog) {
                         var
                             isBopCo = dialog.$modalBody.find("input#chkBopCo").is(":checked")
                             , email = dialog.$modalBody.find("input#txtEmail").val()
+                            , $shipTo = dialog.$modalBody.find("textarea#txtShipping")
                         ;
-                        dialog.close();
+                        if ($.trim($shipTo.val()).length > 0) {
+                            dialog.close();
 
-                        object.note = isBopCo ? "Bop co" : "";
+                            object.description = isBopCo ? "Bop co" : "";
+                            object.note = $shipTo.val();
 
-                        if (email) {
-                            _myStripe = StripeCheckout.configure({
-                                key: _apiKey,
-                                image: TNT.Common.Settings("input#img-Mybrus").val(),
-                                email: email,
-                                token: function (token) {
-                                    // Use the token to create the charge with a server-side script.
-                                    // You can access the token ID with token.id, token.email and token.card
+                            if (email) {
+                                _myStripe = StripeCheckout.configure({
+                                    key: _apiKey,
+                                    image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                    email: email,
+                                    token: function (token) {
+                                        // Use the token to create the charge with a server-side script.
+                                        // You can access the token ID with token.id, token.email and token.card
 
-                                    //var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
-                                    //Or use json object parameters
-                                    var myParas = {
-                                        stripeToken: token.id
-                                        , stripeEmail: token.email
-                                        , prod: object
+                                        //var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                        //Or use json object parameters
+                                        var myParas = {
+                                            stripeToken: token.id
+                                            , stripeEmail: token.email
+                                            , prod: object
+                                        }
+                                        TNT.Service.GCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
+                                            .Success(function (d) {
+                                                TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                            });
                                     }
-                                    TNT.Service.GCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
-                                        .Success(function (d) {
-                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
-                                        });
-                                }
+                                });
+                            }
+                            else {
+                                _myStripe = StripeCheckout.configure({
+                                    key: _apiKey,
+                                    image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                    email: _defaultEmail,
+                                    token: function (token) {
+                                        // Use the token to create the charge with a server-side script.
+                                        // You can access the token ID with token.id, token.email and token.card
+                                        var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                        //TNT.Common.Settings("input#url-Charge").val()
+                                        TNT.Service.GCall("/home/charge", myParas)
+                                            .Success(function (d) {
+                                                TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                            });
+                                    }
+                                });
+                            }
+
+                            _myStripe.open({
+                                name: "MyBrus",
+                                description: object.description,
+                                amount: object.quantity * object.price * 100
+                            });
+
+                            $(window).on("popstate", function () {
+                                _myStripe.close();
                             });
                         }
                         else {
-                            _myStripe = StripeCheckout.configure({
-                                key: _apiKey,
-                                image: TNT.Common.Settings("input#img-Mybrus").val(),
-                                email: _defaultEmail,
-                                token: function (token) {
-                                    // Use the token to create the charge with a server-side script.
-                                    // You can access the token ID with token.id, token.email and token.card
-                                    var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
-                                    //TNT.Common.Settings("input#url-Charge").val()
-                                    TNT.Service.GCall("/home/charge", myParas)
-                                        .Success(function (d) {
-                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
-                                        });
-                                }
-                            });
+                            $shipTo.tooltip("show");
                         }
-
-                        _myStripe.open({
-                            name: "MyBrus",
-                            description: object.description,
-                            amount: object.quantity * object.price * 100
-                        });
-
-                        $(window).on("popstate", function () {
-                            _myStripe.close();
-                        });
+                        
+                        
                     }
                 }, {
                     label: "CANCEL",
@@ -422,75 +436,84 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 
             BootstrapDialog.show({
                 title: "Notice",
-                message: _myContent,
+                message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val()), //_myContent,
                 buttons: [{
                     label: "READY TO PAY",
                     action: function (dialog) {
                         var
                             bopCo = dialog.$modalBody.find("input#chkBopCo").is(":checked") ? "Bop co" : ""
                             , email = dialog.$modalBody.find("input#txtEmail").val()
+                            , $shipTo = dialog.$modalBody.find("textarea#txtShipping")
                         ;
-                        dialog.close();
-                        //Update objects from ui
-                        $scope.find("input[name='qty']").each(function (i, e) {
-                            objects[i].quantity = $(e).val();
-                            objects[i].note = bopCo
-                        });
 
-                        if (email) {
-                            _myStripe = StripeCheckout.configure({
-                                key: _apiKey,
-                                image: TNT.Common.Settings("input#img-Mybrus").val(),
-                                email: email,
-                                token: function (token) {
-                                    // Use the token to create the charge with a server-side script.
-                                    // You can access the token ID with token.id, token.email and token.card
+                        if ($.trim($shipTo.val()).length > 0) {
+                            dialog.close();
+                            //Update objects from ui
+                            $scope.find("input[name='qty']").each(function (i, e) {
+                                objects[i].quantity = $(e).val();
+                                objects[i].description = bopCo;
+                                objects[i].note = $shipTo.val();
+                            });
 
-                                    //var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
-                                    //Or passing json object
-                                    var myParas = {
-                                        stripeToken: token.id
-                                        , stripeEmail: token.email
-                                        , prods: objects
+                            if (email) {
+                                _myStripe = StripeCheckout.configure({
+                                    key: _apiKey,
+                                    image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                    email: email,
+                                    token: function (token) {
+                                        // Use the token to create the charge with a server-side script.
+                                        // You can access the token ID with token.id, token.email and token.card
+
+                                        //var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                        //Or passing json object
+                                        var myParas = {
+                                            stripeToken: token.id
+                                            , stripeEmail: token.email
+                                            , prods: objects
+                                        }
+                                        TNT.Service.PCall(TNT.Common.Settings("input#url-Charges").val(), myParas)
+                                            .Success(function (d) {
+                                                TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                            });
                                     }
-                                    TNT.Service.PCall(TNT.Common.Settings("input#url-Charges").val(), myParas)
-                                        .Success(function (d) {
-                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
-                                        });
-                                }
+                                });
+                            }
+                            else {
+                                _myStripe = StripeCheckout.configure({
+                                    key: _apiKey,
+                                    image: TNT.Common.Settings("input#img-Mybrus").val(),
+                                    email: _defaultEmail,
+                                    token: function (token) {
+                                        // Use the token to create the charge with a server-side script.
+                                        // You can access the token ID with token.id, token.email and token.card
+                                        //var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                        var myParas = {
+                                            stripeToken: token.id
+                                            , stripeEmail: token.email
+                                            , prods: objects
+                                        }
+                                        TNT.Service.PCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
+                                            .Success(function (d) {
+                                                TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
+                                            });
+                                    }
+                                });
+                            }
+
+                            _myStripe.open({
+                                name: "MyBrus",
+                                description: "Shopping cart checkout",
+                                amount: $scope.attr("attr-total") * 100
+                            });
+
+                            $(window).on("popstate", function () {
+                                _myStripe.close();
                             });
                         }
                         else {
-                            _myStripe = StripeCheckout.configure({
-                                key: _apiKey,
-                                image: TNT.Common.Settings("input#img-Mybrus").val(),
-                                email: _defaultEmail,
-                                token: function (token) {
-                                    // Use the token to create the charge with a server-side script.
-                                    // You can access the token ID with token.id, token.email and token.card
-                                    //var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
-                                    var myParas = {
-                                        stripeToken: token.id
-                                        , stripeEmail: token.email
-                                        , prods: objects
-                                    }
-                                    TNT.Service.PCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
-                                        .Success(function (d) {
-                                            TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
-                                        });
-                                }
-                            });
+                            $shipTo.tooltip("show");
                         }
-
-                        _myStripe.open({
-                            name: "MyBrus",
-                            description: "Shopping cart checkout",
-                            amount: $scope.attr("attr-total") * 100
-                        });
-
-                        $(window).on("popstate", function () {
-                            _myStripe.close();
-                        });
+                        
                     }
                 }, {
                     label: "CANCEL",
