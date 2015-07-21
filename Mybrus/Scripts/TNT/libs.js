@@ -247,13 +247,23 @@ TNT.Service || (TNT.Service = function ($) {
 		    return {
 		        Done: function (callback) {
 		            _serviceReponsed.success(function (serverResponse) {
-		                callback(serverResponse);
+		                if ($.trim(serverResponse) === "error") {
+		                    TNT.Common.Alert(TNT.Service.Message.friendly, { type: "alert-warning" });
+		                }
+		                else {
+		                    callback(serverResponse);
+		                } 
 		            });
 		        }
 				, Success: function (callback) {
 				    _serviceReponsed.success(function (serverResponse) {
 				        if (TNT.Service.Success(serverResponse)) {
-				            callback(serverResponse);
+				            if ($.trim(serverResponse) === "error") {
+				                TNT.Common.Alert(TNT.Service.Message.friendly, { type: "alert-warning" });
+				            }
+				            else {
+				                callback(serverResponse);
+				            }
 				        }
 				        else {
 				            //Server responsed failure with exception message
@@ -380,7 +390,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                                             , stripeEmail: token.email
                                             , prod: object
                                         }
-                                        TNT.Service.GCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
+                                        TNT.Service.PCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
                                             .Success(function (d) {
                                                 TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
                                             });
@@ -395,9 +405,14 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                                     token: function (token) {
                                         // Use the token to create the charge with a server-side script.
                                         // You can access the token ID with token.id, token.email and token.card
-                                        var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
-                                        //TNT.Common.Settings("input#url-Charge").val()
-                                        TNT.Service.GCall("/home/charge", myParas)
+                                        //var myParas = "stripeToken={0}&stripeEmail={1}&{2}".format(token.id, token.email, $.param(object));
+                                        //Or use json object parameters
+                                        var myParas = {
+                                            stripeToken: token.id
+                                            , stripeEmail: token.email
+                                            , prod: object
+                                        }
+                                        TNT.Service.PCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
                                             .Success(function (d) {
                                                 TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
                                             });
@@ -492,7 +507,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                                             , stripeEmail: token.email
                                             , prods: objects
                                         }
-                                        TNT.Service.PCall(TNT.Common.Settings("input#url-Charge").val(), myParas)
+                                        TNT.Service.PCall(TNT.Common.Settings("input#url-Charges").val(), myParas)
                                             .Success(function (d) {
                                                 TNT.Common.Alert("Your item will be shipped asap!", { type: "alert-success" });
                                             });

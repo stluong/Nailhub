@@ -213,7 +213,7 @@ namespace CoLucService
                         OrderStatus = 0,
                         SubTotal = prods.Sum(p => p.price * p.quantity),
                         OrderDate = DateTime.Now,
-                        OrderComment = prods.FirstOrDefault().Note,
+                        OrderComment = prods.FirstOrDefault().note,
                         ObjectState = ObjectState.Added
                     };
 

@@ -69,7 +69,9 @@ namespace Mybrus.Controllers {
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, prod.price, prod.description);
                 if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
                 {
-                    this.prod.CrudOrder(new xProduct[] { prod });
+                    await Task.Run(() => {
+                        this.prod.CrudOrder(new xProduct[] { prod });
+                    });
                     Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering! Your order will be sent asap.");
                     return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
                 }
@@ -96,6 +98,10 @@ namespace Mybrus.Controllers {
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, totalcharge, description);
                 if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
                 {
+                    await Task.Run(() =>
+                    {
+                        this.prod.CrudOrder(prods);
+                    }); 
                     Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering!! Your order will be sent asap.");
                     return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
                 }
