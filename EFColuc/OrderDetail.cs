@@ -21,6 +21,7 @@ namespace EFColuc
         public Nullable<decimal> Discount { get; set; }
         public decimal Total { get; set; }
         public string Description { get; set; }
+        public Nullable<int> Size { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

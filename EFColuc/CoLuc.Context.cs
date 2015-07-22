@@ -55,5 +55,22 @@ namespace EFColuc
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<xProduct>("GetProduct", productIdParameter, langIdParameter);
         }
+    
+        public virtual ObjectResult<xOrder> GetOrder(Nullable<int> orderId, Nullable<int> orderStatus, Nullable<System.DateTime> fromDate)
+        {
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("orderId", orderId) :
+                new ObjectParameter("orderId", typeof(int));
+    
+            var orderStatusParameter = orderStatus.HasValue ?
+                new ObjectParameter("orderStatus", orderStatus) :
+                new ObjectParameter("orderStatus", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("fromDate", fromDate) :
+                new ObjectParameter("fromDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<xOrder>("GetOrder", orderIdParameter, orderStatusParameter, fromDateParameter);
+        }
     }
 }

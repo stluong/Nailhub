@@ -197,7 +197,14 @@ namespace CoLucService
             }
         }
 
-        public int CrudOrder(IEnumerable<xProduct> prods) { 
+        public IEnumerable<xOrder> GetXOrder(int? orderId = null, int? statusId = null, DateTime? fromDate = null) {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
+            {
+                return co.GetOrder(orderId, statusId, fromDate).ToList();
+            }
+        }
+
+        public int CrudOrder(IEnumerable<xProduct> prods, string invoiceNo) { 
             using(var ct = new CoLucEntities(TNT.App.EFConnection.ToString()))
             using (var uow = new UnitOfWork(ct, rpoProvider)) {
                 uow.BeginTransaction();
@@ -214,6 +221,7 @@ namespace CoLucService
                         SubTotal = prods.Sum(p => p.price * p.quantity),
                         OrderDate = DateTime.Now,
                         OrderComment = prods.FirstOrDefault().note,
+                        InvoiceNo = invoiceNo,
                         ObjectState = ObjectState.Added
                     };
 

@@ -247,6 +247,9 @@
     <Compile Include="SpecialEvent.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>
+    <Compile Include="xOrder.cs">
+      <DependentUpon>CoLuc.tt</DependentUpon>
+    </Compile>
     <Compile Include="xProduct.cs">
       <DependentUpon>CoLuc.tt</DependentUpon>
     </Compile>

@@ -1229,6 +1229,7 @@
     <Content Include="Views\Home\QuickCart.cshtml" />
     <Content Include="Views\Home\CartDetail.cshtml" />
     <Content Include="template\OrderInfo.html" />
+    <Content Include="Views\Product\Sale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

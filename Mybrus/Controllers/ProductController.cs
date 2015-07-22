@@ -101,6 +101,12 @@ namespace Mybrus.Controllers
             }
         }
 
+        public ActionResult Sale() {
+            var orderings = this.prod.GetXOrder();
+            return View(orderings);
+        }
+
+
         [AllowAnonymous]
         public ActionResult PtBrandMenu() {
             return PartialView(this.prod.GetBrands()
