@@ -43,6 +43,8 @@ TNT.Cart || (TNT.Cart = (function ($) {
 
     return {
         Add: function (xproduct) {
+            xproduct.size = $("select#ddlSize").val();
+            xproduct.quantity = $("input#product_qty").val();
             TNT.Service.GCall(TNT.Common.Settings("input#url-Cart-Add").val(), xproduct)
             .Success(function (r) {
                 TNT.Common.Alert("Your item was added to cart!", { type: "alert-success", timeOut: 3000});

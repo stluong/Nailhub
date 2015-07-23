@@ -150,7 +150,7 @@ namespace Mybrus.Controllers {
             {
                 List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart] ?? new List<xProduct>();
                 //Add quantity 1 for quick cart
-                prod.quantity = 1;
+                prod.quantity = (prod.quantity.HasValue && prod.quantity.Equals(9999)) ? 1 : prod.quantity ?? 1;
                 myCart.Add(prod);
                 Session[sssQuickCart] = myCart;
                 return Json("success", JsonRequestBehavior.AllowGet);
