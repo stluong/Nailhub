@@ -2,7 +2,7 @@
 
 @if (Model != null)
 {
-    var imgPath = Url.Content("~/Content/images/demo/shop");
+    var imgPath = Url.Content("~/Content/images/mybrus/");
     var shippingCost = 0;
     var totalPrice = Model.Sum(p => p.price * p.quantity ?? 1);
 

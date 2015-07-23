@@ -32,7 +32,6 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/plugins")
-    @Scripts.Render("~/bundles/main")
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
 </head>
@@ -41,7 +40,7 @@
     <!-- Top Bar -->
     <header id="mySettings">
         <input type="hidden" id="img-Error" value="@Url.Content("~/Content/images/error.jpg")">
-        <input type="hidden" id="img-Mybrus" value="@Url.Content("~/Content/images/error.jpg")">
+        <input type="hidden" id="img-Mybrus" value="@Url.Content("~/Content/images/mybrus/Q002-2.jpg")">
         <input type="hidden" id="url-Charge" value="@Url.Action("Charge", "Home")">
         <input type="hidden" id="url-Charges" value="@Url.Action("Charges", "Home")">
         <input type="hidden" id="url-Cart-Add" value="@Url.Action("AddCart", "Home")">
@@ -237,17 +236,17 @@
                             </address>*@
 
                         <div class="post-item">
-                            <span>Stree</span>
+                            <span>2909 North Kingshyway Blvd</span>
                         </div>
                         <div class="post-item">
-                            <span>Address</span>
+                            <span>Saint Louis, Mo 63115</span>
                         </div>
                     </div>
                     <!-- /FOOTER CONTACT INFO -->
                     <!-- FOOTER LOGO -->
                     <div class="column logo col-md-4 text-center">
                         <div class="logo-content">
-                            @*<img class="animate_fade_in" src="~/Content/images/logo_footer.png" width="200" alt="" />*@
+                            <img class="animate_fade_in" src="@Url.Content("~/Content/images/mybrus/Q002-2.jpg")" width="200" alt="" />
                             <h4>Logo</h4>
                         </div>
                     </div>
@@ -286,6 +285,7 @@
 
     </footer>
     <!-- /FOOTER -->
+    @Scripts.Render("~/bundles/main")
     @RenderSection("scripts", required: false)
 
     <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->

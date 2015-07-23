@@ -6,6 +6,7 @@ TNT.Language || (TNT.Language = (function ($) {
     ;
     $ulLanguage.find("a").each(function (i, e) {
         $(this).bind("click", function () {
+            debugger;
             var $img = $(this).find("img");
             if ($img.attr("alt").indexOf("VN") > -1) {
                 $.cookie("mybruslang", "vi");
