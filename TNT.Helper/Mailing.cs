@@ -16,8 +16,10 @@ namespace TNTHelper
             ////#if !DEBUG
             try
             {
-                using (SmtpClient smtp = new SmtpClient(smtpClient, AppSettings.Get<int>("smtpPort")))
+                using (SmtpClient smtp = new SmtpClient())
                 {
+                    smtp.Host = smtpClient;
+                    smtp.Port = AppSettings.Get<int>("smtpPort");
                     smtp.Credentials = new NetworkCredential(AppSettings.Get<string>("mailerUser"), AppSettings.Get<string>("mailerPassword"));
                     smtp.EnableSsl = AppSettings.Get<bool?>("smtpSSL") ?? false;
                     smtp.Send(mail);
@@ -48,7 +50,7 @@ namespace TNTHelper
             }
             msg.Subject = subject;
             msg.Body = body;
-            msg.From = new MailAddress(fromAddress);
+            msg.From = new MailAddress(fromAddress, "MyBrus", System.Text.Encoding.UTF8);
             msg.IsBodyHtml = isHtml;
             msg.Priority = priority;
             if (attachments != null && attachments.Length > 0)
@@ -247,7 +249,7 @@ namespace TNTHelper
             Message.Body = Body;
             Message.Subject = Subject;
             Message.IsBodyHtml = !IsPlainText;
-            Message.ReplyTo = new MailAddress(FromAddress);
+            //Message.ReplyTo = new MailAddress(FromAddress);
             Message.Headers.Add("Content-Transfer-Encoding", "base64");
 
             SendMail(Message);
