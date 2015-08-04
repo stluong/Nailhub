@@ -1254,6 +1254,7 @@
     <Content Include="Views\Home\CartDetail.cshtml" />
     <Content Include="template\OrderInfo.html" />
     <Content Include="Views\Product\Sale.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

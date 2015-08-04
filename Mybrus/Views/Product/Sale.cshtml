@@ -7,7 +7,7 @@
 
 <div class="mt30l15r10">
     <h2 class="caption">@ViewBag.Title</h2>
-    <table class="table">
+    <table class="tblSaleReport">
         <tr>
             <th>
                 OrdId
@@ -57,40 +57,53 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.orderid)
                 </td>
-                <td>
+                <td class="tdStatus">
                     @Html.DisplayFor(modelItem => item.orderstatus)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.trackingno)
+                <td class="pl10">
+                    @if (string.IsNullOrWhiteSpace(item.trackingno))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBoxFor(modelItem => item.trackingno, new { @class = "txtTrackingNo form-control", attr_id = @item.orderid })
+                            <span class="input-group-addon pointer" onclick="TNT.Product.UpdateTracking(this);">
+                                <i class="fa fa-save"></i>
+                            </span>
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.trackingno)
+                    }
                 </td>
-                <td>
+
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.orderdate)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.code)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.size)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.price)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.description)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.ordercomment)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.quantity)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.subtotal)
                 </td>
-                <td>
+                <td class="pl10">
                     @Html.DisplayFor(modelItem => item.invoiceno)
                 </td>
                 <td>

@@ -204,7 +204,7 @@ namespace CoLucService
             }
         }
 
-        public int CrudOrder(IEnumerable<xProduct> prods, string invoiceNo) { 
+        public int CrudOrder(IEnumerable<xProduct> prods, string invoiceNo, string email) { 
             using(var ct = new CoLucEntities(TNT.App.EFConnection.ToString()))
             using (var uow = new UnitOfWork(ct, rpoProvider)) {
                 uow.BeginTransaction();
@@ -222,6 +222,7 @@ namespace CoLucService
                         OrderDate = DateTime.Now,
                         OrderComment = prods.FirstOrDefault().note,
                         InvoiceNo = invoiceNo,
+                        CustComment = email,
                         ObjectState = ObjectState.Added
                     };
 
@@ -254,6 +255,19 @@ namespace CoLucService
                 
                 
             }   
+        }
+
+
+        public Order UpdateTracking(int orderId, string trackingNo)
+        {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
+                var updatingOrder = co.Orders.FirstOrDefault(o => o.OrderId == orderId);
+                updatingOrder.TrackingNo = trackingNo;
+                updatingOrder.OrderStatus = 1;
+                updatingOrder.ObjectState = ObjectState.Modified;
+                co.SaveChanges();
+                return updatingOrder;
+            }
         }
     }
 }

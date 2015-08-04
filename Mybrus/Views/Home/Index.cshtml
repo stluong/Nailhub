@@ -4,7 +4,7 @@
 @{
     var spProduct = ViewBag.splProduct;
     var urlTemp = Url.Action("Detail", "Home");
-    var imgPath = Url.Content("~/Content/images/mybrus/");
+    var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
     var lstBgdImg = new string[]{
         "medium_bg_darkblue",
         "medium_bg_orange",

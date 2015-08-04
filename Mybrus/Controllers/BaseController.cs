@@ -10,8 +10,19 @@ namespace Mybrus.Controllers
 {
     public class BaseController : Controller
     {
-        public BaseController() { 
-            
+        public BaseController()
+        {
+
+        }
+        public const string CallSucess = "sucess";
+        public const string CallError = "error";
+
+        public static string ImagePath
+        {
+            get
+            {
+                return "~/Content/images/mybrus/";
+            }
         }
 
         #region Stripe
@@ -56,7 +67,9 @@ namespace Mybrus.Controllers
             });
         }
 
+
+
         #endregion
-        
+
     }
 }

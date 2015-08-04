@@ -43,3 +43,10 @@
 .fnt-bold{
     font-weight:bold;
 }
+.pl10{
+    padding-left: 10px;
+}
+.txt-required{
+    border-style:solid;
+    border-color:red;
+}

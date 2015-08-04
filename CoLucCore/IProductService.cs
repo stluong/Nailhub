@@ -15,6 +15,8 @@ namespace CoLucCore
         IEnumerable<xProduct> GetXProducts(int? productId = null, int? langId = null);
         IEnumerable<xProduct> GetSpecialProduct(int? eventId = null, int langId = 1);
         IEnumerable<xOrder> GetXOrder(int? orderId = null, int? statusId = null, DateTime? fromDate = null);
-        int CrudOrder(IEnumerable<xProduct> prods, string invoiceNo = null);
+        int CrudOrder(IEnumerable<xProduct> prods, string invoiceNo = null, string email = null);
+
+        Order UpdateTracking(int orderId, string trackingNo);
     }
 }

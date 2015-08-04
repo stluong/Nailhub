@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EFColuc.xProduct>
 @{
     var urlTemp = Url.Action("Detail", "Home");
-    var imgPath = Url.Content("~/Content/images/mybrus/");
+    var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
     var cartUrl = Url.Action("Cart", "Home");
 }
 

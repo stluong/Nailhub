@@ -326,8 +326,6 @@ TNT.Service || (TNT.Service = function ($) {
     }
 }(jQuery));
 
-
-
 TNT.Stripe || (TNT.Stripe = function ($) {
     var _myStripe
         , _apiKey = "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA"

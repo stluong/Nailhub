@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CoLucCore;
@@ -25,6 +26,7 @@ namespace Mybrus.Controllers
                 //this.prod.GetProducts().ToList()
                 this.prod.GetXProducts();
             ;
+            
             return View(prods);
         }
 
@@ -38,6 +40,13 @@ namespace Mybrus.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
+            ViewBag.prodBrand = this.prod.GetBrands()
+                .Select(b => new SelectListItem
+                {
+                    Value = b.BrandId.ToString(),
+                    Text = b.Name,
+                }).ToArray()
+            ;
             return View();
         }
 
@@ -106,6 +115,24 @@ namespace Mybrus.Controllers
             return View(orderings);
         }
 
+        public async Task<ActionResult> UpdateTracking(int orderId, string trackingNo)
+        {
+            try {
+                await Task.Run(() => {
+                    var updatingOrder = this.prod.UpdateTracking(orderId, trackingNo);
+                    TNTHelper.Mailing.SendMail(updatingOrder.CustComment
+                        , "Order Shipped"
+                        , string.Format("Your order was shipped with this tracking no: {0}", updatingOrder.TrackingNo))
+                    ;
+                }); 
+
+                return Json(CallSucess);
+            }
+            catch{
+                return Json(CallError);
+            }
+            
+        } 
 
         [AllowAnonymous]
         public ActionResult PtBrandMenu() {

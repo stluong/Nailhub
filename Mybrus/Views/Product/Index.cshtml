@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<EFColuc.xProduct>
 @{
     ViewBag.Title = "Product Managment";
+    var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
 }
 
 <div class="mt30l15r10">
@@ -18,9 +19,6 @@
             </th>
             <th>
                 Name
-            </th>
-            <th>
-                Image
             </th>
             <th>
                 Price
@@ -53,11 +51,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.Image)*@
-                    <img class="xSize100" src="@item.image" 
-                         onerror="TNT.Common.ImageError(this);"/>
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.price)
                 </td>
@@ -74,6 +68,13 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.productid }) |
                     @Html.ActionLink("Details", "Details", new { id = item.productid }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.productid })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8" class="text-center">
+                    @*@Html.DisplayFor(modelItem => item.Image)*@
+                    <img class="xSize100" src="@(imgPath + item.image)"
+                         onerror="TNT.Common.ImageError(this);" />
                 </td>
             </tr>
         }

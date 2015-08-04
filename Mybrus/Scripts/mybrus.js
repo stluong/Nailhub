@@ -74,6 +74,46 @@ TNT.Cart || (TNT.Cart = (function ($) {
     }
 }(jQuery)));
 
+TNT.Product || (TNT.Product = function ($) {
+    var $scope = $("table#tblSaleReport", "body")
+        , actUrl = TNT.Common.Settings("input#url-Prod-UpdateTracking").val()
+    ;
+
+    return {
+        UpdateTracking: function (thss) {
+            var $thss = $(thss)
+                , $txtTrackingNo = $thss.prevUntil("div")
+            ;
+            if ($.trim($txtTrackingNo.val()).length > 0) {
+                var $td = $thss.closest("td")
+                , $preTd = $td.prev("td.tdStatus")
+                , para = {
+                    orderId: $txtTrackingNo.attr("attr-id")
+                    , trackingNo: $txtTrackingNo.val()
+                }
+                ;
+
+                TNT.Service.PCall(TNT.Common.Settings("input#url-Prod-UpdateTracking").val(), para)
+                    .Success(function (data) {
+                        $td
+                            .html($txtTrackingNo.val())
+                        ;
+                        $preTd.html("Shipped");
+
+                    })
+                ;
+            }
+            else {
+                $txtTrackingNo
+                    .addClass("txt-required")
+                    .focus()
+                ;
+            }
+            
+        }
+    }
+
+}(jQuery));
 
 
 

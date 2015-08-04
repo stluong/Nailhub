@@ -4,7 +4,7 @@
 @{
     var prdDetail = ((IEnumerable<EFColuc.xProduct>)ViewBag.prdDetail).FirstOrDefault();
     var imgs = prdDetail.image.Split(';').ToList();
-    var imgPath = Url.Content("~/Content/images/mybrus/");
+    var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
     var prdDiscount = TNTHelper.AppSettings.Get<int>("productDiscount");
     var jsPrdDetail = Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail);
 }
