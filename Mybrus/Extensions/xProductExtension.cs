@@ -19,8 +19,23 @@ namespace Mybrus.Extensions
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
             {
                 return co.Images
-                    .Where(i => i.productId == (prodId ?? xprod.productid))
+                    .Where(i => i.productId == (prodId ?? xprod.productid) && i.EndDate == null)
                     .Select(i => i.Path)
+                    .ToList()
+                ;
+            }
+        }
+        /// <summary>
+        /// Get all available size
+        /// </summary>
+        /// <param name="xprod"></param>
+        /// <param name="prodId"></param>
+        /// <returns></returns>
+        public static IEnumerable<int> GetSizes(this xProduct xprod, int? prodId = null) {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
+                return co.Inventories
+                    .Where(i => i.ProductId == (prodId ?? xprod.productid) && i.EndDate == null)
+                    .Select(i => i.Size)
                     .ToList()
                 ;
             }

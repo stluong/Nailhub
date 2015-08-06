@@ -62,7 +62,7 @@
                     @Html.DisplayFor(modelItem => item.length)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.size)
+                    @(string.Join("-", item.GetSizes()))
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.color)

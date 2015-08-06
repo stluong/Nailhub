@@ -24,12 +24,8 @@ namespace Mybrus.Controllers
             var prods =
                 //this.prod.GetProducts().ToList()
                 this.prod.GetXProducts()
-                //.GroupBy(x => x.productid)
-                //.Select(x => new EFColuc.xProduct { 
-                //    productid = x.Key,
-                //    name = x.SingleOrDefault().name,
-                    
-                //})
+                .GroupBy(p => new { p.productid, p.langid })
+                .Select(pl => pl.FirstOrDefault())
                 .ToList()
             ;
             
