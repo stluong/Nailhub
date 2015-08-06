@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.EntityClient;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -93,7 +94,6 @@ namespace TNTHelper
             }
             return false;
         }
-
         public static bool In(this int value, params int[] arg)
         {
             return IsIn<int>(value, arg);
@@ -114,7 +114,6 @@ namespace TNTHelper
         {
             return IsIn<decimal>(value, arg);
         }
-
         public static string CleanKoJS(this string value)
         {
             if (value.Like("__ko_mapping__", "error"))
@@ -137,7 +136,6 @@ namespace TNTHelper
             }
             return value;
         }
-
         public static string NullToEmpty(this string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -146,7 +144,6 @@ namespace TNTHelper
             }
             return value;
         }
-
         public static T? ToNullable<T>(this String s) where T : struct
         {
             try
@@ -176,13 +173,11 @@ namespace TNTHelper
         {
             return source.IndexOf(toCheck, comp) >= 0;
         }
-
         public static bool IsNumeric(this string value)
         {
             decimal num;
             return decimal.TryParse(value, out num);
         }
-
         public static string RemoveWhitespace(this string input)
         {
             return new string(input.ToCharArray()
@@ -205,6 +200,11 @@ namespace TNTHelper
             {
                 return false;
             }
+        }
+        public static string ToMoney(this string value, string cultureInfo = "en-US") {
+            return string.Format(CultureInfo.CreateSpecificCulture(cultureInfo),
+                 "{0:C}", double.Parse(value))
+            ;
         }
 
         #region Join Extension

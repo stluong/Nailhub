@@ -256,8 +256,6 @@ namespace CoLucService
                 
             }   
         }
-
-
         public Order UpdateTracking(int orderId, string trackingNo)
         {
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
@@ -267,6 +265,16 @@ namespace CoLucService
                 updatingOrder.ObjectState = ObjectState.Modified;
                 co.SaveChanges();
                 return updatingOrder;
+            }
+        }
+
+        public IEnumerable<string> GetImages(int? prodId) {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
+                return co.Images
+                    .Where(i => i.productId == prodId)
+                    .Select(i => i.Path)
+                    .ToList()
+                ;
             }
         }
     }

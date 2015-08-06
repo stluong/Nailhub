@@ -14,7 +14,6 @@ namespace Mybrus.Controllers
     public class ProductController : BaseController
     {
         private readonly IProductService prod;
-
         public ProductController(IProductService _prod) {
             this.prod = _prod;
         }
@@ -24,7 +23,14 @@ namespace Mybrus.Controllers
         {
             var prods =
                 //this.prod.GetProducts().ToList()
-                this.prod.GetXProducts();
+                this.prod.GetXProducts()
+                //.GroupBy(x => x.productid)
+                //.Select(x => new EFColuc.xProduct { 
+                //    productid = x.Key,
+                //    name = x.SingleOrDefault().name,
+                    
+                //})
+                .ToList()
             ;
             
             return View(prods);
@@ -57,7 +63,6 @@ namespace Mybrus.Controllers
             try
             {
                 // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -144,5 +149,6 @@ namespace Mybrus.Controllers
                 .ToList()
             );                 
         }
+        
     }
 }

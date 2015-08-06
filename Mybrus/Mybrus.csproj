@@ -246,6 +246,7 @@
     <Compile Include="Extensions\ExBundle.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="App_Start\TNTRouteHandler.cs" />
+    <Compile Include="Extensions\xProductExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
