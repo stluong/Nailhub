@@ -984,7 +984,6 @@
     <Content Include="Views\Home\Cc.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\PtBrandMenu.cshtml" />
-    <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Home\Policy.cshtml" />
     <Content Include="Views\Home\TermsofUse.cshtml" />
     <Content Include="Views\Home\QuickCart.cshtml" />
@@ -992,6 +991,8 @@
     <Content Include="template\OrderInfo.html" />
     <Content Include="Views\Product\Sale.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Home\OrderInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

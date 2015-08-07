@@ -33,11 +33,11 @@ namespace Mybrus.Controllers
         }
 
         // GET: ProductController/Details/5
-        public ActionResult Details(int id)
-        {
-            var pd = this.prod.Find(id);
-            return View(pd);
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    var pd = this.prod.Find(id);
+        //    return View(pd);
+        //}
 
         // GET: ProductController/Create
         public ActionResult Create()
@@ -80,7 +80,6 @@ namespace Mybrus.Controllers
             try
             {
                 // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
             catch

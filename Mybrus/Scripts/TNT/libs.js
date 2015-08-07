@@ -355,9 +355,18 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 
             object.quantity = quantity;
             object.size = size;
+
+            var total = object.quantity * object.price
+                , shpFee = "Free";
+            ;
+
+            if (total < 30) {
+                total = total + 3.99;
+                shpFee = "$3.99";
+            }
             BootstrapDialog.show({
                 title: "Notice",
-                message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val()), //_myContent,
+                message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val(), {fee: shpFee}),
                 buttons: [{
                     label: "READY TO PAY",
                     action: function (dialog) {
@@ -421,7 +430,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                             _myStripe.open({
                                 name: "MyBrus",
                                 description: object.description,
-                                amount: object.quantity * object.price * 100
+                                amount: total * 100
                             });
 
                             $(window).on("popstate", function () {
@@ -446,7 +455,14 @@ TNT.Stripe || (TNT.Stripe = function ($) {
         //Checkout multiple items
         , Checkouts: function (objects, scope) {
             var $scope = $(scope);
+            var total = $scope.attr("attr-total")
+                , shpFee = "Free";
+            ;
 
+            if (total < 30) {
+                total = total + 3.99;
+                shpFee = "$3.99";
+            }
             BootstrapDialog.show({
                 title: "Notice",
                 message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val()), //_myContent,
@@ -516,7 +532,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                             _myStripe.open({
                                 name: "MyBrus",
                                 description: "Shopping cart checkout",
-                                amount: $scope.attr("attr-total") * 100
+                                amount: total * 100
                             });
 
                             $(window).on("popstate", function () {

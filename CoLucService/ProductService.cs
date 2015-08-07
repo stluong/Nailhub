@@ -212,13 +212,16 @@ namespace CoLucService
                 var rpoOrderDetail = new Repository<OrderDetail>(ct, uow);
                 try
                 {
+                    var total = prods.Sum(p => p.price * p.quantity);
+                    var shpFee = total > 30?0m: 3.99m;
                     var order = new Order
                     {
                         CustId = retailCustomerId,
                         EnteredBy = 1,
                         EnteredDate = DateTime.Now,
                         OrderStatus = 0,
-                        SubTotal = prods.Sum(p => p.price * p.quantity),
+                        Delivery = shpFee,
+                        SubTotal = total + shpFee,
                         OrderDate = DateTime.Now,
                         OrderComment = prods.FirstOrDefault().note,
                         InvoiceNo = invoiceNo,

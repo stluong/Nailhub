@@ -48,7 +48,8 @@
         <input type="hidden" id="url-Cart-Quick" value="@Url.Action("QuickCart", "Home")">
         <input type="hidden" id="url-Cart-Detail" value="@Url.Action("CartDetail", "Home")">
         <input type="hidden" id="url-Cart-Update" value="@Url.Action("UpdateCart", "Home")">
-        <input type="hidden" id="url-Order-Info" value="@Url.Content("~/template/OrderInfo.html")">
+        @*<input type="hidden" id="url-Order-Info" value="@Url.Content("~/template/OrderInfo.html")">*@
+        <input type="hidden" id="url-Order-Info" value="@Url.Action("OrderInfo", "Home")">
         <input type="hidden" id="url-Prod-UpdateTracking" value="@Url.Action("UpdateTracking", "Product")">
     </header>
     

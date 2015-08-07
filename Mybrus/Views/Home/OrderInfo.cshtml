@@ -1,4 +1,5 @@
-﻿<div class='form-group'>
+﻿
+<div class='form-group'>
     <input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co
 </div>
 
@@ -12,9 +13,10 @@
     <textarea id='txtShipping' data-toggle="tooltip" title="Please tell me where to ship?" placeholder='Tell me where to ship?' class='form-control input-large' />
 </div>
 <div class='form-group'>
-    <label class='control-label label-danger'>
-        <span>Shipping: </span> <span id="spnShipping"></span>
+    <label class='control-label'>
+        Shipping:
     </label>
-    <p class='help-block'>Free shipping for order over $30!!</p>
+    <label>@ViewBag.shpFee</label>
+    <p class='help-block danger'>Free shipping for order over $30!!</p>
 </div>
 

@@ -92,6 +92,7 @@ namespace Mybrus.Controllers {
             {
                 //stripeToken = await _GetTokenId();
                 var totalcharge = prods.Sum(p => p.price * p.quantity ?? 1);
+                totalcharge = totalcharge > 30 ? totalcharge : totalcharge + 3.99m;
                 var description = string.Format("Order for product: {0}"
                     , string.Join(", ", prods.Select(p => p.productid))
                 );
@@ -178,6 +179,11 @@ namespace Mybrus.Controllers {
             
         }
 
+
+        public ActionResult OrderInfo(string fee) {
+            ViewBag.shpFee = fee;
+            return PartialView();
+        }
         
     }
 }
