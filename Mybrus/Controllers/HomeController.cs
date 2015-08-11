@@ -77,12 +77,12 @@ namespace Mybrus.Controllers {
                 }
                 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //Do something with this exception
-                return Json("error", JsonRequestBehavior.AllowGet);
+                Mailing.SendException(ex);
             }
-            return Json("error", JsonRequestBehavior.AllowGet);
+            return Json(MyResponse.error.ToString(), JsonRequestBehavior.AllowGet);
 
         }
 
@@ -108,13 +108,13 @@ namespace Mybrus.Controllers {
                 }
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //Do something with this exception
-                return Json("error", JsonRequestBehavior.AllowGet);
+                Mailing.SendException(ex);
             }
 
-            return Json("error", JsonRequestBehavior.AllowGet);
+            return Json(MyResponse.error.ToString(), JsonRequestBehavior.AllowGet);
         }
 
 
@@ -143,8 +143,9 @@ namespace Mybrus.Controllers {
             catch (Exception ex)
             {
                 //throw
-                return Json("error", JsonRequestBehavior.AllowGet);
+                Mailing.SendException(ex);
             }
+            return Json("error", JsonRequestBehavior.AllowGet);
         }
         public JsonResult AddCart(xProduct prod){
             try
@@ -158,8 +159,9 @@ namespace Mybrus.Controllers {
             }
             catch (Exception ex) { 
                 //throw
-                return Json("error", JsonRequestBehavior.AllowGet);
+                Mailing.SendException(ex);
             }
+            return Json("error", JsonRequestBehavior.AllowGet);
         }
         public JsonResult RemoveCart(xProduct prod){
             try
@@ -174,9 +176,9 @@ namespace Mybrus.Controllers {
             catch (Exception ex)
             {
                 //throw
-                return Json("error", JsonRequestBehavior.AllowGet);
+                Mailing.SendException(ex);
             }
-            
+            return Json("error", JsonRequestBehavior.AllowGet);
         }
 
 

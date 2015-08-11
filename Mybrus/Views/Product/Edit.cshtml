@@ -1,8 +1,84 @@
-﻿
+﻿@using Mybrus.Extensions
+@model EFColuc.xProduct
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
 }
+<div class="mt30l15r10" id="prodEdit">
+    <form class="form-horizontal" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Edit Product</legend>
+            <div class="control-group">
+                <label class="control-label" for="txtCode">Code</label>
+                <div class="controls">
+                    <input id="txtCode" name="txtCode" value="@Model.code" type="text" placeholder="Product Code" class="input-small">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="ddlBrand">Brand</label>
+                <div class="controls">
+                    <select id="ddlBrand" name="ddlBrand" class="input-medium">
+                        <option value="1" @(Model.brandid.Equals(1) ? "selected" : string.Empty)>777</option>
+                        <option value="2" @(Model.brandid.Equals(2) ? "selected" : string.Empty)>999</option>
+                        <option value="3" @(Model.brandid.Equals(3) ? "selected" : string.Empty)>QXXX</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="txtName">Name</label>
+                <div class="controls">
+                    <input id="txtName" name="txtName" value="@Model.name" type="text" placeholder="Product Name" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="txtPrice">Price</label>
+                <div class="controls">
+                    <input id="txtPrice" name="txtPrice" value="@Model.price" type="text" placeholder="Price" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="">Size</label>
+                <div class="controls">
+                    <label class="checkbox-inline" for="chkSize-0">
+                        <input type="checkbox" name="chkSize" id="chkSize-0" value="14" checked="@Model.GetSizes().Any(s => s == 14)">
+                        14
+                    </label>
+                    <label class="checkbox-inline" for="chkSize-1">
+                        <input type="checkbox" name="chkSize" id="chkSize-1" value="16" checked="@Model.GetSizes().Any(s => s == 16)">
+                        16
+                    </label>
+                    <label class="checkbox-inline" for="chkSize-2">
+                        <input type="checkbox" name="chkSize" id="chkSize-2" value="18" checked="@Model.GetSizes().Any(s => s == 18)">
+                        18
+                    </label>
+                    <label class="checkbox-inline" for="chkSize-3">
+                        <input type="checkbox" name="chkSize" id="chkSize-3" value="20" checked="@Model.GetSizes().Any(s => s == 20)">
+                        20
+                    </label>
+                </div>
+            </div>
+            <div class="control-group mt10">
+                <div class="controls">
+                    <input id="fileImage" name="fileImage" class="input-file" type="file">
+                </div>
+                <div>
+                    @foreach (var img in Model.GetImages())
+                    {
+                        <img class="xSize100" src="@(imgPath + img)"
+                             onerror="TNT.Common.ImageError(this);" />
+                    }
+                </div>
+            </div>
 
-<h2>Edit</h2>
+            <div class="control-group">
+                <label class="control-label" for="btnSave"></label>
+                <div class="controls">
+                    <button type="button" id="btnSave" name="btnSave" class="btn btn-success" onclick="TNT.Product.Update(@Newtonsoft.Json.JsonConvert.SerializeObject(Model));">Save</button>
+                    <button type="button" id="btnCancel" name="btnCancel" class="btn btn-success" onclick="location.href='@Url.Action("Index", "Product")'">Back</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 
+</div>

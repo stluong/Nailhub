@@ -309,6 +309,16 @@ TNT.Service || (TNT.Service = function ($) {
 				, data: paras || ""
 		    });
 		}
+        //Upload files
+        , FileUpload: function (/*Action url*/url, /*parameters: form data, json, or serialized string*/paras) {
+            return TNT.Service.Call({
+                type: "post",
+                url: url,
+                contentType: false,
+                processData: false,
+                data: paras
+            });
+        }
         //Get url paras on mobile navigation
         , GetPassedParas: function () {
             var paras = []

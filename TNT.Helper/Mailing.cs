@@ -13,7 +13,7 @@ namespace TNTHelper
     {
         private static void SendMail(MailMessage mail, string smtpClient)
         {
-            ////#if !DEBUG
+            //#if !DEBUG
             try
             {
                 using (SmtpClient smtp = new SmtpClient())
@@ -29,7 +29,7 @@ namespace TNTHelper
             {
                 // todo:  LOG SOMEWHERE?
             }
-            ////#endif
+            //#endif
         }
 
         public static void SendMail(MailMessage msg)
@@ -172,7 +172,7 @@ namespace TNTHelper
 
         public static void SendException(Exception ex, string applicationName, string additionalInfo)
         {
-            string subject = "ERROR [{0}]: {1}";
+            string subject = "Mybruss ERROR [{0}]: {1}";
             string useApplicationName = ex.Source;
 
             if (!String.IsNullOrEmpty(applicationName ?? string.Empty))
@@ -211,7 +211,7 @@ namespace TNTHelper
                 body.AppendFormat("<p>{0}</p>", additionalInfo.Trim());
             }
 
-            MailAddress devs = new MailAddress(AppSettings.Get<string>("mailerUser"), "TNT Support!!");
+            MailAddress devs = new MailAddress(AppSettings.Get<string>("supportUser") ?? AppSettings.Get<string>("mailerUser"), "TNT Support!!");
             MailMessage mm = new MailMessage();
             mm.From = devs;
             mm.To.Add(devs);

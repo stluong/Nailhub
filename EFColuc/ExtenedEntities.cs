@@ -58,4 +58,7 @@ namespace EFColuc
     public partial class Image: BaseEntity
     { }
 
+    public partial class xProduct {
+        public IEnumerable<int> Sizes { get; set; }
+    }
 }

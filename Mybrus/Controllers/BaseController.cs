@@ -14,9 +14,11 @@ namespace Mybrus.Controllers
         {
 
         }
-        public const string CallSucess = "sucess";
-        public const string CallError = "error";
-
+        public enum MyResponse{
+            success
+            , error
+        }
+        
         public static string ImagePath
         {
             get

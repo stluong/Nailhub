@@ -154,6 +154,85 @@ namespace CoLucService
         {
             this.rpoProduct.Update(entity);
         }
+        public xProduct Update(xProduct prod)
+        {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
+            using(var uow = new UnitOfWork(co, rpoProvider))
+            {
+                try
+                {
+                    uow.BeginTransaction();
+                    //update product
+                    var updatingProduct = co.Products
+                        .Include(p => p.ProductDetails)
+                        .Include(p => p.Inventories)
+                        .Where(p => p.ProductId == prod.productid)
+                        .SingleOrDefault()
+                    ;
+                    updatingProduct.BrandId = prod.brandid;
+                    updatingProduct.Code = prod.code;
+                    updatingProduct.Price = decimal.Parse(prod.price.ToString());
+                    updatingProduct.ObjectState = ObjectState.Modified;
+                    //update product detail
+                    var udtProductDetail = updatingProduct.ProductDetails.Where(pd => pd.LangId == prod.langid).SingleOrDefault();
+                    udtProductDetail.Name = prod.name;
+                    udtProductDetail.ObjectState = ObjectState.Modified;
+                    //update sizes
+                    var sqlEndDate = string.Format("update coluc..inventory set enddate = '{0}' where productid = {1} and size not in({2})"
+                        , DateTime.Now
+                        , prod.productid
+                        , string.Join(",", prod.Sizes)
+                    );
+                    co.Database.ExecuteSqlCommand(sqlEndDate);
+                    co.SaveChanges();
+
+                    //remove enddate, or insert new record
+                    foreach (var size in prod.Sizes.ToList())
+                    {
+                        //enddate none existing size
+                        var updatingSize = updatingProduct.Inventories
+                            .Where(p => p.ProductId == prod.productid && p.EndDate == null)
+                            .Where(p => p.Size == size)
+                            .SingleOrDefault()
+                        ;
+                        if (updatingSize != null)
+                        {
+                            //remove enddate
+                            updatingSize.EndDate = null;
+                            updatingSize.ObjectState = ObjectState.Modified;
+                        }
+                        else
+                        {
+                            //insert new
+                            co.Inventories.Add(new Inventory
+                            {
+                                ProductId = prod.productid,
+                                Cost = 9999,
+                                DidOrder = 9999,
+                                EnteredBy = 1,
+                                EnteredDate = DateTime.Now,
+                                OnHand = 9999,
+                                OnOrder = 0,
+                                Quantity = 9999,
+                                Size = size,
+                                ObjectState = ObjectState.Added
+                            });
+                        }
+                    }
+
+                    co.SaveChanges();
+
+                    uow.Commit();                    
+                }
+                catch(Exception ex) {
+                    Mailing.SendException(ex);
+                    uow.Rollback();
+                    throw;
+                }
+                
+            }
+            return prod;
+        }
 
         public IEnumerable<Brand> GetBrands()
         {

@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CoLucCore;
+using EFColuc;
 using Mybrus.Models;
 using TNT.Core.UnitOfWork;
+using TNTHelper;
 
 namespace Mybrus.Controllers
 {
@@ -68,24 +70,32 @@ namespace Mybrus.Controllers
         }
 
         // GET: ProductController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int pid, int lid)
         {
-            return View();
+            return View(this.prod.GetXProducts(pid, lid).FirstOrDefault());
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> EditAsync(xProduct prod)
         {
-            try
+            var result = string.Empty;
+            await Task.Run(() =>
             {
-                // TODO: Add update logic here
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                try
+                {
+                    // TODO: Add update logic here
+                    this.prod.Update(prod);
+                    result = MyResponse.success.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Mailing.SendException(ex);
+                    result = MyResponse.error.ToString();
+                }
+            });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         // GET: ProductController/Delete/5
@@ -126,10 +136,10 @@ namespace Mybrus.Controllers
                     ;
                 }); 
 
-                return Json(CallSucess);
+                return Json(MyResponse.success.ToString());
             }
             catch{
-                return Json(CallError);
+                return Json(MyResponse.error.ToString());
             }
             
         } 

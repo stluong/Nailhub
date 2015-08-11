@@ -36,6 +36,7 @@ namespace Mybrus.Extensions
                 return co.Inventories
                     .Where(i => i.ProductId == (prodId ?? xprod.productid) && i.EndDate == null)
                     .Select(i => i.Size)
+                    .OrderBy(i => i)
                     .ToList()
                 ;
             }

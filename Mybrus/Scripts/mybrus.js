@@ -111,6 +111,26 @@ TNT.Product || (TNT.Product = function ($) {
             }
             
         }
+        , Update: function (xprod) {
+            var $scopeEdit = $("div#prodEdit", "body")
+                , url = TNT.Common.Settings("input#url-Prod-Edit").val()
+            ;
+            xprod.code = $scopeEdit.find("input#txtCode").val();
+            xprod.brandid = $scopeEdit.find("select#ddlBrand").val();
+            xprod.name = $scopeEdit.find("input#txtName").val();
+            xprod.price = $scopeEdit.find("input#txtPrice").val();
+            var sizes = [];
+            $scopeEdit.find("input[name='chkSize']:checked").each(function (i, e) {
+                sizes.push($(e).val());
+            });
+            xprod.Sizes = sizes;
+
+            TNT.Service.PCall(url, xprod)
+                .Success(function (r) {
+                    TNT.Common.Alert("Your product was updated!", { type: "alert-success", timeOut: 3000 });
+                })
+            ;
+        }
     }
 
 }(jQuery));

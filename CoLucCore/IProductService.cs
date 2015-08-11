@@ -18,5 +18,6 @@ namespace CoLucCore
         int CrudOrder(IEnumerable<xProduct> prods, string invoiceNo = null, string email = null);
         Order UpdateTracking(int orderId, string trackingNo);
         IEnumerable<string> GetImages(int? prodId);
+        xProduct Update(xProduct prod);
     }
 }
