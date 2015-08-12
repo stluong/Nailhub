@@ -317,6 +317,52 @@
     <Content Include="Content\images\covers\cover_3.jpg" />
     <Content Include="Content\images\covers\cover_4.jpg" />
     <Content Include="Content\images\covers\readme.txt" />
+    <Content Include="Content\images\demo\revolution_slider\50off.png" />
+    <Content Include="Content\images\demo\revolution_slider\5378467111_e8b9e98f8f_o.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\apartment1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\apartment2.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\apartment3.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\bed1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\bg1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\bg2.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\bg3.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\bg4.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\church_parallax.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\condoebg1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\credits.txt" />
+    <Content Include="Content\images\demo\revolution_slider\darkblurbg.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\desktop_slider.png" />
+    <Content Include="Content\images\demo\revolution_slider\desktop_slider2.png" />
+    <Content Include="Content\images\demo\revolution_slider\desktop_slider_2.png" />
+    <Content Include="Content\images\demo\revolution_slider\familybg.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\food1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\furniturebg22.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\handshake-xl.png" />
+    <Content Include="Content\images\demo\revolution_slider\imac1.png" />
+    <Content Include="Content\images\demo\revolution_slider\kenburns1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\kenburns11.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\kenburns2.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\kenburns3.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\kenburns4.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\kenburns5.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\kenburns9.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\leftarrow.png" />
+    <Content Include="Content\images\demo\revolution_slider\lupe_imac.png" />
+    <Content Include="Content\images\demo\revolution_slider\lupe_macbook.png" />
+    <Content Include="Content\images\demo\revolution_slider\macbook2.png" />
+    <Content Include="Content\images\demo\revolution_slider\plus-4-xl.png" />
+    <Content Include="Content\images\demo\revolution_slider\rain.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\restaurantbg.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\rightarrow.png" />
+    <Content Include="Content\images\demo\revolution_slider\slidebg1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\slider7.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\sliderbg.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\slider_run.png" />
+    <Content Include="Content\images\demo\revolution_slider\slider_run_blue.png" />
+    <Content Include="Content\images\demo\revolution_slider\text_slider.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\transparent.png" />
+    <Content Include="Content\images\demo\revolution_slider\videobg1.jpg" />
+    <Content Include="Content\images\demo\revolution_slider\videoshadow.png" />
     <Content Include="Content\images\dummy.png" />
     <Content Include="Content\images\email_template\readme.txt" />
     <Content Include="Content\images\email_template\social_icon1.png" />
@@ -911,6 +957,12 @@
     <Content Include="Content\plugins\revolution-slider\js\jquery.themepunch.revolution.min.js.map">
       <DependentUpon>jquery.themepunch.revolution.min.js</DependentUpon>
     </Content>
+    <Content Include="Content\images\demo\revolution_slider\desktop_slider.fla" />
+    <Content Include="Content\images\demo\revolution_slider\desktop_slider_2.fla" />
+    <Content Include="Content\images\demo\revolution_slider\imac1.fla" />
+    <Content Include="Content\images\demo\revolution_slider\lupe_imac.fla" />
+    <Content Include="Content\images\demo\revolution_slider\lupe_macbook.fla" />
+    <Content Include="Content\images\demo\revolution_slider\macbook2.fla" />
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -996,6 +1048,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\demo\revolution_slider\New folder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
