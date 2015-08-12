@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -74,6 +75,58 @@ namespace Mybrus.Controllers
         {
             return View(this.prod.GetXProducts(pid, lid).FirstOrDefault());
         }
+        [HttpPost]
+        public async Task<ActionResult> UploadAsync()
+        {
+            var myResult = string.Empty;
+            if (Request.Files.AllKeys.Any())
+            {
+                var httpPostedFile = Request.Files["uploadingImage"];
+                if (httpPostedFile != null)
+                {
+                    var fileSavePath = Path.Combine(
+                        Server.MapPath(AppSettings.Get<string>("Upload"))
+                        , httpPostedFile.FileName
+                    );
+                    await Task.Run(() =>
+                    {
+                        try
+                        {
+                            httpPostedFile.SaveAs(fileSavePath);
+                            myResult = MyResponse.success.ToString();
+                        }
+                        catch (Exception ex) {
+                            myResult = MyResponse.error.ToString();
+                            Mailing.SendException(ex);
+                        }
+                        
+                    });
+                    
+                }
+            }
+            return Json(myResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> DeleteImageAsync(int prdid, string img)
+        {
+            var result = string.Empty;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    this.prod.DeleteImage(prdid, img);
+                    result = MyResponse.success.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Mailing.SendException(ex);
+                    result = MyResponse.error.ToString();
+                }
+            });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
 
         // POST: ProductController/Edit/5
         [HttpPost]
@@ -84,7 +137,6 @@ namespace Mybrus.Controllers
             {
                 try
                 {
-                    // TODO: Add update logic here
                     this.prod.Update(prod);
                     result = MyResponse.success.ToString();
                 }

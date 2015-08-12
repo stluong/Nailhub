@@ -32,6 +32,12 @@
                 </div>
             </div>
             <div class="control-group">
+                <label class="control-label" for="txtDesc">Description</label>
+                <div class="controls">
+                    <input id="txtDesc" name="txtDesc" value="@Model.description" type="text" placeholder="Product Description" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
                 <label class="control-label" for="txtPrice">Price</label>
                 <div class="controls">
                     <input id="txtPrice" name="txtPrice" value="@Model.price" type="text" placeholder="Price" class="input-xlarge">
@@ -59,22 +65,30 @@
                 </div>
             </div>
             <div class="control-group mt10">
-                <div class="controls">
-                    <input id="fileImage" name="fileImage" class="input-file" type="file">
-                </div>
-                <div>
+                <div id="imgSection">
                     @foreach (var img in Model.GetImages())
                     {
-                        <img class="xSize100" src="@(imgPath + img)"
-                             onerror="TNT.Common.ImageError(this);" />
+                        <span class="imgWrap pst-relative">
+                            <img class="xSize100" src="@(imgPath + img)"
+                                 onerror="TNT.Common.ImageError(this);" />
+                            <i class="iconDelete btn btn-danger btn-sm pst-relative pst-topN7 pst-leftN78"
+                               attr-pid="@Model.productid" attr-img="@img" onclick="TNT.Product.DeleteImage(this);">X</i>
+                        </span>
+
                     }
+                </div>
+                <div class="controls mt10">
+                    <input id="fileImage" name="fileImage" class="input-file" type="file" accept="image/*">
                 </div>
             </div>
 
             <div class="control-group">
                 <label class="control-label" for="btnSave"></label>
                 <div class="controls">
-                    <button type="button" id="btnSave" name="btnSave" class="btn btn-success" onclick="TNT.Product.Update(@Newtonsoft.Json.JsonConvert.SerializeObject(Model));">Save</button>
+                    <button type="button" id="btnSave" name="btnSave" class="btn btn-success" onclick="TNT.Product.Update(@Newtonsoft.Json.JsonConvert.SerializeObject(Model), this);">
+                        Save
+                    </button>
+                    <span class="hide"><i class="fa fa-refresh fa-spin"></i></span>
                     <button type="button" id="btnCancel" name="btnCancel" class="btn btn-success" onclick="location.href='@Url.Action("Index", "Product")'">Back</button>
                 </div>
             </div>

@@ -111,8 +111,11 @@ TNT.Product || (TNT.Product = function ($) {
             }
             
         }
-        , Update: function (xprod) {
+        , Update: function (xprod, thss) {
             var $scopeEdit = $("div#prodEdit", "body")
+                , $thss = $(thss)
+                , $spinner = $thss.next()
+                , urlUpload = TNT.Common.Settings("input#url-Prod-Upload").val()
                 , url = TNT.Common.Settings("input#url-Prod-Edit").val()
             ;
             xprod.code = $scopeEdit.find("input#txtCode").val();
@@ -125,9 +128,51 @@ TNT.Product || (TNT.Product = function ($) {
             });
             xprod.Sizes = sizes;
 
-            TNT.Service.PCall(url, xprod)
+            var $file = $scopeEdit.find("#fileImage")
+                , files = $file.get(0).files
+                , frmData = new FormData();
+            ;
+            if (files.length > 0) {
+                var file = files[0];
+                xprod.image = file.name;
+                frmData.append("uploadingImage", file);
+            }
+            else {
+                xprod.image = "";
+            }
+            
+            $thss.hide();
+            $spinner.removeClass("hide");
+
+            TNT.Service.FileUpload(urlUpload, frmData)
                 .Success(function (r) {
-                    TNT.Common.Alert("Your product was updated!", { type: "alert-success", timeOut: 3000 });
+                    TNT.Service.PCall(url, xprod)
+                        .Success(function (r) {
+                            $thss.show();
+                            $spinner.addClass("hide");
+                            TNT.Common.Alert("Your product was updated!", { type: "alert-success", timeOut: 3000 });
+                            if (xprod.image != "") {
+                                location.reload(true);
+                            }
+                        })
+                    ;
+                })
+            ;
+        }
+        , DeleteImage: function (thss) {
+            var $thss = $(thss)
+                , prdId = $thss.attr("attr-pid")
+                , img = $thss.attr("attr-img")
+                , para = {
+                    prdid: prdId
+                    , img: img
+                }
+            ;
+
+            TNT.Service.GCall(TNT.Common.Settings("input#url-Prod-DeleteImage").val(), para)
+                .Success(function (r) {
+                    TNT.Common.Alert("Image was deleted!", { type: "alert-success", timeOut: 3000 });
+                    $thss.parent().remove();
                 })
             ;
         }

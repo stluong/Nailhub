@@ -154,6 +154,21 @@ namespace CoLucService
         {
             this.rpoProduct.Update(entity);
         }
+
+        public int DeleteImage(int prdid, string img) {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
+                var imgProd = co.Images
+                    .Where(i => i.productId == prdid && i.Path.Trim().ToUpper() == img.Trim().ToUpper())
+                    .SingleOrDefault()
+                ;
+                if (imgProd != null) {
+                    imgProd.EndDate = DateTime.Now;
+                    imgProd.ObjectState = ObjectState.Modified;
+                }
+                return co.SaveChanges();
+            }
+        }
+
         public xProduct Update(xProduct prod)
         {
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
@@ -176,6 +191,7 @@ namespace CoLucService
                     //update product detail
                     var udtProductDetail = updatingProduct.ProductDetails.Where(pd => pd.LangId == prod.langid).SingleOrDefault();
                     udtProductDetail.Name = prod.name;
+                    udtProductDetail.Description = prod.description;
                     udtProductDetail.ObjectState = ObjectState.Modified;
                     //update sizes
                     var sqlEndDate = string.Format("update coluc..inventory set enddate = '{0}' where productid = {1} and size not in({2})"
@@ -219,8 +235,21 @@ namespace CoLucService
                             });
                         }
                     }
-
                     co.SaveChanges();
+
+                    //check if has new image, insert new
+                    if (!string.IsNullOrWhiteSpace(prod.image)) {
+                        co.Images.Add(new Image
+                        {
+                            productId = prod.productid
+                            , Path = prod.image
+                            , EnteredBy = 1
+                            , EnteredDate = DateTime.Now
+                            , ObjectState = ObjectState.Added
+                        });
+
+                        co.SaveChanges();
+                    }
 
                     uow.Commit();                    
                 }
