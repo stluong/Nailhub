@@ -34,7 +34,7 @@
             <div class="control-group">
                 <label class="control-label" for="txtDesc">Description</label>
                 <div class="controls">
-                    <input id="txtDesc" name="txtDesc" value="@Model.description" type="text" placeholder="Product Description" class="input-xlarge">
+                    <textarea id="txtDesc" name="txtDesc" type="text" placeholder="Product Description">@Model.description</textarea>
                 </div>
             </div>
             <div class="control-group">
@@ -91,7 +91,7 @@
             <div class="control-group">
                 <label class="control-label" for="btnSave"></label>
                 <div class="controls">
-                    <button type="button" id="btnSave" name="btnSave" class="btn btn-success" onclick="TNT.Product.Update(@Newtonsoft.Json.JsonConvert.SerializeObject(Model), this);">
+                    <button type="button" id="btnSave" name="btnSave" class="btn btn-success" onclick="TNT.Product.Crud(@Newtonsoft.Json.JsonConvert.SerializeObject(Model), this);">
                         Save
                     </button>
                     <span class="hide"><i class="fa fa-refresh fa-spin"></i></span>

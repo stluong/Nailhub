@@ -45,35 +45,34 @@ namespace Mybrus.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            ViewBag.prodBrand = this.prod.GetBrands()
-                .Select(b => new SelectListItem
-                {
-                    Value = b.BrandId.ToString(),
-                    Text = b.Name,
-                }).ToArray()
-            ;
-            return View();
-        }
-
-        // POST: ProductController/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(new xProduct { langid = (int?)int.Parse(Language.Lang.LangId) });
         }
 
         // GET: ProductController/Edit/5
         public ActionResult Edit(int pid, int lid)
         {
             return View(this.prod.GetXProducts(pid, lid).FirstOrDefault());
+        }
+        // POST: ProductController/Edit/5
+        [HttpPost]
+        public async Task<ActionResult> CrudAsync(xProduct prod)
+        {
+            var result = string.Empty;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    this.prod.Crud(prod);
+                    result = MyResponse.success.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Mailing.SendException(ex);
+                    result = MyResponse.error.ToString();
+                }
+            });
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public async Task<ActionResult> UploadAsync()
@@ -142,35 +141,11 @@ namespace Mybrus.Controllers
             });
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-        // POST: ProductController/Edit/5
-        [HttpPost]
-        public async Task<ActionResult> EditAsync(xProduct prod)
-        {
-            var result = string.Empty;
-            await Task.Run(() =>
-            {
-                try
-                {
-                    this.prod.Update(prod);
-                    result = MyResponse.success.ToString();
-                }
-                catch (Exception ex)
-                {
-                    Mailing.SendException(ex);
-                    result = MyResponse.error.ToString();
-                }
-            });
-
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
-
         // POST: ProductController/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

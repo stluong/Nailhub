@@ -1,11 +1,95 @@
-﻿
+﻿@using Mybrus.Extensions
+@model EFColuc.xProduct
 @{
     ViewBag.Title = "Add New Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+    var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
 }
+<div class="mt30l15r10" id="prodAdd">
+    <form class="form-horizontal" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Add New Product</legend>
+            <div class="control-group">
+                <label class="control-label" for="txtCode">Code</label>
+                <div class="controls">
+                    <input id="txtCode" name="txtCode" value="@Model.code" type="text" placeholder="Product Code" class="input-small">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="ddlBrand">Brand</label>
+                <div class="controls">
+                    <select id="ddlBrand" name="ddlBrand" class="input-medium">
+                        <option value="1">777</option>
+                        <option value="2">999</option>
+                        <option value="3">QXXX</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="txtName">Name</label>
+                <div class="controls">
+                    <input id="txtName" name="txtName" value="@Model.name" type="text" placeholder="Product Name" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="txtDesc">Description</label>
+                <div class="controls">
+                    <textarea id="txtDesc" name="txtDesc" type="text" placeholder="Product Description">@Model.description</textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="txtPrice">Price</label>
+                <div class="controls">
+                    <input id="txtPrice" name="txtPrice" value="@Model.price" type="text" placeholder="Price" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="">Size</label>
+                <div class="controls">
+                    <label class="checkbox-inline" for="chkSize-0">
+                        <input type="checkbox" name="chkSize" id="chkSize-0" value="14">
+                        14
+                    </label>
+                    <label class="checkbox-inline" for="chkSize-1">
+                        <input type="checkbox" name="chkSize" id="chkSize-1" value="16">
+                        16
+                    </label>
+                    <label class="checkbox-inline" for="chkSize-2">
+                        <input type="checkbox" name="chkSize" id="chkSize-2" value="18">
+                        18
+                    </label>
+                    <label class="checkbox-inline" for="chkSize-3">
+                        <input type="checkbox" name="chkSize" id="chkSize-3" value="20">
+                        20
+                    </label>
+                </div>
+            </div>
+            <div class="control-group mt10">
+                <div class="controls mt10">
+                    <input id="fileImage" name="fileImage" class="input-file" type="file" accept="image/*">
+                </div>
+            </div>
 
-<div class="mt30l15r10">
+            <div class="control-group">
+                <label class="control-label" for="btnSave"></label>
+                <div class="controls">
+                    <button type="button" id="btnSave" name="btnSave" class="btn btn-success" onclick="TNT.Product.Crud(@Newtonsoft.Json.JsonConvert.SerializeObject(Model), this);">
+                        Add New
+                    </button>
+                    <span class="hide"><i class="fa fa-refresh fa-spin"></i></span>
+                    <button type="button" id="btnCancel" name="btnCancel" class="btn btn-success" onclick="location.href='@Url.Action("Index", "Product")'">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+
+
+
+
+@*<div class="mt30l15r10">
     <h2 class="text-center caption">@ViewBag.Title</h2>
     <form class="form-horizontal" enctype="multipart/form-data" action="@Url.Action("Create")">
         <fieldset>
@@ -52,5 +136,5 @@
             </div>
         </fieldset>
     </form>
-</div>
+</div>*@
 

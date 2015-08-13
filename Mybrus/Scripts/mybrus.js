@@ -111,17 +111,17 @@ TNT.Product || (TNT.Product = function ($) {
             }
             
         }
-        , Update: function (xprod, thss) {
-            var $scopeEdit = $("div#prodEdit", "body")
+        , Crud: function (xprod, thss) {
+            var $scopeEdit = $(xprod.productid > 0 ? "div#prodEdit" : "div#prodAdd", "body")
                 , $thss = $(thss)
                 , $spinner = $thss.next()
                 , urlUpload = TNT.Common.Settings("input#url-Prod-Upload").val()
-                , url = TNT.Common.Settings("input#url-Prod-Edit").val()
+                , url = TNT.Common.Settings("input#url-Prod-Crud").val()
             ;
             xprod.code = $scopeEdit.find("input#txtCode").val();
             xprod.brandid = $scopeEdit.find("select#ddlBrand").val();
             xprod.name = $scopeEdit.find("input#txtName").val();
-            xprod.description = $scopeEdit.find("input#txtDesc").val();
+            xprod.description = $scopeEdit.find("textarea#txtDesc").val();
             xprod.price = $scopeEdit.find("input#txtPrice").val();
             var sizes = [];
             $scopeEdit.find("input[name='chkSize']:checked").each(function (i, e) {
@@ -153,7 +153,12 @@ TNT.Product || (TNT.Product = function ($) {
                             $spinner.addClass("hide");
                             TNT.Common.Alert("Your product was updated!", { type: "alert-success", timeOut: 3000 });
                             if (xprod.image != "") {
-                                location.reload(true);
+                                if (xprod.productid > 0) {
+                                    location.reload(true);
+                                }
+                                else {
+                                    window.location.replace(TNT.Common.Settings("input#url-Prod-Index").val());
+                                }
                             }
                         })
                     ;

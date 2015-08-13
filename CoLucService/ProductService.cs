@@ -168,6 +168,7 @@ namespace CoLucService
                 return co.SaveChanges();
             }
         }
+        
         /// <summary>
         /// Set default image for product
         /// </summary>
@@ -193,8 +194,7 @@ namespace CoLucService
                 return co.SaveChanges();
             }
         }
-
-        public xProduct Update(xProduct prod)
+        public xProduct Crud(xProduct xprod)
         {
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
             using(var uow = new UnitOfWork(co, rpoProvider))
@@ -202,78 +202,14 @@ namespace CoLucService
                 try
                 {
                     uow.BeginTransaction();
-                    //update product
-                    var updatingProduct = co.Products
-                        .Include(p => p.ProductDetails)
-                        .Include(p => p.Inventories)
-                        .Where(p => p.ProductId == prod.productid)
-                        .SingleOrDefault()
-                    ;
-                    updatingProduct.BrandId = prod.brandid;
-                    updatingProduct.Code = prod.code;
-                    updatingProduct.Price = decimal.Parse(prod.price.ToString());
-                    updatingProduct.ObjectState = ObjectState.Modified;
-                    //update product detail
-                    var udtProductDetail = updatingProduct.ProductDetails.Where(pd => pd.LangId == prod.langid).SingleOrDefault();
-                    udtProductDetail.Name = prod.name;
-                    udtProductDetail.Description = prod.description;
-                    udtProductDetail.ObjectState = ObjectState.Modified;
-                    //update sizes
-                    var sqlEndDate = string.Format("update coluc..inventory set enddate = '{0}' where productid = {1} and size not in({2})"
-                        , DateTime.Now
-                        , prod.productid
-                        , string.Join(",", prod.Sizes)
-                    );
-                    co.Database.ExecuteSqlCommand(sqlEndDate);
-                    co.SaveChanges();
-
-                    //remove enddate, or insert new record
-                    foreach (var size in prod.Sizes.ToList())
+                    if (xprod.productid != 0)
                     {
-                        //enddate none existing size
-                        var updatingSize = updatingProduct.Inventories
-                            .Where(p => p.ProductId == prod.productid && p.EndDate == null)
-                            .Where(p => p.Size == size)
-                            .SingleOrDefault()
-                        ;
-                        if (updatingSize != null)
-                        {
-                            //remove enddate
-                            updatingSize.EndDate = null;
-                            updatingSize.ObjectState = ObjectState.Modified;
-                        }
-                        else
-                        {
-                            //insert new
-                            co.Inventories.Add(new Inventory
-                            {
-                                ProductId = prod.productid,
-                                Cost = 9999,
-                                DidOrder = 9999,
-                                EnteredBy = 1,
-                                EnteredDate = DateTime.Now,
-                                OnHand = 9999,
-                                OnOrder = 0,
-                                Quantity = 9999,
-                                Size = size,
-                                ObjectState = ObjectState.Added
-                            });
-                        }
+                        //update
+                        Update(uow, co, xprod);
                     }
-                    co.SaveChanges();
-
-                    //check if has new image, insert new
-                    if (!string.IsNullOrWhiteSpace(prod.image)) {
-                        co.Images.Add(new Image
-                        {
-                            productId = prod.productid
-                            , Path = prod.image
-                            , EnteredBy = 1
-                            , EnteredDate = DateTime.Now
-                            , ObjectState = ObjectState.Added
-                        });
-
-                        co.SaveChanges();
+                    else { 
+                        //insert
+                        AddNew(uow, co, xprod);
                     }
 
                     uow.Commit();                    
@@ -285,7 +221,143 @@ namespace CoLucService
                 }
                 
             }
-            return prod;
+            return xprod;
+        }
+
+        private void AddNew(UnitOfWork uow, CoLucEntities co, xProduct xprod) {
+            //add new product
+            var prod = new Product
+            {
+                BrandId = xprod.brandid,
+                Code = xprod.code,
+                Price = xprod.price,
+                EnteredBy = 1,
+                EnteredDate = DateTime.Now,
+                ObjectState = ObjectState.Added
+            };
+            co.Products.Add(prod);
+            co.SaveChanges();
+            xprod.productid = prod.ProductId;
+            //product detail
+            co.ProductDetails.Add(new ProductDetail
+            {
+                ProductId = xprod.productid,
+                LangId = xprod.langid ?? 1,
+                Name = xprod.name,
+                Description = xprod.description,
+                ObjectState = ObjectState.Added
+            });
+            //co.SaveChanges();
+            //insert image
+            var myImage = new Image
+            {
+                productId = xprod.productid,
+                Path = xprod.image,
+                EnteredBy = 1,
+                EnteredDate = DateTime.Now,
+                ObjectState = ObjectState.Added
+            };
+            co.Images.Add(myImage);
+            co.SaveChanges();
+            //Set default image for product
+            prod.SetImageId = (int?)myImage.imageId;
+            prod.ObjectState = ObjectState.Modified;
+            co.SaveChanges();
+            //insert inventory
+            foreach (var size in xprod.Sizes.ToList())
+            {
+                co.Inventories.Add(new Inventory
+                {
+                    ProductId = xprod.productid,
+                    Cost = 9999,
+                    DidOrder = 9999,
+                    EnteredBy = 1,
+                    EnteredDate = DateTime.Now,
+                    OnHand = 9999,
+                    OnOrder = 0,
+                    Quantity = 9999,
+                    Size = size,
+                    ObjectState = ObjectState.Added
+                });
+            }
+            co.SaveChanges();
+        }
+        private void Update(UnitOfWork uow, CoLucEntities co, xProduct xprod)
+        {
+            //update product
+            var updatingProduct = co.Products
+                .Include(p => p.ProductDetails)
+                .Include(p => p.Inventories)
+                .Where(p => p.ProductId == xprod.productid)
+                .SingleOrDefault()
+            ;
+            updatingProduct.BrandId = xprod.brandid;
+            updatingProduct.Code = xprod.code;
+            updatingProduct.Price = decimal.Parse(xprod.price.ToString());
+            updatingProduct.ObjectState = ObjectState.Modified;
+            //update product detail
+            var udtProductDetail = updatingProduct.ProductDetails.Where(pd => pd.LangId == xprod.langid).SingleOrDefault();
+            udtProductDetail.Name = xprod.name;
+            udtProductDetail.Description = xprod.description;
+            udtProductDetail.ObjectState = ObjectState.Modified;
+            //update sizes
+            var sqlEndDate = string.Format("update coluc..inventory set enddate = '{0}' where productid = {1} and size not in({2})"
+                , DateTime.Now
+                , xprod.productid
+                , string.Join(",", xprod.Sizes)
+            );
+            co.Database.ExecuteSqlCommand(sqlEndDate);
+            co.SaveChanges();
+
+            //remove enddate, or insert new record
+            foreach (var size in xprod.Sizes.ToList())
+            {
+                //enddate none existing size
+                var updatingSize = updatingProduct.Inventories
+                    .Where(p => p.ProductId == xprod.productid && p.EndDate == null)
+                    .Where(p => p.Size == size)
+                    .SingleOrDefault()
+                ;
+                if (updatingSize != null)
+                {
+                    //remove enddate
+                    updatingSize.EndDate = null;
+                    updatingSize.ObjectState = ObjectState.Modified;
+                }
+                else
+                {
+                    //insert new
+                    co.Inventories.Add(new Inventory
+                    {
+                        ProductId = xprod.productid,
+                        Cost = 9999,
+                        DidOrder = 9999,
+                        EnteredBy = 1,
+                        EnteredDate = DateTime.Now,
+                        OnHand = 9999,
+                        OnOrder = 0,
+                        Quantity = 9999,
+                        Size = size,
+                        ObjectState = ObjectState.Added
+                    });
+                }
+            }
+            co.SaveChanges();
+
+            //check if has new image, insert new
+            if (!string.IsNullOrWhiteSpace(xprod.image))
+            {
+                co.Images.Add(new Image
+                {
+                    productId = xprod.productid,
+                    Path = xprod.image,
+                    EnteredBy = 1,
+                    EnteredDate = DateTime.Now,
+                    ObjectState = ObjectState.Added
+                });
+
+                co.SaveChanges();
+            }
         }
 
         public IEnumerable<Brand> GetBrands()
