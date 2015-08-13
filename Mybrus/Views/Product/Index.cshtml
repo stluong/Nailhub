@@ -70,7 +70,8 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { pid = item.productid, lid = item.langid}) |
                     @*@Html.ActionLink("Details", "Details", new { id = item.productid }) |*@
-                    @Html.ActionLink("Delete", "Delete", new { id = item.productid })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.productid })*@
+                    <a href="#" onclick="TNT.Product.Crud(@Newtonsoft.Json.JsonConvert.SerializeObject(item), @item.productid);">Delete</a>
                 </td>
             </tr>
             <tr>

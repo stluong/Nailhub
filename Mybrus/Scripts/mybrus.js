@@ -112,58 +112,74 @@ TNT.Product || (TNT.Product = function ($) {
             
         }
         , Crud: function (xprod, thss) {
-            var $scopeEdit = $(xprod.productid > 0 ? "div#prodEdit" : "div#prodAdd", "body")
-                , $thss = $(thss)
-                , $spinner = $thss.next()
-                , urlUpload = TNT.Common.Settings("input#url-Prod-Upload").val()
-                , url = TNT.Common.Settings("input#url-Prod-Crud").val()
-            ;
-            xprod.code = $scopeEdit.find("input#txtCode").val();
-            xprod.brandid = $scopeEdit.find("select#ddlBrand").val();
-            xprod.name = $scopeEdit.find("input#txtName").val();
-            xprod.description = $scopeEdit.find("textarea#txtDesc").val();
-            xprod.price = $scopeEdit.find("input#txtPrice").val();
-            var sizes = [];
-            $scopeEdit.find("input[name='chkSize']:checked").each(function (i, e) {
-                sizes.push($(e).val());
-            });
-            xprod.Sizes = sizes;
-
-            var $file = $scopeEdit.find("#fileImage")
-                , files = $file.get(0).files
-                , frmData = new FormData();
-            ;
-            if (files.length > 0) {
-                var file = files[0];
-                xprod.image = file.name;
-                frmData.append("uploadingImage", file);
+            if ($.isNumeric(thss)) {
+                //delete
+                BootstrapDialog.confirm("Are you sure to delete it?", function (ys) {
+                    if (ys) {
+                        xprod.code = "XOAXOAXOA";
+                        TNT.Service.PCall(TNT.Common.Settings("input#url-Prod-Crud").val(), xprod)
+                            .Success(function (r) {
+                                TNT.Common.Alert("Your product was removed!", { type: "alert-success", timeOut: 3000 });
+                                location.reload(true);
+                            })
+                        ;
+                    }                   
+                })
             }
             else {
-                xprod.image = "";
-            }
-            
-            $thss.hide();
-            $spinner.removeClass("hide");
+                var $scopeEdit = $(xprod.productid > 0 ? "div#prodEdit" : "div#prodAdd", "body")
+                    , $thss = $(thss)
+                    , $spinner = $thss.next()
+                    , urlUpload = TNT.Common.Settings("input#url-Prod-Upload").val()
+                    , url = TNT.Common.Settings("input#url-Prod-Crud").val()
+                ;
+                xprod.code = $scopeEdit.find("input#txtCode").val();
+                xprod.brandid = $scopeEdit.find("select#ddlBrand").val();
+                xprod.name = $scopeEdit.find("input#txtName").val();
+                xprod.description = $scopeEdit.find("textarea#txtDesc").val();
+                xprod.price = $scopeEdit.find("input#txtPrice").val();
+                var sizes = [];
+                $scopeEdit.find("input[name='chkSize']:checked").each(function (i, e) {
+                    sizes.push($(e).val());
+                });
+                xprod.Sizes = sizes;
 
-            TNT.Service.FileUpload(urlUpload, frmData)
-                .Success(function (r) {
-                    TNT.Service.PCall(url, xprod)
-                        .Success(function (r) {
-                            $thss.show();
-                            $spinner.addClass("hide");
-                            TNT.Common.Alert("Your product was updated!", { type: "alert-success", timeOut: 3000 });
-                            if (xprod.image != "") {
-                                if (xprod.productid > 0) {
-                                    location.reload(true);
+                var $file = $scopeEdit.find("#fileImage")
+                    , files = $file.get(0).files
+                    , frmData = new FormData();
+                ;
+                if (files.length > 0) {
+                    var file = files[0];
+                    xprod.image = file.name;
+                    frmData.append("uploadingImage", file);
+                }
+                else {
+                    xprod.image = "";
+                }
+
+                $thss.hide();
+                $spinner.removeClass("hide");
+
+                TNT.Service.FileUpload(urlUpload, frmData)
+                    .Success(function (r) {
+                        TNT.Service.PCall(url, xprod)
+                            .Success(function (r) {
+                                $thss.show();
+                                $spinner.addClass("hide");
+                                TNT.Common.Alert("Your product was updated!", { type: "alert-success", timeOut: 3000 });
+                                if (xprod.image != "") {
+                                    if (xprod.productid > 0) {
+                                        location.reload(true);
+                                    }
+                                    else {
+                                        window.location.replace(TNT.Common.Settings("input#url-Prod-Index").val());
+                                    }
                                 }
-                                else {
-                                    window.location.replace(TNT.Common.Settings("input#url-Prod-Index").val());
-                                }
-                            }
-                        })
-                    ;
-                })
-            ;
+                            })
+                        ;
+                    })
+                ;
+            }
         }
         , DeleteImage: function (thss) {
             var $thss = $(thss)

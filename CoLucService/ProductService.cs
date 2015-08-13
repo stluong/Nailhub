@@ -204,12 +204,19 @@ namespace CoLucService
                     uow.BeginTransaction();
                     if (xprod.productid != 0)
                     {
-                        //update
-                        Update(uow, co, xprod);
+                        if (xprod.code.Equals("XOAXOAXOA"))
+                        {
+                            //delete
+                            Delete(co, xprod);
+                        }
+                        else {
+                            //update
+                            Update(co, xprod);
+                        }
                     }
                     else { 
                         //insert
-                        AddNew(uow, co, xprod);
+                        AddNew(co, xprod);
                     }
 
                     uow.Commit();                    
@@ -224,7 +231,8 @@ namespace CoLucService
             return xprod;
         }
 
-        private void AddNew(UnitOfWork uow, CoLucEntities co, xProduct xprod) {
+        #region Crud XProduct
+        private void AddNew(CoLucEntities co, xProduct xprod) {
             //add new product
             var prod = new Product
             {
@@ -282,7 +290,7 @@ namespace CoLucService
             }
             co.SaveChanges();
         }
-        private void Update(UnitOfWork uow, CoLucEntities co, xProduct xprod)
+        private void Update(CoLucEntities co, xProduct xprod)
         {
             //update product
             var updatingProduct = co.Products
@@ -359,7 +367,13 @@ namespace CoLucService
                 co.SaveChanges();
             }
         }
-
+        private void Delete(CoLucEntities co, xProduct xprod) {
+            var myProd = co.Products.Find(xprod.productid);
+            myProd.EndDate = DateTime.Now;
+            myProd.ObjectState = ObjectState.Modified;
+            co.SaveChanges();
+        }
+        #endregion
         public IEnumerable<Brand> GetBrands()
         {
             //return this.rpoProduct.GetRepository<Brand>().Queryable()
