@@ -78,7 +78,7 @@ namespace Mybrus.Controllers
         [HttpPost]
         public async Task<ActionResult> UploadAsync()
         {
-            var myResult = string.Empty;
+            var myResult = MyResponse.success.ToString();
             if (Request.Files.AllKeys.Any())
             {
                 var httpPostedFile = Request.Files["uploadingImage"];
@@ -93,7 +93,6 @@ namespace Mybrus.Controllers
                         try
                         {
                             httpPostedFile.SaveAs(fileSavePath);
-                            myResult = MyResponse.success.ToString();
                         }
                         catch (Exception ex) {
                             myResult = MyResponse.error.ToString();
@@ -126,7 +125,23 @@ namespace Mybrus.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
+        public async Task<ActionResult> SetImageAsync(int prdid, string img) {
+            var result = string.Empty;
+            await Task.Run(() =>
+            {
+                try
+                {
+                    this.prod.SetImage(prdid, img);
+                    result = MyResponse.success.ToString();
+                }
+                catch (Exception ex)
+                {
+                    Mailing.SendException(ex);
+                    result = MyResponse.error.ToString();
+                }
+            });
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         // POST: ProductController/Edit/5
         [HttpPost]

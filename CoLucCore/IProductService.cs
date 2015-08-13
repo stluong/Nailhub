@@ -20,5 +20,6 @@ namespace CoLucCore
         IEnumerable<string> GetImages(int? prodId);
         xProduct Update(xProduct prod);
         int DeleteImage(int prdid, string img);
+        int SetImage(int prdid, string img);
     }
 }

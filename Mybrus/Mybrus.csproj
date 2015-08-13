@@ -317,6 +317,16 @@
     <Content Include="Content\images\covers\cover_3.jpg" />
     <Content Include="Content\images\covers\cover_4.jpg" />
     <Content Include="Content\images\covers\readme.txt" />
+    <Content Include="Content\images\demo\color_schemes\1.png" />
+    <Content Include="Content\images\demo\color_schemes\10.png" />
+    <Content Include="Content\images\demo\color_schemes\2.png" />
+    <Content Include="Content\images\demo\color_schemes\3.png" />
+    <Content Include="Content\images\demo\color_schemes\4.png" />
+    <Content Include="Content\images\demo\color_schemes\5.png" />
+    <Content Include="Content\images\demo\color_schemes\6.png" />
+    <Content Include="Content\images\demo\color_schemes\7.png" />
+    <Content Include="Content\images\demo\color_schemes\8.png" />
+    <Content Include="Content\images\demo\color_schemes\9.png" />
     <Content Include="Content\images\demo\revolution_slider\50off.png" />
     <Content Include="Content\images\demo\revolution_slider\5378467111_e8b9e98f8f_o.jpg" />
     <Content Include="Content\images\demo\revolution_slider\apartment1.jpg" />
@@ -963,6 +973,7 @@
     <Content Include="Content\images\demo\revolution_slider\lupe_imac.fla" />
     <Content Include="Content\images\demo\revolution_slider\lupe_macbook.fla" />
     <Content Include="Content\images\demo\revolution_slider\macbook2.fla" />
+    <Content Include="Content\images\demo\color_schemes\color_scheme.fla" />
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

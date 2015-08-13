@@ -56,9 +56,15 @@
 .pst-absolute{
     position:absolute;
 }
-.pst-topN7{
-    top:-7px;
+.pst-topN18{
+    top:-18px;
 }
-.pst-leftN78{
-    left:-78px;
+.pst-left27{
+    left: 27px;
+}
+.pst-left40{
+    left: 40px;
+}
+.pst-top14{
+    top:14px;
 }

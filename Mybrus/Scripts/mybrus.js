@@ -121,6 +121,7 @@ TNT.Product || (TNT.Product = function ($) {
             xprod.code = $scopeEdit.find("input#txtCode").val();
             xprod.brandid = $scopeEdit.find("select#ddlBrand").val();
             xprod.name = $scopeEdit.find("input#txtName").val();
+            xprod.description = $scopeEdit.find("input#txtDesc").val();
             xprod.price = $scopeEdit.find("input#txtPrice").val();
             var sizes = [];
             $scopeEdit.find("input[name='chkSize']:checked").each(function (i, e) {
@@ -172,6 +173,22 @@ TNT.Product || (TNT.Product = function ($) {
             TNT.Service.GCall(TNT.Common.Settings("input#url-Prod-DeleteImage").val(), para)
                 .Success(function (r) {
                     TNT.Common.Alert("Image was deleted!", { type: "alert-success", timeOut: 3000 });
+                    $thss.parent().remove();
+                })
+            ;
+        }
+        , SetImage: function (thss) {
+            var $thss = $(thss)
+                , prdId = $thss.attr("attr-pid")
+                , img = $thss.attr("attr-img")
+                , para = {
+                    prdid: prdId
+                    , img: img
+                }
+            ;
+            TNT.Service.GCall(TNT.Common.Settings("input#url-Prod-SetImage").val(), para)
+                .Success(function (r) {
+                    TNT.Common.Alert("Image was default!", { type: "alert-success", timeOut: 3000 });
                     $thss.parent().remove();
                 })
             ;

@@ -168,6 +168,31 @@ namespace CoLucService
                 return co.SaveChanges();
             }
         }
+        /// <summary>
+        /// Set default image for product
+        /// </summary>
+        /// <param name="prdid"></param>
+        /// <param name="img"></param>
+        /// <returns></returns>
+        public int SetImage(int prdid, string img)
+        {
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
+            {
+                var imgId = co.Images
+                    .Where(i => i.productId == prdid 
+                        && i.Path.Trim().ToUpper() == img.Trim().ToUpper()
+                        && i.EndDate == null)
+                    .Select(i => i.imageId)
+                ;
+                if (imgId != null)
+                {
+                    var myProd = co.Products.Find(prdid);
+                    myProd.SetImageId = imgId.FirstOrDefault();
+                    myProd.ObjectState = ObjectState.Modified;
+                }
+                return co.SaveChanges();
+            }
+        }
 
         public xProduct Update(xProduct prod)
         {

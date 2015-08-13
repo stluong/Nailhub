@@ -104,8 +104,10 @@
                          data-start="1700"
                          data-easing="easeOutBack">
                         <a class="fsize20" href="@(string.Format("{0}/{1}", urlTemp, xp.productid))">
-                            <img class="block hover-scale" src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="200" height="200" alt="" onerror="TNT.Common.ImageError(this);" />
-                            <strong>@xp.price.ToString("C")</strong>
+                            <img class="block hover-scale" 
+                                 src="@(string.Format("{0}/{1}", imgPath, xp.image))" width="200" height="200" alt="" 
+                                 onerror="TNT.Common.ImageError(this);" />
+                            @*<strong>@xp.price.ToString("C")</strong>*@
                         </a>
                     </div>
                 }
