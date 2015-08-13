@@ -77,7 +77,7 @@
                                    class="pst-absolute pst-left40 pst-top14"
                                    title="Check to set default!"
                                    attr-pid="@Model.productid" attr-img="@img"
-                                   checked="@img.Equals(Model.image)"
+                                   checked="@img.Equals(Model.GetImageSet())"
                                    onclick="TNT.Product.SetImage(this);">
                         </span>
 

@@ -189,7 +189,6 @@ TNT.Product || (TNT.Product = function ($) {
             TNT.Service.GCall(TNT.Common.Settings("input#url-Prod-SetImage").val(), para)
                 .Success(function (r) {
                     TNT.Common.Alert("Image was default!", { type: "alert-success", timeOut: 3000 });
-                    $thss.parent().remove();
                 })
             ;
         }
