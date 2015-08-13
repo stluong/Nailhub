@@ -4,7 +4,7 @@
 }
 
 <div class="mt30l15r10">
-    @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("UserCreate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
         <h4>@ViewBag.Title</h4>
