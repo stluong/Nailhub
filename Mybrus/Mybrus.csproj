@@ -986,13 +986,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\mybrus.js" />
+    <Content Include="Scripts\mybrus.min.js" />
     <Content Include="Scripts\owl.carousel.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\TNT\extensions.js" />
-    <Content Include="Scripts\TNT\libs.js" />
+    <Content Include="Scripts\TNT\extensions.min.js" />
+    <Content Include="Scripts\TNT\libs.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
