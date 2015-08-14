@@ -172,7 +172,7 @@ namespace Mybrus.Controllers
             try {
                 await Task.Run(() => {
                     var updatingOrder = this.prod.UpdateTracking(orderId, trackingNo);
-                    TNTHelper.Mailing.SendMail(updatingOrder.CustComment
+                    TNTHelper.Mailing.SendMail(updatingOrder.CustComment ?? string.Empty
                         , "Order Shipped"
                         , string.Format("Your order was shipped with this tracking no: {0}", updatingOrder.TrackingNo))
                     ;
