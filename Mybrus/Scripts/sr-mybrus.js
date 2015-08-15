@@ -8,11 +8,13 @@ TNT.Language || (TNT.Language = (function ($) {
         $(this).bind("click", function () {
             var $img = $(this).find("img");
             if ($img.attr("alt").indexOf("VN") > -1) {
-                $.cookie("mybruslang", "vi");
+                //$.cookie("mybruslang", "vi");
+                $.cookie("mybruslang", 2);
                 $spanLanguage.text("Vietnamese");
             }
             else {
-                $.cookie("mybruslang", "en")
+                //$.cookie("mybruslang", "en")
+                $.cookie("mybruslang", 1);
                 $spanLanguage.text("English");
 
             }

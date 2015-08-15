@@ -33,9 +33,9 @@
             <!-- product price -->
             <div class="productRowInfo">
                 <span class="price styleSecondColor fsize20">
-                    @prdDetail.price.ToString().ToMoney()
+                    @prdDetail.price.ToString("C")
                 </span>
-                @*<span class="txt-strike">@((prdDetail.price + (prdDetail.price * prdDiscount) / 100).ToString().ToMoney())</span>*@
+                @*<span class="txt-strike">@((prdDetail.price + (prdDetail.price * prdDiscount) / 100).ToString("C"))</span>*@
             </div>
             <!-- /product price -->
             <div class="row attributes">
@@ -142,8 +142,8 @@
                     <div class="item-box-desc">
                         <h4>@xp.name</h4>
                         <small class="styleColor">
-                            <span>@xp.price.ToString().ToMoney()</span>
-                            @*@((xp.price - (xp.price * prdDiscount) / 100).ToString().ToMoney())*@
+                            <span>@xp.price.ToString("C")</span>
+                            @*@((xp.price - (xp.price * prdDiscount) / 100).ToString("C"))*@
                         </small>
                     </div>
                 </div>

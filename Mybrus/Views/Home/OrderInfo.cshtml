@@ -1,22 +1,22 @@
-﻿
+﻿@using Mybrus.Language;
 <div class='form-group'>
-    <input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co
+    <input id='chkBopCo' type='checkbox' value='Bop Co' />@BrusLang.Notice.CrimpingBrush
 </div>
 
 <div class='form-group'>
     <input id='txtEmail' type='text' placeholder='Email' class='form-control input-large' />
-    <p class='help-block'>Enter if you have!</p>
+    <p class='help-block'>@BrusLang.Notice.Email</p>
 </div>
 
 <div class='form-group'>
-    <label class='control-label checkbox'>Shipping Address</label>
-    <textarea id='txtShipping' data-toggle="tooltip" title="Please tell me where to ship?" placeholder='Tell me where to ship?' class='form-control input-large' />
+    <label class='control-label checkbox'>@BrusLang.Notice.Shipping_Address</label>
+    <textarea id='txtShipping' data-toggle="tooltip" title="@BrusLang.Notice.ShippingAddress" placeholder="@BrusLang.Notice.ShippingAddress" class='form-control input-large' />
 </div>
 <div class='form-group'>
     <label class='control-label'>
-        Shipping:
+        @BrusLang.Notice.Shipping_Cost:
     </label>
     <label>@ViewBag.shpFee</label>
-    <p class='help-block danger'>Free shipping for order over $30!!</p>
+    <p class='help-block danger'>@BrusLang.Notice.ShippingCost</p>
 </div>
 

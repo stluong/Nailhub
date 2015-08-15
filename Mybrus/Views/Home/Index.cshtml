@@ -159,8 +159,8 @@
                         <div class="item-box-desc">
                             <h4>@xp.name</h4>
                             <small class="styleColor">
-                               @* <span>@((xp.price + (xp.price * prdDiscount) / 100).ToString().ToMoney())</span>*@
-                                @xp.price.ToString().ToMoney()
+                               @* <span>@((xp.price + (xp.price * prdDiscount) / 100).ToString("C"))</span>*@
+                                @xp.price.ToString("C")
                             </small>
                         </div>
                     </div>

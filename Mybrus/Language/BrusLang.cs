@@ -9,6 +9,7 @@ namespace Mybrus.Language
     {
         private static bool _isEnglish = true;
         private static int _langId = 1;
+        private static Notice _notice;
         public static int LangId { 
             get{
                 return _langId;
@@ -18,22 +19,11 @@ namespace Mybrus.Language
                 _isEnglish = _langId == 1;
             }
         }
-
         public static string About { 
             get{
                 return _isEnglish
                     ? "About"
                     : "Giới Thiệu"
-                ;
-            }
-        }
-        public static string CrimpingBrush
-        {
-            get
-            {
-                return _isEnglish
-                    ? "Crimping Brush"
-                    : "Bóp Cọ"
                 ;
             }
         }
@@ -43,7 +33,7 @@ namespace Mybrus.Language
             {
                 return _isEnglish
                     ? "Brush Brand"
-                    : "Loại Cỏ"
+                    : "Loại Cọ"
                 ;
             }
         }
@@ -144,6 +134,78 @@ namespace Mybrus.Language
                 return _isEnglish
                     ? "Type your best Email Address"
                     : "Vui lòng nhập vào Email"
+                ;
+            }
+        }
+
+        public static Notice Notice { 
+            get{
+                _notice = new Notice(_langId);
+                return _notice;
+            }
+        }
+    }
+
+    public class Notice {
+        private bool _isEnglish = true;
+        public Notice(int langId){
+            _isEnglish = langId == 1;
+        }
+        public string CrimpingBrush
+        {
+            get
+            {
+                return _isEnglish
+                    ? "Crimping Brush"
+                    : "Bóp Cọ"
+                ;
+            }
+        }
+        public string Email
+        {
+            get
+            {
+                return _isEnglish
+                    ? "Enter a valid email please!"
+                    : "Nhập vào địa chỉ email nếu có!"
+                ;
+            }
+        }
+        public string Shipping_Address { 
+            get{
+                return _isEnglish
+                    ? "Shipping"
+                    : "Thông Tin Giao Hàng"
+                ;
+            }
+        }
+        public string ShippingAddress
+        {
+            get
+            {
+                return _isEnglish
+                    ? "Tell me where to ship please!"
+                    : "Vui lòng nhập vào địa chỉ giao hàng!"
+                ;
+            }
+        }
+        public string Shipping_Cost
+        {
+            get
+            {
+                return _isEnglish
+                    ? "Shipping"
+                    : "Phí giao hàng"
+                ;
+            }
+        }
+        public string ShippingCost
+        {
+            get
+            {
+                return _isEnglish
+                    ? "Shipping is free if order is over $30!"
+                    : "Giao hàng miễn phí nếu order hơn 30 dollar!"
                 ;
             }
         }
