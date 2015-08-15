@@ -125,3 +125,6 @@
 /// <reference path="tnt/extensions.min.js" />
 /// <reference path="tnt/libs.min.js" />
 /// <reference path="mybrus.min.js" />
+/// <reference path="tnt/sr-extensions.js" />
+/// <reference path="tnt/sr-libs.js" />
+/// <reference path="sr-mybrus.js" />

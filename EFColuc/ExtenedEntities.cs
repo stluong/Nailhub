@@ -60,5 +60,7 @@ namespace EFColuc
 
     public partial class xProduct {
         public IEnumerable<int> Sizes { get; set; }
+        public string Ten { get; set; }
+        public string MieuTa { get; set; }
     }
 }

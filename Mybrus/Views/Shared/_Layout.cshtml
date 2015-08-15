@@ -76,7 +76,7 @@
             <div class="btn-group pull-right">
                 <button id="dnmLanguage" class="dropdown-toggle language" type="button" data-toggle="dropdown">
                     <img src="~/Content/images/flags/us.png" width="16" height="11" />
-                    <span id="spanLanguage">@Lang.Language</span>
+                    <span id="spanLanguage">@BrusLang.Language</span>
                     <span class="caret"></span>
                 </button>
                 <ul id="ulLanguage" class="dropdown-menu">
@@ -101,8 +101,8 @@
             <!-- CART MOBILE BUTTON -->
             <!-- LINKS -->
             <div class="pull-right nav hidden-xs">
-                <a href="@Url.Action("About","Home")"><i class="fa fa-angle-right"></i> @Lang.About</a>
-                <a href="@Url.Action("Contact", "Home")"><i class="fa fa-angle-right"></i> @Lang.Contact</a>
+                <a href="@Url.Action("About","Home")"><i class="fa fa-angle-right"></i> @BrusLang.About</a>
+                <a href="@Url.Action("Contact", "Home")"><i class="fa fa-angle-right"></i> @BrusLang.Contact</a>
             </div>
             <!-- /LINKS -->
 
@@ -123,7 +123,7 @@
             <!-- Logo text or image -->
             <a class="logo" href="@Url.Action("Index", "Home")">
                 @*<img src="~/Content/images/logo.png" alt="Atropos" />*@
-                @Lang.SiteName
+                @BrusLang.SiteName
             </a>
 
             <!-- Top Nav -->
@@ -132,12 +132,12 @@
                     <ul class="nav nav-pills nav-main scroll-menu" id="topMain">
                         <li class="active">
                             <a href="@Url.Action("Index", "Home")">
-                                @Lang.Home
+                                @BrusLang.Home
                             </a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
-                                @Lang.BrushBrand @*<i class="fa fa-angle-down"></i>*@
+                                @BrusLang.BrushBrand @*<i class="fa fa-angle-down"></i>*@
                             </a>
                             @{Html.RenderAction("PtBrandMenu", "Product");}
 
@@ -294,9 +294,14 @@
     </footer>
     <!-- /FOOTER -->
     @Scripts.Render("~/bundles/main")
-    <script src="~/Scripts/TNT/extensions.min.js"></script>
+    @*<script src="~/Scripts/TNT/extensions.min.js"></script>
     <script src="~/Scripts/TNT/libs.min.js"></script>
-    <script src="~/Scripts/mybrus.min.js"></script>
+    <script src="~/Scripts/mybrus.min.js"></script>*@
+
+    <script src="~/Scripts/TNT/sr-extensions.js"></script>
+    <script src="~/Scripts/TNT/sr-libs.js"></script>
+    <script src="~/Scripts/sr-mybrus.js"></script>
+
     @RenderSection("scripts", required: false)
 
     <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->

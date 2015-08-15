@@ -45,12 +45,15 @@ namespace Mybrus.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            return View(new xProduct { langid = (int?)int.Parse(Language.Lang.LangId) });
+            var langId = (int?)Language.BrusLang.LangId;
+            ViewBag.langId = langId;
+            return View(new xProduct { langid =  langId});
         }
 
         // GET: ProductController/Edit/5
         public ActionResult Edit(int pid, int lid)
         {
+            ViewBag.langId = Language.BrusLang.LangId;
             return View(this.prod.GetXProducts(pid, lid).FirstOrDefault());
         }
         // POST: ProductController/Edit/5

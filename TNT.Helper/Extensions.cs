@@ -208,6 +208,12 @@ namespace TNTHelper
             ;
         }
 
+        public static string ToMoney(object value, string cultureInfo = "en-US") {
+            return string.Format(CultureInfo.CreateSpecificCulture(cultureInfo),
+                 "{0:C}", double.Parse(value.ToString()))
+            ;
+        }
+
         #region Join Extension
         public static IEnumerable<TResult> LeftJoin<TSource, TInner, TKey, TResult>(this IEnumerable<TSource> source,
                                                                                          IEnumerable<TInner> inner,

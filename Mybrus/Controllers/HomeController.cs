@@ -23,9 +23,9 @@ namespace Mybrus.Controllers {
         }
         public ActionResult Index()
         {
-            ViewBag.splProduct = this.prod.GetSpecialProduct(langId: int.Parse(Language.Lang.LangId));
+            ViewBag.splProduct = this.prod.GetSpecialProduct(langId: Language.BrusLang.LangId);
             return View(
-                this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>())
+                this.prod.GetXProducts(langId: Language.BrusLang.LangId)
                     .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
             );
         }
@@ -47,7 +47,7 @@ namespace Mybrus.Controllers {
             return View();
         }
         public ActionResult Detail(int id = 1) {
-            var prdDetails = this.prod.GetXProducts(id, Language.Lang.LangId.ToNullable<int>());
+            var prdDetails = this.prod.GetXProducts(id, Language.BrusLang.LangId);
             ViewBag.prdDetail = prdDetails.GroupBy(p => p.productid, (p, e) => e.FirstOrDefault());
             ViewBag.prdSize = prdDetails
                 .Select(p => new SelectListItem
@@ -57,7 +57,7 @@ namespace Mybrus.Controllers {
                 }).ToArray()
             ;
 
-            return View(this.prod.GetXProducts(langId: Language.Lang.LangId.ToNullable<int>())
+            return View(this.prod.GetXProducts(langId: Language.BrusLang.LangId)
                 .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
             );
         }

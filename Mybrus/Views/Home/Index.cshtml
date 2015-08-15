@@ -1,4 +1,6 @@
 ﻿@using Mybrus.Language;
+@using TNTHelper;
+
 @model IEnumerable<EFColuc.xProduct>
 
 @{
@@ -67,7 +69,7 @@
                          data-speed="300"
                          data-start="1700"
                          data-easing="easeOutExpo" data-end="3200" data-endspeed="300" data-endeasing="easeInSine">
-                        @xp.price.ToString("C")
+                        @TNTHelper.Extensions.ToMoney(xp.price)
                     </div>
                 }
             </li>
@@ -121,7 +123,7 @@
 <section class="container text-center">
     <h1 class="text-center">
         <strong>Welcome</strong> to Mybrus
-        <span class="subtitle">@Lang.Slogan</span>
+        <span class="subtitle">@BrusLang.Slogan</span>
     </h1>
     <p class="lead">
         @*Description here*@
@@ -143,11 +145,11 @@
                                 <span class="overlay color2"></span>
                                 <span class="inner">
                                     <span class="block fa fa-plus fsize20"></span>
-                                    @Lang.Prod_Detail
+                                    @BrusLang.Prod_Detail
                                 </span>
                             </a>
                             <a href="#" class="btn btn-primary add_to_cart" onclick="TNT.Cart.Add(@jsPrdDetail);">
-                                <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
+                                <i class="fa fa-shopping-cart"></i> @BrusLang.Cart_Add
                             </a>
                             <a href="#" class="btn btn-primary buy_now" onclick="TNT.Stripe.Checkout(@jsPrdDetail);">
                                 <i class="fa fa-usd"></i> BUY NOW
@@ -157,8 +159,8 @@
                         <div class="item-box-desc">
                             <h4>@xp.name</h4>
                             <small class="styleColor">
-                                <span>@((xp.price + (xp.price * prdDiscount) / 100).ToString("C"))</span>
-                                @xp.price.ToString("C")
+                               @* <span>@((xp.price + (xp.price * prdDiscount) / 100).ToString().ToMoney())</span>*@
+                                @xp.price.ToString().ToMoney()
                             </small>
                         </div>
                     </div>
@@ -174,10 +176,10 @@
 
     <div class="row bs-callout nomargin-bottom">
         <div class="col-md-8 text-center">
-            <h3 class="padding20">@Lang.Subscribe</h3>
+            <h3 class="padding20">@BrusLang.Subscribe</h3>
         </div>
         <div class="col-md-4">
-            <p class="nomargin">@Lang.Subscribe_Email</p>
+            <p class="nomargin">@BrusLang.Subscribe_Email</p>
             <form method="get" action="#" class="input-group">
                 <input type="text" class="form-control" name="s" id="s" value="" placeholder="E-mail Address" />
                 <span class="input-group-btn">

@@ -1,4 +1,6 @@
-﻿@using Mybrus.Language;
+﻿@using TNTHelper;
+
+@using Mybrus.Language;
 
 @model IEnumerable<EFColuc.xProduct>
 @{
@@ -30,8 +32,10 @@
             <!-- /product unique code -->
             <!-- product price -->
             <div class="productRowInfo">
-                <span class="price styleSecondColor fsize20">@((prdDetail.price - (prdDetail.price * prdDiscount) / 100).ToString("C"))</span>
-                <span class="txt-strike">@prdDetail.price.ToString("C")</span>
+                <span class="price styleSecondColor fsize20">
+                    @prdDetail.price.ToString().ToMoney()
+                </span>
+                @*<span class="txt-strike">@((prdDetail.price + (prdDetail.price * prdDiscount) / 100).ToString().ToMoney())</span>*@
             </div>
             <!-- /product price -->
             <div class="row attributes">
@@ -57,7 +61,8 @@
 
             </div>
             <div class="row">
-                <!-- quantity + @Lang.Cart_Add -->
+                <!-- quantity + @BrusLang.Cart_Add -->
+
                 <div class="row">
                     <div class="col-md-7 col-sm-12">
                         <div class="addCartBtn mt10">
@@ -65,7 +70,7 @@
                                 <input type="text" name="product_qty" id="product_qty" class="text-center form-control" value="1" placeholder="Qty" />
                                 <span class="input-group-btn">
                                     <button id="addToCartBtn" class="btn btn-primary" onclick="TNT.Cart.Add(@jsPrdDetail);">
-                                        <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
+                                        <i class="fa fa-shopping-cart"></i> @BrusLang.Cart_Add
                                     </button>
                                     <button id="buyNow" class="btn btn-primary" onclick="TNT.Stripe.Checkout(@jsPrdDetail, this);">
                                         <i class="fa fa-usd"></i> Buy Now
@@ -76,7 +81,8 @@
 
                     </div>
                 </div>
-                <!-- /quantity + @Lang.Cart_Add -->
+                <!-- /quantity + @BrusLang.Cart_Add -->
+
             </div>
             <!-- product description -->
             <div class="desc">
@@ -122,11 +128,11 @@
                             <span class="overlay color2"></span>
                             <span class="inner">
                                 <span class="block fa fa-plus fsize20"></span>
-                                @Lang.Prod_Detail
+                                @BrusLang.Prod_Detail
                             </span>
                         </a>
                         <a href="#" class="btn btn-primary add_to_cart" onclick="TNT.Cart.Add(@jsPrdDetail);">
-                            <i class="fa fa-shopping-cart"></i> @Lang.Cart_Add
+                            <i class="fa fa-shopping-cart"></i> @BrusLang.Cart_Add
                         </a>
                         <a href="#" class="btn btn-primary buy_now" onclick="TNT.Stripe.Checkout(@jsPrdDetail);">
                             <i class="fa fa-usd"></i> BUY NOW
@@ -136,8 +142,8 @@
                     <div class="item-box-desc">
                         <h4>@xp.name</h4>
                         <small class="styleColor">
-                            <span>@xp.price.ToString("C")</span>
-                            @((xp.price - (xp.price * prdDiscount) / 100).ToString("C"))
+                            <span>@xp.price.ToString().ToMoney()</span>
+                            @*@((xp.price - (xp.price * prdDiscount) / 100).ToString().ToMoney())*@
                         </small>
                     </div>
                 </div>

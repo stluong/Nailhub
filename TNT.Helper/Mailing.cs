@@ -13,7 +13,7 @@ namespace TNTHelper
     {
         private static void SendMail(MailMessage mail, string smtpClient)
         {
-            //#if !DEBUG
+            #if !DEBUG
             try
             {
                 using (SmtpClient smtp = new SmtpClient())
@@ -29,7 +29,7 @@ namespace TNTHelper
             {
                 // todo:  LOG SOMEWHERE?
             }
-            //#endif
+            #endif
         }
 
         public static void SendMail(MailMessage msg)

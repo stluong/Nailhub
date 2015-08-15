@@ -27,7 +27,7 @@
                 Price
             </th>
             <th>
-                Length
+                Description
             </th>
             <th>
                 Size
@@ -59,7 +59,7 @@
                     @(item.price.ToString().ToMoney())
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.length)
+                    @Html.DisplayFor(modelItem => item.description)
                 </td>
                 <td>
                     @(string.Join("-", item.GetSizes()))

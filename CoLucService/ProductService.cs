@@ -246,13 +246,22 @@ namespace CoLucService
             co.Products.Add(prod);
             co.SaveChanges();
             xprod.productid = prod.ProductId;
-            //product detail
+            //product detail, english
             co.ProductDetails.Add(new ProductDetail
             {
                 ProductId = xprod.productid,
-                LangId = xprod.langid ?? 1,
+                LangId = 1,
                 Name = xprod.name,
                 Description = xprod.description,
+                ObjectState = ObjectState.Added
+            });
+            //product detail, vietnamese
+            co.ProductDetails.Add(new ProductDetail
+            {
+                ProductId = xprod.productid,
+                LangId = 2,
+                Name = xprod.Ten,
+                Description = xprod.MieuTa,
                 ObjectState = ObjectState.Added
             });
             //co.SaveChanges();
@@ -260,7 +269,7 @@ namespace CoLucService
             var myImage = new Image
             {
                 productId = xprod.productid,
-                Path = xprod.image,
+                Path = xprod.image?? string.Empty,
                 EnteredBy = 1,
                 EnteredDate = DateTime.Now,
                 ObjectState = ObjectState.Added
@@ -395,6 +404,7 @@ namespace CoLucService
                         , i => i.imageId
                         , (p, i) => new { p, i }
                     )
+                    .Where(pi=>pi.p.EndDate == null)
                     .Select(pi => new
                     {
                         productid = pi.p.ProductId,

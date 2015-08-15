@@ -250,6 +250,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Language\BrusLang.cs" />
     <Compile Include="Language\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -991,8 +992,11 @@
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sr-mybrus.js" />
     <Content Include="Scripts\TNT\extensions.min.js" />
     <Content Include="Scripts\TNT\libs.min.js" />
+    <Content Include="Scripts\TNT\sr-extensions.js" />
+    <Content Include="Scripts\TNT\sr-libs.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

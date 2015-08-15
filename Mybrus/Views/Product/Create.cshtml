@@ -38,9 +38,21 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="txtPrice">Price</label>
+                <label class="control-label" for="txtTen">Tên</label>
                 <div class="controls">
-                    <input id="txtPrice" name="txtPrice" value="@Model.price" type="text" placeholder="Price" class="input-xlarge">
+                    <input id="txtTen" name="txtTen" value="" type="text" placeholder="Tên Sản Phẩm" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="txtMieuTa">Miêu Tả</label>
+                <div class="controls">
+                    <textarea id="txtMieuTa" name="txtMieuTa" type="text" placeholder="Miêu Tả"></textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="txtPrice">Price (@(ViewBag.langId == 1? "X.XX": "X,XX"))</label>
+                <div class="controls">
+                    <input id="txtPrice" name="txtPrice" value="" type="text" placeholder="Price" class="input-xlarge">
                 </div>
             </div>
             <div class="control-group">

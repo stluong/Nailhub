@@ -26,19 +26,19 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="txtName">Name</label>
+                <label class="control-label" for="txtName">@(ViewBag.langId==1? "Name": "Tên")</label>
                 <div class="controls">
                     <input id="txtName" name="txtName" value="@Model.name" type="text" placeholder="Product Name" class="input-xlarge">
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="txtDesc">Description</label>
+                <label class="control-label" for="txtDesc">@(ViewBag.langId == 1? "Description": "Miêu Tả")</label>
                 <div class="controls">
                     <textarea id="txtDesc" name="txtDesc" type="text" placeholder="Product Description">@Model.description</textarea>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="txtPrice">Price</label>
+                <label class="control-label" for="txtPrice">Price (@(ViewBag.langId == 1 ? "X.XX" : "X,XX"))</label>
                 <div class="controls">
                     <input id="txtPrice" name="txtPrice" value="@Model.price" type="text" placeholder="Price" class="input-xlarge">
                 </div>
