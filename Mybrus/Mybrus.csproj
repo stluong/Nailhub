@@ -835,10 +835,19 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sr-mybrus.js" />
+    <Content Include="Scripts\sr-mybrus.min.js">
+      <DependentUpon>sr-mybrus.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\TNT\extensions.min.js" />
     <Content Include="Scripts\TNT\libs.min.js" />
     <Content Include="Scripts\TNT\sr-extensions.js" />
+    <Content Include="Scripts\TNT\sr-extensions.min.js">
+      <DependentUpon>sr-extensions.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\TNT\sr-libs.js" />
+    <Content Include="Scripts\TNT\sr-libs.min.js">
+      <DependentUpon>sr-libs.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -902,6 +911,15 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Home\OrderInfo.cshtml" />
+    <Content Include="Scripts\TNT\sr-extensions.min.js.map">
+      <DependentUpon>sr-extensions.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\TNT\sr-libs.min.js.map">
+      <DependentUpon>sr-libs.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\sr-mybrus.min.js.map">
+      <DependentUpon>sr-mybrus.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
