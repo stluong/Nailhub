@@ -155,13 +155,14 @@ namespace CoLucService
             this.rpoProduct.Update(entity);
         }
 
-        public int DeleteImage(int prdid, string img) {
+        public int DeleteImage(int prdid, string imgId) {
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString())) {
-                var imgProd = co.Images
-                    .Where(i => i.productId == prdid && i.Path.Trim().ToUpper() == img.Trim().ToUpper())
-                    .SingleOrDefault()
+                var myImgId = int.Parse(imgId);
+                var imgProds = co.Images
+                    .Where(i => i.productId == prdid && i.imageId == myImgId)
+                    .ToList()
                 ;
-                if (imgProd != null) {
+                foreach (var imgProd in imgProds) {
                     imgProd.EndDate = DateTime.Now;
                     imgProd.ObjectState = ObjectState.Modified;
                 }
@@ -175,20 +176,21 @@ namespace CoLucService
         /// <param name="prdid"></param>
         /// <param name="img"></param>
         /// <returns></returns>
-        public int SetImage(int prdid, string img)
+        public int SetImage(int prdid, string imgId)
         {
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
             {
-                var imgId = co.Images
-                    .Where(i => i.productId == prdid 
-                        && i.Path.Trim().ToUpper() == img.Trim().ToUpper()
-                        && i.EndDate == null)
-                    .Select(i => i.imageId)
-                ;
-                if (imgId != null)
+                //var img = 
+                    //co.Images
+                    //.Where(i => i.productId == prdid 
+                    //    && i.Path.Trim().ToUpper() == img.Trim().ToUpper()
+                    //    && i.EndDate == null)
+                    //.Select(i => i.imageId)
+                //;
+                if (!string.IsNullOrWhiteSpace(imgId))
                 {
                     var myProd = co.Products.Find(prdid);
-                    myProd.SetImageId = imgId.FirstOrDefault();
+                    myProd.SetImageId = int.Parse(imgId);
                     myProd.ObjectState = ObjectState.Modified;
                 }
                 return co.SaveChanges();

@@ -4,7 +4,7 @@
 @if (Model != null)
 {
     var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
-    var shippingCost = TNTHelper.AppSettings.Get<decimal>("shippingCost");
+    var shippingCost = Mybrus.Controllers.BaseController.ShippingCost;
     var totalPrice = Model.Sum(p => p.price * p.quantity ?? 1);
 
     <div id="cartDetail">

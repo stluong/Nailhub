@@ -9,12 +9,12 @@ TNT.Language || (TNT.Language = (function ($) {
             var $img = $(this).find("img");
             if ($img.attr("alt").indexOf("VN") > -1) {
                 //$.cookie("mybruslang", "vi");
-                $.cookie("mybruslang", 2);
+                $.cookie("mybruslang", 2, { expires: 7, path: '/' });
                 $spanLanguage.text("Vietnamese");
             }
             else {
                 //$.cookie("mybruslang", "en")
-                $.cookie("mybruslang", 1);
+                $.cookie("mybruslang", 1, { expires: 7, path: '/' });
                 $spanLanguage.text("English");
 
             }

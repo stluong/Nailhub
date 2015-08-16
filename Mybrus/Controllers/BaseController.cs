@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Stripe;
+using TNTHelper;
 
 namespace Mybrus.Controllers
 {
@@ -26,6 +27,13 @@ namespace Mybrus.Controllers
                 return "~/Content/images/mybrus/";
             }
         }
+
+        public static decimal ShippingCost {
+            get {
+                return AppSettings.Get<decimal?>("ShippingCost") ?? 2.99m;
+            }
+        }
+
 
         #region Stripe
         protected static async Task<string> _GetTokenId()

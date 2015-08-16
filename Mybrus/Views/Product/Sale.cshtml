@@ -4,114 +4,121 @@
     ViewBag.Title = "Recently Sale";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="mt30l15r10">
     <h2 class="caption">@ViewBag.Title</h2>
-    <table class="tblSaleReport">
-        <tr>
-            <th>
-                OrdId
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                TrackingNo
-            </th>
-            <th>
-                OrdDate
-            </th>
-            <th>
-                Code
-            </th>
-            <th>
-                Size
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                BopCo
-            </th>
-            <th>
-                ShipTo
-            </th>
-            <th>
-                Qt
-            </th>
-            <th>
-                SubTotal
-            </th>
-            <th>
-                ChargeId
-            </th>
-            <th></th>
-        </tr>
+    <section>
+        <a href="@Url.Action("Sale", "Product", new { shpStatus = -1})">All</a> |
+        <a href="@Url.Action("Sale", "Product", new { shpStatus = 0})"> Pending</a> |
+        <a href="@Url.Action("Sale", "Product", new { shpStatus = 1})"> Shipped</a> |
+    </section>
 
-        @foreach (var item in Model)
-        {
+    @if (Model.Count() > 0)
+    {
+        <table id="tblSaleReport" class="tblSaleReport table table-hover table-responsive">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.orderid)
-                </td>
-                <td class="tdStatus">
-                    @Html.DisplayFor(modelItem => item.orderstatus)
-                </td>
-                <td class="pl10">
-                    @if (string.IsNullOrWhiteSpace(item.trackingno))
-                    {
-                        <div class="input-group input-group-sm">
-                            @Html.TextBoxFor(modelItem => item.trackingno, new { @class = "txtTrackingNo form-control", attr_id = @item.orderid })
-                            <span class="input-group-addon pointer" onclick="TNT.Product.UpdateTracking(this);">
-                                <i class="fa fa-save"></i>
-                            </span>
-                        </div>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.trackingno)
-                    }
-                </td>
-
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.orderdate)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.code)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.size)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.price)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.description)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.ordercomment)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.quantity)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.subtotal)
-                </td>
-                <td class="pl10">
-                    @Html.DisplayFor(modelItem => item.invoiceno)
-                </td>
-                <td>
-                   
-                </td>
+                <th>
+                    OrdId
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    TrackingNo
+                </th>
+                <th>
+                    OrdDate
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    Size
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    BopCo
+                </th>
+                <th>
+                    ShipTo
+                </th>
+                <th>
+                    Qt
+                </th>
+                <th>
+                    SubTotal
+                </th>
+                <th>
+                    ChargeId
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderid)
+                    </td>
+                    <td class="tdStatus">
+                        @Html.DisplayFor(modelItem => item.orderstatus)
+                    </td>
+                    <td class="pl10">
+                        @if (string.IsNullOrWhiteSpace(item.trackingno))
+                        {
+                            <div class="input-group input-group-sm">
+                                @Html.TextBoxFor(modelItem => item.trackingno, new { @class = "txtTrackingNo form-control", attr_id = @item.orderid })
+                                <span class="input-group-addon pointer" onclick="TNT.Product.UpdateTracking(this);">
+                                    <i class="fa fa-save"></i>
+                                </span>
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.trackingno)
+                        }
+                    </td>
+
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.orderdate)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.code)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.size)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.ordercomment)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.subtotal)
+                    </td>
+                    <td class="pl10">
+                        @Html.DisplayFor(modelItem => item.invoiceno)
+                    </td>
+                    <td></td>
+                </tr>
+            }
+
+        </table>
+    }
+    
 </div>
 

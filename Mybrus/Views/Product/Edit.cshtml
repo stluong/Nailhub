@@ -69,14 +69,14 @@
                     @foreach (var img in Model.GetImages())
                     {
                         <span class="imgWrap pst-relative">
-                            <img class="xSize100" src="@(imgPath + img)"
+                            <img class="xSize100" src="@(imgPath + img.Path)"
                                  onerror="TNT.Common.ImageError(this);" />
                             <i class="iconDelete btn btn-danger btn-sm pst-absolute pst-topN18 pst-left27"
-                               attr-pid="@Model.productid" attr-img="@img" onclick="TNT.Product.DeleteImage(this);">X</i>
+                               attr-pid="@Model.productid" attr-img="@img.imageId" onclick="TNT.Product.DeleteImage(this);">X</i>
                             <input type="radio" name="rdoImg"
                                    class="pst-absolute pst-left40 pst-top14"
                                    title="Check to set default!"
-                                   attr-pid="@Model.productid" attr-img="@img"
+                                   attr-pid="@Model.productid" attr-img="@img.imageId                                                       "
                                    checked="@img.Equals(Model.GetImageSet())"
                                    onclick="TNT.Product.SetImage(this);">
                         </span>

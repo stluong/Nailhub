@@ -21,9 +21,10 @@ namespace Mybrus
                     Mybrus.Language.BrusLang.LangId = int.Parse(mybrusLang.Value);
                 }
                 catch { }
-                
+
                 requestContext.HttpContext.Request.Cookies.Remove(ckiLanguage);
             }
+            
             return base.GetHttpHandler(requestContext);
         }
     }

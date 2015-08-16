@@ -127,13 +127,13 @@ window.onload = function (e) {
 		jQuery("a.logo img").attr('src', 'Content/images/logo_dark.png');
 	}
 	// BOXED or WIDE
-	var is_boxed = readCookie('is_boxed');
-	if(!is_boxed) {
-	    jQuery('body')
-            .removeClass("boxed")
-        ;
-	    jQuery("#is_boxed").trigger();
-	}
+	//var is_boxed = readCookie('is_boxed');
+	//if(!is_boxed) {
+	//    jQuery('body')
+    //        .removeClass("boxed")
+    //    ;
+	//    jQuery("#is_boxed").trigger();
+	//}
 
 	// PATTERN BACKGROUND
 	var pattern_switch = readCookie('pattern_switch');

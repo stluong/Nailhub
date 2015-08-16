@@ -46,14 +46,13 @@ namespace Mybrus.Controllers
         public ActionResult Create()
         {
             var langId = (int?)Language.BrusLang.LangId;
-            ViewBag.langId = langId;
             return View(new xProduct { langid =  langId});
         }
 
         // GET: ProductController/Edit/5
         public ActionResult Edit(int pid, int lid)
         {
-            ViewBag.langId = Language.BrusLang.LangId;
+            ViewBag.langId = lid;
             return View(this.prod.GetXProducts(pid, lid).FirstOrDefault());
         }
         // POST: ProductController/Edit/5
@@ -164,9 +163,17 @@ namespace Mybrus.Controllers
                 return View();
             }
         }
-
-        public ActionResult Sale() {
-            var orderings = this.prod.GetXOrder();
+        public enum ShippingStatus
+        {
+            All = -1,
+            Pending = 0,
+            Shipped = 1
+        }
+        public ActionResult Sale(ShippingStatus shpStatus = ShippingStatus.All) {
+            var orderings = this.prod.GetXOrder()
+                .Where(x => shpStatus.Equals(ShippingStatus.All) ? true : x.orderstatus.Equals(shpStatus.ToString()))
+                .ToList()
+            ;
             return View(orderings);
         }
 

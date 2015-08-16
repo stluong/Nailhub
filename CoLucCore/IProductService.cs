@@ -19,7 +19,7 @@ namespace CoLucCore
         Order UpdateTracking(int orderId, string trackingNo);
         IEnumerable<string> GetImages(int? prodId);
         xProduct Crud(xProduct prod);
-        int DeleteImage(int prdid, string img);
-        int SetImage(int prdid, string img);
+        int DeleteImage(int prdid, string imgId);
+        int SetImage(int prdid, string imgId);
     }
 }

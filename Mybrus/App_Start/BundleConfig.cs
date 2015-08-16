@@ -25,7 +25,6 @@ namespace Mybrus
 
             bundles.Add(new ScriptBundle("~/bundles/plugins").Include(
                 "~/Content/plugins/jquery.easing.1.3.js"
-                , "~/Content/plugins/jquery.cookie.js"
                 , "~/Content/plugins/jquery.appear.js"
                 , "~/Content/plugins/jquery.isotope.js"
                 , "~/Content/plugins/masonry.js"

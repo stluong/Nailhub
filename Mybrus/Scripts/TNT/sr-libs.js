@@ -366,12 +366,15 @@ TNT.Stripe || (TNT.Stripe = function ($) {
             object.size = size;
 
             var total = object.quantity * object.price
-                , shpFee = "Free";
+                , shpFee = TNT.Common.Settings("input#shippingCost").val()
             ;
 
             if (total < 30) {
-                total = total + 3.99;
-                shpFee = "$3.99";
+                total = parseFloat(total) + parseFloat(shpFee);
+                shpFee = "${0}".format(shpFee);
+            }
+            else {
+                shpFee = "Free";
             }
             BootstrapDialog.show({
                 title: "Notice",
@@ -465,12 +468,15 @@ TNT.Stripe || (TNT.Stripe = function ($) {
         , Checkouts: function (objects, scope) {
             var $scope = $(scope);
             var total = $scope.attr("attr-total")
-                , shpFee = "Free";
+                , shpFee = TNT.Common.Settings("input#shippingCost").val();
             ;
 
             if (total < 30) {
-                total = total + 3.99;
-                shpFee = "$3.99";
+                total = parseFloat(total) + parseFloat(shpFee);
+                shpFee = "${0}".format(shpFee);
+            }
+            else {
+                shpFee = "Free"
             }
             BootstrapDialog.show({
                 title: "Notice",

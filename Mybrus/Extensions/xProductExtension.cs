@@ -47,22 +47,15 @@ namespace Mybrus.Extensions
         /// <param name="xprod"></param>
         /// <param name="prodId"></param>
         /// <returns></returns>
-        public static IEnumerable<string> GetImages(this xProduct xprod, int? prodId = null)
+        public static IEnumerable<Image> GetImages(this xProduct xprod, int? prodId = null)
         {
-            var images = xprod.image.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-            if (images.Count() > 1)
+            using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
             {
-                return images;
-            }
-            else {
-                using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
-                {
-                    return co.Images
-                        .Where(i => i.productId == (prodId ?? xprod.productid) && i.EndDate == null)
-                        .Select(i => i.Path)
-                        .ToList()
-                    ;
-                }
+                return co.Images
+                    .Where(i => i.productId == (prodId ?? xprod.productid) && i.EndDate == null)
+                    //.Select(i => i.Path)
+                    .ToList()
+                ;
             }
         }
         /// <summary>
