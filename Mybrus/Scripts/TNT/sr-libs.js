@@ -377,6 +377,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                 shpFee = "Free";
             }
             BootstrapDialog.show({
+                draggable: true,
                 title: "Notice",
                 message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val(), {fee: shpFee}),
                 buttons: [{
@@ -479,6 +480,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
                 shpFee = "Free"
             }
             BootstrapDialog.show({
+                draggable: true,
                 title: "Notice",
                 message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val()), //_myContent,
                 buttons: [{
