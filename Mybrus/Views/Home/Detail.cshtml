@@ -137,12 +137,13 @@
                         <a href="#" class="btn btn-primary buy_now" onclick="TNT.Stripe.Checkout(@jsPrdDetail);">
                             <i class="fa fa-usd"></i> BUY NOW
                         </a>
-                        <img class="img-responsive" src="@(string.Format("{0}/{1}",imgPath, xp.image))" width="260" height="260" alt="" onerror="TNT.Common.ImageError(this);">
+                        <img class="img-responsive" src="@(string.Format("{0}/{1}",imgPath, xp.image))" width="260" height="260" alt="" 
+                             onerror="TNT.Common.ImageError(this);">
                     </figure>
                     <div class="item-box-desc">
                         <h4>@xp.name</h4>
                         <small class="styleColor">
-                            <span>@xp.price.ToString("C")</span>
+                            <b>@xp.price.ToString("C")</b>
                             @*@((xp.price - (xp.price * prdDiscount) / 100).ToString("C"))*@
                         </small>
                     </div>

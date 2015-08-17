@@ -9,6 +9,7 @@ using EFColuc;
 using Stripe;
 using TNTHelper;
 using System.Linq;
+using Mybrus.Extensions;
 
 namespace Mybrus.Controllers {
     public class HomeController : BaseController {
@@ -50,13 +51,15 @@ namespace Mybrus.Controllers {
             return View();
         }
         public ActionResult Detail(int id = 1) {
-            var prdDetails = this.prod.GetXProducts(id, Language.BrusLang.LangId);
-            ViewBag.prdDetail = prdDetails.GroupBy(p => p.productid, (p, e) => e.FirstOrDefault());
-            ViewBag.prdSize = prdDetails
-                .Select(p => new SelectListItem
+            var prdDetails = this.prod.GetXProducts(id, Language.BrusLang.LangId)
+                .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
+            ;
+            ViewBag.prdDetail = prdDetails;
+            ViewBag.prdSize = prdDetails.FirstOrDefault().GetSizes()
+                .Select(s => new SelectListItem
                 {
-                    Value = p.size.ToString(),//p.productid.ToString(),
-                    Text = p.size.ToString(),
+                    Value = s.ToString(),//p.productid.ToString(),
+                    Text = s.ToString(),
                 }).ToArray()
             ;
 
