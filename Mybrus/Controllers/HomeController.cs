@@ -24,9 +24,12 @@ namespace Mybrus.Controllers {
         public ActionResult Index()
         {
             ViewBag.splProduct = this.prod.GetSpecialProduct(langId: Language.BrusLang.LangId);
+            var mybruses = this.prod.GetXProducts(langId: Language.BrusLang.LangId)
+                .GroupBy(p => p.productid, (p, e) => e
+                    .FirstOrDefault())
+            ;
             return View(
-                this.prod.GetXProducts(langId: Language.BrusLang.LangId)
-                    .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
+                mybruses
             );
         }
         public ActionResult About() {

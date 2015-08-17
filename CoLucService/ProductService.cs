@@ -166,6 +166,15 @@ namespace CoLucService
                     imgProd.EndDate = DateTime.Now;
                     imgProd.ObjectState = ObjectState.Modified;
                 }
+                //Remove setiamge if it is setting
+                foreach( var prod in co.Products
+                    .Where(p => p.SetImageId == myImgId)
+                    .ToList()
+                )
+                {
+                    prod.SetImageId = null;
+                    prod.ObjectState = ObjectState.Modified;
+                }
                 return co.SaveChanges();
             }
         }

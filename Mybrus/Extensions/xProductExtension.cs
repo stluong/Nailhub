@@ -13,7 +13,7 @@ namespace Mybrus.Extensions
         /// </summary>
         /// <param name="xprod"></param>
         /// <returns></returns>
-        public static string GetImageSet(this xProduct xprod, int? prodId = null) {
+        public static Image GetImageSet(this xProduct xprod, int? prodId = null) {
             using (var co = new CoLucEntities(TNT.App.EFConnection.ToString()))
             {
                 var myPi = co.Products
@@ -36,8 +36,8 @@ namespace Mybrus.Extensions
                 ;
 
                 return myPi
-                    .Select(pi => pi.i.Path)
-                    .SingleOrDefault()
+                    .Select(pi => pi.i)
+                    .FirstOrDefault()
                 ;
             }
         }
