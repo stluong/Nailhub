@@ -78,7 +78,7 @@
                 <td colspan="8" class="text-center">
                     @foreach (var img in item.GetImages())
                     {
-                        <img class="xSize100" src="@(imgPath + img)"
+                        <img class="xSize100" src="@(imgPath + img.Path)"
                              onerror="TNT.Common.ImageError(this);" />
                     }
                 </td>
