@@ -122,7 +122,7 @@ namespace Mybrus.Language
             get
             {
                 return _isEnglish
-                    ? "Subcribe nơ and get the latest offers"
+                    ? "Subcribe now and get the latest offers"
                     : "Đăng ký ngay để có khuyến mãi tốt nhất"
                 ;
             }
