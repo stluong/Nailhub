@@ -337,7 +337,7 @@ TNT.Service || (TNT.Service = function ($) {
 
 TNT.Stripe || (TNT.Stripe = function ($) {
 	var _myStripe
-		, _apiKey = "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA"
+		, _apiKey = "pk_live_qvSXjt5IWP46qmlrSSIWyZkn" //"pk_test_wwYvgcyD8v1I6Y1FXprw0WLA"
 		, _defaultEmail = "luc.huynh78@gmail.com"
 		//, _myContent = "<div class='form-group'>"
 		//_myContent += "<input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co"
