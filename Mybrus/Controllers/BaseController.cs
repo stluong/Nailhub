@@ -59,6 +59,7 @@ namespace Mybrus.Controllers
         }
         protected static async Task<StripeCharge> _ChargeCustomer(string stripeToken, string stripeEmail, decimal price, string description)
         {
+            price = price > 30 ? price : price + ShippingCost;
             return await System.Threading.Tasks.Task.Run(() =>
             {
                 var myCharge = new StripeChargeCreateOptions
