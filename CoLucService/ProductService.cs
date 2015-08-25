@@ -23,12 +23,14 @@ namespace CoLucService
         private readonly IRepositoryAsync<Product> rpoProduct;
         private readonly IRepositoryProvider rpoProvider;
         private const int retailCustomerId = 1;
+        private decimal _shpCost;
         
         public ProductService(IRepositoryAsync<Product> _rpoProduct) 
             :base(_rpoProduct)
         {
             this.rpoProduct = _rpoProduct;
             this.rpoProvider = new RepositoryProvider(new RepositoryFactory());
+            this._shpCost = AppSettings.Get<decimal?>("shippingCost") ?? 2.99m;
         }
 
         //public IEnumerable<Product> GetProducts()
@@ -453,7 +455,7 @@ namespace CoLucService
                 try
                 {
                     var total = prods.Sum(p => p.price * p.quantity);
-                    var shpFee = total > 30?0m: 3.99m;
+                    var shpFee = total > 30 ? 0m : _shpCost;
                     var order = new Order
                     {
                         CustId = retailCustomerId,

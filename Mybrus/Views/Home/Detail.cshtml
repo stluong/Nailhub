@@ -1,13 +1,15 @@
 ﻿@using TNTHelper;
-
+@using Mybrus.Extensions;
 @using Mybrus.Language;
 
 @model IEnumerable<EFColuc.xProduct>
 @{
     var prdDetail = ((IEnumerable<EFColuc.xProduct>)ViewBag.prdDetail).FirstOrDefault();
-    var imgs = prdDetail.image.Split(';').ToList();
+    var imgs = prdDetail.GetImages();//prdDetail.image.Split(';').ToList();
     var imgPath = Url.Content(Mybrus.Controllers.BaseController.ImagePath);
     var prdDiscount = TNTHelper.AppSettings.Get<int>("productDiscount");
+    //Updat image
+    prdDetail.image = prdDetail.GetImageSet().Path;
     var jsPrdDetail = Newtonsoft.Json.JsonConvert.SerializeObject(prdDetail);
 }
 
@@ -19,7 +21,7 @@
                 @foreach (var img in imgs)
                 {
                     <div>
-                        <img alt="" class="img-responsive" src="@(imgPath + img)" onerror="TNT.Common.ImageError(this);">
+                        <img alt="" class="img-responsive" src="@(imgPath + img.Path)" onerror="TNT.Common.ImageError(this);">
                     </div>
                 }
             </div>
