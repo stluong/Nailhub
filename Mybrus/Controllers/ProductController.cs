@@ -180,14 +180,15 @@ namespace Mybrus.Controllers
         public async Task<ActionResult> UpdateTracking(int orderId, string trackingNo)
         {
             try {
+                var updatingOrder = new Order();
                 await Task.Run(() => {
-                    var updatingOrder = this.prod.UpdateTracking(orderId, trackingNo);
-                    TNTHelper.Mailing.SendMail(updatingOrder.CustComment ?? string.Empty
+                    updatingOrder = this.prod.UpdateTracking(orderId, trackingNo);
+                    
+                });
+                TNTHelper.Mailing.SendMail(updatingOrder.CustComment ?? string.Empty
                         , "Order Shipped"
                         , string.Format("Your order was shipped with this tracking no: {0}", updatingOrder.TrackingNo))
                     ;
-                }); 
-
                 return Json(MyResponse.success.ToString());
             }
             catch{

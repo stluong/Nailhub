@@ -96,13 +96,17 @@ TNT.Product || (TNT.Product = function ($) {
 
                 TNT.Service.PCall(TNT.Common.Settings("input#url-Prod-UpdateTracking").val(), para)
                     .Success(function (data) {
-                        $td
-                            .html($txtTrackingNo.val())
-                        ;
-                        $preTd.html("Shipped");
+                        //$td
+                        //    .html($txtTrackingNo.val())
+                        //;
+                        //$preTd.html("Shipped");
 
                     })
                 ;
+                $td
+                    .html($txtTrackingNo.val())
+                ;
+                $preTd.html("Shipped");
             }
             else {
                 $txtTrackingNo
