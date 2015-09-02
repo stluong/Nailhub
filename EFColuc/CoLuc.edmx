@@ -907,6 +907,7 @@
           <Property Type="String" Name="refundtransid" Nullable="true" MaxLength="10" />
           <Property Type="Decimal" Name="refundtotal" Nullable="true" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="refunddate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="custcomment" Nullable="true" MaxLength="250" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1178,6 +1179,7 @@
                 <ScalarProperty Name="refundtransid" ColumnName="refundtransid" />
                 <ScalarProperty Name="refundtotal" ColumnName="refundtotal" />
                 <ScalarProperty Name="refunddate" ColumnName="refunddate" />
+                <ScalarProperty Name="custcomment" ColumnName="custcomment" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

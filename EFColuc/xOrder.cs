@@ -31,5 +31,6 @@ namespace EFColuc
         public string refundtransid { get; set; }
         public Nullable<decimal> refundtotal { get; set; }
         public Nullable<System.DateTime> refunddate { get; set; }
+        public string custcomment { get; set; }
     }
 }
