@@ -171,7 +171,7 @@ namespace Mybrus.Controllers
         }
         public ActionResult Sale(ShippingStatus shpStatus = ShippingStatus.All) {
             var orderings = this.prod.GetXOrder()
-                .Where(x => shpStatus.Equals(ShippingStatus.All) ? true : x.orderstatus.Equals(shpStatus.ToString()))
+                .Where(x => shpStatus.Equals(ShippingStatus.All) || x.orderstatus.Equals(shpStatus.ToString()))
                 .ToList()
             ;
             return View(orderings);
