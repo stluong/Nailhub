@@ -1,10 +1,9 @@
-﻿using Mybrus.Models;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Mybrus.Models;
 using TNT.Core.Identity;
 using TNT.Core.Model.Identity;
-using Autofac;
 
 namespace Mybrus.Controllers
 {

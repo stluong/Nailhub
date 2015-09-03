@@ -318,15 +318,17 @@ namespace CoLucService
             var updatingProduct = co.Products
                 .Include(p => p.ProductDetails)
                 .Include(p => p.Inventories)
-                .Where(p => p.ProductId == xprod.productid)
-                .SingleOrDefault()
+                //.Where(p => p.ProductId == xprod.productid)
+                .SingleOrDefault(p => p.ProductId == xprod.productid)
             ;
             updatingProduct.BrandId = xprod.brandid;
             updatingProduct.Code = xprod.code;
             updatingProduct.Price = decimal.Parse(xprod.price.ToString());
             updatingProduct.ObjectState = ObjectState.Modified;
             //update product detail
-            var udtProductDetail = updatingProduct.ProductDetails.Where(pd => pd.LangId == xprod.langid).SingleOrDefault();
+            var udtProductDetail = updatingProduct.ProductDetails
+                //.Where(pd => pd.LangId == xprod.langid)
+                .SingleOrDefault(pd => pd.LangId == xprod.langid);
             udtProductDetail.Name = xprod.name;
             udtProductDetail.Description = xprod.description;
             udtProductDetail.ObjectState = ObjectState.Modified;
