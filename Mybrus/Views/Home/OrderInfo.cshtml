@@ -2,7 +2,7 @@
 
 @{
     var sizes = (IEnumerable<int>)ViewBag.prdSize;
-    sizes = sizes as IList<int> ?? sizes.ToList(); 
+    sizes = sizes as IList<int> ?? new List<int>();
 }
 
 <div class='form-group form-group-sm mx-hgt200'>

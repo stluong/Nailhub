@@ -21,9 +21,9 @@ namespace Mybrus.Extensions
             var attributes = BuildHtmlStringFrom(htmlAttributes);
 
             #if DEBUG
-            var originalHtml = Styles.Render(path).ToHtmlString();
-            string tagsWithAttributes = originalHtml.Replace("/>", attributes + "/>");
-            return MvcHtmlString.Create(tagsWithAttributes);
+                var originalHtml = Styles.Render(path).ToHtmlString();
+                string tagsWithAttributes = originalHtml.Replace("/>", attributes + "/>");
+                return MvcHtmlString.Create(tagsWithAttributes);
             #endif
 
             string tagWithAttribute = string.Format(

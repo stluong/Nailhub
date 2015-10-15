@@ -361,7 +361,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 		Checkout: function (object, thss) {
 			var $scope = $(thss).parents($("div#scopeBuy"))
 				, quantity = $scope.find("input#product_qty").val() || 1
-				, size = $scope.find("select#ddlSize").val() || $("div#scopeBuy").find("select#ddlSize").val()
+				, size = $scope.find("select#ddlSize").val()
 			;
 
 			object.quantity = quantity;
