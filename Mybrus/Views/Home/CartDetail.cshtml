@@ -1,4 +1,5 @@
-﻿@using TNTHelper;
+﻿@using Mybrus.Extensions
+@using TNTHelper;
 @model IEnumerable<EFColuc.xProduct>
 
 @if (Model != null)
@@ -15,8 +16,8 @@
                 <div id="cartContent" class="mt30" attr-total="@totalPrice">
                     <div class="row item head fnt-bold">
                         <div class="col-lg-1"></div>
-                        <div class="col-lg-4">PRODUCT NAME</div>
-                        <div class="col-lg-1">SIZE</div>
+                        <div class="col-lg-3">PRODUCT NAME</div>
+                        <div class="col-lg-2">SIZE</div>
                         <div class="col-lg-2">QUANTITY</div>
                         <div class="col-lg-2 col-lg-push-2">TOTAL</div>
                         <div class="col-lg-1 col-lg-push-1"></div>
@@ -25,9 +26,17 @@
                     @foreach (var xp in Model)
                     {
                         <div class="row item">
-                            <div class="col-lg-1"><img src="@string.Format("{0}/{1}", imgPath, xp.image)" alt="" width="60" onerror="TNT.Common.ImageError(this);"/></div>
-                            <div class="col-lg-4"><a href="#">@xp.name</a></div>
-                            <div class="col-lg-1">@xp.size</div>
+                            <div class="col-lg-1"><img src="@string.Format("{0}/{1}", imgPath, xp.image)" alt="" width="60" onerror="TNT.Common.ImageError(this);" /></div>
+                            <div class="col-lg-3"><a href="#">@xp.name</a></div>
+                            <div class="col-lg-2">
+                                @Html.DropDownList("ddlSize", (IEnumerable<SelectListItem>)xp.GetSizes()
+                                    .Select(s => new SelectListItem
+                                    {
+                                        Value = s.ToString(),
+                                        Text = s.ToString(),
+                                        Selected = s == xp.size
+                                    }).ToArray())
+                            </div>
                             <div class="col-lg-2"><input type="text" class="wth35" value="@xp.quantity" name="qty" maxlength="3" /> x @xp.price.ToString("C")</div>
                             <div class="col-lg-2 col-lg-push-2">@((xp.price * xp.quantity ?? 1).ToString("C"))</div>
                             <div class="col-lg-1 col-lg-push-1"><a href="#" class="remove_item" title="Remove" onclick="TNT.Cart.Remove(@Newtonsoft.Json.JsonConvert.SerializeObject(xp));">X</a></div>
@@ -36,10 +45,10 @@
                     }
                     <div class="total pull-right">
                         <small>
-                            Shipping: @(totalPrice>=30? "Free": shippingCost.ToString("C"))
+                            Shipping: @(totalPrice >= 30 ? "Free" : shippingCost.ToString("C"))
                         </small>
                         <span class="totalToPay styleSecondColor">
-                            TOTAL: <span id="spnTotal">@totalPrice.ToString("C")</span> 
+                            TOTAL: <span id="spnTotal">@totalPrice.ToString("C")</span>
                         </span>
                     </div>
                     <!-- /cart total -->

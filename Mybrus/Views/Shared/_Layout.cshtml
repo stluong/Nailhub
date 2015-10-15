@@ -57,6 +57,7 @@
         <input type="hidden" id="url-Prod-DeleteImage" value="@Url.Action("DeleteImageAsync", "Product")">
         <input type="hidden" id="url-Prod-SetImage" value="@Url.Action("SetImageAsync", "Product")">
         <input type="hidden" id="shippingCost" value="@Mybrus.Controllers.BaseController.ShippingCost">
+        <input type="hidden" id="apiKey" value="@Mybrus.Controllers.BaseController.CheckoutApiKey">
     <>
     </header>
     
@@ -300,8 +301,8 @@
     <script src="~/Scripts/mybrus.min.js"></script>*@
 
     <script src="~/Scripts/TNT/extensions.min.js"></script>
-    <script src="~/Scripts/TNT/libs.min.js"></script>
-    <script src="~/Scripts/mybrus.min.js"></script>
+    <script src="~/Scripts/TNT/sr-libs.js"></script>
+    <script src="~/Scripts/sr-mybrus.js"></script>
 
     @RenderSection("scripts", required: false)
 

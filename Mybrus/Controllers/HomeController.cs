@@ -11,12 +11,14 @@ using TNTHelper;
 using System.Linq;
 using Mybrus.Extensions;
 
-namespace Mybrus.Controllers {
-    public class HomeController : BaseController {
+namespace Mybrus.Controllers
+{
+    public class HomeController : BaseController
+    {
 
         private readonly IProductService prod;
         private const string sssQuickCart = "mySSSQuickCart";
-        
+
 
         public HomeController(IProductService _prod)
         {
@@ -33,12 +35,14 @@ namespace Mybrus.Controllers {
                 mybruses
             );
         }
-        public ActionResult About() {
+        public ActionResult About()
+        {
             ViewBag.Message = "Your app description page.";
 
             return View();
         }
-        public ActionResult Contact() {
+        public ActionResult Contact()
+        {
             ViewBag.Message = "Your contact page.";
 
             return View();
@@ -47,10 +51,12 @@ namespace Mybrus.Controllers {
         {
             return View();
         }
-        public ActionResult Policy() {
+        public ActionResult Policy()
+        {
             return View();
         }
-        public ActionResult Detail(int id = 1) {
+        public ActionResult Detail(int id = 1)
+        {
             var prdDetails = this.prod.GetXProducts(id, Language.BrusLang.LangId)
                 .GroupBy(p => p.productid, (p, e) => e.FirstOrDefault())
             ;
@@ -72,16 +78,28 @@ namespace Mybrus.Controllers {
             try
             {
                 //stripeToken = await _GetTokenId();
+                //#if DEBUG
+                //    var stripeCharge = new StripeCharge
+                //    {
+                //        Status = "succeeded"
+                //        , Paid = true
+                //    };
+                //#else
+                //    var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, prod.price, prod.description);
+                //#endif
+
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, prod.price, prod.description);
+
                 if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
                 {
-                    await Task.Run(() => {
-                        this.prod.CrudOrder(new xProduct[] { prod }, stripeCharge.Id, stripeEmail);
+                    await Task.Run(() =>
+                    {
+                        this.prod.CrudOrder(new[] { prod }, stripeCharge.Id, stripeEmail);
                     });
                     Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering! Your order will be sent asap.");
                     return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -102,13 +120,25 @@ namespace Mybrus.Controllers {
                 var description = string.Format("Order for product: {0}"
                     , string.Join(", ", prods.Select(p => p.productid))
                 );
+                //#if DEBUG
+                //    var stripeCharge = new StripeCharge
+                //    {
+                //        Status = "succeeded"
+                //        ,
+                //        Paid = true
+                //    };
+                //#else
+                //     var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, totalcharge, description);
+                //#endif
+
                 var stripeCharge = await _ChargeCustomer(stripeToken, stripeEmail, totalcharge, description);
+
                 if (stripeCharge.Status == "succeeded" && stripeCharge.Paid)
                 {
                     await Task.Run(() =>
                     {
                         this.prod.CrudOrder(prods, stripeCharge.Id);
-                    }); 
+                    });
                     Mailing.SendMail(stripeEmail, "Mybrus", "Thank you for ordering!! Your order will be sent asap.");
                     return Json(stripeCharge.Status, JsonRequestBehavior.AllowGet);
                 }
@@ -124,7 +154,8 @@ namespace Mybrus.Controllers {
         }
 
 
-        public ActionResult QuickCart() {
+        public ActionResult QuickCart()
+        {
             IEnumerable<xProduct> myCart = (IEnumerable<xProduct>)Session[sssQuickCart];
             return PartialView(myCart);
         }
@@ -133,10 +164,12 @@ namespace Mybrus.Controllers {
             IEnumerable<xProduct> myCart = (IEnumerable<xProduct>)Session[sssQuickCart];
             return PartialView(myCart);
         }
-        public ActionResult Cart() {
+        public ActionResult Cart()
+        {
             return View();
         }
-        public ActionResult Cc() {
+        public ActionResult Cc()
+        {
             return View();
         }
         public JsonResult UpdateCart(List<xProduct> prods)
@@ -153,7 +186,8 @@ namespace Mybrus.Controllers {
             }
             return Json("error", JsonRequestBehavior.AllowGet);
         }
-        public JsonResult AddCart(xProduct prod){
+        public JsonResult AddCart(xProduct prod)
+        {
             try
             {
                 List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart] ?? new List<xProduct>();
@@ -163,18 +197,20 @@ namespace Mybrus.Controllers {
                 Session[sssQuickCart] = myCart;
                 return Json("success", JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 //throw
                 Mailing.SendException(ex);
             }
             return Json("error", JsonRequestBehavior.AllowGet);
         }
-        public JsonResult RemoveCart(xProduct prod){
+        public JsonResult RemoveCart(xProduct prod)
+        {
             try
             {
                 List<xProduct> myCart = (List<xProduct>)Session[sssQuickCart];
                 Session[sssQuickCart] = myCart
-                    .Where(p=>p.productid != prod.productid)
+                    .Where(p => p.productid != prod.productid)
                     .ToList()
                 ;
                 return Json("success", JsonRequestBehavior.AllowGet);
@@ -188,10 +224,21 @@ namespace Mybrus.Controllers {
         }
 
 
-        public ActionResult OrderInfo(string fee) {
+        public ActionResult OrderInfo(string fee, xProduct prod)
+        {
             ViewBag.shpFee = fee;
+            var ddlSize = prod.size != null
+                ? null
+                : prod.GetSizes()
+                //.Select(s => new SelectListItem
+                //{
+                //    Value = s.ToString(),
+                //    Text = s.ToString()
+                //}).ToArray()
+            ;
+            ViewBag.prdSize = ddlSize;
             return PartialView();
         }
-        
+
     }
 }

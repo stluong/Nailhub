@@ -483,6 +483,7 @@ namespace CoLucService
                             Quantity = p.quantity ?? 1,
                             Price = p.price,
                             Total = p.price * p.quantity ?? 1,
+                            Size = p.size,
                             Description = p.description,
                             ObjectState = ObjectState.Added
                         }).ToList()

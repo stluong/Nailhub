@@ -337,7 +337,9 @@ TNT.Service || (TNT.Service = function ($) {
 
 TNT.Stripe || (TNT.Stripe = function ($) {
 	var _myStripe
-		, _apiKey = "pk_live_qvSXjt5IWP46qmlrSSIWyZkn" //"pk_test_wwYvgcyD8v1I6Y1FXprw0WLA"
+		//, _apiKey = "pk_test_wwYvgcyD8v1I6Y1FXprw0WLA"
+        //, _apiKey = "pk_live_qvSXjt5IWP46qmlrSSIWyZkn"
+        , _apiKey = TNT.Common.Settings("input#apiKey").val()
 		, _defaultEmail = "luc.huynh78@gmail.com"
 		//, _myContent = "<div class='form-group'>"
 		//_myContent += "<input id='chkBopCo' type='checkbox' value='Bop Co' /> Bop co"
@@ -359,7 +361,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 		Checkout: function (object, thss) {
 			var $scope = $(thss).parents($("div#scopeBuy"))
 				, quantity = $scope.find("input#product_qty").val() || 1
-				, size = $scope.find("select#ddlSize").val()
+				, size = $scope.find("select#ddlSize").val() || $("div#scopeBuy").find("select#ddlSize").val()
 			;
 
 			object.quantity = quantity;
@@ -380,7 +382,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 			    draggable: true,
                 size: BootstrapDialog.SIZE_SMALL,
 				title: "Notice",
-				message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val(), {fee: shpFee}),
+				message: $("<div></div>").load(TNT.Common.Settings("input#url-Order-Info").val(), {fee: shpFee, prod: object}),
 				buttons: [{
 					label: "READY TO PAY",
 					action: function (dialog) {
@@ -388,10 +390,12 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 							isBopCo = dialog.$modalBody.find("input#chkBopCo").is(":checked")
 							, email = dialog.$modalBody.find("input#txtEmail").val()
 							, $shipTo = dialog.$modalBody.find("textarea#txtShipping")
+                            , newSize = dialog.$modalBody.find("select#ddlSize").val()
 						;
 						if ($.trim($shipTo.val()).length > 0) {
 							dialog.close();
 
+							object.size = object.size || newSize;
 							object.description = isBopCo ? "Bop co" : "";
 							object.note = $shipTo.val();
 
@@ -478,7 +482,7 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 				shpFee = "${0}".format(shpFee);
 			}
 			else {
-				shpFee = "Free"
+			    shpFee = "Free";
 			}
 			BootstrapDialog.show({
 			    draggable: true,
@@ -501,6 +505,10 @@ TNT.Stripe || (TNT.Stripe = function ($) {
 								objects[i].quantity = $(e).val();
 								objects[i].description = bopCo;
 								objects[i].note = $shipTo.val();
+							});
+						    //Stl, 10/07/2015: Update size from UI
+							$scope.find("select[name='ddlSize']").each(function (i, e) {
+							    objects[i].size = $(e).val();
 							});
 
 							if (email) {

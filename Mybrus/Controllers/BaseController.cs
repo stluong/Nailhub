@@ -34,6 +34,13 @@ namespace Mybrus.Controllers
             }
         }
 
+        public static string ApiKey {
+            get { return AppSettings.Get<string>("StripeApiKey") ?? string.Empty; }
+        }
+        public static string CheckoutApiKey
+        {
+            get { return AppSettings.Get<string>("CheckoutApiKey") ?? string.Empty; }
+        }
 
         #region Stripe
         protected static async Task<string> _GetTokenId()
