@@ -45,7 +45,9 @@
     <None Include="Developement\AppSetting.config" />
     <None Include="Developement\ConnectionString.config" />
     <None Include="Production\AppSetting.config" />
-    <None Include="Production\ConnectionString.config" />
+    <None Include="Production\ConnectionString.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
